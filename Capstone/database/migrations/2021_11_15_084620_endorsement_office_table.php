@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EndoresementOfficeTable extends Migration
+class EndorsementOfficeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,11 +17,12 @@ class EndoresementOfficeTable extends Migration
         Schema::create('EndorsementOffice', function(Blueprint $table)
         {
             $table->id('officeNumber');
-            $table->string('officeName')->unique();
+            $table->string('officeCode')->unique();
+            $table->string('OfficeName');
             $table->string('Description');
+            $table->string('endorser_id')->unique();
+            $table->string('password');
             $table->string('EndorserName');
-            // $table->string('endorser_id')->index()->nullable();
-            // $table->foreign('endorser_id')->references('endorser_id')->on('endorser')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,7 +35,6 @@ class EndoresementOfficeTable extends Migration
     public function down()
     {
         //
-
         Schema::dropIfExists('EndorsementOffice');
     }
 }
