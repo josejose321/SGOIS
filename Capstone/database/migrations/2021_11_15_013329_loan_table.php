@@ -19,7 +19,9 @@ class LoanTable extends Migration
             $table->increments("LoanNo");
             $table->string('semester');
             $table->string('school_year');
-            $table->string('student_no')->index()->nullable();
+            $table->enum('status', ['Pending','Approved','Rejected'])->default('Pending');
+            $table->string('officeCode')->index();
+            $table->string('student_no')->index();
             $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
             $table->timestamps();
 

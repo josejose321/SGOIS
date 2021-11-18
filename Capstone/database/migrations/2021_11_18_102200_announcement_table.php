@@ -31,5 +31,6 @@ class AnnouncementTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('Announcement');
     }
 }

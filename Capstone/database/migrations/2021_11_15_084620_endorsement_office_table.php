@@ -20,7 +20,7 @@ class EndorsementOfficeTable extends Migration
             $table->string('officeCode')->unique();
             $table->string('OfficeName');
             $table->string('Description');
-            $table->string('endorser_id')->unique();
+            $table->string('endorser_id')->index();
             $table->string('password');
             $table->string('EndorserName');
             $table->timestamps();

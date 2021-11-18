@@ -30,5 +30,6 @@ class SemesterTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('Semester');
     }
 }
