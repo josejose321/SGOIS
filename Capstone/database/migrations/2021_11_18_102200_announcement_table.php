@@ -20,6 +20,7 @@ class AnnouncementTable extends Migration
             $table->string('admin_no')->index();
             $table->string('subject');
             $table->string('content');
+            $table->timestamps();
         });
     }
 
