@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Enum;
 
 class DiscountTable extends Migration
 {
@@ -11,6 +12,7 @@ class DiscountTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         //
@@ -19,6 +21,7 @@ class DiscountTable extends Migration
             $table->increments("DiscountNo");
             $table->string('semester');
             $table->string('school_year');
+            $table->enum('status', ['Pending','Approved','Rejected'])->default('Pending');
             $table->string('student_no')->index()->nullable();
             $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
             $table->timestamps();
