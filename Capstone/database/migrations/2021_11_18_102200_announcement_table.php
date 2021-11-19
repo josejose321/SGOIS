@@ -21,6 +21,7 @@ class AnnouncementTable extends Migration
             $table->string('subject');
             $table->string('content');
             $table->timestamps();
+            //$table->foreign('admin_no')->references('admin_no')->on('')
         });
     }
 

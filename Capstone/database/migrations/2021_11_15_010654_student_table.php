@@ -15,13 +15,13 @@ class StudentTable extends Migration
     {
         //
         Schema::create('Student', function (Blueprint $table){
-            $table->id('No');
-            $table->string('student_no')->unique();
+            $table->string('student_no')->primary();
             $table->string('password');
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
             $table->string('suffix');
+            $table->enum('Department', ['CSS','CJS','EA','CBA','CN','CAS','LAW']);
             $table->string('email');
             $table->string('phoneNumber');
             $table->string('course');

@@ -16,14 +16,14 @@ class EndorsementOfficeTable extends Migration
         //
         Schema::create('EndorsementOffice', function(Blueprint $table)
         {
-            $table->id('officeNumber');
-            $table->string('officeCode')->unique();
+            $table->string('officeCode')->primary();
             $table->string('OfficeName');
             $table->string('Description');
-            $table->string('endorser_id')->index();
+            $table->string('staff_no')->index();
             $table->string('password');
             $table->string('EndorserName');
             $table->timestamps();
+            
         });
     }
 
