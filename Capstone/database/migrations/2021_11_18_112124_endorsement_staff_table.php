@@ -14,18 +14,19 @@ class EndorsementStaffTable extends Migration
     public function up()
     {
         //
-        Schema::create('EndorsementStaff', function (Blueprint $table)
+        Schema::create('Employee', function (Blueprint $table)
         {
-            $table->string('staff_no')->primary();
+            $table->string('Employee_no')->primary();
             $table->string('officeCode')->index();
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
             $table->string('extension');
-            $table->string('email');
+            $table ->enum('position',array('Office Director','Accounting Staff', 'SGO Director'));
             $table->string('phone');
             $table->binary('image');
-            $table->foreign('staff_no')->references('staff_no')->on('EndorsementOffice')->onDelete('cascade');
+            $table->foreign('officeCode')->references('officeCode')->on('EndorsementOffice')->onDelete('cascade');
+            $table->foreign('Employee_no')->references('Employee_no')->on('Announcement')->onDelete('cascade');
         });
     }
 

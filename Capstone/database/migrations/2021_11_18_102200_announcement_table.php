@@ -17,11 +17,12 @@ class AnnouncementTable extends Migration
 
         Schema::create('Announcement', function (Blueprint $table){
             $table->id();
-            $table->string('admin_no')->index();
+            $table->string('Employee_no')->index();
             $table->string('subject');
             $table->string('content');
             $table->timestamps();
-            //$table->foreign('admin_no')->references('admin_no')->on('')
+            
+
         });
     }
 

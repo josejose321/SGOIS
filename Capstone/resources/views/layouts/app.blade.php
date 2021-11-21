@@ -21,11 +21,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color:rgb(138, 107, 87)">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="logo.png" alt="" class="w-25 p-3">
+                    <strong>UNIVERSITY OF NUEVA CACERES</strong>
                 </a>
+                
+            <div class="container">
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,22 +36,28 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        
+                        <li class="nav-item">
+                            <h4><a href="" class="nav-link">Contact</a></h4>
+                        </li>
+                        <li class="nav-item">
+                            <h4><a href="" class="nav-link">Scholarship</a></h4>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <h4><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h4>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <h4><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h4>
                                 </li>
                             @endif
                         @else

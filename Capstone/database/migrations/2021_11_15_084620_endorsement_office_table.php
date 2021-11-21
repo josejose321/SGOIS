@@ -19,8 +19,6 @@ class EndorsementOfficeTable extends Migration
             $table->string('officeCode')->primary();
             $table->string('OfficeName');
             $table->string('Description');
-            $table->string('staff_no')->index();
-            $table->string('password');
             $table->string('EndorserName');
             $table->timestamps();
             
