@@ -58,9 +58,9 @@
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                        <li class="nav-item"><a class="nav-link link text-black display-7" href="https://mobirise.com">HOME</a></li>
-                        <li class="nav-item"><a class="nav-link link text-black display-7" href="https://mobirise.com">SCHOLARHIP</a></li>
-                        <li class="nav-item"><a class="nav-link link text-black display-7" href="https://mobirise.com">ABOUT US</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">SCHOLARHIP</a></li>
+                        <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">ABOUT US</a></li>
                         @guest
                         @if (Route::has('login'))
                             @auth
@@ -100,7 +100,7 @@
                         
                         
                         
-                    <li class="foot-menu-item mbr-fonts-style display-7"><a href="https://mobirise.com/help/" class="text-success">Help Center</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="http://forums.mobirise.com/" class="text-success">Mobirise Forums</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="https://mobirise.com/" class="text-success">Mobirise.com</a></li></ul>
+                    <li class="foot-menu-item mbr-fonts-style display-7"><a href="#" class="text-success">Help Center</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="http://forums.mobirise.com/" class="text-success">Mobirise Forums</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="https://mobirise.com/" class="text-success">Mobirise.com</a></li></ul>
                 </div>
                 <div class="row social-row">
                     <div class="social-list align-right pb-2">

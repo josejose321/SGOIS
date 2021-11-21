@@ -15,4 +15,12 @@ class StudentController extends Controller
     {
         
     }
+    function update($id)
+    {
+        
+    }
+    function destroy($id)
+    {
+
+    }
 }

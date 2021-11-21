@@ -17,7 +17,7 @@ class EndorsementStaffTable extends Migration
         Schema::create('Employee', function (Blueprint $table)
         {
             $table->string('Employee_no')->primary();
-            $table->string('officeCode')->index();
+            $table->string('officeCode')->index()->nullable();
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');

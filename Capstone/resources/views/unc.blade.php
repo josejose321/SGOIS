@@ -88,7 +88,7 @@
                 <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2"><strong><em>"Everybody Shares Project is our avenue to achieve our goal, "Everyone Makes It”.</em></strong></h1>
                 
                 <p class="mbr-text mbr-fonts-style display-7">developer: capstone peeps</p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-secondary display-5" href="https://mobirise.com">VIEW MORE DETAILS</a></div>
+                <div class="mbr-section-btn mt-3"><a class="btn btn-secondary display-5" href="https://www.unc.edu.ph/">VIEW MORE DETAILS</a></div>
             </div>
         </div>
     </div>
