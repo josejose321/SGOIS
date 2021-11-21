@@ -21,7 +21,6 @@ class AnnouncementTable extends Migration
             $table->string('subject');
             $table->string('content');
             $table->timestamps();
-            
 
         });
     }

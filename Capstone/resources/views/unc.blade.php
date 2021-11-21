@@ -38,11 +38,11 @@
         <div class="container-fluid">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="https://mobiri.se">
+                    <a href="{{ url('/') }}">
                         <img src="/assets/images/logo-121x155.png" alt="Mobirise" style="height: 5.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-success display-5" href="https://mobiri.se">UNC SCHOLARSHIP AND GRANTS</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-success display-5" href="{{ url('/') }}">UNC SCHOLARSHIP AND GRANTS</a></span>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="hamburger">
@@ -52,10 +52,23 @@
                     <span></span>
                 </div>
             </button>
+           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black display-7" href="https://mobirise.com">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link link text-black display-7" href="https://mobirise.com">SCHOLARHIP</a></li><li class="nav-item"><a class="nav-link link text-black display-7" href="https://mobirise.com">ABOUT US</a></li><li class="nav-item"><a class="nav-link link text-black display-7" href="https://mobirise.com">LOG IN</a></li></ul>
-                
+                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                    <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">SCHOLARHIP</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">ABOUT US</a></li>
+                    @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    @else 
+                        <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ route('login') }}">LOG IN</a></li>
+                        @if (Route::has('register'))    
+                        <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ route('register') }}">REGISTER</a></li>
+                    @endif
+                    @endauth
+                </ul>
+            @endif   
                 
             </div>
         </div>

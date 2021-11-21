@@ -15,7 +15,7 @@ class StudentTable extends Migration
     {
         //
         Schema::create('Student', function (Blueprint $table){
-            $table->string('student_no',8)->primary();
+            $table->string('student_no')->primary();
             $table->string('password',50);
             $table->string('first_name',50);
             $table->string('middle_name',50);
@@ -27,6 +27,7 @@ class StudentTable extends Migration
             $table->string('course');
             $table->string('Year', 10);
             $table->binary('image');
+            $table->foreign('student_no')->references('user_no')->on('users')->onDelete('cascade');
             $table->timestamps();
 
         });

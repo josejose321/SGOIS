@@ -20,6 +20,7 @@ class SemesterTable extends Migration
             $table->date('date');
             $table->integer('period');
             $table->timestamps();
+            
         });
     }
 

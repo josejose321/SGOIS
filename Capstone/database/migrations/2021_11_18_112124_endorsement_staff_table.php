@@ -26,7 +26,7 @@ class EndorsementStaffTable extends Migration
             $table->string('phone');
             $table->binary('image');
             $table->foreign('officeCode')->references('officeCode')->on('EndorsementOffice')->onDelete('cascade');
-            $table->foreign('Employee_no')->references('Employee_no')->on('Announcement')->onDelete('cascade');
+            $table->foreign('Employee_no')->references('user_no')->on('users')->onDelete('cascade');
         });
     }
 
