@@ -92,7 +92,7 @@
           <input type="file" class="form-control w-50 p-3" name="photo" />
           
         </div> 
-        <button class="button btn-primary" id ="btnSubmit">Submit</button>
+        <button type="submit" class="button btn-primary" id ="btnSubmit">Submit</button>
       </form>
       <p id="dataRow"></p>
     </div>
@@ -103,12 +103,26 @@
       //     }
       // });
     
-      $("#btnSubmit").click(function(e){
+      $("#btnSubmit").submit(function(e){
           e.preventDefault();
           var data = $("form").serializeArray();
           console.log(data);
           var row = document.getElementById('dataRow')
           row.innerHTML = JSON.stringify(data);
+
+          $.ajax({
+            url:url,
+            type:"POST",
+            data:data,
+            success:function(response)
+            {
+              if(response)
+              {
+                alert('success');
+                $("form")[0].reset();
+              }
+            }
+          });
       });
     </script>
 </body>

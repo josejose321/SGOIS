@@ -21,11 +21,11 @@ class EndorsementStaffTable extends Migration
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
-            $table->string('extension');
+            $table->string('suffix');
             $table ->enum('position',array('Office Director','Accounting Staff', 'SGO Director'));
             $table->string('phone');
             $table->binary('image');
-            $table->foreign('officeCode')->references('officeCode')->on('EndorsementOffice')->onDelete('cascade');
+            $table->foreign('officeCode')->references('officeCode')->on('Office')->onDelete('cascade');
             $table->foreign('Employee_no')->references('user_no')->on('users')->onDelete('cascade');
         });
     }

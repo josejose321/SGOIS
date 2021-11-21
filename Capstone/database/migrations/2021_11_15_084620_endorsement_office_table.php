@@ -14,10 +14,10 @@ class EndorsementOfficeTable extends Migration
     public function up()
     {
         //
-        Schema::create('EndorsementOffice', function(Blueprint $table)
+        Schema::create('Office', function(Blueprint $table)
         {
             $table->string('officeCode')->primary();
-            $table->string('OfficeName');
+            $table->string('Name');
             $table->string('Description');
             $table->timestamps();
             
