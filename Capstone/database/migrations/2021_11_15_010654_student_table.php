@@ -24,6 +24,7 @@ class StudentTable extends Migration
             $table->string('phoneNumber',11);
             $table->string('course');
             $table->string('year', 10);
+            $table->string('image');
             $table->foreign('student_no')->references('user_no')->on('users')->onDelete('cascade');
             $table->timestamps();
 

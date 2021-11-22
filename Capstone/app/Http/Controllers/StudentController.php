@@ -13,6 +13,10 @@ class StudentController extends Controller
     {
         return view('Student.index');
     }
+    function profile()
+    {
+        return view("Student.profile");
+    }
     function create(Request $request)
     {
         $request->validate([
@@ -28,7 +32,8 @@ class StudentController extends Controller
         ]);
         $data = $request->post();
         Student::saved($data);
-        return response()->json($request->post());
+        dd($data);
+        return response()->json($data);
     }
     function update($id)
     {
@@ -36,6 +41,7 @@ class StudentController extends Controller
     }
     function destroy($id)
     {
-
+        Student::destroy($id);
+        return redirect('Student.create');
     }
 }

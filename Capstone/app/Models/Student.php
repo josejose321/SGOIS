@@ -9,7 +9,7 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $table = 'Stident';
+    protected $table = 'Students';
     public $incrementing = false;
     protected $keyType = 'string';
 

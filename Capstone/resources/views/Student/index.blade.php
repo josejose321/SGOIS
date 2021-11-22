@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"> --}}
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>Document</title>
+<head>
 </head>
 
 <br><br>
@@ -86,7 +85,7 @@
             <input type="file" class="form-control w-50 p-3" name="photo" />
             
           </div> 
-          <button type="submit" class="button btn-primary" id ="btnSubmit">Submit</button>
+          <button type="button" class="button btn-primary" id ="btnSubmit">Submit</button>
         </form>
         <p id="dataRow"></p>
       </div>
@@ -98,26 +97,26 @@
           }
       });
     
-      $("#btnSubmit").click(function(e){
+      $("#btnSubmit").click(function(e){(
           e.preventDefault();
           var data = $("form").serializeArray();
           console.log(data);
           var row = document.getElementById('dataRow');
           row.innerHTML = JSON.stringify(data);
 
-          $.ajax({
-            url:{{ route('/Student.create') }},
-            type:"POST",
-            data:data,
-            success:function(response)
-            {
-              if(response)
-              {
-                alert('success');
-                $("form")[0].reset();
-              }
-            }
-          });
+          // $.ajax({
+          //   url:"Student.create",
+          //   type:"POST",
+          //   data:data,
+          //   success:function(response)
+          //   {
+          //     if(response)
+          //     {
+          //       alert('success');
+          //       $("form")[0].reset();
+          //     }
+          //   }
+          // });
       });
     </script>
 @endsection
