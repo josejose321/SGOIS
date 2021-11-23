@@ -1,0 +1,18 @@
+.navbar-nav {
+    margin-left: auto;
+}
+.header1 {
+    background-image: url("./bg.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    object-fit: cover;
+    height:inherit;
+    width: inherit;
+}
+body{
+    background-color:rgb(46, 54, 71);
+}
+/* .navbar-bg{
+    background-color:rgb(243, 0, 0);
+    background-blend-mode: lighten;
+} */

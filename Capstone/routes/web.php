@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
     return view('unc');
 });
-// Route::get('Student', function() {
-//     return view("Student.index");
-// });
+
 
 Auth::routes();
 Route::get('/Home',[HomeController::class,'index'])->name('Home');
@@ -35,3 +33,4 @@ Route::post('/Student.create',[StudentController::class, 'create'])->name('creat
 Route::get('/Student',[StudentController::class, 'index'])->name('index');
 
 Route::get('/Student.profile', [StudentController::class, 'profile'])->name('profile');
+

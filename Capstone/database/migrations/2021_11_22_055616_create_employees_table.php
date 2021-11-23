@@ -16,10 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->string('Employee_no')->primary();
             $table->string('officeCode')->index()->nullable();
-            $table->string('firstname');
-            $table->string('middlename');
-            $table->string('lastname');
-            $table->string('suffix');
+            $table->string('fullname');
             $table ->enum('position',array('Office Director','Accounting Staff', 'SGO Director'));
             $table->string('phone');
             $table->binary('image');
