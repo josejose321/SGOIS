@@ -21,8 +21,6 @@ class ScholarshipTable extends Migration
             $table->string('student_no')->index();
             $table->string('officeCode')->index()->nullable();
             $table->string('Type');
-            $table->string('semester');
-            $table->string('school_year');
             $table->enum('discount', [25, 50,75,100]);
             $table->enum('status', ['Pending','Approved','Rejected'])->default('Pending');
             

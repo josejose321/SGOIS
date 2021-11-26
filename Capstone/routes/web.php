@@ -29,8 +29,8 @@ Auth::routes();
 Route::get('Admin', [AdminController::class, 'index'])->name('Admin');
 
 
-Route::post('/Student.create',[StudentController::class, 'create'])->name('create');
+// Route::get('/Student',[StudentController::class, 'create'])->name('create');
 Route::get('/Student',[StudentController::class, 'index'])->name('index');
 
-Route::get('/Student.profile', [StudentController::class, 'profile'])->name('profile');
+// Route::get('/Student', [StudentController::class, 'profile'])->name('profile');
 
