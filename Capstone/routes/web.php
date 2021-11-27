@@ -23,10 +23,10 @@ Route::get('/', function(){
 
 
 Auth::routes();
-Route::get('/Home',[HomeController::class,'index'])->name('Home');
+Route::get('/Home',[HomeController::class,'index'])->name('index');
 Auth::routes();
 
-Route::get('Admin', [AdminController::class, 'index'])->name('Admin');
+Route::get('/Admin', [AdminController::class, 'index'])->name('index');
 
 
 // Route::get('/Student',[StudentController::class, 'create'])->name('create');
