@@ -15,7 +15,7 @@ class StudentTable extends Migration
     {
         //
         Schema::create('Student', function (Blueprint $table){
-            $table->string('student_no')->primary();
+            $table->string('student_no',8)->primary();
             $table->string('fullname',50);
             $table->enum('department', ['CSS','CJS','EA','CBA','CN','CAS','LAW']);
             $table->string('phoneNumber',11);

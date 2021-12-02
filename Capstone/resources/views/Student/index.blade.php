@@ -111,7 +111,7 @@
         <form action="" id="form">
           
           <div class="row">
-            <div class="col-5">
+            <div class="col-4">
               <div class="form-group">
                 <label for="id"> Student Number</label>
                 <input type="text" name="student_no" id="id" class="form-control" placeholder="Student No" readonly value="18-08925">
@@ -119,7 +119,7 @@
             </div>
             
             
-            <div class="col-5">
+            <div class="col-4">
               <div class="form-group">
                 <label for="semester"> S/Y 2022 2ndsem</label>
                 <input type="text" name="semester" id="id" class="form-control" placeholder="Student No" readonly value="year 2022 2nd semester">
@@ -127,7 +127,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-5">
+            <div class="col-4">
               <label for="scholarship">Scholarship Office</label>
               <select class="form-select" name="office" id="office" aria-label="Default select example">
                 <option selected>Scholarship</option>
@@ -136,7 +136,7 @@
                 <option value="CAS">Culture & Arts Scholarhip Office</option>
               </select>
             </div>
-            <div class="col-5">
+            <div class="col-4">
               <div class="form-group">
                 <label for="id"> Student Number</label>
                 <input type="text" id="id" name="sdsdg" class="form-control" placeholder="Student No">
@@ -144,7 +144,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-5">
+            <div class="col-4">
               <label for="Scholarship">Scholarship</label>
               <select class="form-select" name="sdgsg" id="scholarhip" aria-label="Default select example">
                 <option selected>Scholarship</option>
@@ -153,7 +153,7 @@
                 <option value="CBA">Collge of Business and Accountancy</option>
               </select>
             </div>
-            <div class="col-5">
+            <div class="col-4">
               <label for="Scholarship">Semester</label>
               <select class="form-select" aria-label="Default select example">
                 <option>Category</option>
@@ -165,7 +165,7 @@
           </div>
           <div class="row">
             
-            <div class="col-5">
+            <div class="col-4">
               <label for="discount"> Discount</label>
               <br>
               <div class="form-check form-check-inline">
@@ -189,14 +189,14 @@
                 <label class="form-check-label" for="inlineRadio2">Full</label>
               </div>
             </div>
-            <div class="col-5">
+            <div class="col-4">
               <label class="form-label" for="file">Attach your files here</label>
               <input type="file" class="form-contror" id="file" name="file" />
             </div>
           </div>
           <div class="row w-75 p-3">
             
-            <div class="col-5">
+            <div class="col-4">
               <label class="form-label" for="photo">image</label>
               <input type="file" class="form-contror" id="photo" name="photo"/>
             </div>

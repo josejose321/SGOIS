@@ -26,11 +26,11 @@ Auth::routes();
 Route::get('/Home',[HomeController::class,'index'])->name('index');
 Auth::routes();
 
-Route::get('/Admin', [AdminController::class, 'index'])->name('index');
 
+Route::resource('Admin', AdminController::class);
 
-// Route::get('/Student',[StudentController::class, 'create'])->name('create');
-Route::get('/Student',[StudentController::class, 'index'])->name('index');
+Route::resource('Student', StudentController::class);
 
-// Route::get('/Student', [StudentController::class, 'profile'])->name('profile');
+Route::resource('Scholarhip', UserController::class);
+
 

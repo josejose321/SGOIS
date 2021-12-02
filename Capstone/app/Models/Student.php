@@ -13,16 +13,9 @@ class Student extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $dates = [
-        'created_at',
-        'updated_at'
-    ];
     protected $fillable = [
         'student_no',
-        'firstname',
-        'middlename',
-        'lastname',
-        'suffix',
+        'fullname',
         'department',
         'phoneNumber',
         'course',

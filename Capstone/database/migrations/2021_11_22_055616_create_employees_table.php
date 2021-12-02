@@ -14,7 +14,7 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->string('Employee_no')->primary();
+            $table->string('Employee_no',8)->primary();
             $table->string('officeCode')->index()->nullable();
             $table->string('fullname');
             $table ->enum('position',array('Office Director','Accounting Staff', 'SGO Director'));

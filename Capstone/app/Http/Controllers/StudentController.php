@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use StudentTable;
 use App\Models\Student;
+use Illuminate\Support\Facades\Redirect;
 
 class StudentController extends Controller
 {
@@ -19,29 +20,33 @@ class StudentController extends Controller
     }
     function create(Request $request)
     {
-        $request->validate([
+         $validator =$request->validate([
             'student_no'=> 'required',
-            'firstname'=> 'required',
-            'middlename'=> 'required',
-            'lastname'=> 'required',
-            'suffix',
+            'fullname'=> 'required',
             'department'=> 'required',
             'phoneNumber'=> 'required',
             'course'=> 'required',
             'year'=> 'required'
         ]);
-        $data = $request->post();
-        Student::saved($data);
+        $student = new Student;
+        $student->create($data = $request->post());
         dd($data);
-        return response()->json($data);
+        return redirect()->back()->withErrors($validator)->withInput();
     }
-    function update($id)
+    function update(Request $request,$id)
     {
-
+        $student = Student::find($id);
+        $student->fullname = $request->get('fullname');
+        $student->department = $request->get('department');
+        $student->phoneNumber = $request->get('phoneNumber');
+        $student->course = $request->get('course');
+        $student->year = $request->get('year');
+        $student->save();
+        return redirect()->back();
     }
     function destroy($id)
     {
         Student::destroy($id);
-        return redirect('Student.create');
+        return redirect()->back();
     }
 }

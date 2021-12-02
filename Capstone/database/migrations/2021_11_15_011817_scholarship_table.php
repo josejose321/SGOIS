@@ -18,10 +18,11 @@ class ScholarshipTable extends Migration
         Schema::create('Scholarship', function (Blueprint $table)
         {
             $table->increments("ScholarhipNo");
-            $table->string('student_no')->index();
+            $table->string('student_no',8)->index();
             $table->string('officeCode')->index()->nullable();
             $table->string('Type');
             $table->enum('discount', [25, 50,75,100]);
+            $table->enum('officeStatus', ['Pending','Approved','Rejected'])->default('Pending');
             $table->enum('status', ['Pending','Approved','Rejected'])->default('Pending');
             
             
