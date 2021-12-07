@@ -9,18 +9,38 @@ use Illuminate\Support\Facades\Redirect;
 
 class StudentController extends Controller
 {
-    //
+    
     function index()
     {
-        return view('Student.index');
+        
+        $name = "Evasco,Jose II V";//try
+        $student = (object)array(
+            'name'=>"Evasco,Jose II V",
+            'year'=>'4th Year',
+            'course'=>'BSIT',
+            'scholarhip'=> 0,
+            'loan' => 0,
+            'discount' => 1,
+            
+        );
+        // dd($student);
+        return view('Student.index')->with(compact('student'));
     }
-    function profile()
+    function show($student_no)
     {
         return view("Student.profile");
     }
+    function showStudents($id)
+    {
+
+    }
     function create(Request $request)
     {
-         $validator =$request->validate([
+         
+    }
+    function store(Request $request)
+    {
+        $validator =$request->validate([
             'student_no'=> 'required',
             'fullname'=> 'required',
             'department'=> 'required',
@@ -30,17 +50,17 @@ class StudentController extends Controller
         ]);
         $student = new Student;
         $student->create($data = $request->post());
-        dd($data);
+        //dd($data);
         return redirect()->back()->withErrors($validator)->withInput();
     }
     function update(Request $request,$id)
     {
         $student = Student::find($id);
-        $student->fullname = $request->get('fullname');
-        $student->department = $request->get('department');
-        $student->phoneNumber = $request->get('phoneNumber');
-        $student->course = $request->get('course');
-        $student->year = $request->get('year');
+        $student->fullname = $request->input('fullname');
+        $student->department = $request->input('department');
+        $student->phoneNumber = $request->input('phoneNumber');
+        $student->course = $request->input('course');
+        $student->year = $request->input('year');
         $student->save();
         return redirect()->back();
     }

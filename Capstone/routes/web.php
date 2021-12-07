@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,10 +28,12 @@ Route::get('/Home',[HomeController::class,'index'])->name('index');
 Auth::routes();
 
 
-Route::resource('Admin', AdminController::class);
+Route::resource('/Admin', AdminController::class);
 
-Route::resource('Student', StudentController::class);
 
-Route::resource('Scholarhip', UserController::class);
+Route::resource('/Student', StudentController::class);
+Route::get('/Student/showStudent', [StudentController::class, 'showStudent'])->name('Student.showStudent');
+Route::get('/Student/profile', [StudentController::class,'profile'])->name('Student.profile');
+
 
 

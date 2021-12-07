@@ -1,10 +1,6 @@
 @extends('layouts.app')
-
-
-
-
 @section('content')
-<br><br><br><hr><br><br><br>
+
 <section>
     <div class="container w-75 p-3">
           <div class="card">
