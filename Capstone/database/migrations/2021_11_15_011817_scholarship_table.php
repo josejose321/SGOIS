@@ -26,7 +26,7 @@ class ScholarshipTable extends Migration
             $table->enum('status', ['Pending','Approved','Rejected'])->default('Pending');
             
             
-            $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
+            // $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
             
             
             $table->timestamps();

@@ -19,9 +19,9 @@ class CreateEmployeesTable extends Migration
             $table->string('fullname');
             $table ->enum('position',array('Office Director','Accounting Staff', 'SGO Director'));
             $table->string('phone');
-            $table->binary('image');
-            $table->foreign('officeCode')->references('officeCode')->on('Office')->onDelete('cascade');
-            $table->foreign('Employee_no')->references('user_no')->on('users')->onDelete('cascade');
+            $table->string('image');
+            // $table->foreign('officeCode')->references('officeCode')->on('Office')->onDelete('cascade');
+            // $table->foreign('Employee_no')->references('user_no')->on('users')->onDelete('cascade');
         });
     }
 

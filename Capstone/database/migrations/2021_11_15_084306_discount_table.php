@@ -23,7 +23,7 @@ class DiscountTable extends Migration
             $table->string('school_year');
             $table->enum('status', ['Pending','Approved','Rejected'])->default('Pending');
             $table->string('student_no',8)->index()->nullable();
-            $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
+            // $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
             $table->timestamps();
 
         });
