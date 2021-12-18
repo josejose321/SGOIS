@@ -47,13 +47,13 @@
             <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
           </div>
           <div class="modal-body bg-light">
-            <form action="" id="form">
-              
+            <form action="{{ route('Student.store') }}" method="POST" id="form">
+              @csrf
               <div class="row">
                 <div class="col-4">
                   <div class="form-group">
                     <label for="id"> Student Number</label>
-                    <input type="text" name="student_no" id="id" class="form-control" placeholder="Student No" readonly value="18-08925">
+                    <input type="text" name="student_no" id="id" class="form-control" placeholder="Student No" readonly value="{{ $student->student_no }}">
                   </div>
                 </div>
                 
@@ -77,15 +77,15 @@
                 </div>
                 <div class="col-4">
                   <div class="form-group">
-                    <label for="id"> Student Number</label>
-                    <input type="text" id="id" name="sdsdg" class="form-control" placeholder="Student No">
+                    <label for="extrainfo"> Extra Info</label>
+                    <input type="text" id="extrainfo" name="extra" class="form-control" placeholder="Extra Info">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-4">
                   <label for="Scholarship">Scholarship</label>
-                  <select class="form-select" name="sdgsg" id="scholarhip" aria-label="Default select example">
+                  <select class="form-select" name="scholarhipOffice" id="scholarhip" aria-label="Default select example">
                     <option selected>Scholarship</option>
                     <option value="CS">College of Computer Studies</option>
                     <option value="EA">College of Engineering and Architecture</option>
@@ -137,14 +137,14 @@
                 
                 <div class="col-4">
                   <label class="form-label" for="photo">image</label>
-                  <input type="file" class="form-contror" id="photo" name="photo"/>
+                  <input type="file" class="form-control" id="photo" name="image" />
                 </div>
               </div>
     
               <br>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type ="button" id="btnSubmit" class="btn btn-primary">Submit</button>
+                <button type ="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
                   
               </div>
             </form>

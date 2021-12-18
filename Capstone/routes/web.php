@@ -34,6 +34,7 @@ Route::resource('/Admin', AdminController::class);
 Route::resource('/Student', StudentController::class);
 Route::get('/Student/showStudent', [StudentController::class, 'showStudent'])->name('Student.showStudent');
 Route::get('/Student/profile', [StudentController::class,'profile'])->name('Student.profile');
+Route::resource('Student/scholarship', ScholarshipController::class);
 
 
 

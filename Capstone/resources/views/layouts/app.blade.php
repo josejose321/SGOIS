@@ -38,14 +38,15 @@
 <body>
     {{-- NAVBAR --}}
     <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg" style="background-color: rgb(69, 69, 75)">
-        <div class="navbar-brand">
-            <span class="navbar-logo p-1">
+        <div class="navbar-brand w-25">
+            <span class="navbar-logo">
                 <a href="https://www.unc.edu.ph/">
                     <img src="{{ asset('logo.png') }}" class="w-25" alt="">
-                    
+                    <span class="text-danger"><strong>UNIVERSITY OF NUEVA CACERES</strong></span>
                 </a>
+                
             </span>
-            <h3 class="text-danger"><strong>UNIVERSITY OF NUEVA CACERES</strong></h3>
+            
         </div>
         
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">

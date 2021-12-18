@@ -12,8 +12,6 @@ class StudentController extends Controller
     
     function index()
     {
-        
-        $name = "Evasco,Jose II V";//try
         $student = (object)array(
             'name'=>"Evasco,Jose II V",
             'year'=>'4th Year',
@@ -21,9 +19,10 @@ class StudentController extends Controller
             'scholarhip'=> 0,
             'loan' => 0,
             'discount' => 1,
+            'student_no' => '18-08925'
             
         );
-        // dd($student);
+        //dd($student);
         return view('Student.index')->with(compact('student'));
     }
     function show($student_no)
@@ -32,7 +31,7 @@ class StudentController extends Controller
     }
     function showStudents($id)
     {
-
+        $student = Student::find($id);
     }
     function create(Request $request)
     {
@@ -40,33 +39,38 @@ class StudentController extends Controller
     }
     function store(Request $request)
     {
-        $validator =$request->validate([
-            'student_no'=> 'required',
-            'fullname'=> 'required',
-            'department'=> 'required',
-            'phoneNumber'=> 'required',
-            'course'=> 'required',
-            'year'=> 'required'
-        ]);
-        $student = new Student;
-        $student->create($data = $request->post());
+        // $validator =$request->validate([
+        //     'student_no'=> 'required',
+        //     'fullname'=> 'required',
+        //     'department'=> 'required',
+        //     'phoneNumber'=> 'required',
+        //     'course'=> 'required',
+        //     'year'=> 'required'
+        // ]);
+        // $student = new Student;
+        // $student->create($data = $request->post());
         //dd($data);
-        return redirect()->back()->withErrors($validator)->withInput();
+        // return back()->withErrors($validator)->withInput();
+        
+        $student = $request->input();
+        dd($student);
+        return $student;
+
     }
-    function update(Request $request,$id)
+    function update(Request $request)
     {
-        $student = Student::find($id);
+        $student = Student::find($request->input('student_no'));
         $student->fullname = $request->input('fullname');
         $student->department = $request->input('department');
         $student->phoneNumber = $request->input('phoneNumber');
         $student->course = $request->input('course');
         $student->year = $request->input('year');
         $student->save();
-        return redirect()->back();
+        return back()->with('update','Updated Successfully!');
     }
     function destroy($id)
     {
         Student::destroy($id);
-        return redirect()->back();
+        return back()->with('delete',' Deleted');
     }
 }

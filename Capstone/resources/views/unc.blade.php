@@ -10,7 +10,7 @@
   <meta name="description" content="">
   
   
-  <title>Home</title>
+  <title>@yield('title','University Nueva Caceres')</title>
   <link rel="stylesheet" href="/assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.min.css">
@@ -218,7 +218,7 @@
                     
                     
                     
-                <li class="foot-menu-item mbr-fonts-style display-7"><a href="https://mobirise.com/help/" class="text-success">Help Center</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="http://forums.mobirise.com/" class="text-success">Mobirise Forums</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="https://mobirise.com/" class="text-success">Mobirise.com</a></li></ul>
+                <li class="foot-menu-item mbr-fonts-style display-7"><a href="#" class="text-success">Help Center</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="#" class="text-success">Mobirise Forums</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="#" class="text-success">Mobirise.com</a></li></ul>
             </div>
             <div class="row social-row">
                 <div class="social-list align-right pb-2">
@@ -229,7 +229,7 @@
                     
                     
                 <div class="soc-item">
-                        <a href="https://twitter.com/mobirise" target="_blank">
+                        <a href="#" target="_blank">
                             <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
                         </a>
                     </div><div class="soc-item">
