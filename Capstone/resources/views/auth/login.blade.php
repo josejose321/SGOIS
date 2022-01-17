@@ -8,7 +8,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><center>{{ __('Login') }} as</center>
+                <div class="card-header"><center>{{ __('Login') }} as
+                    <select class="form-select w-50" aria-label="Default select example">
+                        <option selected>Student</option>
+                        <option value="Student">Student</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Employee">Employee</option>
+                      </select>
+                </center>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

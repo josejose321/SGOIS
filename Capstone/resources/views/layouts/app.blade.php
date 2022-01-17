@@ -69,6 +69,7 @@
                 @endguest
         </div>
     </nav>
+    
     {{-- @include('layouts.sidebar') --}}
     <div id="app">
         <main class="py-4">

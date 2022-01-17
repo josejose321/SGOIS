@@ -50,7 +50,6 @@ class StudentController extends Controller
         // $student = new Student;
         // $student->create($data = $request->post());
         //dd($data);
-        // return back()->withErrors($validator)->withInput();
         
         $student = $request->input();
         dd($student);
