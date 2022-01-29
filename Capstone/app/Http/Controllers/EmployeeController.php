@@ -11,6 +11,7 @@ class EmployeeController extends Controller
 
     public function index()
     {
+        return view("employee.index");
     }
     public function create(Request $request)
     {

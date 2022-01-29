@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\StudentController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,8 @@ Route::resource('/Admin', AdminController::class);
 
 
 Route::resource('/Student', StudentController::class);
-Route::get('/Student/showStudent', [StudentController::class, 'showStudent'])->name('Student.showStudent');
+
+//Route::get('/student',[StudentController::class,'index'])->name(stundet)
 Route::get('/Student/profile', [StudentController::class,'profile'])->name('Student.profile');
 Route::resource('Student/scholarship', ScholarshipController::class);
 

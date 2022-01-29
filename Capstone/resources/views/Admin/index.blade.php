@@ -24,14 +24,57 @@
                             <th scope="col">Student ID</th>
                             <th scope="col">Fullname</th>
                             <th scope="col">Department</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
+                            <th scope="col">COURSE</th>
+                            <th scope="col">YEAR</th>
+                            <th scope="col">REQUIREMENTS</th>
                             <th scope="col">ACTION</th>
                           </tr>
                         </thead>
                         <tbody class="scholarhipdata">
                           <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">{{ $scholarships->id }}</th>
+                            <th scope="col">{{ $scholarships->fullname }}</th>
+                            <th scope="col">{{ $scholarships->department }}</th>
+                            <th scope="col">{{ $scholarships->course }}</th>
+                            <th scope="col">{{ $scholarships->year }}</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
                             
                         </tbody>
                       </table>
@@ -53,15 +96,57 @@
                             <th scope="col">Student ID</th>
                             <th scope="col">Fullname</th>
                             <th scope="col">Department</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
+                            <th scope="col">COURSE</th>
+                            <th scope="col">YEAR</th>
+                            <th scope="col">REQUIREMENTS</th>
                             <th scope="col">ACTION</th>
                           </tr>
                         </thead>
                         <tbody class="discountdata">
                           <tr>
-                            
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">{{ $loans->id }}</th>
+                            <th scope="col">{{ $loans->fullname }}</th>
+                            <th scope="col">{{ $loans->department }}</th>
+                            <th scope="col">{{ $loans->course }}</th>
+                            <th scope="col">{{ $loans->year }}</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
                         </tbody>
                       </table>
                 </div>
@@ -82,15 +167,57 @@
                             <th scope="col">Student ID</th>
                             <th scope="col">Fullname</th>
                             <th scope="col">Department</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
+                            <th scope="col">COURSE</th>
+                            <th scope="col">YEAR</th>
+                            <th scope="col">REQUIREMENTS</th>
                             <th scope="col">ACTION</th>
                           </tr>
                         </thead>
                         <tbody class="loanData">
                           <tr>
-                            
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">{{ $discounts->id }}</th>
+                            <th scope="col">{{ $discounts->fullname }}</th>
+                            <th scope="col">{{ $discounts->department }}</th>
+                            <th scope="col">{{ $discounts->course }}</th>
+                            <th scope="col">{{ $discounts->year }}</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
                         </tbody>
                       </table>
                 </div>
@@ -111,14 +238,57 @@
                             <th scope="col">Student ID</th>
                             <th scope="col">Fullname</th>
                             <th scope="col">Department</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
-                            <th scope="col">COLUMN</th>
+                            <th scope="col">COURSE</th>
+                            <th scope="col">YEAR</th>
+                            <th scope="col">REQUIREMENTS</th>
                             <th scope="col">ACTION</th>
                           </tr>
                         </thead>
                         <tbody class="granteesdata">
                           <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">18-08925</th>
+                            <th scope="col">Evasco, Jose II V</th>
+                            <th scope="col">College of Computer Studies</th>
+                            <th scope="col">BSIT</th>
+                            <th scope="col">4TH YEAR</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                              <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
+                          <tr>
+                            <th scope="col">{{ $grants->id }}</th>
+                            <th scope="col">{{ $grants->fullname }}</th>
+                            <th scope="col">{{ $grants->department }}</th>
+                            <th scope="col">{{ $grants->course }}</th>
+                            <th scope="col">{{ $grants->year }}</th>
+                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
+                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
+                            <button type="submit" class="button btn-danger">Reject</button> </th>
+
+                          </tr>
                             
                         </tbody>
                       </table>

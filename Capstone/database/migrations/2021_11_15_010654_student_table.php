@@ -16,12 +16,16 @@ class StudentTable extends Migration
         //
         Schema::create('Student', function (Blueprint $table){
             $table->string('student_no',8)->primary();
-            $table->string('fullname',50);
+            $table->string('firstname',50);
+            $table->string('middlename',50);
+            $table->string('lastname',50);
+            $table->string('email',50)->unique();
             $table->enum('department', ['CSS','CJS','EA','CBA','CN','CAS','LAW','Graduate Studies','HS','SHS','Elementary']);
             $table->string('phoneNumber',11);
             $table->string('course');
             $table->string('year', 10);
             $table->string('image');
+            $table->string('password');
             //$table->foreign('student_no')->references('user_no')->on('users')->onDelete('cascade');
             $table->timestamps();
 

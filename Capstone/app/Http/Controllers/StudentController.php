@@ -29,13 +29,13 @@ class StudentController extends Controller
     {
         return view("Student.profile");
     }
-    function showStudents($id)
-    {
-        $student = Student::find($id);
-    }
     function create(Request $request)
     {
          
+    }
+    function edit()
+    {
+        return view("Student.edit");
     }
     function store(Request $request)
     {
@@ -59,7 +59,9 @@ class StudentController extends Controller
     function update(Request $request)
     {
         $student = Student::find($request->input('student_no'));
-        $student->fullname = $request->input('fullname');
+        $student->fullname = $request->input('firstname');
+        $student->middlename = $request->input('middlename');
+        $student->lastname = $request->input('lastname');
         $student->department = $request->input('department');
         $student->phoneNumber = $request->input('phoneNumber');
         $student->course = $request->input('course');
