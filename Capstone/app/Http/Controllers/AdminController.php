@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -45,12 +46,13 @@ class AdminController extends Controller
             "requirements"> "object" 
 
         );
-
+        $students = Student::all();
         return view('Admin.index')
         ->with(compact('scholarships'))
         ->with(compact('loans'))
         ->with(compact('discounts'))
-        ->with(compact('grants'));
+        ->with(compact('grants'))
+        ->with(compact('students'));
     }
     public function create()
     {

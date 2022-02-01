@@ -14,7 +14,7 @@ class LoanTable extends Migration
     public function up()
     {
         //
-        Schema::create('Loan', function (Blueprint $table)
+        Schema::create('loans', function (Blueprint $table)
         {
             $table->increments("LoanNo");
             $table->string('semester');

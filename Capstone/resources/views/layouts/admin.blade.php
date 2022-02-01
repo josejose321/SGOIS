@@ -46,31 +46,31 @@
 <body>
   
     {{-- NAVBAR --}}
-    <nav class="navbar navbar-dropdown text-secondary navbar-fixed-right navbar-expand-md">
+    <nav class="navbar navbar-dropdown  navbar-fixed-left navbar-expand-md">
         <div class="navbar-brand w-25">
             <span class="navbar-logo">
                 <a href="https://www.unc.edu.ph/">
                     <img src="{{ asset('logo.png') }}" class="w-25" alt="">
-                    <span class="text-light"><strong>UNCSGO INFORMATION SYSTEM</strong></span>
+                    <span class="text-light"><strong>UNIVERSITY OF NUEVA CACERES</strong></span>
                 </a>
                 
             </span>
             
         </div>
         
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}">HOME</a></li>
-                <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}">SCHOLARHIP</a></li>
-                <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}">ABOUT US</a></li>
+                <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}"><h5>HOME</h5></a></li>
+                <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}"><h5>SCHOLARHIP</h5></a></li>
+                <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}"><h5>ABOUT US</h5></a></li>
                 @guest
                 @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/home') }}" class="">Home</a>
                 @else 
-                    <li class="nav-item"><a class="nav-link link text-light" href="{{ route('login') }}">LOG IN</a></li>
+                    <li class="nav-item"><a class="nav-link link text-light" href="{{ route('login') }}"><h5>LOG IN</h5></a></li>
                     @if (Route::has('register'))    
-                        <li class="nav-item"><a class="nav-link link text-light" href="{{ route('register') }}">REGISTER</a></li>
+                        <li class="nav-item"><a class="nav-link link text-light" href="{{ route('register') }}"><h5>REGISTER</h5></a></li>
                     @endif
                     @endauth
             </ul>
@@ -78,9 +78,7 @@
                 @endguest
         </div>
     </nav>
-    
-    
-    {{-- @include('layouts.sidebar') --}}
+
     <div id="app" class="container-fluid">
         <main class="py-4">
             @yield('content')

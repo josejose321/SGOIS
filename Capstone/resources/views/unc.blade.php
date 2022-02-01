@@ -1,262 +1,224 @@
 <!DOCTYPE html>
-<html  >
+<html>
+
 <head>
-  <!-- Site made with Mobirise Website Builder v5.4.1, https://mobirise.com -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v5.4.1, mobirise.com">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/logo-121x155.png" type="image/x-icon">
-  <meta name="description" content="">
-  
-  
-  <title>@yield('title','University Nueva Caceres')</title>
-  <link rel="stylesheet" href="/assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="/assets/parallax/jarallax.css">
-  <link rel="stylesheet" href="/assets/animatecss/animate.css">
-  <link rel="stylesheet" href="/assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="/assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="/assets/theme/css/style.css">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800,300i,400i,500i,600i,700i,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800,300i,400i,500i,600i,700i,800i&display=swap"></noscript>
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  
-  
-  
-  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>UNC SGO IS</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/animated-services.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/Map-Clean.css">
+    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
+    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="assets/css/homepage.css">
+
 </head>
-<body>
-  
-  <section data-bs-version="5.1" class="menu cid-s48OLK6784" once="menu" id="menu1-h">
-    
-    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-        <div class="container-fluid">
-            <div class="navbar-brand">
-                <span class="navbar-logo">
-                    <a href="{{ url('/') }}">
-                        <img src="/assets/images/logo-121x155.png" alt="Mobirise" style="height: 5.8rem;">
-                    </a>
-                </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-success display-5" href="{{ url('/') }}">UNC SCHOLARSHIP AND GRANTS</a></span>
+
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top"><img src="assets/img/new-university-of-nueva-caceres-ac-education-logo-1-220x240.png" style="height: 90px;width: 85px;"></a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">HOME</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">SCHOLARSHIP</a>
+                        <div class="dropdown-menu"><a class="dropdown-item" href="#">SCHOLARSHIP</a><a class="dropdown-item" href="#">GRANTS</a><a class="dropdown-item" href="#">LOANS</a><a class="dropdown-item" href="#">DISCOUNTS</a></div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">PROFILE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">ABOUT US</a></li>
+                </ul><a href="{{ route('login') }}"><button class="btn btn-primary" type="button" style="background-color: var(--bs-red);">LOGIN</button></a>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-           
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                    <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">SCHOLARHIP</a></li>
-                    <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ url('/') }}">ABOUT US</a></li>
-                    @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else 
-                        <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ route('login') }}">LOG IN</a></li>
-                        @if (Route::has('register'))    
-                        <li class="nav-item"><a class="nav-link link text-black display-7" href="{{ route('register') }}">REGISTER</a></li>
-                    @endif
-                    @endauth
-                </ul>
-            @endif   
-                
-            </div>
+            <!-- Start: Contact Form Clean -->
+            <section class="contact-clean"></section>
+            <!-- End: Contact Form Clean -->
         </div>
     </nav>
-
-</section>
-
-<section data-bs-version="5.1" class="header1 cid-s48MCQYojq mbr-fullscreen mbr-parallax-background" id="header1-f">
-
-    
-
-    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(255, 255, 255);"></div>
-
-    <div class="align-center container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-9">
-                <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2"><strong><em>"Everybody Shares Project is our avenue to achieve our goal, "Everyone Makes It”.</em></strong></h1>
-                
-                <p class="mbr-text mbr-fonts-style display-7">developer: capstone peeps</p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-secondary display-5" href="https://www.unc.edu.ph/">VIEW MORE DETAILS</a></div>
+    <header class="text-center text-white d-flex masthead" style="background-image: url('assets/img/header.jpg');opacity: 0.90;">
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h1 class="text-uppercase" style="margin-top: 50px;"><strong>EVERYONE MAKES IT.</strong></h1>
+                    <hr style="background-color: var(--bs-red);border-color: var(--bs-red);">
+                </div>
+            </div>
+            <div class="col-lg-8 mx-auto">
+                <p class="text-faded mb-5">Be an instrument in providing better tomorrows for the BICOLANO'S. Join UNC's Everybody Shares Project.&nbsp;</p><a class="btn btn-primary btn-xl" role="button" href="#services" style="background-color: var(--bs-red);">view more details</a>
             </div>
         </div>
-    </div>
-</section>
-
-<section data-bs-version="5.1" class="content1 cid-s48udlf8KU" id="content1-8">
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="title col-12 col-md-9">
-                <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2"><strong>UNIVERSITY OF NUEVA CACERES
-</strong><div><strong>SCHOLARSHIP GRANTS</strong></div></h3>
-                <h4 class="mbr-section-subtitle align-center mbr-fonts-style mb-4 display-7">Click on the image to replace it. To change parameters of a block, click on <em>the blue gear icon</em>. You can set a background type and its content. Click on the Buttons parameter to enable buttons for this block. Click in the text to change your text style or color. Select text to change its formatting or add links.</h4>
-                
-            </div>
-        </div>
-    </div>
-</section>
-
-<section data-bs-version="5.1" class="image3 cid-s48upRUlSD" id="image3-9">
-    
-
-    <div class="mbr-overlay" style="opacity: 0.7; background-color: rgb(255, 255, 255);">
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-8">
-                <div class="image-wrapper">
-                    <img src="assets/images/6.jpg" alt="Mobirise">
-                    <p class="mbr-description mbr-fonts-style mt-2 align-center display-4">
-                        Image Description</p>
+    </header>
+    <section id="about" class="bg-primary" style="color: var(--bs-red);border-color: var(--bs-red);">
+        <div class="container">
+            <div class="row">
+                <div class="col offset-lg-8 text-center mx-auto">
+                    <h2 class="text-white section-heading">UNIVERSITY OF NUEVA CACERES SCHOLARSHIP AND GRANTS&nbsp;</h2>
+                    <hr class="light my-4">
+                    <p class="text-faded mb-4">UNC invites the students, employees, alumni, private companies, friends, parents and foundations to take part in this project. Your generosity will inspire hope among our student beneficiaries who will achieve their dream profession
+                        through your help.&nbsp;</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<section data-bs-version="5.1" class="contacts2 cid-sOQ4k09wXO" id="contacts2-k">
-    <!---->
-    
-    
-    <div class="container">
-        <div class="mbr-section-head">
-            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                <strong>Contacts</strong>
-            </h3>
-            
+    </section>
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">AVAILABLE SCHOLARSHIPS</h2>
+                    <hr class="my-4">
+                </div>
+            </div>
         </div>
-        <div class="row justify-content-center mt-4">
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="image-wrapper">
-                        <span class="mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
-                    </div>
-                    <div class="text-wrapper">
-                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
-                            <strong>Phone</strong>
-                        </h6>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            <a href="tel:+12345678910" class="text-primary">0 (800) 123 45 67</a>
-                        </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-dollar fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true" style="background-image: var(--bs-red);"></i>
+                        <h3 class="mb-3">ELEMENTARY&nbsp;</h3>
                     </div>
                 </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="image-wrapper">
-                        <span class="mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
-                    </div>
-                    <div class="text-wrapper">
-                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
-                            <strong>Email</strong>
-                        </h6>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            <a href="mailto:info@site.com" class="text-primary">info@site.com</a>
-                        </p>
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-child fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
+                        <h3 class="mb-3">JUNIOR HIGH SCHOOL&nbsp;</h3>
                     </div>
                 </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="image-wrapper">
-                        <span class="mbr-iconfont mobi-mbri-globe mobi-mbri"></span>
-                    </div>
-                    <div class="text-wrapper">
-                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
-                            <strong>Address</strong>
-                        </h6>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            4100 Ross Street, Okawville, IL
-                        </p>
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-child fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
+                        <h3 class="mb-3">SENIOR HIGH SCHOOL</h3>
                     </div>
                 </div>
-            </div>
-            <div class="card col-12 col-md-6">
-                <div class="card-wrapper">
-                    <div class="image-wrapper">
-                        <span class="mbr-iconfont mobi-mbri-bulleted-list mobi-mbri"></span>
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                        <h3 class="mb-3">COLLEGE</h3>
                     </div>
-                    <div class="text-wrapper">
-                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
-                            <strong>Working Hours</strong>
-                        </h6>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            9:00 - 18:00
-                        </p>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                        <h3 class="mb-3">GRADUATE SCHOOL AND LAW</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                        <h3 class="mb-3">DISCOUNTS</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
+                        <h3 class="mb-3">GOVERNMENT GRANTS</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center">
+                    <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
+                        <h3 class="mb-3">EDUCATIONAL LOAN</h3>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<section data-bs-version="5.1" class="footer3 cid-s48P1Icc8J" once="footers" id="footer3-i">
-
-    
-
-    
-
-    <div class="container">
-        <div class="media-container-row align-center mbr-white">
-            <div class="row row-links">
-                <ul class="foot-menu">
-                    
-                    
-                    
-                    
-                    
-                <li class="foot-menu-item mbr-fonts-style display-7"><a href="#" class="text-success">Help Center</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="#" class="text-success">Mobirise Forums</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="#" class="text-success">Mobirise.com</a></li></ul>
+        <header></header>
+        <!-- Start: Projects Horizontal -->
+        <section class="projects-horizontal">
+            <div class="container">
+                <!-- Start: Intro -->
+                <div class="intro">
+                    <h2 class="text-center">GET IN TOUCH</h2>
+                </div>
+                <!-- End: Intro -->
+                <!-- Start: Projects -->
+                <div class="row projects">
+                    <div class="col-sm-6 item">
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="name">PHONE</h3>
+                            </div>
+                        </div>
+                        <p class="description">0 (800) 1234567<br><br><br></p>
+                    </div>
+                    <div class="col-sm-6 item">
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="name">EMAIL</h3>
+                            </div>
+                        </div>
+                        <p class="description">info@unc.edu.ph</p>
+                    </div>
+                    <div class="col-sm-6 item">
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="name">ADDRESS</h3>
+                            </div>
+                        </div>
+                        <p class="description">J.Hernandez Ave., Naga City Camarines Sur. 4400</p>
+                    </div>
+                    <div class="col-sm-6 item">
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="name">WORKING HOURS&nbsp;</h3>
+                            </div>
+                        </div>
+                        <p class="description">9:00AM - 8:00PM&nbsp;</p>
+                    </div>
+                </div>
+                <!-- End: Projects -->
             </div>
-            <div class="row social-row">
-                <div class="social-list align-right pb-2">
-                    
-                    
-                    
-                    
-                    
-                    
-                <div class="soc-item">
-                        <a href="#" target="_blank">
-                            <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
-                        </a>
-                    </div><div class="soc-item">
-                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
-                            <span class="socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
-                        </a>
-                    </div><div class="soc-item">
-                        <a href="https://www.youtube.com/c/mobirise" target="_blank">
-                            <span class="socicon-youtube socicon mbr-iconfont mbr-iconfont-social"></span>
-                        </a>
-                    </div><div class="soc-item">
-                        <a href="https://instagram.com/mobirise" target="_blank">
-                            <span class="mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
-                        </a>
-                    </div></div>
+        </section>
+        <!-- End: Projects Horizontal -->
+        <!-- Start: Footer Dark -->
+        <footer class="footer-dark">
+            <div class="container">
+                <div class="row">
+                    <!-- Start: Services -->
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <!-- End: Services -->
+                    <!-- Start: About -->
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <!-- End: About -->
+                    <!-- Start: Footer Text -->
+                    <div class="col-md-6 item text">
+                        <h3>University of Nueva Caceres Scholarship and Grants</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    </div>
+                    <!-- End: Footer Text -->
+                    <!-- Start: Social Icons -->
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                    <!-- End: Social Icons -->
+                </div>
+                <!-- Start: Copyright -->
+                <p class="copyright">University of Nueva Caceres Scholarship and Grants © 2022</p>
+                <!-- End: Copyright -->
             </div>
-            <div class="row row-copirayt">
-                <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">
-                    © Copyright 2020 Mobirise. All Rights Reserved.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-<section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;"><a href="https://mobirise.site/s" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a><p style="flex: 0 0 auto; margin:0; padding-right:1rem;">Built with Mobirise - <a href="https://mobirise.site/l" style="color:#aaa;">Click now</a></p></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
-  
-  
-  <input name="animation" type="hidden">
-  </body>
+        </footer>
+        <!-- End: Footer Dark --><strong></strong>
+        <!--Comment-->
+        <!--Comment-->
+    </section>
+    <section id="portfolio" class="p-0"></section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/creative.js"></script>
+</body>
+
 </html>

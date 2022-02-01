@@ -15,7 +15,7 @@ class ScholarshipTable extends Migration
     public function up()
     {
         //
-        Schema::create('Scholarship', function (Blueprint $table)
+        Schema::create('scholarships', function (Blueprint $table)
         {
             $table->increments("ScholarhipNo");
             $table->string('student_no',8)->index();

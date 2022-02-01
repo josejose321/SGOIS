@@ -47,7 +47,8 @@
             <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
           </div>
           <div class="modal-body bg-light">
-            <form action="{{ route('Student.store') }}" method="POST" id="form">
+            <form  id="form">
+              {{-- action="{{ route('Student.store') }}" method="POST" --}}
               @csrf
               <div class="row">
                 <div class="col-4">
@@ -144,7 +145,7 @@
               <br>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type ="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+                <button type ="submit" class="btn btn-primary">Submit</button>
                   
               </div>
             </form>
@@ -152,34 +153,22 @@
         </div>
       </div>
     </div>
-    
+    {{-- <script src="{{URL:: asset('js/request.js') }}"></script> --}}
     <script>
-      $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
-    
-      $("#btnSubmit").click(function(e){(
-          e.preventDefault();
-          var data = $("form").serializeArray();
-          console.log(data);
-          var row = document.getElementById('dataRow');
-          row.innerHTML = JSON.stringify(data);
-
-          // $.ajax({
-          //   url:"Student.create",
-          //   type:"POST",
-          //   data:data,
-          //   success:function(response)
-          //   {
-          //     if(response)
-          //     {
-          //       alert('success');
-          //       $("form")[0].reset();
-          //     }
-          //   }
-          // });
-      });
+    $("#form").on('submit', function(e)
+    {
+      e.preventDefault();
+      alert($(this).serialize())
+      axios.post('{{ route('Student.store') }}',
+        $(this).serialize()
+      )
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err); 
+      })
+      
+    })
     </script>
 @endsection

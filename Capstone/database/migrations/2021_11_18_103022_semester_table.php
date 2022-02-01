@@ -14,7 +14,7 @@ class SemesterTable extends Migration
     public function up()
     {
         //
-        Schema::create('Semester', function (Blueprint $table)
+        Schema::create('semesters', function (Blueprint $table)
         {
             $table->string('semesterCode')->primary();
             $table->date('date');

@@ -14,7 +14,7 @@ class EndorsementOfficeTable extends Migration
     public function up()
     {
         //
-        Schema::create('Office', function(Blueprint $table)
+        Schema::create('offices', function(Blueprint $table)
         {
             $table->string('officeCode')->primary();
             $table->string('Name');

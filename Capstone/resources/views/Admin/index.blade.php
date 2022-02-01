@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-
+@section('title','Admin Dashboard')
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +11,66 @@
     <title>Document</title>
 </head>
 <body>
-    <section>
-        <div class="container w-75 p-3">
+
+  
+
+
+
+    
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary btn-lg w-100 p-4" id="addStudent">Add Student</button>
+    <button type="button" class="btn btn-secondary btn-lg w-100 p-4" id="addApplication">Application Period </button>
+    <button type="button" class="btn btn-secondary btn-lg w-100 p-4">Add</button>
+  </div>
+    <div class="container-fluid">
+      
+      <section>
+        <div class="container-fluid">
+              <div class="card">
+                  <div class="card-header">
+                    <h2>Students</h2>
+                
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">STUDENT ID</th>
+                            <th scope="col">FIRSTNAME</th>
+                            <th scope="col">MIDDLENAME</th>
+                            <th scope="col">LASTNAME</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">DEPARTMENT</th>
+                            <th scope="col">PHONE</th>
+                            <th scope="col">COURSE</th>
+                            <th scope="col">YEAR</th>
+                            <th scope="col">ACTION</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          @foreach ($students as $student)
+                          <tr>
+                            <th scope="col"> {{ $student->student_no }}</th>
+                            <th scope="col">{{ $student->firstname }}</th>
+                            <th scope="col">{{ $student->middlename }}</th>
+                            <th scope="col">{{ $student->lastname }}</th>
+                            <th scope="col">{{ $student->email }}</th>
+                            <th scope="col">{{ $student->department }}</th>
+                            <th scope="col">{{ $student->phoneNumber }}</th>
+                            <th scope="col">{{ $student->course }}</th>
+                            <th scope="col">{{ $student->year }}</th>
+                            <th scope="col"><button type="submit" class="button btn-primary">EDIT</button>
+                              <button type="submit" class="button btn-danger">DELETE</button> </th>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+        </div>
+    </section>
+      <section>
+        <div class="container-fluid">
               <div class="card">
                   <div class="card-header">
                     <h2>Sholarhips</h2>
@@ -84,7 +142,7 @@
     </section>
     <br><br><br>
     <section class="">
-        <div class="container w-75 p-3">
+        <div class="container-fluid">
               <div class="card">
                 <div class="card-header">
                     <h2>Discount</h2>
@@ -155,7 +213,7 @@
     </section>
     <br><br><br>
     <section class="">
-        <div class="container w-75 p-3">
+        <div class="container-fluid">
               <div class="card">
                 <div class="card-header">
                     <h2>Loans Applied</h2>
@@ -226,7 +284,7 @@
     </section>
     <br><br><br>
     <section class="">
-        <div class="container w-75 p-3">
+        <div class="container-fluid">
               <div class="card">
                 <div class="card-header">
                     <h2>Government Grantees</h2>
@@ -296,6 +354,60 @@
               </div>
         </div>
     </section>
+    </div>
+
+   {{-- modal add student --}}
+   <form id="studentform">
+    @csrf
+    <div id="modalAddStudent"></div>
+  </form>
+ 
+  {{-- modal add application period --}}
+  <form id="periodform">
+    @csrf
+    <div id="modalPeriod"></div>
+  </form>
 </body>
+
 </html>
+
+{{-- for modal and axios functions --}}
+<script>
+  //load modal content
+  $(function(){
+    $("#modalAddStudent").load("{{ asset('modal/addStudent.html') }}");
+  })
+  $(function(){
+    $("#modalPeriod").load("{{ asset('modal/addApplication.html') }}");
+  })
+
+
+
+  // add application period
+  $("#addApplication").on("click",function(){
+    $('#appmodal').modal();
+  })
+
+
+
+  //  add student
+  $("#addStudent").on("click", function(){
+    $('#studentmodal').modal();
+  })
+
+  $("#studentform").on('submit',function(e){
+    e.preventDefault();
+    
+
+    axios.post('{{ route('Student.store') }}',$(this).serialize())
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.error(err.response.data);
+    })
+    console.log($(this).serialize());
+    alert($(this).serialize());
+  })
+</script>
 @endsection

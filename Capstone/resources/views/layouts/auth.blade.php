@@ -18,17 +18,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
-<style>
-    body{
-        background-image:url({{ url('bg.jpg') }});
-        background-attachment: fixed;
-        background-size: 100% 100%;
-    }
-</style>
 <body>
-    @yield('content')
+    
 
-
+    <div>
+        @yield('content')
+    </div>
 
     {{-- footer --}}
     <footer>

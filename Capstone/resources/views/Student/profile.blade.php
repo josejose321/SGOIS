@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<section>
-    <div class="container w-75 p-3">
+{{-- <section>
+    <div class="container">
           <div class="card">
               <div class="card-header">
                 <h2>Students</h2>
@@ -29,8 +29,22 @@
                   </table>
             </div>
           </div>
+          {{ $student->student_no}} <br>
+          {{ $student->firstname}}<br>
+          {{ $student->middlename}}<br>
+          {{ $student->lastname}}<br>
+          {{ $student->email}}<br>
+          {{ $student->department}}<br>
+          {{ $student->phoneNumber}}<br>
     </div>
-</section>
+</section> --}}
+          {{ $student->student_no}} <br>
+          {{ $student->firstname}}<br>
+          {{ $student->middlename}}<br>
+          {{ $student->lastname}}<br>
+          {{ $student->email}}<br>
+          {{ $student->department}}<br>
+          {{ $student->phoneNumber}}<br>
 <br><br><br>
 
 </section>

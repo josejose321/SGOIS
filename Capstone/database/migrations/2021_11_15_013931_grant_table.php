@@ -14,7 +14,7 @@ class GrantTable extends Migration
     public function up()
     {
         //
-        Schema::create('Grant', function (Blueprint $table)
+        Schema::create('grants', function (Blueprint $table)
         {
             $table->increments("GrantNo");
             $table->string('semester');

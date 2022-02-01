@@ -16,7 +16,7 @@ class DiscountTable extends Migration
     public function up()
     {
         //
-        Schema::create('Discount', function (Blueprint $table)
+        Schema::create('discounts', function (Blueprint $table)
         {
             $table->increments("DiscountNo");
             $table->string('semester');

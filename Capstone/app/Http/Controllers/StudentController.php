@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use Illuminate\Http\Request;
 use StudentTable;
+use Symfony\Component\HttpFoundation\Response;
 use App\Models\Student;
 use Illuminate\Support\Facades\Redirect;
 
@@ -27,47 +29,56 @@ class StudentController extends Controller
     }
     function show($student_no)
     {
-        return view("Student.profile");
+        $student = Student::findOrFail($student_no);
+        return view("Student.profile")
+        ->with(compact('student'));
     }
     function create(Request $request)
     {
          
     }
-    function edit()
+    function edit($student_no)
     {
-        return view("Student.edit");
+        $student = Student::findOrFail($student_no);
+
+
+        return view("Student.edit")
+        ->with(compact('student'));
     }
-    function store(Request $request)
+    function store(StudentRequest $request)
     {
-        // $validator =$request->validate([
-        //     'student_no'=> 'required',
-        //     'fullname'=> 'required',
-        //     'department'=> 'required',
-        //     'phoneNumber'=> 'required',
-        //     'course'=> 'required',
-        //     'year'=> 'required'
-        // ]);
-        // $student = new Student;
-        // $student->create($data = $request->post());
-        //dd($data);
+        $student = new Student;
+        $student->student_no = $request->student_no;
+        $student->firstname = $request->firstname;
+        $student->middlename = $request->middlename;
+        $student->lastname = $request->lastname;
+        $student->email = $request->email;
+        $student->department = $request->department;
+        $student->phone =$request->phone;
+        $student->course = $request->course;
+        $student->year = $request->year;
+        $student->image = $request->image;
+        $student->password = "12345";
+        $student->save();
+        // $student = Student::create($request->post());
         
-        $student = $request->input();
+        // $student = $request->input();
         dd($student);
-        return $student;
+        return response()->json($student, 200);
 
     }
     function update(Request $request)
     {
-        $student = Student::find($request->input('student_no'));
-        $student->fullname = $request->input('firstname');
-        $student->middlename = $request->input('middlename');
-        $student->lastname = $request->input('lastname');
-        $student->department = $request->input('department');
-        $student->phoneNumber = $request->input('phoneNumber');
-        $student->course = $request->input('course');
-        $student->year = $request->input('year');
+        $student = Student::find($request->student_no);
+        $student->fullname = $request->firstname;
+        $student->middlename = $request->middlename;
+        $student->lastname = $request->lastname;
+        $student->department = $request->department;
+        $student->phone = $request->phone;
+        $student->course = $request->course;
+        $student->year = $request->year;
         $student->save();
-        return back()->with('update','Updated Successfully!');
+        return response()->json($student, 200);
     }
     function destroy($id)
     {

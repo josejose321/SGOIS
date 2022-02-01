@@ -15,7 +15,7 @@ class AnnouncementTable extends Migration
     {
         //
 
-        Schema::create('Announcement', function (Blueprint $table){
+        Schema::create('annoucements', function (Blueprint $table){
             $table->id();
             $table->string('Employee_no',8)->index();
             $table->string('subject');
