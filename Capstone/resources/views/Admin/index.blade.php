@@ -30,7 +30,7 @@
                       <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                       <button type="button" class="btn btn-outline-primary">search</button>
                     </div><br>
-                
+                  </div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead class="bg-success">
@@ -67,6 +67,7 @@
                 </div>
               </div>
         </div>
+      </div>
     </section>
       <section>
         <div class="container-fluid">

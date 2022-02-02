@@ -19,7 +19,7 @@ class AnnouncementTable extends Migration
             $table->id();
             $table->string('subject');
             $table->longText('content');
-            $table->string('user_no',8)->index();
+            $table->string('admin_no',8)->index();
             $table->timestamps();
 
         });
