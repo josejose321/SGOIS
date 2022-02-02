@@ -17,9 +17,9 @@ class AnnouncementTable extends Migration
 
         Schema::create('annoucements', function (Blueprint $table){
             $table->id();
-            $table->string('Employee_no',8)->index();
             $table->string('subject');
             $table->longText('content');
+            $table->string('user_no',8)->index();
             $table->timestamps();
 
         });

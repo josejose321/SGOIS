@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use StudentTable;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Student;
+use Exception;
+use GrahamCampbell\ResultType\Success;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class StudentController extends Controller
@@ -47,42 +51,56 @@ class StudentController extends Controller
     }
     function store(StudentRequest $request)
     {
-        $student = new Student;
-        $student->student_no = $request->student_no;
-        $student->firstname = $request->firstname;
-        $student->middlename = $request->middlename;
-        $student->lastname = $request->lastname;
-        $student->email = $request->email;
-        $student->department = $request->department;
-        $student->phone =$request->phone;
-        $student->course = $request->course;
-        $student->year = $request->year;
-        $student->image = $request->image;
-        $student->password = "12345";
-        $student->save();
-        // $student = Student::create($request->post());
-        
-        // $student = $request->input();
-        dd($student);
-        return response()->json($student, 200);
+        //dd($request->post());
+
+
+        try{
+            $student = new Student();
+            $student->student_no = $request->student_no;
+            $student->firstname = $request->firstname;
+            $student->middlename = $request->middlename;
+            $student->lastname = $request->lastname;
+            $student->email = $request->email;
+            $student->department = $request->department;
+            $student->phone =$request->phone;
+            $student->course = $request->course;
+            $student->year = $request->year;
+            $student->image = $request->image;
+            $student->password = Hash::make("12345");
+            $student->save();
+            return back()->with('success',"student added to the database");
+        }catch(QueryException $e)
+        {
+            return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
+        }
 
     }
     function update(Request $request)
     {
-        $student = Student::find($request->student_no);
-        $student->fullname = $request->firstname;
-        $student->middlename = $request->middlename;
-        $student->lastname = $request->lastname;
-        $student->department = $request->department;
-        $student->phone = $request->phone;
-        $student->course = $request->course;
-        $student->year = $request->year;
-        $student->save();
-        return response()->json($student, 200);
+        try
+        {
+            $student = Student::find($request->student_no);
+            $student->fullname = $request->firstname;
+            $student->middlename = $request->middlename;
+            $student->lastname = $request->lastname;
+            $student->email = $request->email;
+            $student->department = $request->department;
+            $student->phone = $request->phone;
+            $student->course = $request->course;
+            $student->year = $request->year;
+            $student->image = $request->image;
+            $student->save();
+            return back()->with('success','successfully updated');
+
+        }catch(Exception $e)
+        {
+            return back()->with('error', 'Something Went Wrong/n'. $e->getMessage());
+        }
     }
     function destroy($id)
     {
-        Student::destroy($id);
-        return back()->with('delete',' Deleted');
+        $student = Student::findOrFail($id);
+        $student->delete();
+        return back()->with('delete',' successfully Deleted!');
     }
 }

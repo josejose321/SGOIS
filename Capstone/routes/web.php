@@ -33,8 +33,6 @@ Route::resource('/Admin', AdminController::class);
 
 
 Route::resource('/Student', StudentController::class);
-
-//Route::get('/student',[StudentController::class,'index'])->name(stundet)
 Route::get('/Student/profile', [StudentController::class,'profile'])->name('Student.profile');
 Route::resource('Student/scholarship', ScholarshipController::class);
 

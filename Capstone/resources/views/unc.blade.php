@@ -197,7 +197,11 @@
                     <!-- Start: Footer Text -->
                     <div class="col-md-6 item text">
                         <h3>University of Nueva Caceres Scholarship and Grants</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deserunt aperiam asperiores exercitationem laborum quos at quibusdam eligendi, pariatur, dicta doloribus corporis! Labore repudiandae nesciunt deleniti quod, voluptas corporis perferendis!
+                            Pariatur, ut? Libero in, ipsa repudiandae impedit et adipisci eius optio repellat eveniet obcaecati nulla praesentium voluptatibus tempora corrupti velit voluptatum. Nobis perferendis neque tempore modi quaerat, accusamus quam voluptas!
+                            Quis asperiores repellendus dignissimos incidunt dolores. Libero illo unde officia hic minima architecto, dolorem eveniet iusto facilis ducimus in necessitatibus cumque optio odio veritatis! Eligendi quod nemo laborum! Tenetur, suscipit.
+                        </p>
                     </div>
                     <!-- End: Footer Text -->
                     <!-- Start: Social Icons -->

@@ -15,13 +15,15 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->string('Employee_no',8)->primary();
-            $table->string('officeCode')->index()->nullable();
-            $table->string('fullname');
-            $table ->enum('position',array('Office Director','Accounting Staff', 'SGO Director'));
-            $table->string('phone');
+            $table->string('firstname',50);
+            $table->string('middlename',50);
+            $table->string('lastname',50);
+            $table->string('email',50)->unique();
+            $table->string('department');
+            $table->string('phone',11);
+            $table ->string('position');
             $table->string('image');
-            // $table->foreign('officeCode')->references('officeCode')->on('Office')->onDelete('cascade');
-            // $table->foreign('Employee_no')->references('user_no')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

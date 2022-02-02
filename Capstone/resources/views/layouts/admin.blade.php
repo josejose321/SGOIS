@@ -22,7 +22,7 @@
     {{-- axios request --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js"></script>
     {{--  --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         .bd-placeholder-img {
           font-size: 1.125rem;
@@ -79,11 +79,9 @@
         </div>
     </nav>
 
-    <div id="app" class="container-fluid">
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
-    </div>
     <!-- Footer -->
     <div class="container">
         <footer class="py-3 my-4">
