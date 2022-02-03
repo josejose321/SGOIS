@@ -24,7 +24,7 @@ class Student extends Model
         'phone',
         'course',
         'year',
-        'image',
+        'avatar',
         'password',
         'created_at',
         'updated_at'

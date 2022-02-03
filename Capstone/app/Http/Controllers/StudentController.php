@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\Student;
 use Exception;
 use GrahamCampbell\ResultType\Success;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -79,7 +80,7 @@ class StudentController extends Controller
     {
         try
         {
-            $student = Student::find($student_no);
+            $student = Student::findOrFail($student_no);
             $student->fullname = $request->firstname;
             $student->middlename = $request->middlename;
             $student->lastname = $request->lastname;
@@ -88,11 +89,11 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->image = $request->image;
+            $student->avatar = $this->getAvatarname($request);
             $student->save();
             return back()->with('success','successfully updated');
 
-        }catch(Exception $e)
+        }catch(ModelNotFoundException $e)
         {
             return back()->with('error', 'Something Went Wrong/n'. $e->getMessage());
         }
@@ -102,5 +103,31 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
         return back()->with('delete',' successfully Deleted!');
+    }
+    public function updateAvatar(Request $request, $student_no)
+    {
+        try
+        {
+            //save upload path
+            $student = Student::findOrFail($student_no);
+            $student->avatar = $this->storeAvatar($request);
+            $student->save();
+
+
+            return back()->with('avatarSuccess',"Succes!");
+
+        }catch(ModelNotFoundException $e)
+        {
+            return back()->with('avatarError','Uploading Error!\n'. $e->getMessage());
+        }
+
+        
+    }
+    private function storeAvatar(Request $request)//get avatarname and upload to storage
+    {
+        dd($request->avatar->getClientOriginalName());
+        $name = $request->avatar->getClientOriginalName();
+        $request->avatar->storeAs('public/avatar/',$name);
+        return $name;
     }
 }

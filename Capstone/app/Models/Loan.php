@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Scholarship extends Model
+class Loan extends Model
 {
     use HasFactory;
-    protected $table = 'scholarships';
-    protected $primaryKey ="scholarshipNo";
+    protected $table = 'loans';
+    protected $primaryKey ="loanNo";
     public $incrementing = true;
 
     protected $fillable = [
         "student_no",
+        "officeCode",
         "semesterCode",
         "type",
         "field",

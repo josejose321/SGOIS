@@ -18,12 +18,17 @@ class DiscountTable extends Migration
         //
         Schema::create('discounts', function (Blueprint $table)
         {
-            $table->increments("DiscountNo");
-            $table->string('semester');
-            $table->string('school_year');
-            $table->enum('status', ['Pending','Approved','Rejected'])->default('Pending');
-            $table->string('student_no',8)->index()->nullable();
-            // $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
+            $table->increments("scholarhipNo");
+            $table->string('student_no',8)->index();
+            $table->string('officeCode')->index()->nullable();
+            $table->string('semesterCode')->index()->nullable();
+            $table->string('type');
+            $table->string('field');
+            $table->string('discount');
+            $table->string('requirement');
+            $table->string('photo');
+            $table->string('officeVerification')->default('pending');
+            $table->string('adminVerification')->default('Pending');;
             $table->timestamps();
 
         });

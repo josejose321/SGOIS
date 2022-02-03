@@ -27,7 +27,7 @@ class StudentsImport implements ToModel
             'phone'=>$row[6],
             'course'=>$row[7],
             'year'=>$row[8],
-            'image'=>$row[9],
+            'image'=>'test',
             'password'=>Hash::make($row[0]),
             'created_at'=>time(),
             'updated_at'=>time()

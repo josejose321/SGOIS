@@ -22,7 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->string('department');
             $table->string('phone',11);
             $table ->string('position');
-            $table->string('image');
+            $table->string('avatar');
             $table->string('password');
             $table->timestamps();
         });

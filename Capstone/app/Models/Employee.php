@@ -21,7 +21,7 @@ class Employee extends Model
         'department',
         'phone',
         'position',
-        'image',
+        'avatar',
         'password',
         'created_at',
         'updated_at'

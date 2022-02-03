@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Student;
+use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -74,7 +75,7 @@ class AdminController extends Controller
             $admin->department = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
-            $admin->image = $request->image;
+            $admin->avatar = $request->image;
             $admin->password = $request->password;
             $admin->created_at = time();
             $admin->updated_at = time();
@@ -101,6 +102,7 @@ class AdminController extends Controller
             $admin->department = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
+            $admin->avatar = $this->getAvatarname($request);
             $admin->updated_at = time();
             return back()->with('message', 'successfully update!');
         }catch(QueryException $e)
@@ -114,5 +116,31 @@ class AdminController extends Controller
         $admin->delete();
 
         return back()->with('deletesuccess','delete successfully!');
+    }
+    public function updateAvatar(Request $request, $admin_no)
+    {
+        try
+        {
+            //save upload path
+            $admin = Admin::findOrFail($admin_no);
+            $admin->avatar = $this->storeAvatar($request);
+            $admin->save();
+
+
+            return back()->with('avatarSuccess',"Succes!");
+
+        }catch(Exception $e)
+        {
+            return back()->with('avatarError','Uploading Error!\n'. $e->getMessage());
+        }
+
+        
+    }
+    private function storeAvatar(Request $request)//get avatarname and upload to storage
+    {
+        dd($request->avatar->getClientOriginalName());
+        $name = $request->avatar->getClientOriginalName();
+        $request->avatar->storeAs('public/avatar/',$name);
+        return $name;
     }
 }

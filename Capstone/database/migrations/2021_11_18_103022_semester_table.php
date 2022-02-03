@@ -17,9 +17,9 @@ class SemesterTable extends Migration
         Schema::create('semesters', function (Blueprint $table)
         {
             $table->string('semesterCode')->primary();
-            $table->date('date');
-            $table->integer('period');
-            $table->timestamps();
+            $table->string('sem');
+            $table->string('schoolyear');
+            $table->integer('applicationPeriod');
             
         });
     }

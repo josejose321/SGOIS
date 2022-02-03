@@ -42,7 +42,7 @@
                             <th scope="col">PHONE</th>
                             <th scope="col">COURSE</th>
                             <th scope="col">YEAR</th>
-                            <th scope="col">PHOTO</th>
+                            <th scope="col">avatar</th>
                             <th scope="col">ACTION</th>
                           </tr>
                         </thead>
