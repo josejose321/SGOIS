@@ -75,11 +75,11 @@ class StudentController extends Controller
         }
 
     }
-    function update(Request $request)
+    function update(Request $request,$student_no)
     {
         try
         {
-            $student = Student::find($request->student_no);
+            $student = Student::find($student_no);
             $student->fullname = $request->firstname;
             $student->middlename = $request->middlename;
             $student->lastname = $request->lastname;

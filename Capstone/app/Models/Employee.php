@@ -22,6 +22,7 @@ class Employee extends Model
         'phone',
         'position',
         'image',
+        'password',
         'created_at',
         'updated_at'
     ];

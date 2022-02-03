@@ -23,6 +23,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone',11);
             $table ->string('position');
             $table->string('image');
+            $table->string('password');
             $table->timestamps();
         });
     }

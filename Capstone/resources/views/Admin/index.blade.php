@@ -393,7 +393,7 @@
 @endif
 </html>
 
-{{-- for modal and axios functions --}}
+{{-- modal and axios functions --}}
 <script>
   //load modal content
   $(function(){

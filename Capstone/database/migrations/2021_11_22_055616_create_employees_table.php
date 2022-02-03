@@ -14,7 +14,7 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->string('Employee_no',8)->primary();
+            $table->string('employee_no',8)->primary();
             $table->string('firstname',50);
             $table->string('middlename',50);
             $table->string('lastname',50);
@@ -23,6 +23,7 @@ class CreateEmployeesTable extends Migration
             $table->string('phone',11);
             $table ->string('position');
             $table->string('image');
+            $table->string('password');
             $table->timestamps();
         });
     }

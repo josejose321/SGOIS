@@ -7,6 +7,7 @@
 <section class="container w-75" style="background-color: rgb(196, 195, 195)"><br>
     <div class="container">
         <form>
+          
             <h1>Edit Profile</h1>
             <div class="form-row">
               <div class="form-group col-md-4">
