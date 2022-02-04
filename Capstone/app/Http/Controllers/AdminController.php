@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\StudentsImport;
 use App\Mail\WelcomMail;
 use App\Models\Admin;
 use App\Models\Student;
@@ -9,6 +10,8 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Exceptions\LaravelExcelException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -52,7 +55,7 @@ class AdminController extends Controller
 
         );
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
-        return new WelcomMail();
+        //return new WelcomMail();
         $students = Student::all();
         return view('Admin.index')
         ->with(compact('scholarships'))
@@ -79,7 +82,7 @@ class AdminController extends Controller
             $admin->department = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
-            $admin->avatar = $request->image;
+            $admin->avatar = $this->storeAvatar($request);
             $admin->password = $request->password;
             $admin->created_at = time();
             $admin->updated_at = time();
@@ -121,6 +124,18 @@ class AdminController extends Controller
 
         return back()->with('deletesuccess','delete successfully!');
     }
+    public function import(Request $request)
+    {
+        //dd($request);
+        try{
+            Excel::import(new StudentsImport, $request->file('file')->store('temp'));
+            return back()->with('successImport','Import Successfully!');
+        }catch(LaravelExcelException $e){
+            return back()->with('errorImport','Import Error!');
+        }
+        return 'success!';
+    }
+
     public function updateAvatar(Request $request, $admin_no)
     {
         try
@@ -140,6 +155,7 @@ class AdminController extends Controller
 
         
     }
+
     private function storeAvatar(Request $request)//get avatarname and upload to storage
     {
         dd($request->avatar->getClientOriginalName());
@@ -147,4 +163,5 @@ class AdminController extends Controller
         $request->avatar->storeAs('public/avatar/',$name);
         return $name;
     }
+    
 }

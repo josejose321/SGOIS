@@ -5,9 +5,10 @@ namespace App\Imports;
 use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Row;
 
-class StudentsImport implements ToModel
+class StudentsImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -18,17 +19,17 @@ class StudentsImport implements ToModel
     {
         return new Student([
             //
-            'student_no'=>$row[0],
-            'firstname'=>$row[1],
-            'middlename'=>$row[2],
-            'lastname'=>$row[3],
-            'email'=>$row[4],
-            'department'=>$row[5],
-            'phone'=>$row[6],
-            'course'=>$row[7],
-            'year'=>$row[8],
-            'image'=>'test',
-            'password'=>Hash::make($row[0]),
+            'student_no'=>$row['student_no'],
+            'firstname'=>$row['firstname'],
+            'middlename'=>$row['middlename'],
+            'lastname'=>$row["lastname"],
+            'email'=>$row['email'],
+            'department'=>$row['department'],
+            'phone'=>$row['phone'],
+            'course'=>$row['course'],
+            'year'=>$row['year'],
+            'avatar'=>'test',
+            'password'=>Hash::make($row['student_no']),
             'created_at'=>time(),
             'updated_at'=>time()
         ]);

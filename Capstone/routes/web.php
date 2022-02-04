@@ -29,7 +29,10 @@ Route::get('/Home',[HomeController::class,'index'])->name('index');
 Auth::routes();
 
 
+
+Route::post('/Admin/import',[AdminController::class,'import'])->name('Admin.import');
 Route::resource('/Admin', AdminController::class);
+
 
 
 Route::resource('/Student', StudentController::class);

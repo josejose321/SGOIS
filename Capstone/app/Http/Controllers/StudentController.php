@@ -50,9 +50,9 @@ class StudentController extends Controller
         return view("Student.edit")
         ->with(compact('student'));
     }
-    function store(StudentRequest $request)
+    function store(Request $request)
     {
-        //dd($request->post());
+        // dd($request->post());
 
 
         try{
@@ -66,8 +66,10 @@ class StudentController extends Controller
             $student->phone =$request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->image = $request->image;
+            $student->avatar = 'test';
             $student->password = Hash::make("12345");
+            $student->created_at = time();
+            $student->updated_at = time();
             $student->save();
             return back()->with('success',"student added to the database");
         }catch(QueryException $e)
@@ -78,6 +80,7 @@ class StudentController extends Controller
     }
     function update(Request $request,$student_no)
     {
+        
         try
         {
             $student = Student::findOrFail($student_no);
@@ -89,7 +92,8 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->avatar = $this->getAvatarname($request);
+            $student->avatar = 'test';
+            $student->updated_at = time();
             $student->save();
             return back()->with('success','successfully updated');
 
@@ -98,6 +102,8 @@ class StudentController extends Controller
             return back()->with('error', 'Something Went Wrong/n'. $e->getMessage());
         }
     }
+
+    
     function destroy($id)
     {
         $student = Student::findOrFail($id);
@@ -125,8 +131,8 @@ class StudentController extends Controller
     }
     private function storeAvatar(Request $request)//get avatarname and upload to storage
     {
-        dd($request->avatar->getClientOriginalName());
-        $name = $request->avatar->getClientOriginalName();
+        dd($request->file('avatar')->getClientOriginalName());
+        $name = $request->file('avatar')->getClientOriginalName();
         $request->avatar->storeAs('public/avatar/',$name);
         return $name;
     }

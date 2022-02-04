@@ -19,6 +19,14 @@
   </div>
   
   <hr>
+  <form action="{{ url('/Admin/import') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Example file input</label>
+      <input type="file" class="form-control-file" name="file">
+    </div>
+    <button type="submit" class="btn btn-primary">Import File</button>
+  </form>
     <div class="container-fluid">
       
       <section>
@@ -69,6 +77,7 @@
         </div>
       </div>
     </section>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       <section>
         <div class="container-fluid">
               <div class="card">
@@ -380,6 +389,33 @@
         });
 </script>
 @endif
+
+
+
+@if (Session::has('successImport'))
+<script>
+    swal({
+          title: "Import Success!",
+          text: "{{ Session::get('successImport') }}",
+          icon: "success",
+          button: "ok!",
+        });
+</script>
+@endif
+@if (Session::has('errorImport'))
+<script>
+    swal({
+          title: "Import Failed!",
+          text: "{{ Session::get('errorImport') }}",
+          icon: "error",
+          button: "ok!",
+        });
+</script>
+@endif
+
+
+
+
 @if (Session::has('error'))
 <script>
   swal({

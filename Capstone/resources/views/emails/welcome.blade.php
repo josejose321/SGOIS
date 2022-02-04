@@ -11,10 +11,10 @@ your loan application is approved!
 
 this is a test
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => 'https://www.unc.edu.ph/'])
 Visit Site
 @endcomponent
 
 Thanks,<br>
-UNC SGO INFORMATION SYSTEM
+{{ config('app.name') }}
 @endcomponent
