@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomMail;
 use App\Models\Admin;
 use App\Models\Student;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -49,6 +51,8 @@ class AdminController extends Controller
             "requirements"> "object" 
 
         );
+        //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
+        return new WelcomMail();
         $students = Student::all();
         return view('Admin.index')
         ->with(compact('scholarships'))
