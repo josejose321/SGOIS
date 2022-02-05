@@ -31,12 +31,14 @@ Auth::routes();
 
 
 Route::post('/Admin/import',[AdminController::class,'import'])->name('Admin.import');
+
 Route::resource('/Admin', AdminController::class);
 
 
 
 Route::resource('/Student', StudentController::class);
-Route::post('/Student/{Student}/avatar',[StudentController::class,'updateAvatar'],);
+
+Route::post('/Student/{Student}/avatar',[StudentController::class,'updateAvatar'],)->name('Student.updateAvatar');
 Route::post('/Student/profile', [StudentController::class,'profile'])->name('Student.profile');
 
 Route::resource('Student/scholarship', ScholarshipController::class);

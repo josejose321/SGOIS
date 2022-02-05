@@ -24,10 +24,8 @@ class ScholarshipController extends Controller
         $scholarhip->type = $request->type;
         $scholarhip->field = $request->field;
         $scholarhip->discount = $request->discount;
-        $scholarhip->requirement = $this->storeFiles($request,'public/requirements/');
-        $scholarhip->photo = $this->storeFiles($request,'public/photoRequirements/');
-        $scholarhip->officeVerification = $request->officeVerification;
-        $scholarhip->adminVerification = $request->adminVerification;
+        $scholarhip->requirement = $this->storeFiles($request->file('requirement'),'public/requirements/');
+        $scholarhip->photo = $this->storeFiles($request->file('photo'),'public/photoRequirements/');
         $scholarhip->created_at = time();
         $scholarhip->updated_at = time();
         
@@ -35,7 +33,10 @@ class ScholarshipController extends Controller
     public function approveByOffice(Request $request, $student_no)
     {
         $scholarhip = Scholarship::find($student_no);
-        $scholarhip->status = $request->get('status');
+        $scholarhip->officeVerification = $request->officeVerification;
+        $scholarhip->discount = $request->discount;
+
+        return back('verify','Verify');
     }
     public function verifyByAdmin(Request $request, $student_no)
     {
@@ -45,11 +46,10 @@ class ScholarshipController extends Controller
     {
         
     }
-    private function storeFiles(Request $request,$path)//also store the requiments to storage path: requirements/
+    private function storeFiles($file ,$path)//also store the requiments to storage path: requirements/
     {
-        dd($request->requirement->getClientOriginalName());
-        $name = $request->requirement->getClientOriginalName();
-        $request->file('requirement')->storeAs($path,$name);
+        $name = $file->getClientOriginalName();
+        $file->storeAs($path,$name);
         return $name;
     }
 

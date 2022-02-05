@@ -2,13 +2,20 @@
 
 @section('title',"Student")
 @section('content')
+<div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Add Student</button>
+  <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Students</button>
+  <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">log out</button>
+  <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">log out</button>
+ 
+</div>
 <br><br>
     
 
 
     <section class="container-fluid">
        <!-- Large modal -->
-
+       
       <div class="jumbotron">
         <h1 class="display-8">
           Hello, Mr./Ms {{$student->name }}! 

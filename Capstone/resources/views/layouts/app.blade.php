@@ -81,11 +81,9 @@
     
     
     {{-- @include('layouts.sidebar') --}}
-    <div id="app" class="container-fluid">
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
-    </div>
     <!-- Footer -->
     <div class="container">
         <footer class="py-3 my-4">

@@ -58,7 +58,7 @@ class EmployeeController extends Controller
             $employee->department = $request->department;
             $employee->email = $request->emaiil;
             $employee->postition = $request->position;
-            $employee->avatar = $this->storeAvatar($request);
+            $employee->avatar = 'test'; //$this->storeAvatar($request);
             $employee->password = $request->password;
             $employee->updated_at = time();
             return back()->with('message', 'Update Successfully!');
@@ -98,9 +98,9 @@ class EmployeeController extends Controller
     }
     private function storeAvatar(Request $request)//get avatarname and upload to storage
     {
-        dd($request->avatar->getClientOriginalName());
-        $name = $request->avatar->getClientOriginalName();
-        $request->avatar->storeAs('public/avatar/',$name);
+        //dd($request->file('avatar')->getClientOriginalName());
+        $name = $request->file('avatar')->getClientOriginalName();
+        $request->file('avatar')->storeAs('public/avatar/',$name);
         return $name;
     }
 }

@@ -16,7 +16,7 @@ class LoanTable extends Migration
         //
         Schema::create('loans', function (Blueprint $table)
         {
-            $table->increments("loans");
+            $table->increments("loanNo");
             $table->string('student_no',8)->index();
             $table->string('officeCode')->index()->nullable();
             $table->string('semesterCode')->index()->nullable();
@@ -27,6 +27,7 @@ class LoanTable extends Migration
             $table->string('photo');
             $table->string('officeVerification')->default('pending');
             $table->string('adminVerification')->default('Pending');
+            $table->string('remarks');
             // $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
             $table->timestamps();
 

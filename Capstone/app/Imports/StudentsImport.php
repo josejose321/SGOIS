@@ -15,6 +15,11 @@ class StudentsImport implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    private $students;
+    public function __construct()
+    {
+        $this->students = Student::all();
+    }
     public function model(array $row)
     {
         return new Student([

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EndorsementOfficeTable extends Migration
+class CreateOfficesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class EndorsementOfficeTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('offices', function(Blueprint $table)
-        {
-            $table->string('officeCode')->primary();
-            $table->string('Name');
-            $table->string('Description');
-            $table->timestamps();
-            
+        Schema::create('offices', function (Blueprint $table) {
+            $table->string('officeCode');
+            $table->string('name');
+            $table->string('description');
         });
     }
 
@@ -31,7 +27,6 @@ class EndorsementOfficeTable extends Migration
      */
     public function down()
     {
-        //
-        Schema::dropIfExists('EndorsementOffice');
+        Schema::dropIfExists('offices');
     }
 }

@@ -65,9 +65,9 @@
                             <th scope="col" name="phone">{{ $student->phone }}</th>
                             <th scope="col" name="course">{{ $student->course }}</th>
                             <th scope="col" name="year">{{ $student->year }}</th>
-                            <th scope="col" name="image">nothing</th>
+                            <th scope="col" name="avatar">temp</th>
                             <th scope="col"><button type="submit" class="button btn-primary">EDIT</button>
-                              <button type="submit" class="button btn-danger">DELETE</button> </th>
+                            <button type="button" class="button btn-secondary" onclick="viewStudent({{ $student }})">view</button> </th>
                           </tr>
                           @endforeach
                         </tbody>
@@ -106,7 +106,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -117,7 +117,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -128,7 +128,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -139,7 +139,7 @@
                             <th scope="col">{{ $scholarships->year }}</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                             
@@ -178,7 +178,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -189,7 +189,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -200,7 +200,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -211,7 +211,7 @@
                             <th scope="col">{{ $loans->year }}</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                         </tbody>
@@ -249,7 +249,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -260,7 +260,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -271,7 +271,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -282,7 +282,7 @@
                             <th scope="col">{{ $discounts->year }}</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                         </tbody>
@@ -320,7 +320,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -331,7 +331,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -342,7 +342,7 @@
                             <th scope="col">4TH YEAR</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Reject</button> </th>
+                              <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                           <tr>
@@ -353,7 +353,7 @@
                             <th scope="col">{{ $grants->year }}</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                            <button type="submit" class="button btn-danger">Reject</button> </th>
+                            <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                             
@@ -468,4 +468,6 @@
     alert($(this).serialize());
   })
 </script>
+
+
 @endsection

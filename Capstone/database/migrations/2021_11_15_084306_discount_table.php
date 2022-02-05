@@ -28,7 +28,8 @@ class DiscountTable extends Migration
             $table->string('requirement');
             $table->string('photo');
             $table->string('officeVerification')->default('pending');
-            $table->string('adminVerification')->default('Pending');;
+            $table->string('adminVerification')->default('pending');;
+            $table->string('remarks');
             $table->timestamps();
 
         });

@@ -19,6 +19,7 @@ class StudentController extends Controller
     
     function index()
     {
+        $student = Student::all();
         $student = (object)array(
             'name'=>"Evasco,Jose II V",
             'year'=>'4th Year',
@@ -66,7 +67,7 @@ class StudentController extends Controller
             $student->phone =$request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->avatar = 'test';
+            $student->avatar =$this->storeAvatar($request);
             $student->password = Hash::make("12345");
             $student->created_at = time();
             $student->updated_at = time();
@@ -131,9 +132,9 @@ class StudentController extends Controller
     }
     private function storeAvatar(Request $request)//get avatarname and upload to storage
     {
-        dd($request->file('avatar')->getClientOriginalName());
+        //dd($request->file('avatar')->getClientOriginalName());
         $name = $request->file('avatar')->getClientOriginalName();
-        $request->avatar->storeAs('public/avatar/',$name);
+        $request->file('avatar')->storeAs('public/avatar/',$name);
         return $name;
     }
 }

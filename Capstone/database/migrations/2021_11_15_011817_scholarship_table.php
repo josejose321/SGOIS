@@ -28,6 +28,7 @@ class ScholarshipTable extends Migration
             $table->string('photo');
             $table->string('officeVerification')->default('pending');
             $table->string('adminVerification')->default('Pending');
+            $table->string('remarks');
             // $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
             
             

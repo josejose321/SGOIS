@@ -55,7 +55,7 @@ class AdminController extends Controller
 
         );
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
-        //return new WelcomMail();
+        // return new WelcomMail();
         $students = Student::all();
         return view('Admin.index')
         ->with(compact('scholarships'))
@@ -109,7 +109,7 @@ class AdminController extends Controller
             $admin->department = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
-            $admin->avatar = $this->getAvatarname($request);
+            $admin->avatar = 'test';//$this->getAvatarname($request);
             $admin->updated_at = time();
             return back()->with('message', 'successfully update!');
         }catch(QueryException $e)
@@ -158,9 +158,9 @@ class AdminController extends Controller
 
     private function storeAvatar(Request $request)//get avatarname and upload to storage
     {
-        dd($request->avatar->getClientOriginalName());
-        $name = $request->avatar->getClientOriginalName();
-        $request->avatar->storeAs('public/avatar/',$name);
+        //dd($request->file('avatar')->getClientOriginalName());
+        $name = $request->file('avatar')->getClientOriginalName();
+        $request->file('avatar')->storeAs('public/avatar/',$name);
         return $name;
     }
     
