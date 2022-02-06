@@ -15,8 +15,10 @@ class Semester extends Model
     protected $fillable =  [
         "semesterCode",
         "sem",
-        "schoolyear",
-        "applicationPeriod"
+        "year",
+        "period",
+        "created_at",
+        "updated_at"
     ];
 
 }

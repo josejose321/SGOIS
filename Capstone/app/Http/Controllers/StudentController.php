@@ -81,7 +81,7 @@ class StudentController extends Controller
     }
     function update(Request $request,$student_no)
     {
-        
+        dd($request);
         try
         {
             $student = Student::findOrFail($student_no);
@@ -96,11 +96,11 @@ class StudentController extends Controller
             $student->avatar = 'test';
             $student->updated_at = time();
             $student->save();
-            return back()->with('success','successfully updated');
+            return back()->with('successUpdate','successfully updated');
 
         }catch(ModelNotFoundException $e)
         {
-            return back()->with('error', 'Something Went Wrong/n'. $e->getMessage());
+            return back()->with('errorUpdate', 'Something Went Wrong/n'. $e->getMessage());
         }
     }
 

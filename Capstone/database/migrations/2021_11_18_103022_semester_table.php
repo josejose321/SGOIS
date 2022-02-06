@@ -18,8 +18,9 @@ class SemesterTable extends Migration
         {
             $table->string('semesterCode')->primary();
             $table->string('sem');
-            $table->string('schoolyear');
-            $table->integer('applicationPeriod');
+            $table->string('year');
+            $table->integer('period');
+            $table->timestamps();
             
         });
     }

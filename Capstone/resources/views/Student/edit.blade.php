@@ -17,8 +17,8 @@
         <button type="submit" class="btn btn-primary"> update avatar</button>
       </form>
 
-        <form>
-          
+        <form action="{{ route('Student.update', $student->student_no) }}" method="POST">
+          @csrf
             <h1>Edit Profile</h1>
             <div class="form-row">
               <div class="form-group col-md-4">
@@ -56,7 +56,7 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">Contact Number</label>
-                    <input type="text" class="form-control" placeholder="{{ $student->phoneNumber }}" value="{{ $student->phoneNumber }}">
+                    <input type="text" class="form-control" placeholder="{{ $student->phoneNumber }}" value="{{ $student->phone }}">
                   </div>
             </div>
             <div class="form-row">
@@ -75,5 +75,24 @@
           <br>
     </div>
 </section>
-
+@if (Session::has('avatarSuccess'))
+<script>
+    swal({
+          title: "Import Success!",
+          text: "{{ Session::get('avatarSuccess') }}",
+          icon: "success",
+          button: "ok!",
+        });
+</script>
+@endif
+@if (Session::has('successUpdate'))
+<script>
+    swal({
+          title: "Import Success!",
+          text: "{{ Session::get('successUpdate') }}",
+          icon: "success",
+          button: "ok!",
+        });
+</script>
+@endif
 @endsection
