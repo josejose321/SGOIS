@@ -20,7 +20,7 @@ class StudentTable extends Migration
             $table->string('middlename',50);
             $table->string('lastname',50);
             $table->string('email',50)->unique();
-            $table->string('department');
+            $table->string('department')->index();
             $table->string('phone',11);
             $table->string('course');
             $table->string('year', 10);

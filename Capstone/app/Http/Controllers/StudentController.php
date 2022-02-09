@@ -67,7 +67,7 @@ class StudentController extends Controller
             $student->phone =$request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->avatar =$this->storeAvatar($request);
+            $student->avatar =$this->storeAvatar($request->file('avatar'));
             $student->password = Hash::make("12345");
             $student->created_at = time();
             $student->updated_at = time();
@@ -93,7 +93,7 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->avatar = 'test';
+            $student->avatar = $this->storeAvatar($request->file('avatar'));
             $student->updated_at = time();
             $student->save();
             return back()->with('successUpdate','successfully updated');
@@ -101,6 +101,10 @@ class StudentController extends Controller
         }catch(ModelNotFoundException $e)
         {
             return back()->with('errorUpdate', 'Something Went Wrong/n'. $e->getMessage());
+        }
+        catch(Exception $e)
+        {
+            return back()->with('errorUpdate','Something Went Wrong/n'. $e->getMessage());
         }
     }
 
@@ -117,7 +121,7 @@ class StudentController extends Controller
         {
             //save upload path
             $student = Student::findOrFail($student_no);
-            $student->avatar = $this->storeAvatar($request);
+            $student->avatar = $this->storeAvatar($request->file('avatar'));
             $student->save();
 
 
@@ -130,11 +134,11 @@ class StudentController extends Controller
 
         
     }
-    private function storeAvatar(Request $request)//get avatarname and upload to storage
+    private function storeAvatar($file)//get avatarname and upload to storage
     {
         //dd($request->file('avatar')->getClientOriginalName());
-        $name = $request->file('avatar')->getClientOriginalName();
-        $request->file('avatar')->storeAs('public/avatar/',$name);
-        return $name;
+        $path = $file->hashName();
+        $file->storeAs('public/avatar/',$path);
+        return $path;
     }
 }

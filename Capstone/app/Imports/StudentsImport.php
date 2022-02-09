@@ -33,7 +33,7 @@ class StudentsImport implements ToModel, WithHeadingRow
             'phone'=>$row['phone'],
             'course'=>$row['course'],
             'year'=>$row['year'],
-            'avatar'=>'test',
+            'avatar'=>'devaultAvatar.jpg',
             'password'=>Hash::make($row['student_no']),
             'created_at'=>time(),
             'updated_at'=>time()

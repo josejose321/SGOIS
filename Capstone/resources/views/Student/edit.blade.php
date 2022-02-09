@@ -33,40 +33,40 @@
                 
                 <div class="form-group col-md-4">
                     <label for="inputAddress">Firstname</label>
-                    <input type="text" class="form-control"  placeholder="{{ $student->lastname }}" value="{{ $student->firstname }}">
+                    <input type="text" class="form-control" name="firstname"  placeholder="{{ $student->lastname }}" value="{{ $student->firstname }}">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">Middlename</label>
-                    <input type="text" class="form-control"  placeholder="{{ $student->lastname }}"value="{{ $student->middlename }}">
+                    <input type="text" class="form-control" name="middlename" placeholder="{{ $student->lastname }}"value="{{ $student->middlename }}">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">Lastname</label>
-                    <input type="text" class="form-control" placeholder="{{ $student->lastname }}"value="{{ $student->lastname }}">
+                    <input type="text" class="form-control" name="lastname" placeholder="{{ $student->lastname }}"value="{{ $student->lastname }}">
                   </div>
             </div>
             <h2>Edit Other Information</h2>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputAddress">Email</label>
-                    <input type="text" class="form-control" placeholder="{{ $student->email }}" value="{{ $student->email }}">
+                    <input type="email" class="form-control" name="email" placeholder="{{ $student->email }}" value="{{ $student->email }}">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">Department</label>
-                    <input type="text" class="form-control" placeholder="{{ $student->department }}" value="{{ $student->department }}">
+                    <input type="text" class="form-control" name="department" placeholder="{{ $student->department }}" value="{{ $student->department }}">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">Contact Number</label>
-                    <input type="text" class="form-control" placeholder="{{ $student->phoneNumber }}" value="{{ $student->phone }}">
+                    <input type="text" class="form-control" name="phone" placeholder="{{ $student->phoneNumber }}" value="{{ $student->phone }}">
                   </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputAddress">Course</label>
-                    <input type="text" class="form-control"  placeholder="{{ $student->course }}" value="{{ $student->course }}">
+                    <input type="text" class="form-control" name="course"  placeholder="{{ $student->course }}" value="{{ $student->course }}">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">year</label>
-                    <input type="text" class="form-control"  placeholder="{{ $student->year }}" value="{{ $student->year }}">
+                    <input type="text" class="form-control" name="year"  placeholder="{{ $student->year }}" value="{{ $student->year }}">
                   </div>
             </div>
             <button type="submit" class="btn btn-primary">Edit Profile</button>

@@ -55,7 +55,7 @@ class AdminController extends Controller
 
         );
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
-        // return new WelcomMail();
+        //return new WelcomMail();
         $students = Student::all();
         return view('Admin.index')
         ->with(compact('scholarships'))
