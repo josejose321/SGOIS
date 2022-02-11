@@ -82,7 +82,7 @@ class AdminController extends Controller
             $admin->department = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
-            $admin->avatar = $this->storeAvatar($request);
+            $admin->avatar = 'defaultAvatar.jpg';
             $admin->password = $request->password;
             $admin->created_at = time();
             $admin->updated_at = time();
@@ -109,7 +109,7 @@ class AdminController extends Controller
             $admin->department = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
-            $admin->avatar = 'test';//$this->getAvatarname($request);
+            // $admin->avatar = 'test';//$this->getAvatarname($request);
             $admin->updated_at = time();
             return back()->with('message', 'successfully update!');
         }catch(QueryException $e)
@@ -142,7 +142,7 @@ class AdminController extends Controller
         {
             //save upload path
             $admin = Admin::findOrFail($admin_no);
-            $admin->avatar = $this->storeAvatar($request);
+            $admin->avatar = $this->storeAvatar($request->file('avatar'));
             $admin->save();
 
 
@@ -156,12 +156,12 @@ class AdminController extends Controller
         
     }
 
-    private function storeAvatar(Request $request)//get avatarname and upload to storage
+    private function storeAvatar($file)//get avatarname and upload to storage
     {
         //dd($request->file('avatar')->getClientOriginalName());
-        $name = $request->file('avatar')->getClientOriginalName();
-        $request->file('avatar')->storeAs('public/avatar/',$name);
-        return $name;
+        $path = $file->hashName();
+        $file->storeAs('public/avatar/',$path);
+        return $path;
     }
     
 }

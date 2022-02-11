@@ -67,7 +67,7 @@ class StudentController extends Controller
             $student->phone =$request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->avatar =$this->storeAvatar($request->file('avatar'));
+            $student->avatar ='defaultAvatar.jpg';
             $student->password = Hash::make("12345");
             $student->created_at = time();
             $student->updated_at = time();
@@ -93,7 +93,7 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->avatar = $this->storeAvatar($request->file('avatar'));
+            //$student->avatar = $this->storeAvatar($request->file('avatar'));
             $student->updated_at = time();
             $student->save();
             return back()->with('successUpdate','successfully updated');

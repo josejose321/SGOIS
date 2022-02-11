@@ -80,7 +80,7 @@ class EmployeeController extends Controller
         {
             //save upload path
             $employee = Employee::findOrFail($employee_no);
-            $employee->image = $this->storeAvatar($request);
+            $employee->image = $this->storeAvatar($request->file('avatar'));
             $employee->save();
 
 
@@ -96,11 +96,10 @@ class EmployeeController extends Controller
 
         
     }
-    private function storeAvatar(Request $request)//get avatarname and upload to storage
+    private function storeAvatar($file)
     {
-        //dd($request->file('avatar')->getClientOriginalName());
-        $name = $request->file('avatar')->getClientOriginalName();
-        $request->file('avatar')->storeAs('public/avatar/',$name);
-        return $name;
+        $path = $file->hashName();
+        $file->storeAs('public/avatar/',$path);
+        return $path;
     }
 }
