@@ -11,7 +11,6 @@ class Department extends Model
 
     protected $table = 'departments';
     protected $primaryKey ="departmentCode";
-    protected $incrementing = true;
 
 
     protected $fillable = [

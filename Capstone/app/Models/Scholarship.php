@@ -14,6 +14,7 @@ class Scholarship extends Model
 
     protected $fillable = [
         "student_no",
+        "officeCode",
         "semesterCode",
         "type",
         "field",

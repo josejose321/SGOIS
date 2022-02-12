@@ -10,7 +10,6 @@ class Office extends Model
     use HasFactory;
     protected $table = 'offices';
     protected $primaryKey ="officeCode";
-    protected $incrementing = false;
 
     protected $fillable =[
         'officeCode',

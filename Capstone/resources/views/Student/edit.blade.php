@@ -6,18 +6,17 @@
 <br><br>
 
 <section class="container w-75" style="background-color: rgb(196, 195, 195)"><br>
+  <form action="{{ url('Student/'.$student->student_no . '/avatar')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Example file input</label>
+      <input type="file" class="form-control-file" name="avatar">
+    </div>
+    <button type="submit" class="btn btn-primary"> update avatar</button>
+  </form>
     <div class="container">
-      <form action="{{ url('Student/'.$student->student_no . '/avatar')}}" method="POST" enctype="multipart/form-data">
-        @csrf
-        
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" class="form-control-file" name="avatar">
-        </div>
-        <button type="submit" class="btn btn-primary"> update avatar</button>
-      </form>
-
-        <form action="{{ route('Student.update', $student->student_no) }}" method="POST">
+        <form action="{{ route('Student.update', $student->student_no) }}" method="PATCH">
           @csrf
             <h1>Edit Profile</h1>
             <div class="form-row">
@@ -26,8 +25,7 @@
                 <input type="text" class="form-control" name="student_no" placeholder="Student No" value="{{ $student->student_no }}" readonly>
               </div>
             </div>
-            
-            
+        
             <h2>Edit name</h2>
             <div class="form-row">
                 
