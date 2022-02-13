@@ -18,12 +18,9 @@
        
       <div class="jumbotron">
         <h1 class="display-8">
-          Hello, Mr./Ms {{$student->name }}! 
+          Hello, Mr./Ms {{$student->firstname }} {{ $student->middlename }} {{ $student->lastname }}! 
           <br> {{ $student->year }} 
           <br> {{ $student->course }} 
-          <br> Scholarhip Applied: {{ " ". $student->scholarhip }}
-          <br> Loan: {{ " ". $student->loan }}
-          <br> Discount: {{ " ". $student->discount }}
           </h1>
           <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis nisi aut voluptate expedita, 
             tempora adipisci in dicta quas iusto totam repellat. Corrupti repellendus nobis culpa perferendis sequi ea accusantium.

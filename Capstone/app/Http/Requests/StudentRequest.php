@@ -25,6 +25,15 @@ class StudentRequest extends FormRequest
     {
         return [
             //
+            'student_no' => 'required',
+            'firstname' => 'required',
+            'middlename'=> 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'department'=>'required',
+            'phone'=>'required',
+            'course'=>'required',
+            'year'=>'required'
         ];
     }
 }

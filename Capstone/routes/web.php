@@ -37,9 +37,8 @@ Route::resource('/Admin', AdminController::class);
 
 
 Route::resource('/Student', StudentController::class);
-
 Route::post('/Student/{Student}/avatar',[StudentController::class,'updateAvatar'],)->name('Student.updateAvatar');
-Route::post('/Student/profile', [StudentController::class,'profile'])->name('Student.profile');
+Route::post('/Student/{Student}/update', [StudentController::class,'updateProfile'])->name('update.student');
 
 Route::resource('Student/scholarship', ScholarshipController::class);
 

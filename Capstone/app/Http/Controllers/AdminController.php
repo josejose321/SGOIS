@@ -10,6 +10,7 @@ use App\Models\Student;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Exceptions\LaravelExcelException;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,57 +20,22 @@ class AdminController extends Controller
     //
     public function index()
     {
-        $scholarships = (object)array(
-            "id"=> "18-08925",
-            "fullname"=> "Evasco,Jose II V",
-            "department"=> "College of Computer Studies",
-            "course"=> "BSIT",
-            "year"=> "4TH YEAR",
-            "requirements"> "object" 
-
-        );
-        $loans = (object)array(
-            "id"=> "18-08925",
-            "fullname"=> "Evasco,Jose II V",
-            "department"=> "College of Computer Studies",
-            "course"=> "BSIT",
-            "year"=> "4TH YEAR",
-            "requirements"> "object" 
-
-        );
-        $discounts = (object)array(
-            "id"=> "18-08925",
-            "fullname"=> "Evasco,Jose II V",
-            "department"=> "College of Computer Studies",
-            "course"=> "BSIT",
-            "year"=> "4TH YEAR",
-            "requirements"> "object" 
-
-        );
-        $grants = (object)array(
-            "id"=> "18-08925",
-            "fullname"=> "Evasco,Jose II V",
-            "department"=> "College of Computer Studies",
-            "course"=> "BSIT",
-            "year"=> "4TH YEAR",
-            "requirements"> "object" 
-
-        );
+        
+        
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
         // return new WelcomMail();
         $students = Student::all();
         return view('Admin.index')
-        ->with(compact('scholarships'))
-        ->with(compact('loans'))
-        ->with(compact('discounts'))
-        ->with(compact('grants'))
-        ->with(compact('students'));
+        ->with(compact('students'))
+        ->with('admin', Admin::find('18-08925'));
     }
     public function show($admin_no)
     {
         $admin = Admin::findOrFail($admin_no);
 
-        return $admin;
+        return view('Admin.index')
+        ->with('admin', Admin::findOrFail($admin_no))
+        ->with('students',Student::all());
     }
     public function store(Request $request)
     {

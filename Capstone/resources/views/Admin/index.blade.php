@@ -19,6 +19,7 @@
   </div>
   
   <hr>
+
   <form action="{{ url('/Admin/import') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
@@ -131,17 +132,6 @@
                               <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
-                          <tr>
-                            <th scope="col">{{ $scholarships->id }}</th>
-                            <th scope="col">{{ $scholarships->fullname }}</th>
-                            <th scope="col">{{ $scholarships->department }}</th>
-                            <th scope="col">{{ $scholarships->course }}</th>
-                            <th scope="col">{{ $scholarships->year }}</th>
-                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
-                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Decline</button> </th>
-
-                          </tr>
                             
                         </tbody>
                       </table>
@@ -198,17 +188,6 @@
                             <th scope="col">College of Computer Studies</th>
                             <th scope="col">BSIT</th>
                             <th scope="col">4TH YEAR</th>
-                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
-                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Decline</button> </th>
-
-                          </tr>
-                          <tr>
-                            <th scope="col">{{ $loans->id }}</th>
-                            <th scope="col">{{ $loans->fullname }}</th>
-                            <th scope="col">{{ $loans->department }}</th>
-                            <th scope="col">{{ $loans->course }}</th>
-                            <th scope="col">{{ $loans->year }}</th>
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
                               <button type="submit" class="button btn-danger">Decline</button> </th>
@@ -274,17 +253,6 @@
                               <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
-                          <tr>
-                            <th scope="col">{{ $discounts->id }}</th>
-                            <th scope="col">{{ $discounts->fullname }}</th>
-                            <th scope="col">{{ $discounts->department }}</th>
-                            <th scope="col">{{ $discounts->course }}</th>
-                            <th scope="col">{{ $discounts->year }}</th>
-                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
-                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                              <button type="submit" class="button btn-danger">Decline</button> </th>
-
-                          </tr>
                         </tbody>
                       </table>
                 </div>
@@ -343,17 +311,6 @@
                             <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
                             <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
                               <button type="submit" class="button btn-danger">Decline</button> </th>
-
-                          </tr>
-                          <tr>
-                            <th scope="col">{{ $grants->id }}</th>
-                            <th scope="col">{{ $grants->fullname }}</th>
-                            <th scope="col">{{ $grants->department }}</th>
-                            <th scope="col">{{ $grants->course }}</th>
-                            <th scope="col">{{ $grants->year }}</th>
-                            <th scope="col"><button type="button" class="button btn-secondary">VIEW REQUIREMENTS</button></th>
-                            <th scope="col"><button type="submit" class="button btn-primary">Approve</button>
-                            <button type="submit" class="button btn-danger">Decline</button> </th>
 
                           </tr>
                             

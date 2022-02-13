@@ -6,6 +6,7 @@
 
  <div class="jumbotron">
    <h1 class="display-8">
+    <img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br>
      Hello, Mr./Ms 
           {{ $student->firstname}}
           {{ $student->middlename}}
@@ -14,7 +15,7 @@
           {{ $student->email}}<br>
           {{ $student->department}}<br>
           {{ $student->phoneNumber}}<br>
-          {{ $student->course}}<br>
+          {{ $student->course}}<br> 
      </h1>
      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis nisi aut voluptate expedita, 
        tempora adipisci in dicta quas iusto totam repellat. Corrupti repellendus nobis culpa perferendis sequi ea accusantium.

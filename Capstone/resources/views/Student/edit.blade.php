@@ -15,8 +15,9 @@
     </div>
     <button type="submit" class="btn btn-primary"> update avatar</button>
   </form>
+
     <div class="container">
-        <form action="{{ route('Student.update', $student->student_no) }}" method="PATCH">
+        <form action="{{ url('Student/' . $student->student_no . '/update')}}" method="POST">
           @csrf
             <h1>Edit Profile</h1>
             <div class="form-row">
@@ -86,9 +87,29 @@
 @if (Session::has('successUpdate'))
 <script>
     swal({
-          title: "Import Success!",
+          title: "Update Success!",
           text: "{{ Session::get('successUpdate') }}",
           icon: "success",
+          button: "ok!",
+        });
+</script>
+@endif
+@if (Session::has('errorUpdate'))
+<script>
+    swal({
+          title: "Update Failed!",
+          text: "{{ Session::get('errorUpdate') }}",
+          icon: "success",
+          button: "ok!",
+        });
+</script>
+@endif
+@if (Session::has('avatarError'))
+<script>
+    swal({
+          title: "MISSING!",
+          text: "{{ Session::get('avatarError') }}",
+          icon: "warning",
           button: "ok!",
         });
 </script>

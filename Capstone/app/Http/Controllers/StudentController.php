@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
 use Illuminate\Http\Request;
-use StudentTable;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Student;
 use Exception;
@@ -14,22 +13,14 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
+use function PHPUnit\Framework\returnSelf;
+
 class StudentController extends Controller
 {
     
     function index()
     {
-        $student = Student::all();
-        $student = (object)array(
-            'name'=>"Evasco,Jose II V",
-            'year'=>'4th Year',
-            'course'=>'BSIT',
-            'scholarhip'=> 0,
-            'loan' => 0,
-            'discount' => 1,
-            'student_no' => '18-08925'
-            
-        );
+        $student = Student::find('18-08925');
         //dd($student);
         return view('Student.index')->with(compact('student'));
     }
@@ -79,13 +70,41 @@ class StudentController extends Controller
         }
 
     }
-    function update(Request $request,$student_no)
+    // function update(Request $request,$student_no)
+    // {
+    //     dd($request);
+    //     try
+    //     {
+    //         $student = Student::findOrFail($student_no);
+    //         $student->firstname = $request->firstname;
+    //         $student->middlename = $request->middlename;
+    //         $student->lastname = $request->lastname;
+    //         $student->email = $request->email;
+    //         $student->department = $request->department;
+    //         $student->phone = $request->phone;
+    //         $student->course = $request->course;
+    //         $student->year = $request->year;
+    //         //$student->avatar = $this->storeAvatar($request->file('avatar'));
+    //         $student->updated_at = time();
+    //         $student->save();
+    //         return back()->with('successUpdate','successfully updated');
+
+    //     }catch(ModelNotFoundException $e)
+    //     {
+    //         return back()->with('errorUpdate', 'Something Went Wrong/n'. $e->getMessage());
+    //     }
+    //     catch(Exception $e)
+    //     {
+    //         return back()->with('errorUpdate','Something Went Wrong/n'. $e->getMessage());
+    //     }
+    // }
+    public function updateProfile(Request $request,$student_no)
     {
-        dd($request);
+        //dd($request->input());
         try
         {
-            $student = Student::findOrFail($student_no);
-            $student->fullname = $request->firstname;
+            $student = Student::find($student_no);
+            $student->firstname = $request->firstname;
             $student->middlename = $request->middlename;
             $student->lastname = $request->lastname;
             $student->email = $request->email;
@@ -93,14 +112,13 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            //$student->avatar = $this->storeAvatar($request->file('avatar'));
             $student->updated_at = time();
             $student->save();
             return back()->with('successUpdate','successfully updated');
 
         }catch(ModelNotFoundException $e)
         {
-            return back()->with('errorUpdate', 'Something Went Wrong/n'. $e->getMessage());
+            return back()->with('errorUpdate', 'MOdel not Found Exception:\nSomething Went Wrong/n'. $e->getMessage());
         }
         catch(Exception $e)
         {
@@ -117,6 +135,8 @@ class StudentController extends Controller
     }
     public function updateAvatar(Request $request, $student_no)
     {
+        if($request->avatar == null)
+            return back()->with('avatarError','Import your file First!');
         try
         {
             //save upload path

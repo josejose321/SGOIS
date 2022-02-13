@@ -26,7 +26,6 @@ class StudentTable extends Migration
             $table->string('year', 10);
             $table->string('avatar');
             $table->string('password');
-            //$table->foreign('student_no')->references('user_no')->on('users')->onDelete('cascade');
             $table->timestamps();
 
         });

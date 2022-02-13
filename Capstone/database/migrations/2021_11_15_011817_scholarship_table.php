@@ -19,8 +19,8 @@ class ScholarshipTable extends Migration
         {
             $table->increments("scholarhipNo");
             $table->string('student_no',8)->index();
-            $table->string('officeCode')->index()->nullable();
-            $table->string('semesterCode')->index()->nullable();
+            $table->string('officeCode',20)->index();
+            $table->string('semesterCode',20)->index();
             $table->string('type');
             $table->string('field');
             $table->string('discount');
@@ -29,10 +29,23 @@ class ScholarshipTable extends Migration
             $table->string('officeVerification')->default('pending');
             $table->string('adminVerification')->default('Pending');
             $table->string('remarks');
-            // $table->foreign('student_no')->references('student_no')->on('Student')->onDelete('cascade');
-            
-            
             $table->timestamps();
+            $table->foreign('student_no')->references('student_no')->on('students')->onDelete('cascade');
+            
+            // $table->foreign('officeCode')
+            // ->references('officeCode')
+            // ->on('offices')
+            // ->onDelete('cascade')
+            // ->onUpdate('cascade');
+
+            // $table->foreign('semesterCode')
+            // ->references('semesterCode')
+            // ->on('semesters')
+            // ->onDelete('cascade')
+            // ->onUpdate('cascade');
+            
+            
+            
 
         });
     }
