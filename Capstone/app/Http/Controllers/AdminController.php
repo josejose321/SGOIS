@@ -46,7 +46,7 @@ class AdminController extends Controller
             $admin->middlename= $request->middlename;
             $admin->lastname = $request->lastname;
             $admin->email = $request->emaiil;
-            $admin->department = $request->department;
+            $admin->departmentCode = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
             $admin->avatar = 'defaultAvatar.jpg';

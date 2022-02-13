@@ -33,10 +33,10 @@ class EmployeeController extends Controller
             $employee->middlename= $request->middlename;
             $employee->lastname = $request->lastname;
             $employee->email = $request->emaiil;
-            $employee->department = $request->department;
+            $employee->departmentCode = $request->department;
             $employee->email = $request->emaiil;
             $employee->postition = $request->position;
-            $employee->image = $request->image;
+            $employee->avatar = "dafaultAvatar.jpg";
             $employee->password = $request->password;
             $employee->created_at = time();
             $employee->updated_at = time();
@@ -55,10 +55,8 @@ class EmployeeController extends Controller
             $employee->middlename= $request->middlename;
             $employee->lastname = $request->lastname;
             $employee->email = $request->emaiil;
-            $employee->department = $request->department;
+            $employee->departmentCode = $request->department;
             $employee->email = $request->emaiil;
-            $employee->postition = $request->position;
-            $employee->avatar = 'test'; //$this->storeAvatar($request);
             $employee->password = $request->password;
             $employee->updated_at = time();
             return back()->with('message', 'Update Successfully!');

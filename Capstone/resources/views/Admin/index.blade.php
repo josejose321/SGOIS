@@ -62,7 +62,7 @@
                             <th scope="col" name="student_no" > {{ $student->student_no }}</th>
                             <th scope="col" name="firstname">{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</th>
                             <th scope="col" name="email">{{ $student->email }}</th>
-                            <th scope="col" name="department">{{ $student->department }}</th>
+                            <th scope="col" name="department">{{ $student->departmentCode }}</th>
                             <th scope="col" name="phone">{{ $student->phone }}</th>
                             <th scope="col" name="course">{{ $student->course }}</th>
                             <th scope="col" name="year">{{ $student->year }}</th>

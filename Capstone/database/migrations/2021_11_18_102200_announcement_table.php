@@ -21,11 +21,11 @@ class AnnouncementTable extends Migration
             $table->longText('content');
             $table->string('admin_no',8)->index();
             $table->timestamps();
-            // $table->foreign('admin_no')
-            // ->references('admin_no')
-            // ->on('admins')
-            // ->onDelete('cascade')
-            // ->onUpdate('cascade');
+            $table->foreign('admin_no')
+            ->references('admin_no')
+            ->on('admins')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 

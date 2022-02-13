@@ -29,7 +29,7 @@ class StudentsImport implements ToModel, WithHeadingRow
             'middlename'=>$row['middlename'],
             'lastname'=>$row["lastname"],
             'email'=>$row['email'],
-            'department'=>$row['department'],
+            'departmentCode'=>$row['department'],
             'phone'=>$row['phone'],
             'course'=>$row['course'],
             'year'=>$row['year'],

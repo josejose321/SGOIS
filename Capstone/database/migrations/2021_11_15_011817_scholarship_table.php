@@ -32,17 +32,17 @@ class ScholarshipTable extends Migration
             $table->timestamps();
             $table->foreign('student_no')->references('student_no')->on('students')->onDelete('cascade');
             
-            // $table->foreign('officeCode')
-            // ->references('officeCode')
-            // ->on('offices')
-            // ->onDelete('cascade')
-            // ->onUpdate('cascade');
+            $table->foreign('officeCode')
+            ->references('officeCode')
+            ->on('offices')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
-            // $table->foreign('semesterCode')
-            // ->references('semesterCode')
-            // ->on('semesters')
-            // ->onDelete('cascade')
-            // ->onUpdate('cascade');
+            $table->foreign('semesterCode')
+            ->references('semesterCode')
+            ->on('semesters')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             
             
             

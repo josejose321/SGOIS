@@ -20,7 +20,7 @@ class Student extends Model
         'middlename',
         'lastname',
         'email',
-        'department',
+        'departmentCode',
         'phone',
         'course',
         'year',

@@ -54,7 +54,7 @@ class StudentController extends Controller
             $student->middlename = $request->middlename;
             $student->lastname = $request->lastname;
             $student->email = $request->email;
-            $student->department = $request->department;
+            $student->departmentCode = $request->department;
             $student->phone =$request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
@@ -108,7 +108,7 @@ class StudentController extends Controller
             $student->middlename = $request->middlename;
             $student->lastname = $request->lastname;
             $student->email = $request->email;
-            $student->department = $request->department;
+            $student->departmentCode = $request->department;
             $student->phone = $request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
