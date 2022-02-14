@@ -21,7 +21,6 @@ class LoanTable extends Migration
             $table->string('officeCode')->index()->nullable();
             $table->string('semesterCode')->index()->nullable();
             $table->string('type');
-            $table->string('field');
             $table->string('discount');
             $table->string('requirement');
             $table->string('photo');

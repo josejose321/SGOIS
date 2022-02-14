@@ -13,8 +13,8 @@
           {{ $student->lastname}} <br>
           {{ $student->student_no}} <br>
           {{ $student->email}}<br>
-          {{ $student->department}}<br>
-          {{ $student->phoneNumber}}<br>
+          {{ $student->departmentCode}}<br>
+          {{ $student->phone}}<br>
           {{ $student->course}}<br> 
      </h1>
      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis nisi aut voluptate expedita, 
@@ -41,8 +41,8 @@
           {{ $student->middlename}}<br>
           {{ $student->lastname}}<br>
           {{ $student->email}}<br>
-          {{ $student->department}}<br>
-          {{ $student->phoneNumber}}<br>
+          {{ $student->departmentCode}}<br>
+          {{ $student->phone}}<br>
 <br><br><br>
 
 </section>

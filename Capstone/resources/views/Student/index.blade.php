@@ -74,10 +74,9 @@
                 <div class="col-4">
                   <label for="scholarship">Scholarship Office</label>
                   <select class="form-select" name="office" id="office" aria-label="Default select example">
-                    <option selected>Scholarship</option>
-                    <option value="SP">Sports Development Office</option>
-                    <option value="HR">Human Resource Office</option>
-                    <option value="CAS">Culture & Arts Scholarhip Office</option>
+                    @foreach ($offices as $office)
+                        <option value="{{ $office->officeCode }}">{{ $office->officeCode }} - {{ $office->name }}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="col-4">

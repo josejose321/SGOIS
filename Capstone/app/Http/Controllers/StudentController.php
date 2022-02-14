@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Office;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Student;
@@ -21,8 +22,12 @@ class StudentController extends Controller
     function index()
     {
         $student = Student::find('18-08925');
-        //dd($student);
-        return view('Student.index')->with(compact('student'));
+        $offices = Office::all();
+        
+        return view('Student.index')
+        ->with(compact('student'))
+        ->with(compact('offices'));
+
     }
     function show($student_no)
     {
@@ -30,7 +35,7 @@ class StudentController extends Controller
         return view("Student.profile")
         ->with(compact('student'));
     }
-    function create(Request $request)
+    function create()
     {
          
     }

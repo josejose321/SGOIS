@@ -30,4 +30,22 @@ class Student extends Model
         'updated_at'
 
     ];
+
+    public function scholarships()
+    {
+        return $this->hasMany(Scholarship::class, "student_no","student_no");
+    }
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class,"student_no","student_no");
+    }
+    public function loans()
+    {
+        return $this->hasMany(Loan::class,"student_no","student_no");
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class,'departmentCode','departmentCode');
+    }
 }

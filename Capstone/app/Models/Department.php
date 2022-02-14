@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Department extends Model
 {
@@ -11,6 +12,7 @@ class Department extends Model
 
     protected $table = 'departments';
     protected $primaryKey ="departmentCode";
+    public $incrementing = false;
 
 
     protected $fillable = [
@@ -18,4 +20,15 @@ class Department extends Model
         'name',
         'description'
     ];
+
+    public function students()
+    {
+        return $this->hasMany(Student::class,"departmentCode","departmentCode");
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class,"departmentCode","departmentCode");
+    }
+
 }

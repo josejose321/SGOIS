@@ -11,6 +11,7 @@ class Admin extends Model
     protected $table = "admins";
     protected $keyType = "string";
     protected $primaryKey = "admin_no";
+    public $incrementing = false;
 
     protected $fillable = [
         'admin_no',
@@ -18,7 +19,6 @@ class Admin extends Model
         'middlename',
         'lastname',
         'email',
-        'departmentCode',
         'phone',
         'position',
         'avatar',
@@ -26,4 +26,8 @@ class Admin extends Model
         'created_at',
         'updated_at'
     ];
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class, 'admin_no','admin_no');
+    }
 }

@@ -11,6 +11,7 @@ class Employee extends Model
     protected $table = "employees";
     protected $keyType = "string";
     protected $primaryKey = "employee_no";
+    public $incrementing = false;
 
     protected $fillable = [
         'employee_no',
@@ -19,6 +20,7 @@ class Employee extends Model
         'lastname',
         'email',
         'departmentCode',
+        'officeCode',
         'phone',
         'position',
         'avatar',
@@ -26,4 +28,12 @@ class Employee extends Model
         'created_at',
         'updated_at'
     ];
+    public function department()
+    {
+        return $this->belongsTo(Department::class,"employee_no","employee_no");
+    }
+    public function office()
+    {
+        return $this->belongsTo(Office::class,"officeCode","officeCode");
+    }
 }

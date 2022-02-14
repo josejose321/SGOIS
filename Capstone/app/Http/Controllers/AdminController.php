@@ -25,6 +25,9 @@ class AdminController extends Controller
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
         // return new WelcomMail();
         $students = Student::all();
+        //dd($student->department->departmentCode);
+        //return $student->department;
+
         return view('Admin.index')
         ->with(compact('students'))
         ->with('admin', Admin::find('18-08925'));
@@ -46,7 +49,6 @@ class AdminController extends Controller
             $admin->middlename= $request->middlename;
             $admin->lastname = $request->lastname;
             $admin->email = $request->emaiil;
-            $admin->departmentCode = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
             $admin->avatar = 'defaultAvatar.jpg';
@@ -73,7 +75,6 @@ class AdminController extends Controller
             $admin->middlename= $request->middlename;
             $admin->lastname = $request->lastname;
             $admin->email = $request->emaiil;
-            $admin->department = $request->department;
             $admin->email = $request->emaiil;
             $admin->postition = $request->position;
             // $admin->avatar = 'test';//$this->getAvatarname($request);

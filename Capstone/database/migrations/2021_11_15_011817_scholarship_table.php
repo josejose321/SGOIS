@@ -22,7 +22,6 @@ class ScholarshipTable extends Migration
             $table->string('officeCode',20)->index();
             $table->string('semesterCode',20)->index();
             $table->string('type');
-            $table->string('field');
             $table->string('discount');
             $table->string('requirement');
             $table->string('photo');

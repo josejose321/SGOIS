@@ -26,4 +26,16 @@ class Scholarship extends Model
         "created_at",
         "updated_at"
     ];
+    public function student()
+    {
+        return $this->belongsTo(Student::class,"student_no","student_no");
+    }
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class,"semesterCode","semesterCode");
+    }
+    public function office()
+    {
+        return $this->belongsTo(Office::class,"officeCode","officeCode");
+    }
 }

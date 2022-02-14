@@ -18,4 +18,8 @@ class Announcement extends Model
         'created_at',
         'updated_at'
     ];
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class,"admin_no","admin_no");
+    }
 }
