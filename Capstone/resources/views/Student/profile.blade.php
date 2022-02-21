@@ -13,7 +13,7 @@
           {{ $student->lastname}} <br>
           {{ $student->student_no}} <br>
           {{ $student->email}}<br>
-          {{ $student->departmentCode}}<br>
+          {{ $student->department->name}}<br>
           {{ $student->phone}}<br>
           {{ $student->course}}<br> 
      </h1>

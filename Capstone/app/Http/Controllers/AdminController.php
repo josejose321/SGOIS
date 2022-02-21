@@ -6,6 +6,9 @@ use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
 use App\Mail\WelcomMail;
 use App\Models\Admin;
+use App\Models\Department;
+use App\Models\Discount;
+use App\Models\Loan;
 use App\Models\Student;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -20,17 +23,47 @@ class AdminController extends Controller
     //
     public function index()
     {
-        
-        
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
         // return new WelcomMail();
         $students = Student::all();
-        //dd($student->department->departmentCode);
-        //return $student->department;
+
+
+        // $student = Student::find('18-08925');
+        // return $student;
 
         return view('Admin.index')
         ->with(compact('students'))
         ->with('admin', Admin::find('18-08925'));
+    }
+    public function showScholarships()
+    {
+        return view('Admin.scholarship')
+        ->with('students',Student::all())
+        ->with('admin',Admin::find('18-08925'));
+    }
+    public function showProfile()
+    {
+        return view('Admin.profile')
+        ->with('admin',Admin::find('18-08925'));
+    }
+    public function showLoans()
+    {
+        return view('Admin.loan')
+        ->with('loans',Loan::all())
+        ->with('admin',Admin::find('18-08925'));
+    }
+    public function showDiscounts()
+    {
+        return view('Admin.discount')
+        ->with('discounts',Discount::all())
+        ->with('admin',Admin::find('18-08925'));
+    }
+    public function showStudents()
+    {
+        return view('Admin.student')
+        ->with('students',Student::all())
+        ->with('departments',Department::all())
+        ->with('admin',Admin::find('18-08925'));
     }
     public function show($admin_no)
     {
@@ -39,6 +72,10 @@ class AdminController extends Controller
         return view('Admin.index')
         ->with('admin', Admin::findOrFail($admin_no))
         ->with('students',Student::all());
+    }
+    public function showStats()
+    {
+        return view('Admin.stats');
     }
     public function store(Request $request)
     {
@@ -114,7 +151,7 @@ class AdminController extends Controller
             $admin->save();
 
 
-            return back()->with('avatarSuccess',"Succes!");
+            return redirect()->back()->with('avatarSuccess',"Succes!");
 
         }catch(Exception $e)
         {

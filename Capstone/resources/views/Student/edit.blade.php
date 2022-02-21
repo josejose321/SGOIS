@@ -6,7 +6,7 @@
 <br><br>
 
 <section class="container w-75" style="background-color: rgb(196, 195, 195)"><br>
-  <form action="{{ url('Student/'.$student->student_no . '/avatar')}}" method="POST" enctype="multipart/form-data">
+  <form action="{{ url('student/'.$student->student_no . '/avatar')}}" method="POST" enctype="multipart/form-data">
     @csrf
     
     <div class="form-group">
@@ -17,7 +17,7 @@
   </form>
 
     <div class="container">
-        <form action="{{ url('Student/' . $student->student_no . '/update')}}" method="POST">
+        <form action="{{ url('student/' . $student->student_no . '/update')}}" method="POST">
           @csrf
             <h1>Edit Profile</h1>
             <div class="form-row">
@@ -51,7 +51,7 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">Department</label>
-                    <input type="text" class="form-control" name="department" placeholder="{{ $student->department }}" value="{{ $student->department }}">
+                    <input type="text" class="form-control" name="department" placeholder="Department Code" value="{{ $student->departmentCode }}">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputAddress">Contact Number</label>
@@ -69,7 +69,7 @@
                   </div>
             </div>
             <button type="submit" class="btn btn-primary">Edit Profile</button>
-            <button type="button" onclick="history.back()" class="btn btn-danger">Cancel</button>
+            <a href="{{ url('student/' . $student->student_no) }}"><button type="button" class="btn btn-danger">Back</button></a>
           </form>
           <br>
     </div>

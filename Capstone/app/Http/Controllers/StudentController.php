@@ -29,9 +29,8 @@ class StudentController extends Controller
         ->with(compact('offices'));
 
     }
-    function show($student_no)
+    function show(Student $student)
     {
-        $student = Student::findOrFail($student_no);
         return view("Student.profile")
         ->with(compact('student'));
     }
@@ -39,11 +38,8 @@ class StudentController extends Controller
     {
          
     }
-    function edit($student_no)
+    function edit(Student $student)
     {
-        $student = Student::findOrFail($student_no);
-
-
         return view("Student.edit")
         ->with(compact('student'));
     }
@@ -103,12 +99,11 @@ class StudentController extends Controller
     //         return back()->with('errorUpdate','Something Went Wrong/n'. $e->getMessage());
     //     }
     // }
-    public function updateProfile(Request $request,$student_no)
+    public function updateProfile(Request $request, Student $student)
     {
         //dd($request->input());
         try
         {
-            $student = Student::find($student_no);
             $student->firstname = $request->firstname;
             $student->middlename = $request->middlename;
             $student->lastname = $request->lastname;
@@ -138,25 +133,15 @@ class StudentController extends Controller
         $student->delete();
         return back()->with('delete',' successfully Deleted!');
     }
-    public function updateAvatar(Request $request, $student_no)
+    public function updateAvatar(Request $request, Student $student)
     {
         if($request->avatar == null)
             return back()->with('avatarError','Import your file First!');
-        try
-        {
+            
             //save upload path
-            $student = Student::findOrFail($student_no);
-            $student->avatar = $this->storeAvatar($request->file('avatar'));
-            $student->save();
-
-
-            return back()->with('avatarSuccess',"Succes!");
-
-        }catch(ModelNotFoundException $e)
-        {
-            return back()->with('avatarError','Uploading Error!\n'. $e->getMessage());
-        }
-
+        $student->avatar = $this->storeAvatar($request->file('avatar'));
+        $student->save();
+        return back()->with('avatarSuccess',"Succes!");
         
     }
     private function storeAvatar($file)//get avatarname and upload to storage

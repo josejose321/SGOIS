@@ -162,7 +162,7 @@
     {
       e.preventDefault();
       alert($(this).serialize())
-      axios.post('{{ route('Student.store') }}',
+      axios.post('{{ route('student.store') }}',
         $(this).serialize()
       )
       .then(res => {

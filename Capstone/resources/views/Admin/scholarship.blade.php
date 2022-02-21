@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin1')
 
 @section('title','Admin Dashboard')
 @section('content')
@@ -31,7 +31,7 @@
         <div class="container-fluid">
               <div class="card bg-light">
                   <div class="card-header">
-                    <h2>Students</h2>
+                    <h2>Scholarships</h2>
                     <div class="input-group w-25 float-right">
                       <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                       <button type="button" class="btn btn-outline-primary">search</button>
@@ -54,33 +54,16 @@
                         </thead>
 
                         <tbody>
-                          @foreach ($students as $student)
-                          <tr>
-                            <th scope="col"> {{ $student->student_no }}</th>
-                            <th scope="col"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" alt="defaultAvatar.jpg" class="rounded-circle img-thumbnail"></th>
-                            <th scope="col" class="w-25"> {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</th>
-                            <th scope="col" >{{ $student->email }}</th>
-                            <th scope="col" class="w-25">{{ $student->departmentCode }}</th>
-                            <th scope="col" class="w-25">{{ $student->phone }}</th>
-                            <th scope="col" class="w-25">{{ $student->course }}</th>
-                            <th scope="col" class="w-25">{{ $student->year }}</th>
-                            <th scope="col""><button type="submit" class="btn btn-primary">EDIT</button>
-                            <button type="button" class="btn btn-secondary" onclick="viewStudent({{ $student }})">view</button> </th>
-                          </tr>
-                          @endforeach
-                         
                         </tbody>
-                        
                       </table>
                 </div>
-                <hr>
-                <center>>>end</center>
+                <center>nothing</center>
               </div>
         </div>
    
 
    {{-- modal add student --}}
-   <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
+   <form action="{{ route('Student.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div id="modalAddStudent"></div>
   </form>
@@ -171,7 +154,7 @@
     e.preventDefault();
     
 
-    axios.post('{{ route('student.store') }}',$(this).serialize())
+    axios.post('{{ route('Student.store') }}',$(this).serialize())
     .then(res => {
       console.log(res)
     })

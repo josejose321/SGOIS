@@ -59,6 +59,7 @@
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                 <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}">HOME</a></li>
+                <li class="nav-item"><a class="nav-link link text-light" href="{{ route('student.edit', '18-08925') }}">PROFILE</a></li>
                 <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}">SCHOLARHIP</a></li>
                 <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}">ABOUT US</a></li>
                 @guest
