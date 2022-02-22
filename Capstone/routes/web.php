@@ -32,7 +32,7 @@ Auth::routes();
 Route::get('/Home',[HomeController::class,'index'])->name('index');
 Auth::routes();
 
-
+//admin
 // Route::post('/admin/import',[AdminController::class,'import'])->name('admin.import');
 // Route::get('admin/scholarships',[AdminController::class,'showScholarships'])->name('admin.scholarhips');
 // Route::get('admin/loans',[AdminController::class,'showLoans'])->name('admin.loans');
@@ -44,7 +44,7 @@ Auth::routes();
 
 
 
-
+//student
 // Route::post('/student/{student}/avatar',[StudentController::class,'updateAvatar'],)->name('Student.updateAvatar');
 // Route::post('/student/{student}/update', [StudentController::class,'updateProfile'])->name('update.student');
 // Route::resource('/student', StudentController::class);
@@ -60,9 +60,9 @@ Route::prefix('admin')
     ->controller(AdminController::class)
     ->group(function (){
         Route::post('/import','import')->name('.import');
-        Route::get('/scholarships','showScholarships')->name('.scholarhips');
-        Route::get('/loans','showLoans')->name('.loans');
-        Route::get('/discounts','showDiscounts')->name('.discounts');
+        
+        
+        
         Route::get('/students','showStudents')->name('.students');
         Route::get('/profile','showProfile')->name('.profile');
         Route::get('/statistics','showStats')->name('.stats');
@@ -75,6 +75,24 @@ Route::prefix('admin')
         Route::post('{admin}', 'update')->name('.update');
         //Route::resource('',AdminController::class)->except('destroy');
 
+
+        //scholarships
+        Route::get('/scholarships','showScholarships')->name('.scholarhips');
+        Route::post('/scholarships/{scholarship}/approve', 'approve')->name('.aprrove');
+        Route::post('/scholarships/{scholarship}/decline', 'decline')->name('.decline');
+
+
+        //loans
+        Route::get('/loans','showLoans')->name('.loans');
+        Route::post('/loans/{loan}/approve', 'approveLoan')->name('.aprroveLoan');
+        Route::post('/loans/{loan}/decline', 'declineLoan')->name('.declineLoan');
+
+
+
+        //discounts
+        Route::get('/discounts','showDiscounts')->name('.discounts');
+        Route::post('/discounts/{discount}/approve', 'approveDiscount')->name('.aprroveDiscount');
+        Route::post('/discounts/{discount}/decline', 'declineDiscount')->name('.declineDiscount');
     });
 
 Route::prefix('student')
@@ -84,12 +102,11 @@ Route::prefix('student')
         Route::post('/{student}/avatar','updateAvatar')->name('.updateAvatar');
         Route::post('/{student}/update','updateProfile')->name('.studentUpdate');
 
-        //
+        
         Route::get('/{student}', 'show')->name('.show');
         Route::get('/{student}/edit','edit')->name('.edit');
         Route::get('/', 'index')->name('.index');
         Route::post('/', 'store')->name('.store');
-        Route::post('/{student}', 'update')->name('.update');
 
     });
 
@@ -98,13 +115,28 @@ Route::prefix('employee')
 ->as('employee')
 ->controller(EmployeeController::class)
 ->group(function (){
-    Route::get('/{employee}', 'show')->name('.show');
+        Route::get('/{employee}', 'show')->name('.show');
         Route::get('/{employee}/edit','edit')->name('.edit');
         Route::get('/', 'index')->name('.index');
         Route::post('/', 'store')->name('.store');
         Route::post('/{employee}', 'update')->name('.update');
         
-});
+
+        //scholarships
+        Route::get('/scholarships','showScholarships')->name('.scholarhips');
+        Route::post('/scholarships/{scholarship}/approve', 'approve')->name('.aprrove');
+        Route::post('/scholarships/{scholarship}/decline', 'decline')->name('.decline'); 
+
+        //loans
+        Route::get('/loans','showLoans')->name('.loans');
+        Route::post('/loans/{loan}/approve', 'approveLoan')->name('.aprroveLoan');
+        Route::post('/loans/{loan}/decline', 'declineLoan')->name('.declineLoan'); 
+
+        //discounts
+        Route::get('/discounts','showDiscounts')->name('.discounts');
+        Route::post('/discounts/{discount}/approve', 'approveDiscount')->name('.aprroveDiscount');
+        Route::post('/discounts/{discount}/decline', 'declineDiscount')->name('.declineDiscount');
+    });
 
 
 

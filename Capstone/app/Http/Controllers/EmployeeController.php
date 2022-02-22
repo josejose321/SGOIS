@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Scholarship;
+use App\Models\Student;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -68,10 +70,21 @@ class EmployeeController extends Controller
             return 'not found!';
         }
     }
-    public function destroy()
+    public function approve(Request $request, Scholarship $scholarhip)
     {
+        $scholarhip->officeVerification = 'approved';
+        $scholarhip->discount = $request->discount;
         
+        return back('approved','Approved');
     }
+    public function decline(Scholarship $scholarhip)
+    {
+        $scholarhip->officeVerification ='declined';
+
+
+        return back('decline','Decline Application');
+    }
+
     public function updateAvatar(Request $request, $employee_no)
     {
         try

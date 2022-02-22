@@ -9,6 +9,7 @@ use App\Models\Admin;
 use App\Models\Department;
 use App\Models\Discount;
 use App\Models\Loan;
+use App\Models\Scholarship;
 use App\Models\Student;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -85,13 +86,11 @@ class AdminController extends Controller
             $admin->firstname = $request->firstname;
             $admin->middlename= $request->middlename;
             $admin->lastname = $request->lastname;
-            $admin->email = $request->emaiil;
-            $admin->email = $request->emaiil;
+            $admin->email = $request->email;
             $admin->postition = $request->position;
             $admin->avatar = 'defaultAvatar.jpg';
             $admin->password = $request->password;
-            $admin->created_at = time();
-            $admin->updated_at = time();
+            $admin->save();
             return back()->with('message', 'successfully added!');
         }catch(QueryException $e)
         {
@@ -99,36 +98,41 @@ class AdminController extends Controller
         }
         
     }
-    public function create()
+
+    //
+    public function approve(Request $request, Scholarship $scholarship)
     {
 
+        if($scholarship->office->officeCode === 'uncsgo')
+            $scholarship->officeVerification = 'approved';
+        
+        $scholarship->adminVerification = 'approved';
+        $scholarship->discount = $request->discount;
+        $scholarship->save();
+        return back('approved','Approved');
     }
-    public function update(Request $request,$admin_no)
-    {
-        try{
-            $admin = Admin::findOrFail($admin_no);
-            $admin->admin_no = $request->admin_no;
-            $admin->firstname = $request->firstname;
-            $admin->middlename= $request->middlename;
-            $admin->lastname = $request->lastname;
-            $admin->email = $request->emaiil;
-            $admin->email = $request->emaiil;
-            $admin->postition = $request->position;
-            // $admin->avatar = 'test';//$this->getAvatarname($request);
-            $admin->updated_at = time();
-            return back()->with('message', 'successfully update!');
-        }catch(QueryException $e)
-        {
-            return back()->with('error','failed to update!\n'. $e->getMessage());
-        }
-    }
-    public function destroy($admin_no)
-    {
-        $admin = Admin::findOrFail($admin_no);
-        $admin->delete();
 
-        return back()->with('deletesuccess','delete successfully!');
+
+    public function decline(Scholarship $scholarship)
+    {
+        $scholarship->officeVerification ='declined';
+
+
+        return back('decline','Decline Application');
     }
+
+
+    public function update(Request $request, Admin $admin)
+    {
+        $admin->firstname = $request->firstname;
+        $admin->middlename= $request->middlename;
+        $admin->lastname = $request->lastname;
+        $admin->email = $request->emaiil;
+        $admin->postition = $request->position;
+        $admin->save();
+        return back()->with('message', 'successfully update!');
+    }
+
     public function import(Request $request)
     {
         //dd($request);
@@ -141,21 +145,18 @@ class AdminController extends Controller
         return 'success!';
     }
 
-    public function updateAvatar(Request $request, $admin_no)
+    public function updateAvatar(Request $request, Admin $admin)
     {
         try
         {
             //save upload path
-            $admin = Admin::findOrFail($admin_no);
             $admin->avatar = $this->storeAvatar($request->file('avatar'));
             $admin->save();
-
-
             return redirect()->back()->with('avatarSuccess',"Succes!");
 
         }catch(Exception $e)
         {
-            return back()->with('avatarError','Uploading Error!\n'. $e->getMessage());
+            return back()->with('avatarError','Upload Error!\n'. $e->getMessage());
         }
 
         
@@ -163,7 +164,6 @@ class AdminController extends Controller
 
     private function storeAvatar($file)//get avatarname and upload to storage
     {
-        //dd($request->file('avatar')->getClientOriginalName());
         $path = $file->hashName();
         $file->storeAs('public/avatar/',$path);
         return $path;

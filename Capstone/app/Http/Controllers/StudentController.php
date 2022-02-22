@@ -123,19 +123,13 @@ class StudentController extends Controller
         }
     }
 
-    
-    function destroy($id)
-    {
-        $student = Student::findOrFail($id);
-        $student->delete();
-        return back()->with('delete',' successfully Deleted!');
-    }
     public function updateAvatar(Request $request, Student $student)
     {
         if($request->avatar == null)
             return back()->with('avatarError','Import your file First!');
             
-            //save upload path
+            
+        //save upload path
         $student->avatar = $this->storeAvatar($request->file('avatar'));
         $student->save();
         return back()->with('avatarSuccess',"Succes!");
