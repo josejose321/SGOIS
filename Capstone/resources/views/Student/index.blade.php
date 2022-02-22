@@ -3,7 +3,7 @@
 @section('title',"Student")
 @section('content')
 <div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Add Student</button>
+  <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Scholarhip</button>
   <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Students</button>
   <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">log out</button>
   <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">log out</button>
@@ -17,6 +17,7 @@
        <!-- Large modal -->
        
       <div class="jumbotron">
+        <div class="w-50"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br></div>
         <h1 class="display-8">
           Hello, Mr./Ms {{$student->firstname }} {{ $student->middlename }} {{ $student->lastname }}! 
           <br> {{ $student->year }} 
@@ -54,7 +55,14 @@
             <form  id="form">
               {{-- action="{{ route('Student.store') }}" method="POST" --}}
               @csrf
+              <div class="w-50">
+                <img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br>
+                Name: {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
+                StudentNo: {{ $student->student_no }} <br>
+                Department: {{ $student->department->name }} <br> <br>
+              </div>
               <div class="row">
+                
                 <div class="col-4">
                   <div class="form-group">
                     <label for="id"> Student Number</label>

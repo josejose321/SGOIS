@@ -35,12 +35,12 @@
             <img src="logo.png" alt="..." class="img-thumbnail">
             <div class="list-group list-group-flush">
                 <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="{{ route('Admin.students') }}" class="list-group-item list-group-item-action bg-light">Students</a>
-                <a href="{{ route('Admin.scholarhips') }}" class="list-group-item list-group-item-action bg-light">Scholarships</a>
-                <a href="{{ route('Admin.loans') }}" class="list-group-item list-group-item-action bg-light">Loans</a>
-                <a href="{{ route('Admin.discounts') }}" class="list-group-item list-group-item-action bg-light">Discounts</a>
+                <a href="{{ route('admin.students') }}" class="list-group-item list-group-item-action bg-light">Students</a>
+                <a href="{{ route('admin.scholarhips') }}" class="list-group-item list-group-item-action bg-light">Scholarships</a>
+                <a href="{{ route('admin.loans') }}" class="list-group-item list-group-item-action bg-light">Loans</a>
+                <a href="{{ route('admin.discounts') }}" class="list-group-item list-group-item-action bg-light">Discounts</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Others</a>
-                <a href="{{ route('Admin.stats') }}" class="list-group-item list-group-item-action bg-light">Statistics</a>
+                <a href="{{ route('admin.stats') }}" class="list-group-item list-group-item-action bg-light">Statistics</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->

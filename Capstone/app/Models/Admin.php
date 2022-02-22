@@ -30,4 +30,9 @@ class Admin extends Model
     {
         return $this->hasMany(Announcement::class, 'admin_no','admin_no');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_no','admin_no');
+    }
 }

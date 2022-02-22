@@ -36,4 +36,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Office::class,"officeCode","officeCode");
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_no','employee_no');
+    }
 }

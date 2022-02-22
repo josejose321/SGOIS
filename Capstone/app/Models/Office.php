@@ -35,4 +35,9 @@ class Office extends Model
     {
         return $this->hasMany(Loan::class,"officeCode","officeCode");
     }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class,'officeCode','officeCode');
+    }
 }

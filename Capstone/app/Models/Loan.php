@@ -38,4 +38,8 @@ class Loan extends Model
     {
         return $this->belongsTo(Office::class,"officeCode","officeCode");
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_no','category_no');
+    }
 }

@@ -20,7 +20,7 @@
   
   <hr> --}}
 
-  <form action="{{ url('/Admin/import') }}" method="POST" enctype="multipart/form-data">
+  <form action="{{ url('/admin/import') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="exampleFormControlFile1">Example file input</label>
@@ -41,7 +41,7 @@
                     <table class="table table-striped">
                         <thead class="bg-success">
                           <tr>
-                            <th scope="col">STUDENT ID</th>
+                            <th scope="col" >STUDENT ID</th>
                             <th scope="col">AVATAR</th>
                             <th scope="col">NAME</th>
                             <th scope="col">EMAIL</th>
@@ -56,15 +56,15 @@
                         <tbody>
                           @foreach ($students as $student)
                           <tr>
-                            <th scope="col"> {{ $student->student_no }}</th>
+                            <th scope="col" class="w-25"> {{ $student->student_no }}</th>
                             <th scope="col"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" alt="defaultAvatar.jpg" class="rounded-circle img-thumbnail"></th>
                             <th scope="col" class="w-25"> {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</th>
                             <th scope="col" >{{ $student->email }}</th>
-                            <th scope="col" class="w-25">{{ $student->departmentCode }}</th>
+                            <th scope="col" class="w-25">{{ $student->department->name }}</th>
                             <th scope="col" class="w-25">{{ $student->phone }}</th>
                             <th scope="col" class="w-25">{{ $student->course }}</th>
                             <th scope="col" class="w-25">{{ $student->year }}</th>
-                            <th scope="col""><button type="submit" class="btn btn-primary">EDIT</button>
+                            <th scope="col"><button type="submit" class="btn btn-primary">EDIT</button>
                             <button type="button" class="btn btn-secondary" onclick="viewStudent({{ $student }})">view</button> </th>
                           </tr>
                           @endforeach

@@ -23,6 +23,20 @@ class User extends Authenticatable
         'password',
     ];
 
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'student_no','user_no');
+    }
+    public function employee()
+    {
+        return $this->hasOne(Employee::class, 'employee_no','user_no');
+    }
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'admin_no','user_no');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

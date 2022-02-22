@@ -21,7 +21,7 @@ class ScholarshipTable extends Migration
             $table->string('student_no',8)->index();
             $table->string('officeCode',20)->index();
             $table->string('semesterCode',20)->index();
-            $table->string('type');
+            $table->string('category_no')->index()->nullable();
             $table->string('discount');
             $table->string('requirement');
             $table->string('photo');
@@ -40,6 +40,12 @@ class ScholarshipTable extends Migration
             $table->foreign('semesterCode')
             ->references('semesterCode')
             ->on('semesters')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('category_no')
+            ->references('category_no')
+            ->on('categories')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             

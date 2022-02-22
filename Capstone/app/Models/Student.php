@@ -48,4 +48,9 @@ class Student extends Model
     {
         return $this->belongsTo(Department::class,'departmentCode','departmentCode');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_no','student_no');
+    }
 }

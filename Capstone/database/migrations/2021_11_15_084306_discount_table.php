@@ -22,7 +22,7 @@ class DiscountTable extends Migration
             $table->string('student_no',8)->index();
             $table->string('officeCode')->index()->nullable();
             $table->string('semesterCode')->index()->nullable();
-            $table->string('type');
+            $table->string('category_no')->index()->nullable();
             $table->string('discount');
             $table->string('requirement');
             $table->string('photo');
@@ -30,7 +30,11 @@ class DiscountTable extends Migration
             $table->string('adminVerification')->default('pending');;
             $table->string('remarks');
             $table->timestamps();
-            $table->foreign('student_no')->references('student_no')->on('students')->onDelete('cascade');
+            $table->foreign('student_no')
+            ->references('student_no')
+            ->on('students')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             
             $table->foreign('officeCode')
             ->references('officeCode')
@@ -41,6 +45,12 @@ class DiscountTable extends Migration
             $table->foreign('semesterCode')
             ->references('semesterCode')
             ->on('semesters')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('category_no')
+            ->references('category_no')
+            ->on('categories')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });
