@@ -3,7 +3,7 @@
 @section('title','Admin Dashboard')
 @section('content')
     
-  {{-- <div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">
+  <div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-secondary" id="addStudent">Add Student</button>
     <button type="button" class="btn btn-secondary">Students</button>
     <button type="button" class="btn btn-secondary" id="addApplication">Application Period </button>
@@ -18,7 +18,7 @@
    
   </div>
   
-  <hr> --}}
+  <hr>
 
   <form action="{{ url('/admin/import') }}" method="POST" enctype="multipart/form-data">
     @csrf

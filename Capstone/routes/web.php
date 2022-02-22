@@ -60,9 +60,6 @@ Route::prefix('admin')
     ->controller(AdminController::class)
     ->group(function (){
         Route::post('/import','import')->name('.import');
-        
-        
-        
         Route::get('/students','showStudents')->name('.students');
         Route::get('/profile','showProfile')->name('.profile');
         Route::get('/statistics','showStats')->name('.stats');

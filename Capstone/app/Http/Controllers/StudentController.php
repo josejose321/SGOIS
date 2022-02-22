@@ -113,11 +113,7 @@ class StudentController extends Controller
             $student->save();
             return back()->with('successUpdate','successfully updated');
 
-        }catch(ModelNotFoundException $e)
-        {
-            return back()->with('errorUpdate', 'MOdel not Found Exception:\nSomething Went Wrong/n'. $e->getMessage());
-        }
-        catch(Exception $e)
+        }catch(Exception $e)
         {
             return back()->with('errorUpdate','Something Went Wrong/n'. $e->getMessage());
         }
@@ -128,7 +124,7 @@ class StudentController extends Controller
         if($request->avatar == null)
             return back()->with('avatarError','Import your file First!');
             
-            
+             
         //save upload path
         $student->avatar = $this->storeAvatar($request->file('avatar'));
         $student->save();
@@ -137,7 +133,6 @@ class StudentController extends Controller
     }
     private function storeAvatar($file)//get avatarname and upload to storage
     {
-        //dd($request->file('avatar')->getClientOriginalName());
         $path = $file->hashName();
         $file->storeAs('public/avatar/',$path);
         return $path;

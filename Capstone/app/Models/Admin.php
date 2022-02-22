@@ -23,8 +23,6 @@ class Admin extends Model
         'position',
         'avatar',
         'password',
-        'created_at',
-        'updated_at'
     ];
     public function announcements()
     {

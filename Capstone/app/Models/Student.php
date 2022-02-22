@@ -25,9 +25,7 @@ class Student extends Model
         'course',
         'year',
         'avatar',
-        'password',
-        'created_at',
-        'updated_at'
+        'password'
 
     ];
 
