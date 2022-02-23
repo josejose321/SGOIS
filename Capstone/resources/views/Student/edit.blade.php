@@ -9,8 +9,9 @@
   <form action="{{ url('student/'.$student->student_no . '/avatar')}}" method="POST" enctype="multipart/form-data">
     @csrf
     
+    <div class="w-50"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br></div>
     <div class="form-group">
-      <label for="exampleFormControlFile1">Example file input</label>
+      <label for="exampleFormControlFile1"></label>
       <input type="file" class="form-control-file" name="avatar">
     </div>
     <button type="submit" class="btn btn-primary"> update avatar</button>
@@ -109,9 +110,13 @@
     swal({
           title: "MISSING!",
           text: "{{ Session::get('avatarError') }}",
-          icon: "warning",
+          icon: "error",
           button: "ok!",
         });
 </script>
 @endif
+{{ Session::forget('avatarError') }}
+{{ Session::forget('successUpdate') }}
+{{ Session::forget('errorUpdate') }}
+{{ Session::forget('avatarSuccess') }}
 @endsection

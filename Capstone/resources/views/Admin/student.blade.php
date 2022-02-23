@@ -1,4 +1,9 @@
+@extends('layouts.admin')
 
+@section('title','Student')
+
+@section('content')
+    
 
 <h1>STUDENTS</h1>
 @foreach ($students as $student)
@@ -24,3 +29,4 @@
 <h1>Admin</h1>
 {{ $admin->admin_no }} <br>
 {{ $admin }}
+@endsection

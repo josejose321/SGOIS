@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<section class="container-fluid">
+<section class="container">
   <!-- Large modal -->
 
  <div class="jumbotron">
@@ -17,6 +17,7 @@
           {{ $student->phone}}<br>
           {{ $student->course}}<br> 
      </h1>
+     <a href="{{ url('student/'. $student->student_no .'/edit') }}"><button type="button" class="btn btn-primary">Edit Profile</button></a>
      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis nisi aut voluptate expedita, 
        tempora adipisci in dicta quas iusto totam repellat. Corrupti repellendus nobis culpa perferendis sequi ea accusantium.
        Numquam deserunt facilis molestiae repudiandae nesciunt architecto excepturi maxime molestias distinctio a aliquam dolorem 
@@ -36,13 +37,7 @@
      
  </div>
 </section>
-          {{ $student->student_no}} <br>
-          {{ $student->firstname}}<br>
-          {{ $student->middlename}}<br>
-          {{ $student->lastname}}<br>
-          {{ $student->email}}<br>
-          {{ $student->departmentCode}}<br>
-          {{ $student->phone}}<br>
+@include('modals.addScholarship')
 <br><br><br>
 
 </section>

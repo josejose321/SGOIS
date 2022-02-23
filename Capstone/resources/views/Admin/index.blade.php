@@ -3,20 +3,7 @@
 @section('title','Admin Dashboard')
 @section('content')
     
-  <div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-secondary" id="addStudent">Add Student</button>
-    <button type="button" class="btn btn-secondary">Students</button>
-    <button type="button" class="btn btn-secondary" id="addApplication">Application Period </button>
-    <button type="button" class="btn btn-secondary">Scholarships</button>
-    <button type="button" class="btn btn-secondary ">Loans</button>
-    <button type="button" class="btn btn-secondary">Discounts</button>
-    <button type="button" class="btn btn-secondary">Statistics</button>
-    <button type="button" class="btn btn-secondary">Reports</button>
-    <button type="button" class="btn btn-secondary">Annoucenment</button>
-    <button type="button" class="btn btn-secondary">Import Data</button>
-    <button type="button" class="btn btn-secondary">log out</button>
-   
-  </div>
+  
   
   <hr>
 
@@ -31,7 +18,8 @@
         <div class="container-fluid">
               <div class="card bg-light">
                   <div class="card-header">
-                    <h2>Students</h2>
+                    <h2>Students</h2> <br>
+                    <h3>TOTAL: {{ $students->count() }}</h3>
                     <div class="input-group w-25 float-right">
                       <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                       <button type="button" class="btn btn-outline-primary">search</button>
@@ -42,7 +30,6 @@
                         <thead class="bg-success">
                           <tr>
                             <th scope="col" >STUDENT ID</th>
-                            <th scope="col">AVATAR</th>
                             <th scope="col">NAME</th>
                             <th scope="col">EMAIL</th>
                             <th scope="col">DEPARTMENT</th>
@@ -57,15 +44,14 @@
                           @foreach ($students as $student)
                           <tr>
                             <th scope="col" class="w-25"> {{ $student->student_no }}</th>
-                            <th scope="col"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" alt="defaultAvatar.jpg" class="rounded-circle img-thumbnail"></th>
                             <th scope="col" class="w-25"> {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</th>
                             <th scope="col" >{{ $student->email }}</th>
                             <th scope="col" class="w-25">{{ $student->department->name }}</th>
-                            <th scope="col" class="w-25">{{ $student->phone }}</th>
-                            <th scope="col" class="w-25">{{ $student->course }}</th>
-                            <th scope="col" class="w-25">{{ $student->year }}</th>
-                            <th scope="col"><button type="submit" class="btn btn-primary">EDIT</button>
-                            <button type="button" class="btn btn-secondary" onclick="viewStudent({{ $student }})">view</button> </th>
+                            <th scope="col">{{ $student->phone }}</th>
+                            <th scope="col" >{{ $student->course }}</th>
+                            <th scope="col">{{ $student->year }}</th>
+                            <th scope="col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewStudent-{{ $student->student_no }}" >view</button> </th>
                           </tr>
                           @endforeach
                          
@@ -167,21 +153,9 @@
     $('#studentmodal').modal();
   })
 
-  $("body").on('submit',"#studentform", function(e){
-    e.preventDefault();
-    
-
-    axios.post('{{ route('student.store') }}',$(this).serialize())
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      console.error(err.response.data);
-    })
-    console.log($(this).serialize());
-    alert($(this).serialize());
-  })
 </script>
-
+@include('modals.viewStudent')
+@include('modals.addStudent')
+@include('modals.addSem')
 
 @endsection

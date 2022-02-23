@@ -21,18 +21,17 @@ class StudentController extends Controller
     
     function index()
     {
-        $student = Student::find('12-15130');
-        $offices = Office::all();
         //dd($offices);
         return view('Student.index')
-        ->with(compact('student'))
-        ->with(compact('offices'));
+        ->with('student',Student::find('18-08925'))
+        ->with('offices',Office::all());
 
     }
     function show(Student $student)
     {
         return view("Student.profile")
-        ->with(compact('student'));
+        ->with('student',$student)
+        ->with('offices',Office::all());
     }
 
     function edit(Student $student)

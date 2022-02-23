@@ -26,7 +26,7 @@ class AdminController extends Controller
     {
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
         // return new WelcomMail();
-        $students = Student::all();
+        $students = Student::paginate(15);
 
 
         // $student = Student::find('18-08925');
@@ -76,7 +76,10 @@ class AdminController extends Controller
     }
     public function showStats()
     {
-        return view('Admin.stats');
+        return view('Admin.stats')
+        ->with('students',Student::all())
+        ->with('admin',Admin::find('18-08925'));
+        
     }
     public function store(Request $request)
     {

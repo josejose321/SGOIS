@@ -19,5 +19,16 @@ class Category extends Model
     {
         return $this->belongsTo(Office::class,'officeCode','officeCode');
     }
-    
+    public function scholarships()
+    {
+        return $this->hasMany(Scholarship::class,'category_no','category_no');
+    }
+    public function discounts()
+    {
+        return $this->hasMany(Scholarship::class,'category_no','category_no');
+    }
+    public function loans()
+    {
+        return $this->hasMany(Scholarship::class,'category_no','category_no');
+    }
 }

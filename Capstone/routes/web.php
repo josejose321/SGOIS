@@ -59,19 +59,6 @@ Route::prefix('admin')
     ->as('admin')
     ->controller(AdminController::class)
     ->group(function (){
-        Route::post('/import','import')->name('.import');
-        Route::get('/students','showStudents')->name('.students');
-        Route::get('/profile','showProfile')->name('.profile');
-        Route::get('/statistics','showStats')->name('.stats');
-        //Route::resource('/', AdminController::class);
-
-        //route resource
-        Route::get('{admin}', 'show')->name('.show');
-        Route::get('', 'index')->name('.index');
-        Route::post('', 'store')->name('.store');
-        Route::post('{admin}', 'update')->name('.update');
-        //Route::resource('',AdminController::class)->except('destroy');
-
 
         //scholarships
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
@@ -90,6 +77,22 @@ Route::prefix('admin')
         Route::get('/discounts','showDiscounts')->name('.discounts');
         Route::post('/discounts/{discount}/approve', 'approveDiscount')->name('.aprroveDiscount');
         Route::post('/discounts/{discount}/decline', 'declineDiscount')->name('.declineDiscount');
+
+        Route::post('/import','import')->name('.import');
+        Route::get('/students','showStudents')->name('.students');
+        Route::get('/profile','showProfile')->name('.profile');
+        Route::get('/statistics','showStats')->name('.stats');
+        //Route::resource('/', AdminController::class);
+
+        //route resource
+        Route::get('/{admin}', 'show')->name('.show');
+        Route::get('/', 'index')->name('.index');
+        Route::post('/', 'store')->name('.store');
+        Route::post('/{admin}', 'update')->name('.update');
+        //Route::resource('',AdminController::class)->except('destroy');
+
+
+        
     });
 
 Route::prefix('student')
@@ -112,13 +115,6 @@ Route::prefix('employee')
 ->as('employee')
 ->controller(EmployeeController::class)
 ->group(function (){
-        Route::get('/{employee}', 'show')->name('.show');
-        Route::get('/{employee}/edit','edit')->name('.edit');
-        Route::get('/', 'index')->name('.index');
-        Route::post('/', 'store')->name('.store');
-        Route::post('/{employee}', 'update')->name('.update');
-        
-
         //scholarships
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
         Route::post('/scholarships/{scholarship}/approve', 'approve')->name('.aprrove');
@@ -133,6 +129,15 @@ Route::prefix('employee')
         Route::get('/discounts','showDiscounts')->name('.discounts');
         Route::post('/discounts/{discount}/approve', 'approveDiscount')->name('.aprroveDiscount');
         Route::post('/discounts/{discount}/decline', 'declineDiscount')->name('.declineDiscount');
+        
+        Route::get('/{employee}', 'show')->name('.show');
+        Route::get('/{employee}/edit','edit')->name('.edit');
+        Route::get('/', 'index')->name('.index');
+        Route::post('/', 'store')->name('.store');
+        Route::post('/{employee}', 'update')->name('.update');
+        
+
+        
     });
 
 

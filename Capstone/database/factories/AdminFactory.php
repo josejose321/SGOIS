@@ -16,15 +16,16 @@ class AdminFactory extends Factory
     {
         return [
             //
-        'student_no' => strval($this->faker->unique()->numberBetween(12,19)).'-'.strval($this->faker->numberBetween(9999,99999)),
-        'firstname' =>$this->faker->firstName,
-        'middlename' =>$this->faker->lastName,
-        'lastname'=>$this->faker->lastName,
-        'email'=>$this->faker->unique()->safeEmail(),
-        'phone' =>$this->faker->phoneNumber,
-        'position'=>$this->faker->randomElement('Director','Staff','Assistant'),
-        'avatar' => 'defaultAvatar.jpg',
-        'password' => Hash::make('password'),
+            'admin_no' => $this->faker->unique()->numerify('##-#####'),
+            'firstname' =>$this->faker->firstName,
+            'middlename' =>$this->faker->lastName,
+            'lastname'=>$this->faker->lastName,
+            'email'=>$this->faker->unique()->safeEmail(),
+            'phone' =>$this->faker->numerify('09#########'),
+            'position'=>$this->faker->randomElement('Director','Staff','Assistant'),
+            'avatar' => 'defaultAvatar.jpg',
+            'password' => Hash::make('password'),
         ];
     }
+    protected $model = Admin::class;
 }

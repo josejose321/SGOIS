@@ -13,15 +13,14 @@
     
 
 
-    <section class="container-fluid">
+
+    <section class="container">
        <!-- Large modal -->
        
       <div class="jumbotron">
         <div class="w-50"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br></div>
         <h1 class="display-8">
           Hello, Mr./Ms {{$student->firstname }} {{ $student->middlename }} {{ $student->lastname }}! 
-          <br> {{ $student->year }} 
-          <br> {{ $student->course }} 
           </h1>
           <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis nisi aut voluptate expedita, 
             tempora adipisci in dicta quas iusto totam repellat. Corrupti repellendus nobis culpa perferendis sequi ea accusantium.
@@ -42,7 +41,8 @@
           
       </div>
     </section>
-    <div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    @include('modals.addScholarship')
+    {{-- <div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         
         
@@ -52,8 +52,8 @@
             <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
           </div>
           <div class="modal-body bg-light">
-            <form  id="form">
-              {{-- action="{{ route('Student.store') }}" method="POST" --}}
+            <form  id="form"> --}}
+              {{-- action="{{ route('Student.store') }}" method="POST"
               @csrf
               <div class="w-50">
                 <img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br>
@@ -163,7 +163,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     {{-- <script src="{{URL:: asset('js/request.js') }}"></script> --}}
     <script>
     $("#form").on('submit', function(e)
