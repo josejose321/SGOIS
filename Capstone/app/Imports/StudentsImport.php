@@ -18,7 +18,7 @@ class StudentsImport implements ToModel, WithHeadingRow
     private $students;
     public function __construct()
     {
-        $this->students = Student::all();
+        
     }
     public function model(array $row)
     {

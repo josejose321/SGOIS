@@ -25,8 +25,8 @@ class AdminController extends Controller
     public function index()
     {
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
-        // return new WelcomMail();
-        $students = Student::paginate(15);
+        //return new WelcomMail();
+        $students = Student::all();
 
 
         // $student = Student::find('18-08925');
@@ -51,12 +51,14 @@ class AdminController extends Controller
     {
         return view('Admin.loan')
         ->with('loans',Loan::all())
+        ->with('students',Student::all())
         ->with('admin',Admin::find('18-08925'));
     }
     public function showDiscounts()
     {
         return view('Admin.discount')
         ->with('discounts',Discount::all())
+        ->with('students',Student::all())
         ->with('admin',Admin::find('18-08925'));
     }
     public function showStudents()
@@ -66,12 +68,12 @@ class AdminController extends Controller
         ->with('departments',Department::all())
         ->with('admin',Admin::find('18-08925'));
     }
-    public function show($admin_no)
+    public function show(Admin $admin)
     {
-        $admin = Admin::findOrFail($admin_no);
+
 
         return view('Admin.index')
-        ->with('admin', Admin::findOrFail($admin_no))
+        ->with('admin', $admin)
         ->with('students',Student::all());
     }
     public function showStats()
@@ -138,14 +140,17 @@ class AdminController extends Controller
 
     public function import(Request $request)
     {
-        //dd($request);
-        try{
-            Excel::import(new StudentsImport, $request->file('file')->store('temp'));
-            return back()->with('successImport','Import Successfully!');
-        }catch(LaravelExcelException $e){
-            return back()->with('errorImport','Import Error!');
+        
+        if($request->file != null)
+        {
+            try{
+                Excel::import(new StudentsImport, $request->file('file')->store('temp'));
+                return back()->with('successImport','Import Successfully!');
+            }catch(LaravelExcelException $e){
+                return back()->with('errorImport','Import Error!');
+            }
         }
-        return 'success!';
+        return back()->with('errorImport','Select File First!');
     }
 
     public function updateAvatar(Request $request, Admin $admin)

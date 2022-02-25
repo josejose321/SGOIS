@@ -42,9 +42,8 @@ class ScholarshipController extends Controller
     {
         
     }
-    public function verifyByOffice(Request $request, $student_no)
+    public function verifyByOffice(Request $request, Scholarship $scholarhip)
     {
-        $scholarhip = Scholarship::find($student_no);
         $scholarhip->officeVerification = $request->officeVerification;
         $scholarhip->discount = $request->discount;
 

@@ -79,15 +79,15 @@
         </div>
     </nav>
     <div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary" id="addStudent">Add Student</button>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#studentmodal">Add Student</button>
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#studentmodal">Students</button>
-      <button type="button" class="btn btn-secondary" id="addApplication">Application Period </button>
-      <button type="button" class="btn btn-secondary">Scholarships</button>
-      <button type="button" class="btn btn-secondary ">Loans</button>
-      <button type="button" class="btn btn-secondary">Discounts</button>
-      <button type="button" class="btn btn-secondary">Statistics</button>
-      <button type="button" class="btn btn-secondary">Reports</button>
-      <button type="button" class="btn btn-secondary">Annoucenment</button>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addSem">Application Period </button>
+      <a href="{{ route('admin.scholarhips') }}" type="button" class="btn btn-secondary">Scholarships</a>
+      <a href="{{ route('admin.loans') }}" type="button" class="btn btn-secondary ">Loans</a>
+      <a href="{{ route('admin.discounts') }}" type="button" class="btn btn-secondary">Discounts</a>
+      <a href="#" type="button" class="btn btn-secondary">Statistics</a>
+      <a href="#" type="button" class="btn btn-secondary">Reports</a>
+      <a href="#" type="button" class="btn btn-secondary">Annoucenment</a>
       <button type="button" class="btn btn-secondary">Import Data</button>
       <button type="button" class="btn btn-secondary">log out</button>
      
@@ -111,6 +111,7 @@
       </div>
 @include('modals.viewStudent')
 @include('modals.addStudent')
+@include('modals.addSem')
 </body>
 
 </html>

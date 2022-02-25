@@ -18,7 +18,7 @@
     </tr>
     <br>
 @endforeach
-
+{{ $students }}
 <br><br>
 <h1>Department</h1>
 @foreach ($departments as $department)

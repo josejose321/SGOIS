@@ -44,12 +44,12 @@
                           @foreach ($students as $student)
                           <tr>
                             <th scope="col" class="w-25"> {{ $student->student_no }}</th>
-                            <th scope="col" class="w-25"> {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</th>
+                            <th scope="col" class="w-25"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }} {{ $student->middlename ??'' }}</th>
                             <th scope="col" >{{ $student->email }}</th>
-                            <th scope="col" class="w-25">{{ $student->department->name }}</th>
-                            <th scope="col">{{ $student->phone }}</th>
-                            <th scope="col" >{{ $student->course }}</th>
-                            <th scope="col">{{ $student->year }}</th>
+                            <th scope="col" class="w-25"> {{ $student->department->name }}</th>
+                            <th scope="col">{{ $student->phone ?? '' }}</th>
+                            <th scope="col" >{{ $student->course ?? ''}}</th>
+                            <th scope="col">{{ $student->year ?? '' }}</th>
                             <th scope="col">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewStudent-{{ $student->student_no }}" >view</button> </th>
                           </tr>
@@ -154,8 +154,6 @@
   })
 
 </script>
-@include('modals.viewStudent')
-@include('modals.addStudent')
-@include('modals.addSem')
+
 
 @endsection

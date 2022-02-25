@@ -16,13 +16,13 @@ class Scholarship extends Model
         "student_no",
         "officeCode",
         "semesterCode",
-        "type",
-        "field",
+        "category_no",
         "discount",
         "requirement",
         "photo",
         "officeVerification",
         "adminVerification",
+        "remarks",
         "created_at",
         "updated_at"
     ];

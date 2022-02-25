@@ -16,13 +16,14 @@ class Discount extends Model
         "student_no",
         "officeCode",
         "semesterCode",
-        "type",
+        "category_no",
         "field",
         "discount",
         "requirement",
         "photo",
         "officeVerification",
         "adminVerification",
+        'remarks',
         "created_at",
         "updated_at"
     ];

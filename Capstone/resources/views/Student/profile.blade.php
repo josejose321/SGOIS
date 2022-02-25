@@ -28,10 +28,10 @@
 
        <div class="row">
          <div class="col-sm">
-           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Scholarship</button>
-           <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Discount</button>
-           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Loan</button>
-           <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Government Grant</button>
+           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addscholar">Scholarship</button>
+           <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#addscholar">Discount</button>
+           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addscholar">Loan</button>
+           <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#addscholar">Government Grant</button>
          </div>
        </div>
      

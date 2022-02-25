@@ -7,5 +7,8 @@
     {{ $students }}
 
     {{ $admin }}
-    
+
+@include('modals.viewStudent')
+@include('modals.addStudent')
+@include('modals.addSem')
 @endsection
