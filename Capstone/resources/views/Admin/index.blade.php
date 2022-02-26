@@ -129,31 +129,8 @@
 @endif
 </html>
 
-{{-- modal and axios functions --}}
-<script>
-  //load modal content
-  $(function(){
-    $("#modalAddStudent").load("{{ asset('modal/addStudent.html') }}");
-  })
-  $(function(){
-    $("#modalPeriod").load("{{ asset('modal/addApplication.html') }}");
-  })
 
 
-
-  // add application period
-  $("#addApplication").on("click",function(){
-    $('#appmodal').modal();
-  })
-
-
-
-  //  add student
-  $("#addStudent").on("click", function(){
-    $('#studentmodal').modal();
-  })
-
-</script>
 
 
 @endsection

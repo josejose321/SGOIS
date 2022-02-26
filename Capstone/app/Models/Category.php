@@ -9,6 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $table ='categories';
+    protected $primaryKey ="categoryNo";
+    public $incrementing = true;
+    
     protected $fillable =[
         'officeCode',
         'name',
@@ -21,14 +25,14 @@ class Category extends Model
     }
     public function scholarships()
     {
-        return $this->hasMany(Scholarship::class,'category_no','category_no');
+        return $this->hasMany(Scholarship::class,'categoryNo','categoryNo');
     }
     public function discounts()
     {
-        return $this->hasMany(Scholarship::class,'category_no','category_no');
+        return $this->hasMany(Discount::class,'categoryNo','categoryNo');
     }
     public function loans()
     {
-        return $this->hasMany(Scholarship::class,'category_no','category_no');
+        return $this->hasMany(Loan::class,'categoryNo','categoryNo');
     }
 }

@@ -79,15 +79,15 @@
         </div>
     </nav>
     <div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#studentmodal">Add Student</button>
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#studentmodal">Students</button>
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addSem">Application Period </button>
+      <button type="button" class="btn btn-secondary" id="studentBtn">Add Student</button>
+      <a href="{{ route('admin.students') }}" type="button" class="btn btn-secondary">Students</a>
+      <button type="button" class="btn btn-secondary" id="semBtn">Application Period </button>
       <a href="{{ route('admin.scholarhips') }}" type="button" class="btn btn-secondary">Scholarships</a>
       <a href="{{ route('admin.loans') }}" type="button" class="btn btn-secondary ">Loans</a>
       <a href="{{ route('admin.discounts') }}" type="button" class="btn btn-secondary">Discounts</a>
-      <a href="#" type="button" class="btn btn-secondary">Statistics</a>
+      <a href="{{ route('admin.stats') }}" type="button" class="btn btn-secondary">Statistics</a>
       <a href="#" type="button" class="btn btn-secondary">Reports</a>
-      <a href="#" type="button" class="btn btn-secondary">Annoucenment</a>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#announceModal">Annoucenment</button>
       <button type="button" class="btn btn-secondary">Import Data</button>
       <button type="button" class="btn btn-secondary">log out</button>
      
@@ -112,6 +112,19 @@
 @include('modals.viewStudent')
 @include('modals.addStudent')
 @include('modals.addSem')
+@include('modals.announce')
+<script>
+  $('#studentBtn').on("click", function(e){
+    e.preventDefault();
+    $('#studentmodal').modal();
+  })
+
+  $('#semBtn').on("click", function(e){
+    e.preventDefault();
+    console.log('hello');
+    $('#addSem').modal();
+  })
+</script>
 </body>
 
 </html>

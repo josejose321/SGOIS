@@ -23,10 +23,10 @@ class ScholarhipFactory extends Factory
 
     public function __construct()
     {
-        $this->students =Student::all()->lists('student_no');
-        $this->offices = Office::all()->lists('officeCode');
-        $this->semesters= Semester::all()->lists('semesterCode');
-        $this->categories = Category::all()->lists('category_no');
+        $this->students =Student::all()->pluck('student_no');
+        $this->offices = Office::all()->pluck('officeCode');
+        $this->semesters= Semester::all()->pluck('semesterCode');
+        $this->categories = Category::all()->pluck('categoryNo');
     }
     
     public function definition()
@@ -37,7 +37,7 @@ class ScholarhipFactory extends Factory
         "student_no"=> $this->faker->randomElement($this->students),
         "officeCode" =>$this->faker->randomElement($this->offices),
         "semesterCode"=>$this->faker->randomElement($this->semesters),
-        "category_no" =>$this->faker->randomElement($this->categories),
+        "categoryNo" =>$this->faker->randomElement($this->categories),
         "discount" =>$this->faker->randomElement(['25','50','75','full']) ,
         "requirement" =>'requirement.pdf',
         "photo"=>'photo.jpg',

@@ -20,7 +20,7 @@ class LoanTable extends Migration
             $table->string('student_no',8)->index();
             $table->string('officeCode')->index()->nullable();
             $table->string('semesterCode')->index()->nullable();
-            $table->string('category_no')->index()->nullable();
+            $table->unsignedBigInteger('categoryNo')->index()->nullable();
             $table->string('discount');
             $table->string('requirement');
             $table->string('photo');
@@ -42,8 +42,8 @@ class LoanTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
-            $table->foreign('category_no')
-            ->references('category_no')
+            $table->foreign('categoryNo')
+            ->references('categoryNo')
             ->on('categories')
             ->onDelete('cascade')
             ->onUpdate('cascade');

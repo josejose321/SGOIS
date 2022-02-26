@@ -16,7 +16,7 @@ class Loan extends Model
         "student_no",
         "officeCode",
         "semesterCode",
-        "category_no",
+        "categoryNo",
         "discount",
         "requirement",
         "photo",
@@ -39,6 +39,6 @@ class Loan extends Model
     }
     public function category()
     {
-        return $this->belongsTo(Category::class,'category_no','category_no');
+        return $this->belongsTo(Category::class,'categoryNo','categoryNo');
     }
 }
