@@ -1,9 +1,7 @@
-<form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.student.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal fade bd-example-modal-lg" id="studentmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-    
-    
             <div class="modal-content">
                 <div class="modal-header bg-secondary text-light">
                     <h3>Add Student</h3>
@@ -14,7 +12,6 @@
                             <label for="id"> Student Number</label>
                             <input type="text" name="student_no" class="form-control" placeholder="Student No">
                         </div>
-    
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -36,20 +33,34 @@
                             <input type="email" name="email" class="form-control" placeholder="Email here">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="id"> Department</label>
-                            <input type="text" name="department" class="form-control" placeholder="Department">
-                        </div>
-                        <div class="form-group col-md-4">
                             <label for="id"> Phone number</label>
                             <input type="text" name="phone" class="form-control" placeholder="Phone number">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="id"> Course</label>
-                            <input type="text" name="course" class="form-control" placeholder="Course">
-                        </div>
-                        <div class="form-group col-md-4">
                             <label for="id">Year</label>
                             <input type="text" name="year" class="form-control" placeholder="Year">
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="id"> Course</label>
+                            <select class="form-select form-select-lg mb-3" aria-label="Default select example">
+                                <option selected value="">Select Course</option>
+                                @foreach ($courses as $course)
+                                <option value="{{ $course->name }}">{{ $course->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id"> Department</label>
+                            <select class="form-select form-select-lg mb-3" aria-label="Default select example">
+                                <option selected value="">Select Department</option>
+                                @foreach ($departments as $department)
+                                <option value="{{ $department->deparmentCode }}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
     
                     </div>

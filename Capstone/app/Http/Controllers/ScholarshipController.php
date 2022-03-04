@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomMail;
 use App\Models\Scholarship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ScholarshipController extends Controller
 {
@@ -20,14 +22,12 @@ class ScholarshipController extends Controller
     {
         $scholarhip = new Scholarship();
         $scholarhip->student_no = $request->student_no;
+        $scholarhip->officeCode = $request->officeCode;
         $scholarhip->semesterCode = $request->semesterCode;
-        $scholarhip->type = $request->type;
-        $scholarhip->field = $request->field;
+        $scholarhip->categoryNo = $request->categoryNo;;
         $scholarhip->discount = $request->discount;
         $scholarhip->requirement = $this->storeFiles($request->file('requirement'),'public/requirements/');
         $scholarhip->photo = $this->storeFiles($request->file('photo'),'public/photos/');
-        $scholarhip->created_at = time();
-        $scholarhip->updated_at = time();
         
     }
     // public function approveByOffice(Request $request, $student_no)
@@ -42,18 +42,19 @@ class ScholarshipController extends Controller
     {
         
     }
-    public function verifyByOffice(Request $request, Scholarship $scholarhip)
+    public function verifyByOffice(Request $request, Scholarship $scholarship)
     {
-        $scholarhip->officeVerification = $request->officeVerification;
-        $scholarhip->discount = $request->discount;
+        $scholarship->officeVerification = $request->officeVerification;
+        $scholarship->discount = $request->discount;
 
-        return back('verify','Verify');
+        //Mail::send($scholarship->student->email, new WelcomMail($scholarhip));
+        return back('verified','approve ka na');
     }
     private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
     {
         $path = $file->hashName();
         $file->storeAs($directory,$path);
-        return $path;
+        return $directory . $path;
     }
 
 }

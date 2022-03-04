@@ -60,22 +60,10 @@
         
         <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}"><h5>HOME</h5></a></li>
+                <li class="nav-item"><a class="nav-link link text-light" href="{{ route('admin.index') }}"><h5>HOME</h5></a></li>
                 <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}"><h5>SCHOLARHIP</h5></a></li>
                 <li class="nav-item"><a class="nav-link link text-light" href="{{ url('/') }}"><h5>ABOUT US</h5></a></li>
-                @guest
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/home') }}" class="">Home</a>
-                @else 
-                    <li class="nav-item"><a class="nav-link link text-light" href="{{ route('login') }}"><h5>LOG IN</h5></a></li>
-                    @if (Route::has('register'))    
-                        <li class="nav-item"><a class="nav-link link text-light" href="{{ route('register') }}"><h5>REGISTER</h5></a></li>
-                    @endif
-                    @endauth
             </ul>
-                @endif   
-                @endguest
         </div>
     </nav>
     <div class="btn-group btn-group-lg d-flex justify-content-center" role="group" aria-label="Basic example">

@@ -16,7 +16,7 @@ class Scholarship extends Model
         "student_no",
         "officeCode",
         "semesterCode",
-        "catgoryNo",
+        "categoryNo",
         "discount",
         "requirement",
         "photo",

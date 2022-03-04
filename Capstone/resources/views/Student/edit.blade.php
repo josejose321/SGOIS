@@ -100,7 +100,7 @@
     swal({
           title: "Update Failed!",
           text: "{{ Session::get('errorUpdate') }}",
-          icon: "success",
+          icon: "error",
           button: "ok!",
         });
 </script>

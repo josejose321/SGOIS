@@ -57,9 +57,8 @@ class StudentController extends Controller
             $student->year = $request->year;
             $student->avatar ='defaultAvatar.jpg';
             $student->password = Hash::make("12345");
-            $student->created_at = time();
-            $student->updated_at = time();
             $student->save();
+
             return back()->with('success',"student added to the database");
         }catch(QueryException $e)
         {

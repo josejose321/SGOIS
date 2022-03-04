@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,12 +15,8 @@ class StudentFactory extends Factory
      *
      * @return array
      */
+    private $department;
 
-     protected $course = [
-         'BSIT',
-         'BSCS',
-         'BSIS'
-     ];
     public function definition()
     {
         return [
@@ -29,10 +26,9 @@ class StudentFactory extends Factory
         'middlename' =>$this->faker->lastName,
         'lastname'=>$this->faker->lastName,
         'email'=>$this->faker->unique()->safeEmail(),
-        'departmentCode' => $this->faker
-        ->randomElement(['UNCCCS','UNCLAW','UNCEA','UNCELEM','UNCJHS','UNCSHS','UNCCE','UNCAS','UNCLAW','UNCCJE','UNCCBA','UNCCN']),
+        'departmentCode' => ($this->department =$this->faker->randomElement(Department::all()->pluck('departmentCode'))),
         'phone' =>$this->faker->numerify('09#########'),
-        'course' => $this->faker->randomElement($this->course),
+        'course' => $this->faker->randomElement(Department::find($this->department)->courses->pluck('name')),
         'year' =>strval($this->faker->numberBetween(1,5)),
         'avatar' => 'defaultAvatar.jpg',
         'password' => Hash::make('password'),

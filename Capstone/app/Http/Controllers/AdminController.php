@@ -6,6 +6,7 @@ use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
 use App\Mail\WelcomMail;
 use App\Models\Admin;
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Discount;
 use App\Models\Loan;
@@ -15,6 +16,7 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Exceptions\LaravelExcelException;
 use Maatwebsite\Excel\Facades\Excel;
@@ -34,39 +36,51 @@ class AdminController extends Controller
 
         return view('Admin.index')
         ->with(compact('students'))
-        ->with('admin', Admin::find('18-08925'));
+        ->with('admin', Admin::find('18-08925'))
+        ->with('departments', Department::all())
+        ->with('courses',Course::all());
     }
     public function showScholarships()
     {
         return view('Admin.scholarship')
         ->with('students',Student::all())
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'))
+        ->with('departments', Department::all())
+        ->with('courses',Course::all());
     }
     public function showProfile()
     {
         return view('Admin.profile')
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'))
+        ->with('departments', Department::all())
+        ->with('courses',Course::all());
     }
     public function showLoans()
     {
         return view('Admin.loan')
         ->with('loans',Loan::all())
         ->with('students',Student::all())
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'))
+        ->with('departments', Department::all())
+        ->with('courses',Course::all());
     }
     public function showDiscounts()
     {
         return view('Admin.discount')
         ->with('discounts',Discount::all())
         ->with('students',Student::all())
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'))
+        ->with('departments', Department::all())
+        ->with('courses',Course::all());
     }
     public function showStudents()
     {
         return view('Admin.student')
         ->with('students',Student::all())
         ->with('departments',Department::all())
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'))
+        ->with('departments', Department::all())
+        ->with('courses',Course::all());
     }
     public function show(Admin $admin)
     {
@@ -175,6 +189,48 @@ class AdminController extends Controller
         $path = $file->hashName();
         $file->storeAs('public/avatar/',$path);
         return $path;
+    }
+    public function storeStudent(Request $request)
+    {
+        // try{
+        //     $student = Student::create([
+        //         $request->student_no,
+        //         $request->firstname,
+        //         $request->middlename,
+        //         $request->lastname,
+        //         $request->email,
+        //         $request->department,
+        //         $request->phone,
+        //         $request->course,
+        //         $request->year,
+        //         'defaultAvatar.jpg',
+        //         Hash::make("12345")
+        //     ]);
+        //     return back()->with('success',"student added to the database");
+        // }catch(Exception $e)
+        // {
+        //     return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
+        // }
+        try{
+            $student = new Student();
+            $student->student_no = $request->student_no;
+            $student->firstname = $request->firstname;
+            $student->middlename = $request->middlename;
+            $student->lastname = $request->lastname;
+            $student->email = $request->email;
+            $student->departmentCode = $request->department;
+            $student->phone =$request->phone;
+            $student->course = $request->course;
+            $student->year = $request->year;
+            $student->avatar ='defaultAvatar.jpg';
+            $student->password = Hash::make("12345");
+            $student->save();
+
+            return back()->with('success',"student added to the database");
+        }catch(QueryException $e)
+        {
+            return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
+        }
     }
     
 }

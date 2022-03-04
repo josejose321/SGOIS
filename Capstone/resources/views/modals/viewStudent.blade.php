@@ -12,9 +12,10 @@
             <div class="w-100">
                 <div ><img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br></div>
             </div>
-          {{ $student->student_no }} <br>
-          {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
-          {{ $student->department->name }}
+          Student_no: {{ $student->student_no }} <br>
+          Name:{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
+          Department: @if ($student->department->name != null) {{ $student->department->name }} @endif <br>
+          Course: {{ $student->course ?? '' }}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
