@@ -15,7 +15,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Import File</button>
   </form>
-        <div class="container-fluid">
+        <div class="container">
               <div class="card bg-light">
                   <div class="card-header">
                     <h2>Students</h2> <br>
@@ -31,7 +31,6 @@
                           <tr>
                             <th scope="col" >STUDENT ID</th>
                             <th scope="col">NAME</th>
-                            <th scope="col">EMAIL</th>
                             <th scope="col">DEPARTMENT</th>
                             <th scope="col">PHONE</th>
                             <th scope="col">ACTION</th>
@@ -43,7 +42,6 @@
                           <tr>
                             <th scope="col"> {{ $student->student_no }}</th>
                             <th scope="col"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }} {{ $student->middlename ??'' }}</th>
-                            <th scope="col" >{{ $student->email }}</th>
                             <th scope="col"> @if ($student->department->name != null) {{ $student->department->name }} @endif</th>
                             <th scope="col">{{ $student->phone ?? '' }}</th>
                             <th scope="col">
@@ -59,20 +57,6 @@
                 <center>>>end</center>
               </div>
         </div>
-   
-
-   {{-- modal add student --}}
-   <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div id="modalAddStudent"></div>
-  </form>
- 
-  {{-- modal add application period --}}
-  <form id="periodform">
-    @csrf
-    <div id="modalPeriod"></div>
-  </form>
-
 
 {{-- message from server --}}
 @if (Session::has('success'))

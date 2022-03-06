@@ -28,14 +28,10 @@ class AdminController extends Controller
     {
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
         //return new WelcomMail();
-        $students = Student::all();
 
-
-        // $student = Student::find('18-08925');
-        // return $student;
 
         return view('Admin.index')
-        ->with(compact('students'))
+        ->with('students',Student::all())
         ->with('admin', Admin::find('18-08925'))
         ->with('departments', Department::all())
         ->with('courses',Course::all());
@@ -94,7 +90,9 @@ class AdminController extends Controller
     {
         return view('Admin.stats')
         ->with('students',Student::all())
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'))
+        ->with('departments', Department::all())
+        ->with('courses',Course::all());
         
     }
     public function store(Request $request)
@@ -192,25 +190,7 @@ class AdminController extends Controller
     }
     public function storeStudent(Request $request)
     {
-        // try{
-        //     $student = Student::create([
-        //         $request->student_no,
-        //         $request->firstname,
-        //         $request->middlename,
-        //         $request->lastname,
-        //         $request->email,
-        //         $request->department,
-        //         $request->phone,
-        //         $request->course,
-        //         $request->year,
-        //         'defaultAvatar.jpg',
-        //         Hash::make("12345")
-        //     ]);
-        //     return back()->with('success',"student added to the database");
-        // }catch(Exception $e)
-        // {
-        //     return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
-        // }
+
         try{
             $student = new Student();
             $student->student_no = $request->student_no;

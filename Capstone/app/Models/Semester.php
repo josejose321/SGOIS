@@ -16,9 +16,7 @@ class Semester extends Model
         "semesterCode",
         "sem",
         "year",
-        "period",
-        "created_at",
-        "updated_at"
+        "period"
     ];
     public function scholarships()
     {

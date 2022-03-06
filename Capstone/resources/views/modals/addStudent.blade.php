@@ -46,7 +46,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="id"> Course</label>
-                            <select class="form-select form-select-lg mb-3" aria-label="Default select example">
+                            <select class="form-select form-select-lg mb-3" name="course" aria-label="Default select example">
                                 <option selected value="">Select Course</option>
                                 @foreach ($courses as $course)
                                 <option value="{{ $course->name }}">{{ $course->name }}</option>
@@ -55,10 +55,10 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="id"> Department</label>
-                            <select class="form-select form-select-lg mb-3" aria-label="Default select example">
-                                <option selected value="">Select Department</option>
+                            <select class="form-select form-select-lg mb-3" name="department" aria-label="Default select example">
+                                <option selected value="">none</option>
                                 @foreach ($departments as $department)
-                                <option value="{{ $department->deparmentCode }}">{{ $department->name }}</option>
+                                <option value="{{ $department->departmentCode }}">{{ $department->name }}</option>
                                 @endforeach
                             </select>
                         </div>

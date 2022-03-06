@@ -16,8 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            // DepartmentSeeder::class,
+            // CourseSeeder::class,
+            // OfficeSeeder::class,
+            // CategorySeeder::class,
             // AdminSeeder::class,
-            // Employee::class,
+            // EmployeeSeeder::class,
             StudentSeeder::class
         ]);
     }
