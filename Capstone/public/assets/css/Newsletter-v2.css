@@ -1,0 +1,60 @@
+.newsletter8 {
+  font-family: "Montserrat", sans-serif;
+  color: #8d97ad;
+  font-weight: 300;
+}
+
+.newsletter8 h1, .newsletter8 h2, .newsletter8 h3, .newsletter8 h4, .newsletter8 h5, .newsletter8 h6 {
+  color: #3e4555;
+}
+
+.newsletter8 .subtitle {
+  color: #8d97ad;
+  line-height: 24px;
+}
+
+.newsletter8 a {
+  color: #263238;
+}
+
+.newsletter8 a:hover {
+  color: #316ce8;
+}
+
+.newsletter8 .blog-row h5 {
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.newsletter8 .text-themecolor {
+  color: #316ce8;
+}
+
+.newsletter8 .btn-danger-gradiant {
+  background: #ff4d7e;
+  background: -webkit-linear-gradient(legacy-direction(to right), #ff4d7e 0%, #ff6a5b 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#ff4d7e), to(#ff6a5b));
+  background: -webkit-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: -o-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+}
+
+.newsletter8 .btn-danger-gradiant:hover {
+  background: #ff6a5b;
+  background: -webkit-linear-gradient(legacy-direction(to right), #ff6a5b 0%, #ff4d7e 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#ff6a5b), to(#ff4d7e));
+  background: -webkit-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: -o-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
+}
+
+.newsletter8 .btn-md {
+  padding: 15px 45px;
+  font-size: 16px;
+}
+
+.newsletter8 .text-danger {
+  color: #ff4d7e !important;
+}
+

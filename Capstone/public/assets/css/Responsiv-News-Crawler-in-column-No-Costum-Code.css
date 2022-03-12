@@ -1,0 +1,35 @@
+.crawl-wrap {
+  /*position: fixed;*/
+  /*bottom: 0;*/
+  width: 100%;
+  overflow: hidden;
+  /*height: 4rem;*/
+  /*background-color: rgba(0, 0, 0, 0.9);*/
+  padding-left: 50%;
+  box-sizing: content-box;
+}
+
+.crawl-wrap .crawl {
+  display: inline-block;
+  /*height: 4rem;*/
+  /*line-height: 4rem;*/
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: crawl;
+  animation-name: crawl;
+  -webkit-animation-duration: 30s;
+  animation-duration: 30s;
+}
+
+.crawl-wrap .crawl__item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 2rem;
+  /*color: white;*/
+}
+

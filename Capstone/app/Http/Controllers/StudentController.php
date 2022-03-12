@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\StudentRequest;
 use App\Models\Office;
 use Illuminate\Http\Request;
@@ -107,7 +108,6 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->course = $request->course;
             $student->year = $request->year;
-            $student->updated_at = time();
             $student->save();
             return back()->with('successUpdate','successfully updated');
 

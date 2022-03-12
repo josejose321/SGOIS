@@ -19,11 +19,22 @@
               <div class="card bg-light">
                   <div class="card-header">
                     <h2>Students</h2> <br>
-                    <h3>TOTAL: {{ $students->count() }}</h3>
-                    <div class="input-group w-25 float-right">
-                      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                      <button type="button" class="btn btn-outline-primary">search</button>
-                    </div><br>
+                    <h3>TOTAL: {{ $total }}</h3>
+                    <div class="form-row w-50 float-right">
+                      <div class="col input-group mb-3 w-25">
+                        <select class="custom-select" id="sort">
+                          <option selected>Sort By:</option>
+                          <option value="1">Department</option>
+                          <option value="2">Course</option>
+                          <option value="3">Phone</option>
+                        </select>
+                      </div>
+                      <div class=" col input-group mb-3 w-25 float-right">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        <button type="button" class="btn btn-primary">search</button>
+                      </div>
+                    </div>
+                    
                   </div>
                 <div class="card-body">
                     <table class="table table-striped">
@@ -32,7 +43,6 @@
                             <th scope="col" >STUDENT ID</th>
                             <th scope="col">NAME</th>
                             <th scope="col">DEPARTMENT</th>
-                            <th scope="col">PHONE</th>
                             <th scope="col">ACTION</th>
                           </tr>
                         </thead>
@@ -43,7 +53,6 @@
                             <th scope="col"> {{ $student->student_no }}</th>
                             <th scope="col"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }} {{ $student->middlename ??'' }}</th>
                             <th scope="col"> @if ($student->department->name != null) {{ $student->department->name }} @endif</th>
-                            <th scope="col">{{ $student->phone ?? '' }}</th>
                             <th scope="col">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewStudent-{{ $student->student_no }}" >view</button> </th>
                           </tr>
@@ -52,12 +61,14 @@
                         </tbody>
                         
                       </table>
+                      <center>
+                        {!! $students->links() !!}
+                    </center>
                 </div>
-                <hr>
-                <center>>>end</center>
+                
               </div>
         </div>
-
+@include('modals.viewStudent')
 {{-- message from server --}}
 @if (Session::has('success'))
 <script>

@@ -21,11 +21,11 @@ class StudentFactory extends Factory
     {
         return [
             //
-        'student_no' => $this->faker->unique()->numerify('1#-#####') ,
+        'student_no' => $this->faker->unique()->numerify('##-#####')?? null,
         'firstname' =>$this->faker->firstName,
         'middlename' =>$this->faker->lastName,
         'lastname'=>$this->faker->lastName,
-        'email'=>$this->faker->unique()->safeEmail(),
+        'email'=>$this->faker->numerify('###').$this->faker->unique()->safeEmail(),
         'departmentCode' => ($this->department =$this->faker->randomElement(Department::all()->pluck('departmentCode'))),
         'phone' =>$this->faker->numerify('09#########'),
         'course' => $this->faker->randomElement(Department::find($this->department)->courses->pluck('name')),

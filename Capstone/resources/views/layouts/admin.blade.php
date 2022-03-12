@@ -75,7 +75,7 @@
       <a href="{{ route('admin.discounts') }}" type="button" class="btn btn-secondary">Discounts</a>
       <a href="{{ route('admin.stats') }}" type="button" class="btn btn-secondary">Statistics</a>
       <a href="#" type="button" class="btn btn-secondary">Reports</a>
-      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#announceModal">Annoucenment</button>
+      <button type="button" class="btn btn-secondary" id="announceBtn">Annoucenment</button>
       <button type="button" class="btn btn-secondary">Import Data</button>
       <button type="button" class="btn btn-secondary">log out</button>
      
@@ -88,16 +88,11 @@
     <div class="container">
         <footer class="py-3 my-4">
           <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            <li class="nav-item"><a href="{{ url('/admin') }}" class="nav-link px-2 text-muted">Back to Home</a></li>
           </ul>
           <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
         </footer>
       </div>
-@include('modals.viewStudent')
 @include('modals.addStudent')
 @include('modals.addSem')
 @include('modals.announce')
@@ -110,7 +105,12 @@
   $('#semBtn').on("click", function(e){
     e.preventDefault();
     console.log('hello');
-    $('#addSem').modal();
+    $('#semModal').modal();
+  })
+
+  $('#announceBtn').on('click',function(e){
+    e.preventDefault();
+    $('#announceModal').modal();
   })
 </script>
 </body>

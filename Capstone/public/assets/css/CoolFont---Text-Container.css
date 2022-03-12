@@ -1,0 +1,68 @@
+.container-padding {
+  padding: 100px 0px;
+}
+
+@media (max-width: 768px) {
+  .container-padding {
+    padding: 50px 0px;
+  }
+}
+
+.heading-2 {
+  font-size: 6rem;
+  text-decoration: underline;
+}
+
+.paragraph-text {
+  font-size: 2rem;
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+hr {
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  hr {
+    margin-bottom: 0;
+  }
+}
+
+.button {
+  font-family: 'Ubuntu Mono', monospace !important;
+  position: absolute;
+  background-color: #ffea01;
+  border: none;
+  border-radius: 0;
+  font-size: 2rem;
+  color: black;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .button {
+    font-family: 'Ubuntu Mono', monospace !important;
+    position: initial;
+    background-color: #ffea01;
+    border: none;
+    border-radius: 0;
+    font-size: 2rem;
+    color: black;
+    transition: 0.3s;
+  }
+}
+
+.button:hover {
+  font-family: 'Ubuntu Mono', monospace !important;
+  background-color: #ead600;
+  border: none;
+  border-radius: 0;
+  font-size: 2rem;
+  color: rgb(0,0,0);
+  transition: 0.3s;
+}
+
+.col-second {
+  margin-top: 2em;
+}
+

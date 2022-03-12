@@ -16,7 +16,9 @@
           Name:{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
           Department: @if ($student->department->name != null) {{ $student->department->name }} @endif <br>
           Course: {{ $student->course ?? '' }} <br>
-          Year/Grade: {{ $student->year ?? '' }}
+          Year/Grade: {{ $student->year ?? '' }} <br>
+          Contact: {{  $student->phone ?? '' }} <br>
+          Email: {{  $student->email ?? '' }}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

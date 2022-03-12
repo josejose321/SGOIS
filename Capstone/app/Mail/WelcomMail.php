@@ -19,12 +19,12 @@ class WelcomMail extends Mailable
 
      private $application;
 
-    public function __construct($application)
-    {
-        //
-        $this->application = $application;
+    // public function __construct($application)
+    // {
+    //     //
+    //     $this->application = $application;
 
-    }
+    // }
 
     /**
      * Build the message.
@@ -33,7 +33,7 @@ class WelcomMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.welcome')
-        ->with(compact('application'));
+        return $this->markdown('emails.welcome');
+        // ->with(compact('application'));
     }
 }

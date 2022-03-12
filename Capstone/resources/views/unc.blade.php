@@ -4,225 +4,254 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>UNC SGO IS</title>
+    <title>UNCSGOIS</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/css/Kalmansk-Regular.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/animated-services.css">
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Articale-List-With-Image-Zoom.css">
+    <link rel="stylesheet" href="assets/css/BreakingNews-1.css">
+    <link rel="stylesheet" href="assets/css/BreakingNews.css">
+    <link rel="stylesheet" href="assets/css/Button-Change-Text-on-Hover.css">
+    <link rel="stylesheet" href="assets/css/CoolFont---Text-Container.css">
+    <link rel="stylesheet" href="assets/css/Customizable-Background--Overlay.css">
+    <link rel="stylesheet" href="assets/css/Dark-NavBar-1.css">
+    <link rel="stylesheet" href="assets/css/Dark-NavBar-2.css">
+    <link rel="stylesheet" href="assets/css/Dark-NavBar.css">
+    <link rel="stylesheet" href="assets/css/Feature-Block-Image-Three-With-Full-Wide-Screen.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar.css">
+    <link rel="stylesheet" href="assets/css/HoverDownButton-1.css">
+    <link rel="stylesheet" href="assets/css/HoverDownButton.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/Map-Clean.css">
-    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
-    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="assets/css/homepage.css">
-
+    <link rel="stylesheet" href="assets/css/News-Cards.css">
+    <link rel="stylesheet" href="assets/css/Newsletter-v2.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Footer.css">
+    <link rel="stylesheet" href="assets/css/Responsiv-News-Crawler-in-column-No-Costum-Code.css">
+    <link rel="stylesheet" href="assets/css/Sakae-Simple-Section.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
 </head>
 
-<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
-    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="assets/img/new-university-of-nueva-caceres-ac-education-logo-1-220x240.png" style="height: 90px;width: 85px;"></a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">HOME</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">SCHOLARSHIP</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="#">SCHOLARSHIP</a><a class="dropdown-item" href="#">GRANTS</a><a class="dropdown-item" href="#">LOANS</a><a class="dropdown-item" href="#">DISCOUNTS</a></div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#">PROFILE</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">ABOUT US</a></li>
-                </ul><a href="{{ route('login') }}"><button class="btn btn-primary" type="button" style="background-color: var(--bs-red);">LOGIN</button></a>
+<body>
+    <!-- Start: Dark NavBar -->
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;color: #ffffff;background: var(--bs-gray-600);">
+            <div class="container-fluid"><a class="navbar-brand" href="{{ url('/') }}"><img src="assets/img/homepage%20pictures/unc-logo.png" style="width: 60px;height: 60px;">&nbsp;</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" style="color:#ffffff;" href="{{ url('') }}">&nbsp;HOME</a></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: var(--bs-body-bg);">SCHOLARSHIPS</a>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="#">SCHOLARSHIPS</a><a class="dropdown-item" href="#">GRANTS</a><a class="dropdown-item" href="#">LOANS</a><a class="dropdown-item" href="#">DISCOUNTS</a></div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"></li>
+                        <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-body-bg);">CONTACT US</a></li>
+                        <li class="nav-item"></li>
+                    </ul><a class="btn active border rounded-pill" role="button" style="background: var(--bs-red);color: var(--bs-body-bg);border-color: transparent;border-top-color: transparent;border-right-color: transparent;border-bottom-color: transparent;border-left-color: transparent;width: 80px;height: 35px;" href="{{ url('/admin') }}">LOGIN</a>
+                </div>
             </div>
-            <!-- Start: Contact Form Clean -->
-            <section class="contact-clean"></section>
-            <!-- End: Contact Form Clean -->
+        </nav>
+    </div><!-- End: Dark NavBar -->
+    <!-- Start: Customizable Background & Overlay -->
+    <div style="background-image:url(&quot;assets/img/login pictures/Dko7FBnVsAE3A8G.jpg&quot;);height:500px;background-position:center;background-size:cover;background-repeat:no-repeat;">
+        <!-- Start: Overlay -->
+        <div class="d-flex justify-content-center align-items-center" style="height: inherit;min-height: initial;width: 100%;position: absolute;left: 0;background: rgba(30,41,99,0.53);">
+            <!-- Start: Landing content -->
+            <div class="d-flex align-items-center order-5" style="height:200px;">
+                <div class="container">
+                    <h1 class="text-center" data-aos="fade-right" style="color: rgb(242,245,248);font-size: 56px;font-weight: bold;font-family: Roboto, sans-serif;">EVERYONE MAKES IT.&nbsp;</h1>
+                    <hr style="width: 100px;height: 3px;background: #ff0000;text-align: center;margin-left: 500px;">
+                    <p style="color: var(--bs-body-bg);text-align: center;"><br>Be an instrument in providing better tomorrows for the BICOLANO'S.&nbsp; Join UNC's Everybody Shares Project.&nbsp;<br><br><br></p>
+                </div>
+            </div><!-- End: Landing content -->
+            <section></section>
+        </div><!-- End: Overlay -->
+    </div><!-- End: Customizable Background & Overlay -->
+    <!-- Start: Articale List With Image Zoom -->
+    <div class="article-list">
+        <div class="container-fluid">
+            <!-- Start: Intro -->
+            <div class="intro"></div><!-- End: Intro -->
         </div>
-    </nav>
-    <header class="text-center text-white d-flex masthead" style="background-image: url('assets/img/header.jpg');opacity: 0.90;">
-        <div class="container my-auto">
+    </div><!-- End: Articale List With Image Zoom -->
+    <!-- Start: Articale List With Image Zoom -->
+    <div class="article-list">
+        <!-- Start: 2 Rows 1+4 Columns -->
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h1 class="text-uppercase" style="margin-top: 50px;"><strong>EVERYONE MAKES IT.</strong></h1>
-                    <hr style="background-color: var(--bs-red);border-color: var(--bs-red);">
-                </div>
-            </div>
-            <div class="col-lg-8 mx-auto">
-                <p class="text-faded mb-5">Be an instrument in providing better tomorrows for the BICOLANO'S. Join UNC's Everybody Shares Project.&nbsp;</p><a class="btn btn-primary btn-xl" role="button" href="#services" style="background-color: var(--bs-red);">view more details</a>
-            </div>
-        </div>
-    </header>
-    <section id="about" class="bg-primary" style="color: var(--bs-red);border-color: var(--bs-red);">
-        <div class="container">
-            <div class="row">
-                <div class="col offset-lg-8 text-center mx-auto">
-                    <h2 class="text-white section-heading">UNIVERSITY OF NUEVA CACERES SCHOLARSHIP AND GRANTS&nbsp;</h2>
-                    <hr class="light my-4">
-                    <p class="text-faded mb-4">UNC invites the students, employees, alumni, private companies, friends, parents and foundations to take part in this project. Your generosity will inspire hope among our student beneficiaries who will achieve their dream profession
-                        through your help.&nbsp;</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">AVAILABLE SCHOLARSHIPS</h2>
-                    <hr class="my-4">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-dollar fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true" style="background-image: var(--bs-red);"></i>
-                        <h3 class="mb-3">ELEMENTARY&nbsp;</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-child fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">JUNIOR HIGH SCHOOL&nbsp;</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-child fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">SENIOR HIGH SCHOOL</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">COLLEGE</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">GRADUATE SCHOOL AND LAW</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">DISCOUNTS</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
-                        <h3 class="mb-3">GOVERNMENT GRANTS</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
-                        <h3 class="mb-3">EDUCATIONAL LOAN</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <header></header>
-        <!-- Start: Projects Horizontal -->
-        <section class="projects-horizontal">
-            <div class="container">
-                <!-- Start: Intro -->
-                <div class="intro">
-                    <h2 class="text-center">GET IN TOUCH</h2>
-                </div>
-                <!-- End: Intro -->
-                <!-- Start: Projects -->
-                <div class="row projects">
-                    <div class="col-sm-6 item">
-                        <div class="row">
-                            <div class="col">
-                                <h3 class="name">PHONE</h3>
+                <div class="col-md-12">
+                    <h2 class="text-center" style="color: var(--bs-red);">AVAILABLE SCHOLARSHIPS</h2>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Modal Title</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>The content of your modal.</p>
+                                </div>
+                                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
                             </div>
                         </div>
-                        <p class="description">0 (800) 1234567<br><br><br></p>
                     </div>
-                    <div class="col-sm-6 item">
-                        <div class="row">
-                            <div class="col">
-                                <h3 class="name">EMAIL</h3>
-                            </div>
+                    <hr style="width: 100px;height: 3px;text-align: center;background: #ff0000;color: var(--bs-red);margin-left: 500px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">SCHOLARSHIPS&nbsp; &nbsp; &nbsp;&nbsp;</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">ELEMENTARY&nbsp; DEPARTMENT</a>
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">JUNIOR HIGH SCHOOL DEPARTMENT</a>
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">SENIOR HIGH SCHOOL DEPARTMENT</a>
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">COLLEGE DEPARTMENT</a>
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">GRADUATE SCHOOL AND LAW</a>
+                            <div class="dropdown-divider"></div>
                         </div>
-                        <p class="description">info@unc.edu.ph</p>
-                    </div>
-                    <div class="col-sm-6 item">
-                        <div class="row">
-                            <div class="col">
-                                <h3 class="name">ADDRESS</h3>
-                            </div>
-                        </div>
-                        <p class="description">J.Hernandez Ave., Naga City Camarines Sur. 4400</p>
-                    </div>
-                    <div class="col-sm-6 item">
-                        <div class="row">
-                            <div class="col">
-                                <h3 class="name">WORKING HOURS&nbsp;</h3>
-                            </div>
-                        </div>
-                        <p class="description">9:00AM - 8:00PM&nbsp;</p>
                     </div>
                 </div>
-                <!-- End: Projects -->
+                <div class="col-md-3">
+                    <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">GRANTS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">EDUCATION SERVICE CONTRACTING (ESC) SCHEME FOR JUNIOR HIGH SCHOOL</a>
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">VOUCHER SYSTEM FOR SENIOR HIGH SCHOOL</a>
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">TERTIARY EDUCATION SUBSIDY (TES)</a>
+                            <a class="dropdown-item" href="#" style="font-size: 20px;">COMMISION ON HIGHER EDUCATION SCHOLARSHIP PROGRAMS (CSPs)</a></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">LOANS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</button>
+                        <div class="dropdown-menu" style="font-size: 20px;">
+                            <a class="dropdown-item" href="#">PGMA HELP</a>
+                            <a class="dropdown-item" href="#">SAFE 4SR</a>
+                            <a class="dropdown-item" href="#">BRIDGE LOAN</a></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">DISCOUNTS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</button>
+                        <div class="dropdown-menu" style="font-size: 20px;">
+                            <a class="dropdown-item" href="#">CASH PAYMENT</a>
+                            <a class="dropdown-item" href="#">MEMBERS OF THE SAME FAMILY (MOSF)</a>
+                            <a class="dropdown-item" href="#">ALUMNI DISCOUNT</a>
+                            <a class="dropdown-item" href="#">LOYALTY DISCOUNT</a>
+                            <a class="dropdown-item" href="#">EMPLOYEE BENEFIT</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-        <!-- End: Projects Horizontal -->
-        <!-- Start: Footer Dark -->
-        <footer class="footer-dark">
-            <div class="container">
+        </div><!-- End: 2 Rows 1+4 Columns -->
+        <div class="container-fluid">
+            <!-- Start: Intro -->
+            <div class="intro"></div><!-- End: Intro -->
+            <div class="w-100"></div><!-- Start: Articles -->
+            <div class="row articles">
+                <div class="col-sm-6 col-md-4 item">
+                    <!-- Start: Zoom in Frame -->
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/homepage%20pictures/Company-Mission-Statement-1.jpg"></div><!-- End: Zoom in Frame -->
+                    <h3 class="name">OUR MISSION</h3>
+                    <p class="description">Our mission is to expand opportunities for every Bicolano everywhere and prepare them for a porposeful life, by providing empowering outcome-based education and a nurturing learning environment.</p><a class="action" href="#"></a>
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <!-- Start: Zoom in Frame -->
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/homepage%20pictures/BLOG_how-to-motivate-students.jpg"></div><!-- End: Zoom in Frame -->
+                    <h3 class="name">OUR VISION</h3>
+                    <p class="description">Our vision is to be the top university of choice for Bicolanos everywhere. We will nurture our students through empowering, outcome-based education, to help them become purposeful, productive, and future-ready human beings who will contribute to the sustainable development of Bicol and better tomorrows for all.&nbsp;</p><a class="action" href="#"></a>
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <!-- Start: Zoom in Frame -->
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/homepage%20pictures/Success.jpg"></div><!-- End: Zoom in Frame -->
+                    <h3 class="name">WE CHAMPION EXCELLENCE</h3>
+                    <p class="description">We are also among the select college schools in Bicol that offer equally excellent academic programs for pre-school, elementary, and high school students. In addition, we are majority-owned by AC Education, the education arm of the Ayala Group. AC Education helps us introduce innovative learning methods that will further boost the quality of our course offerings.<br><br></p><a class="action" href="#"></a>
+                </div>
+            </div><!-- End: Articles -->
+        </div>
+        <div class="container-fluid">
+            <!-- Start: Feature Block Image Three With Full Wide Screen -->
+            <section style="padding-top: 40px;padding-bottom: 40px;background: var(--bs-gray-600);">
+                <!-- Start: Feature - Block Image Three - Full Wide Screen -->
+                <section style="background-color: #efefef;padding-top: 40px;padding-bottom: 40px;">
+                    <p style="text-align: center;font-size: 35px;color: var(--bs-red);">DEVELOPERS PROFILE</p>
+                    <h1></h1>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-11 col-md-12 col-lg-4 col-xl-4">
+                                <h1 class="text-center" style="font-family: Oswald, sans-serif;background-color: #efefef;margin: 0px;font-size: 38px;padding-top: 20px;"><img class="rounded-circle" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" style="width: 100px;"><br></h1>
+                                <h1 style="text-align: center;font-size: 15px;font-weight: bold;">JOSE V. EVASCO II</h1>
+                                <p class="text-start" style="background-color: #efefef;padding: 10px;margin: 0px;">To deliver High Quality, Cost Effective service &amp; products to our clients by employing and supporting a motivated, flexible and focused team and to actively participate in building &amp; developing an Engineering Business Enterprise based on sound engineering principles coupled with ethical business practices.<br></p>
+                            </div>
+                            <div class="col-sm-11 col-md-12 col-lg-4 col-xl-4">
+                                <h1 class="text-center" style="font-family: Oswald, sans-serif;background-color: #efefef;margin: 0px;font-size: 38px;padding-top: 20px;"><img class="rounded-circle" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" style="width: 100px;"><br></h1>
+                                <header></header>
+                                <header></header>
+                                <h1 style="text-align: center;font-size: 15px;font-weight: bold;">MAR ROBIN V. LUMBIS</h1>
+                                <p class="text-start" style="background-color: #efefef;padding: 10px;margin: 0px;">Committed in designing a new concept of living, to build perpetual trust with clients and providing people the essence of what they need: a personalized ideal life and to be leading provider of quality Electro Mechanical and Engineering services across the globe.<br></p>
+                            </div>
+                            <div class="col-sm-11 col-md-12 col-lg-4 col-xl-4">
+                                <h1 class="text-center" style="font-family: Oswald, sans-serif;background-color: #efefef;margin: 0px;font-size: 20px;padding-top: 20px;"><img class="rounded-circle" src="assets/img/homepage%20pictures/IMG_2166.jpg" style="width: 100px;height: 100px;"><br></h1>
+                                <h1 style="text-align: center;font-size: 15px;font-weight: bold;">ANGELINE R. REMOLACIO</h1>
+                                <p class="text-start" style="background-color: #efefef;padding: 10px;margin: 0px;">We base our management philosophy on the highest quality standards and have implemented a phased review process to maintain and enhance the quality of our products and services.<br></p>
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- End: Feature - Block Image Three - Full Wide Screen -->
+            </section><!-- End: Feature Block Image Three With Full Wide Screen -->
+        </div>
+    </div><!-- End: Articale List With Image Zoom -->
+    <div class="col">
+        <div class="container-fluid">
+            <!-- Start: Pretty Footer -->
+            <footer style="background: var(--bs-gray-600);">
                 <div class="row">
-                    <!-- Start: Services -->
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
+                    <div class="col-sm-6 col-md-4 footer-navigation">
+                        <h3><a href="#"><span></span></a></h3><img src="assets/img/student%20dashboard%20pictures/unc-logo.png" style="width: 100px;height: 100px;margin-bottom: 50px;text-align: center;">
+                        <p class="links"><a href="#">Home</a><strong> · </strong><a href="#">Scholarships</a><strong> ·&nbsp;</strong><a href="#">About</a><strong> · </strong><a href="#"></a></p>
                     </div>
-                    <!-- End: Services -->
-                    <!-- Start: About -->
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
+                    <div class="col-sm-6 col-md-4 footer-contacts">
+                        <div><span class="fa fa-map-marker footer-contacts-icon" style="background: var(--bs-gray-700);"> </span><label class="form-label">J.Hernandez Ave., Naga City&nbsp;</label><label class="form-label">4400</label></div>
+                        <div><i class="fa fa-phone footer-contacts-icon" style="background: var(--bs-gray-700);"></i><label class="form-label">+6399561301775</label></div>
+                        <div><i class="fa fa-envelope footer-contacts-icon" style="background: var(--bs-gray-700);"></i><label class="form-label">info@unc.edu.ph</label>
+                            <p> </p>
+                        </div>
                     </div>
-                    <!-- End: About -->
-                    <!-- Start: Footer Text -->
-                    <div class="col-md-6 item text">
-                        <h3>University of Nueva Caceres Scholarship and Grants</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat deserunt aperiam asperiores exercitationem laborum quos at quibusdam eligendi, pariatur, dicta doloribus corporis! Labore repudiandae nesciunt deleniti quod, voluptas corporis perferendis!
-                            Pariatur, ut? Libero in, ipsa repudiandae impedit et adipisci eius optio repellat eveniet obcaecati nulla praesentium voluptatibus tempora corrupti velit voluptatum. Nobis perferendis neque tempore modi quaerat, accusamus quam voluptas!
-                            Quis asperiores repellendus dignissimos incidunt dolores. Libero illo unde officia hic minima architecto, dolorem eveniet iusto facilis ducimus in necessitatibus cumque optio odio veritatis! Eligendi quod nemo laborum! Tenetur, suscipit.
-                        </p>
+                    <div class="col-md-4 footer-about">
+                        <h4 style="text-align: center;margin-top: 22px;font-size: 16px;">UNC - SCHOLARSHIP AND GRANTS</h4>
+                        <p style="text-align: center;color: #eef4f7;">"EVERYONE MAKES IT".<br><br>Be an instrument in providing better tomorrows for the BICOLANO'S.&nbsp;Join UNC's Everybody Shares Project.&nbsp;<br><br></p>
+                        <div class="social-links social-icons"><a href="#" style="background: var(--bs-gray-700);"><i class="fa fa-facebook"></i></a><a href="#" style="background: var(--bs-gray-700);"><i class="fa fa-twitter"></i></a></div>
                     </div>
-                    <!-- End: Footer Text -->
-                    <!-- Start: Social Icons -->
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
-                    <!-- End: Social Icons -->
                 </div>
-                <!-- Start: Copyright -->
-                <p class="copyright">University of Nueva Caceres Scholarship and Grants © 2022</p>
-                <!-- End: Copyright -->
-            </div>
-        </footer>
-        <!-- End: Footer Dark --><strong></strong>
-        <!--Comment-->
-        <!--Comment-->
-    </section>
-    <section id="portfolio" class="p-0"></section>
+                <hr>
+                <p style="text-align: center;font-size: 14px;">University of Nueva Caceres Scholarship and Grants Information System. Copyright&nbsp;© 2022. All Rights Reserved.&nbsp;<br><br><br><br><br></p>
+            </footer><!-- End: Pretty Footer -->
+        </div>
+    </div><!-- Start: Sakae Simple Section -->
+    <div style="margin: 50px;"></div><!-- End: Sakae Simple Section -->
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="assets/js/creative.js"></script>
+    <script src="assets/js/BreakingNews.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
+    <script src="assets/js/theme.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'Kalmansk-Regular';
+	src: url(../../assets/fonts/Kalmansk-Regular.eot) format('embedded-opentype'),
+	url(../../assets/fonts/Kalmansk-Regular.eot) format('embedded-opentype'),
+	url(../../assets/fonts/Kalmansk-Regular.svg) format('svg'),
+	url(../../assets/fonts/Kalmansk-Regular.ttf) format('truetype'),
+	url(../../assets/fonts/Kalmansk-Regular.woff) format('woff'),
+	url(../../assets/fonts/Kalmansk-Regular.woff2) format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}

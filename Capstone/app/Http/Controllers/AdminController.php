@@ -23,15 +23,27 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
-    //
+    private $data;
+
+
+    public function __construct()
+    {
+        $this->data = [
+            'total'=> Student::count(),
+            'departments' => Department::all(),
+            'courses'=> Course::all(),
+            'students'=>Student::simplePaginate(20)
+        ];
+    }
     public function index()
     {
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
-        //return new WelcomMail();
+        // return new WelcomMail();
 
 
         return view('Admin.index')
-        ->with('students',Student::all())
+        ->with('students',Student::simplePaginate(20))
+        ->with('total',Student::count())
         ->with('admin', Admin::find('18-08925'))
         ->with('departments', Department::all())
         ->with('courses',Course::all());
@@ -165,6 +177,7 @@ class AdminController extends Controller
         return back()->with('errorImport','Select File First!');
     }
 
+    
     public function updateAvatar(Request $request, Admin $admin)
     {
         try
