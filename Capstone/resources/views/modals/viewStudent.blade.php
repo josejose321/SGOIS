@@ -14,7 +14,7 @@
             </div>
           Student_no: {{ $student->student_no }} <br>
           Name:{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
-          Department: @if ($student->department->name != null) {{ $student->department->name }} @endif <br>
+          Department: @if ($student->department->exists()) {{ $student->department->name }} @else '' @endif <br>
           Course: {{ $student->course ?? '' }} <br>
           Year/Grade: {{ $student->year ?? '' }} <br>
           Contact: {{  $student->phone ?? '' }} <br>

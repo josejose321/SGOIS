@@ -32,8 +32,21 @@ class AdminController extends Controller
             'total'=> Student::count(),
             'departments' => Department::all(),
             'courses'=> Course::all(),
-            'students'=>Student::simplePaginate(20)
+            'students'=>Student::simplePaginate(20),
+            'admin'=>Admin::find('18-08925'),
+            'totalScholarships'=> 45,
+            'totalLoans'=> Loan::count(),
+            'totalDiscounts'=> Discount::count(),
+            'totalOthers'=> Scholarship::count(),
         ];
+    }
+    public function home()
+    {
+        return view('unc')
+        ->with('totalScholarships',Scholarship::count())
+        ->with('totalLoans',Loan::count())
+        ->with('totalDiscounts',Discount::count())
+        ->with('totalOthers',Scholarship::count());
     }
     public function index()
     {
@@ -42,11 +55,7 @@ class AdminController extends Controller
 
 
         return view('Admin.index')
-        ->with('students',Student::simplePaginate(20))
-        ->with('total',Student::count())
-        ->with('admin', Admin::find('18-08925'))
-        ->with('departments', Department::all())
-        ->with('courses',Course::all());
+        ->with($this->data);
     }
     public function showScholarships()
     {
@@ -54,14 +63,17 @@ class AdminController extends Controller
         ->with('students',Student::all())
         ->with('admin',Admin::find('18-08925'))
         ->with('departments', Department::all())
-        ->with('courses',Course::all());
+        ->with('courses',Course::all())
+        ->with('total', Student::count());
     }
     public function showProfile()
     {
         return view('Admin.profile')
         ->with('admin',Admin::find('18-08925'))
+        ->with('students',Student::all())
         ->with('departments', Department::all())
-        ->with('courses',Course::all());
+        ->with('courses',Course::all())
+        ->with('total', Student::count());
     }
     public function showLoans()
     {
@@ -70,7 +82,8 @@ class AdminController extends Controller
         ->with('students',Student::all())
         ->with('admin',Admin::find('18-08925'))
         ->with('departments', Department::all())
-        ->with('courses',Course::all());
+        ->with('courses',Course::all())
+        ->with('total', Student::count());
     }
     public function showDiscounts()
     {
@@ -79,16 +92,13 @@ class AdminController extends Controller
         ->with('students',Student::all())
         ->with('admin',Admin::find('18-08925'))
         ->with('departments', Department::all())
-        ->with('courses',Course::all());
+        ->with('courses',Course::all())
+        ->with('total', Student::count());
     }
     public function showStudents()
     {
         return view('Admin.student')
-        ->with('students',Student::all())
-        ->with('departments',Department::all())
-        ->with('admin',Admin::find('18-08925'))
-        ->with('departments', Department::all())
-        ->with('courses',Course::all());
+        ->with($this->data);
     }
     public function show(Admin $admin)
     {
@@ -201,29 +211,38 @@ class AdminController extends Controller
         $file->storeAs('public/avatar/',$path);
         return $path;
     }
-    public function storeStudent(Request $request)
+    public function storeStudent(StudentRequest $request)
     {
 
-        try{
-            $student = new Student();
-            $student->student_no = $request->student_no;
-            $student->firstname = $request->firstname;
-            $student->middlename = $request->middlename;
-            $student->lastname = $request->lastname;
-            $student->email = $request->email;
-            $student->departmentCode = $request->department;
-            $student->phone =$request->phone;
-            $student->course = $request->course;
-            $student->year = $request->year;
-            $student->avatar ='defaultAvatar.jpg';
-            $student->password = Hash::make("12345");
-            $student->save();
+        // try{
+        //     $student = new Student();
+        //     $student->student_no = $request->student_no;
+        //     $student->firstname = $request->firstname;
+        //     $student->middlename = $request->middlename;
+        //     $student->lastname = $request->lastname;
+        //     $student->email = $request->email;
+        //     $student->departmentCode = $request->department;
+        //     $student->phone =$request->phone;
+        //     $student->course = $request->course;
+        //     $student->year = $request->year;
 
-            return back()->with('success',"student added to the database");
-        }catch(QueryException $e)
-        {
-            return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
-        }
+        //     $student->avatar ='defaultAvatar.jpg';
+        //     $student->password = Hash::make("12345");
+        //     $student->save();
+
+        //     return back()->with('success',"student added to the database");
+        // }catch(QueryException $e)
+        // {
+        //     return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
+        // }
+        // if($request->fails())
+        // {
+        //     return back()->with('error','Failed to Add Record');
+        // }
+        $student = Student::create($request->validated());
+        $student->password = Hash::make($student->student_no);
+        $student->save();
+        return back()->with('success',"student added to the database");
     }
     
 }

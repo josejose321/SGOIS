@@ -25,12 +25,12 @@ class StudentRequest extends FormRequest
     {
         return [
             //
-            'student_no' => 'required',
+            'student_no' => 'required|max:8',
             'firstname' => 'required',
             'middlename'=> 'required',
             'lastname' => 'required',
             'email' => 'required',
-            'department'=>'required',
+            'departmentCode'=>'required',
             'phone'=>'required',
             'course'=>'required',
             'year'=>'required'

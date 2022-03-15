@@ -24,7 +24,7 @@ class LoanTable extends Migration
             $table->string('discount');
             $table->string('requirement');
             $table->string('photo');
-            $table->string('officeVerification')->default('pending');
+            $table->string('officeVerification')->default('Pending');
             $table->string('adminVerification')->default('Pending');
             $table->string('remarks');
             $table->timestamps();

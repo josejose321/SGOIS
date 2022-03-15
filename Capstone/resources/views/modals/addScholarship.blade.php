@@ -30,8 +30,8 @@
                   
                   <div class="col-4">
                     <div class="form-group">
-                      <label for="semester"> S/Y 2022 2ndsem</label>
-                      <input type="text" name="semester" id="id" class="form-control" placeholder="Student No" readonly value="year 2022 2nd semester">
+                      <label for="semester">Semester</label>
+                      <input type="text" name="semester" id="id" class="form-control" placeholder="Student No" readonly value="{{ $sem->semesterCode ?? '' }}">
                     </div>
                   </div>
                 </div>
@@ -39,36 +39,27 @@
                   <div class="col-4">
                     <div class="form-group">
                         <label for="scholarship">Scholarship Office</label>
-                        <select class="form-select" name="office" id="office" aria-label="Default select example">
+                        <select class="form-select form-select-lg mb-3" name="office" id="office" aria-label="Default select example">
                           @foreach ($offices as $office)
-                              <option value="{{ $office->officeCode }}">{{ $office->officeCode }} - {{ $office->name }}</option>
+                              <option value="{{ $office->officeCode }}">{{ $office->name }}</option>
                           @endforeach
                         </select>
                     </div>
                   </div>
-
+                  
                 </div>
-                <div class="row">
-                  <div class="col-6">
-                    <label for="Scholarship">Category</label>
-                    <select class="form-select" name="scholarhipOffice" id="scholarhip" aria-label="Default select example">
-                      <option selected>Categories</option>
-                      <option value="CS">Varsity-Sepak takraw</option>
-                      <option value="EA">Varsity-Basketball</option>
-                      <option value="CBA">Varsity-Taekwondo</option>
-                    </select>
-                  </div>
+                <div class="form-row">
                   <div class="col-4">
-                    <label for="Scholarship">Semester</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option>Category</option>
-                      <option value="SportsDev">Sports Development Office</option>
-                      <option value="Band">Band</option>
-                      <option value="Loan">Loan</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select class="form-select form-select-lg mb-3" name="category" id="category" aria-label="Default select example">
+                          @foreach ($categories as $category)
+                              <option value="{{ $category->categoryCode }}">{{ $category->name }}</option>
+                          @endforeach
+                        </select>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
                   
                   <div class="col-4">
                     <label for="discount"> Discount</label>

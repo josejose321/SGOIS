@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){
-    return view('unc');
-});
+Route::get('/', [AdminController::class,'home'])->name('admin.home');
 Route::get('test', function(){
 
     return view('test');
@@ -92,11 +90,13 @@ Route::prefix('student')
     ->group(function(){
         Route::post('/{student}/avatar','updateAvatar')->name('.updateAvatar');
         Route::post('/{student}/update','updateProfile')->name('.studentUpdate');
+        Route::get('/scholarships','showScholarships')->name('.scholarships');
 
         Route::get('/{student}', 'show')->name('.show');
         Route::get('/{student}/edit','edit')->name('.edit');
         Route::get('/', 'index')->name('.index');
         Route::post('/', 'store')->name('.store');
+        
     });
 
 

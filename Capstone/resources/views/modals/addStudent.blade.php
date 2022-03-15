@@ -10,7 +10,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="id"> Student Number</label>
-                            <input type="text" name="student_no" class="form-control" placeholder="Student No">
+                            <input type="text" name="student_no" class="form-control" placeholder="Student No" maxlength="8">
                         </div>
                     </div>
                     <div class="form-row">
@@ -34,11 +34,11 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="id"> Phone number</label>
-                            <input type="text" name="phone" class="form-control" placeholder="Phone number">
+                            <input type="text" name="phone" class="form-control" placeholder="Phone number"  maxlength="11">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="id">Year</label>
-                            <input type="text" name="year" class="form-control" placeholder="Year">
+                            <label for="id">Year/Grade</label>
+                            <input type="text" name="year" class="form-control" placeholder="Year/Grade">
                         </div>
                         
                         
@@ -46,8 +46,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="id"> Course</label>
-                            <select class="form-select form-select-lg mb-3" name="course" aria-label="Default select example">
-                                <option selected value="">Select Course</option>
+                            <select class="form-select form-select-md mb-3" name="course" aria-label="Default select example">
+                                <option selected>Select Course</option>
                                 @foreach ($courses as $course)
                                 <option value="{{ $course->name }}">{{ $course->name }}</option>
                                 @endforeach
@@ -55,8 +55,8 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="id"> Department</label>
-                            <select class="form-select form-select-lg mb-3" name="department" aria-label="Default select example">
-                                <option selected value="">none</option>
+                            <select class="form-select form-select-md mb-3" name="departmentCode" aria-label="Default select example">
+                                <option selected>Select Department</option>
                                 @foreach ($departments as $department)
                                 <option value="{{ $department->departmentCode }}">{{ $department->name }}</option>
                                 @endforeach
@@ -71,4 +71,5 @@
                 </div>
             </div>
         </div>
+    </div>
   </form>

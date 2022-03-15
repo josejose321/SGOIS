@@ -1,21 +1,86 @@
-@extends('layouts.admin')
+@extends('layouts.admin1')
 
 @section('title','Admin Dashboard')
 @section('content')
     
-  
-  
-  <hr>
+<div class="row">
+  <div class="col-md-6 col-xl-3 mb-4">
+      <div class="card shadow border-start-primary py-2">
+          <div class="card-body" style="background-color: rgb(185, 93, 93)">
+              <div class="row align-items-center no-gutters">
+                  <div class="col me-2">
+                      <div class="text-uppercase text-warning fw-bold text-xs mb-1">
+                          <center><h5><strong>TOTAL SCHOLARHIPS</strong></h5></center>
+                          <center><h5><strong>{{ $totalScholarships ?? 0 }}</strong></h5></center>
+                      </div>
+                  </div>
+                  <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-6 col-xl-3 mb-4">
+      <div class="card shadow border-start-success py-2">
+          <div class="card-body"style="background-color: rgb(150, 71, 71);">
+              <div class="row align-items-center no-gutters">
+                  <div class="col me-2">
+                      <div class="text-uppercase text-warning fw-bold text-xs mb-1">
+                          <center><h5><strong>TOTAL LOANS</strong></h5></center>
+                          <center><h5><strong>{{ $totalLoans ?? 0 }}</strong></h5></center>
+                      </div>
+                  </div>
+                  <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-6 col-xl-3 mb-4">
+      <div class="card shadow border-start-info py-2">
+          <div class="card-body" style="background-color: rgb(185, 93, 93)">
+              <div class="row align-items-center no-gutters">
+                  <div class="col me-2">
+                      <div class="text-uppercase text-warning fw-bold text-xs mb-1">
+                          <center><h5><strong>TOTAL DISCOUNTS</strong></h5></center>
+                          <center><h5><strong>{{ $totalDiscounts ?? 0 }}</strong></h5></center>
+                      </div>
+                  </div>
+                  <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-6 col-xl-3 mb-4">
+      <div class="card shadow border-start-warning py-2">
+          <div class="card-body" style="background-color: rgb(150, 71, 71);">
+              <div class="row align-items-center no-gutters">
+                  <div class="col me-2">
+                      <div class="text-uppercase text-warning fw-bold text-xs mb-1">
+                          <center><h5><strong>OTHER SCHOLARHIPS</strong></h5></center>
+                          <center><h5><strong>{{ $totalOthers ?? 0 }}</strong></h5></center>
+                      </div>
+                  </div>
+                  <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+    <div class="row">
+      <div class="col">
+        <form action="{{ url('/admin/import') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Example file input</label>
+            <input type="file" class="form-control-file" name="file">
+          </div>
+          <button type="submit" class="btn btn-primary">Import File</button>
+        </form>
+      </div>
+      <div class="col">
 
-  <form action="{{ url('/admin/import') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-      <label for="exampleFormControlFile1">Example file input</label>
-      <input type="file" class="form-control-file" name="file">
-    </div>
-    <button type="submit" class="btn btn-primary">Import File</button>
-  </form>
-        <div class="container">
+      </div>
+  </div>
+        <div class="container-fluid">
               <div class="card bg-light">
                   <div class="card-header">
                     <h2>Students</h2> <br>
@@ -48,11 +113,12 @@
                         </thead>
 
                         <tbody>
+                          
                           @foreach ($students as $student)
                           <tr>
                             <th scope="col"> {{ $student->student_no }}</th>
                             <th scope="col"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }} {{ $student->middlename ??'' }}</th>
-                            <th scope="col"> @if ($student->department->name != null) {{ $student->department->name }} @endif</th>
+                            <th scope="col"> {{ $student->departmentCode ?? '' }}</th>
                             <th scope="col">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewStudent-{{ $student->student_no }}" >view</button> </th>
                           </tr>
