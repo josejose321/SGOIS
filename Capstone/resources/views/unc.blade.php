@@ -43,10 +43,10 @@
     <link rel="stylesheet" href="assets/css/Table-With-Search.css">
 </head>
 
-<body>
+<body style="background-color: ">
     <!-- Start: Dark NavBar -->
     <div>
-        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;color: #ffffff;background: var(--bs-gray-600);">
+        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="background-color: #2C394B">
             <div class="container-fluid"><a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" style="width: 60px;height: 60px;">&nbsp;</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
@@ -94,9 +94,9 @@
         </div>
     </div><!-- End: Articale List With Image Zoom -->
     <!-- Start: Articale List With Image Zoom -->
-    <div class="article-list">
+    <div class="article-list" style="background-color: #B4A5A5">
         <!-- Start: 2 Rows 1+4 Columns -->
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="text-center" style="color: var(--bs-red);">AVAILABLE SCHOLARSHIPS</h2>
@@ -159,7 +159,7 @@
                 </div>
             </div>
         </div><!-- End: 2 Rows 1+4 Columns -->
-        <div class="container-fluid">
+        <div class="container-fluid text-danger">
             <!-- Start: Intro -->
             <div class="intro"></div><!-- End: Intro -->
             <div class="w-100"></div><!-- Start: Articles -->
@@ -168,19 +168,19 @@
                     <!-- Start: Zoom in Frame -->
                     <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="{{ asset('unc1.jpg') }}"></div><!-- End: Zoom in Frame -->
                     <h3 class="name">OUR MISSION</h3>
-                    <p class="description">Our mission is to expand opportunities for every Bicolano everywhere and prepare them for a porposeful life, by providing empowering outcome-based education and a nurturing learning environment.</p><a class="action" ></a>
+                    <p class="description text-danger">Our mission is to expand opportunities for every Bicolano everywhere and prepare them for a porposeful life, by providing empowering outcome-based education and a nurturing learning environment.</p><a class="action" ></a>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
                     <!-- Start: Zoom in Frame -->
                     <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="{{ asset('unc2.jpg') }}"></div><!-- End: Zoom in Frame -->
                     <h3 class="name">OUR VISION</h3>
-                    <p class="description">Our vision is to be the top university of choice for Bicolanos everywhere. We will nurture our students through empowering, outcome-based education, to help them become purposeful, productive, and future-ready human beings who will contribute to the sustainable development of Bicol and better tomorrows for all.&nbsp;</p><a class="action" href="#"></a>
+                    <p class="description text-danger">Our vision is to be the top university of choice for Bicolanos everywhere. We will nurture our students through empowering, outcome-based education, to help them become purposeful, productive, and future-ready human beings who will contribute to the sustainable development of Bicol and better tomorrows for all.&nbsp;</p><a class="action" href="#"></a>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
                     <!-- Start: Zoom in Frame -->
                     <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="{{ asset('unc3.jpg') }}"></div><!-- End: Zoom in Frame -->
                     <h3 class="name">WE CHAMPION EXCELLENCE</h3>
-                    <p class="description">We are also among the select college schools in Bicol that offer equally excellent academic programs for pre-school, elementary, and high school students. In addition, we are majority-owned by AC Education, the education arm of the Ayala Group. AC Education helps us introduce innovative learning methods that will further boost the quality of our course offerings.<br><br></p><a class="action" href="#"></a>
+                    <p class="description text-danger">We are also among the select college schools in Bicol that offer equally excellent academic programs for pre-school, elementary, and high school students. In addition, we are majority-owned by AC Education, the education arm of the Ayala Group. AC Education helps us introduce innovative learning methods that will further boost the quality of our course offerings.<br><br></p><a class="action" href="#"></a>
                 </div>
             </div><!-- End: Articles -->
         </div>
@@ -240,9 +240,9 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div>
             <!-- Start: Feature Block Image Three With Full Wide Screen -->
-            <section style="padding-top: 40px;padding-bottom: 40px;background: var(--bs-gray-600);">
+            <section >
                 <!-- Start: Feature - Block Image Three - Full Wide Screen -->
                 <section style="background-color: #efefef;padding-top: 40px;padding-bottom: 40px;">
                     <p style="text-align: center;font-size: 35px;color: var(--bs-red);">DEVELOPERS PROFILE</p>
@@ -273,9 +273,8 @@
         </div>
     </div><!-- End: Articale List With Image Zoom -->
     <div class="col">
-        <div class="container-fluid" id="footer">
             <!-- Start: Pretty Footer -->
-            <footer style="background: var(--bs-gray-600);">
+            <footer style="background-color: #2C394B">
                 <div class="row">
                     <div class="col-sm-6 col-md-4 footer-navigation">
                         <h3><a href="#"><span></span></a></h3><img src="assets/img/student%20dashboard%20pictures/unc-logo.png" style="width: 100px;height: 100px;margin-bottom: 50px;text-align: center;">
@@ -297,7 +296,6 @@
                 <hr>
                 <p style="text-align: center;font-size: 14px;">University of Nueva Caceres Scholarship and Grants Information System. Copyright&nbsp;© 2022. All Rights Reserved.&nbsp;<br><br><br><br><br></p>
             </footer><!-- End: Pretty Footer -->
-        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bs-init.js"></script>

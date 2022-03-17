@@ -1,60 +1,73 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Login - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-</head>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
 
-<body class="bg-gradient-primary" style="background: var(--bs-gray-700);">
-    <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-12 col-xl-10">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-flex" style="background: var(--bs-gray-700);">
-                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;assets/img/login%20pictures/Dko7FBnVsAE3A8G.jpg&quot;) center / cover space;"></div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="col-lg-6" style="background: var(--bs-gray-700);">
-                                <div class="p-5" style="text-align: left;"><img src="assets/img/login%20pictures/logo.png" style="margin-left: 120px;margin-bottom: 80px;height: 100px;">
-                                    <div class="text-center"></div>
-                                    <form class="user">
-                                        <div class="mb-3">
-                                            <div class="dropdown d-block" style="border-style: none;border-color: transparent;"><button class="btn btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: transparent;border-width: 0px;border-color: transparent;padding: 16px;color: white;border-radius: 0px;height: 40px;">LOGIN AS</button>
-                                                <div class="dropdown-menu"><a class="dropdown-item" href="#">Student</a><a class="dropdown-item" href="#">SGO Staff</a><a class="dropdown-item" href="#">SGO Administrator</a></div>
-                                            </div><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username" name="email">
-                                        </div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox small"></div>
-                                        </div><button class="btn d-block btn-user w-100" type="submit" style="background: var(--bs-red);font-size: 15px;color: var(--bs-body-bg);">SIGN IN&nbsp;</button>
-                                        <hr>
-                                        <hr>
-                                    </form>
-                                    <div class="text-center"><a class="small" href="admin-forgot-password.html" style="border-color: var(--bs-body-bg);color: var(--bs-body-bg);">FORGOT YOUR PASSWORD?</a></div>
-                                    <div class="text-center"></div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="assets/js/BreakingNews.js"></script>
-    <script src="assets/js/Table-With-Search.js"></script>
-    <script src="assets/js/theme.js"></script>
-</body>
-
-</html>
+</div>
+@endsection

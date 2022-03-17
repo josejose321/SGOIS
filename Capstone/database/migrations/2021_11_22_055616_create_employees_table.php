@@ -26,6 +26,7 @@ class CreateEmployeesTable extends Migration
             $table ->string('position');
             $table->string('avatar');
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('departmentCode')

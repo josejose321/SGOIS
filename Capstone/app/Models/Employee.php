@@ -25,8 +25,6 @@ class Employee extends Model
         'position',
         'avatar',
         'password',
-        'created_at',
-        'updated_at'
     ];
     public function department()
     {

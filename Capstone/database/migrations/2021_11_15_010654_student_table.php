@@ -25,7 +25,8 @@ class StudentTable extends Migration
             $table->string('course');
             $table->string('year', 10);
             $table->string('avatar')->default('defaultAvatar.jpg');
-            $table->string('password')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
             
             $table->foreign('departmentCode')
