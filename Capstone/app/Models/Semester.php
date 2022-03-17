@@ -22,13 +22,6 @@ class Semester extends Model
     {
         return $this->hasMany(Scholarship::class,"semesterCode","semesterCode");
     }
-
-
-
-    public function discounts()
-    {
-        return $this->hasMany(Discount::class,"semesterCode","semesterCode");
-    }
     public function loans()
     {
         return $this->hasMany(Loan::class,"semesterCode","semesterCode");

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\ScholarshipRequest;
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Category;
 use App\Models\Discount;
 use App\Models\Loan;
@@ -56,56 +58,34 @@ class StudentController extends Controller
         return view("Student.edit")
         ->with(compact('student'));
     }
-    function store(Request $request)
+
+    public function updateProfile(StudentUpdateRequest $request, Student $student)
     {
-        // dd($request->post());
-
-
-        try{
-            $student = new Student();
-            $student->student_no = $request->student_no;
-            $student->firstname = $request->firstname;
-            $student->middlename = $request->middlename;
-            $student->lastname = $request->lastname;
-            $student->email = $request->email;
-            $student->departmentCode = $request->department;
-            $student->phone =$request->phone;
-            $student->course = $request->course;
-            $student->year = $request->year;
-            $student->avatar ='defaultAvatar.jpg';
-            $student->password = Hash::make("12345");
-            $student->save();
-
-            return back()->with('success',"student added to the database");
-        }catch(QueryException $e)
-        {
-            return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
-        }
-
+        // dd($request->input());
+        $student->update($request->validated());
+        return back()->with('successUpdate','successfully updated');
+ 
     }
-
-    public function updateProfile(Request $request, Student $student)
+    public function applyScholarship(ScholarshipRequest $request, Student $student)
     {
-        //dd($request->input());
-        // $student->update($request->validate());
-        // return back()->with('successUpdate','successfully updated');
-        try
-        {
-            $student->firstname = $request->firstname;
-            $student->middlename = $request->middlename;
-            $student->lastname = $request->lastname;
-            $student->email = $request->email;
-            $student->departmentCode = $request->department;
-            $student->phone = $request->phone;
-            $student->course = $request->course;
-            $student->year = $request->year;
-            $student->save();
-            return back()->with('successUpdate','successfully updated');
-
-        }catch(Exception $e)
-        {
-            return back()->with('errorUpdate','Something Went Wrong/n'. $e->getMessage());
-        }
+        $scholarship = Scholarship::create([
+            'student_no'=> $request->student_no,
+            "officeCode"=>$request->officeCode,
+            "semesterCode"=>$request->semesterCode,
+            "categoryNo"=>$request->categoryNo,
+            "discount"=> $request->discount,
+            "requirement"=> $this->storeFiles($request->file('requirement'),'public/requirements/'),
+            "photo"=>$this->storeFiles($request->file('requirement'),'public/photos/'),
+        ]);
+        return back()->with('successApply','Your Application is submitted');
+    }
+    public function applyLoan(Request $request, Student $student)
+    {
+        return back()->with('successApply','Your Application is submitted');
+    }
+    public function applyDiscount(Request $request, Student $student)
+    {
+        return back()->with('successApply','Your Application is submitted');
     }
 
     public function updateAvatar(Request $request, Student $student)
@@ -125,5 +105,11 @@ class StudentController extends Controller
         $path = $file->hashName();
         $file->storeAs('public/avatar/',$path);
         return $path;
+    }
+    private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
+    {
+        $path = $file->hashName();
+        $file->storeAs($directory,$path);
+        return $directory . $path;
     }
 }

@@ -73,3 +73,10 @@
         </div>
     </div>
   </form>
+  <script>
+      $('#addStudent').on('click',function(e){
+          e.preventDefault();
+        $('#studentmodal').modal();
+        console.log('hello');
+    });
+  </script>

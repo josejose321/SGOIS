@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ScholarshipRequest extends FormRequest
+class AdminUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,11 @@ class ScholarshipRequest extends FormRequest
     {
         return [
             //
-            "student_no"=>'required',
-            "type"=>'required',
-            "officeCode"=>'required',
-            "semesterCode"=>'required',
-            "categoryNo"=>'required',
-            "discount"=>'required',
-            "requirement"=>'required',
-            "photo"=>'required',
+                'firstname'=> 'required',
+                'middlename'=> 'required',
+                'lastname'=> 'required',
+                'email'=> 'required',
+                'phone'=>'required',
         ];
     }
 }

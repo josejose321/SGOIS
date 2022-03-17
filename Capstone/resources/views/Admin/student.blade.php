@@ -42,8 +42,8 @@
                   </div>
                 <div class="card-body">
                     <table class="table table-striped">
-                        <thead class="bg-success">
-                          <tr>
+                        <thead>
+                          <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                             <th scope="col" >STUDENT ID</th>
                             <th scope="col">NAME</th>
                             <th scope="col">DEPARTMENT</th>

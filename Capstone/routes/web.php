@@ -72,13 +72,14 @@ Route::prefix('admin')
         Route::post('/import','import')->name('.import');
         Route::get('/students','showStudents')->name('.students');
         Route::get('/profile','showProfile')->name('.profile');
+        Route::post('/profile{admin}','updateProfile')->name('.update');
+
         Route::get('/statistics','showStats')->name('.stats');
         //Route::resource('/', AdminController::class);
         //route resource
         Route::get('/{admin}', 'show')->name('.show');
         Route::get('/', 'index')->name('.index');
         Route::post('/', 'store')->name('.store');
-        Route::post('/{admin}', 'update')->name('.update');
         Route::post('/', 'storeStudent')->name('.student.store');
         //Route::resource('',AdminController::class)->except('destroy');
 
@@ -91,11 +92,13 @@ Route::prefix('student')
         Route::post('/{student}/avatar','updateAvatar')->name('.updateAvatar');
         Route::post('/{student}/update','updateProfile')->name('.studentUpdate');
         Route::get('/scholarships','showScholarships')->name('.scholarships');
+        Route::post('/{student}/scholarship','applyScholarship')->name('.apply.scholarship');
+        Route::post('/{student}/discount','applyDiscount')->name('.apply.discount');
+        Route::post('/{student}/loan','applyLoan')->name('.apply.loan');
 
         Route::get('/{student}', 'show')->name('.show');
         Route::get('/{student}/edit','edit')->name('.edit');
         Route::get('/', 'index')->name('.index');
-        Route::post('/', 'store')->name('.store');
         
     });
 

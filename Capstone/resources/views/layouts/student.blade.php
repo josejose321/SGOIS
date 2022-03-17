@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
 
+    <link rel = "icon" href ="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" type = "image/x-icon">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -23,6 +24,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="{{ asset('assets/css/Dark-NavBar.css') }}">
+
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
 <body>
@@ -70,4 +74,18 @@
     <script src="assets/js/theme.js"></script>
 </body>
 
+
+
+@if (Session::has('successApply'))
+<script>
+    swal({
+          title: "Import Success!",
+          text: "{{ Session::get('successApply') }}",
+          icon: "success",
+          button: "ok!",
+        });
+</script>
+@endif
+
+{{ @Session::forget('successApply') }}
 </html>

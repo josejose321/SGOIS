@@ -16,6 +16,7 @@ class Category extends Model
     protected $fillable =[
         'officeCode',
         'name',
+        'type',
         'memberCount',
         'description'
     ];
@@ -27,10 +28,6 @@ class Category extends Model
     public function scholarships()
     {
         return $this->hasMany(Scholarship::class,'categoryNo','categoryNo');
-    }
-    public function discounts()
-    {
-        return $this->hasMany(Discount::class,'categoryNo','categoryNo');
     }
     public function loans()
     {

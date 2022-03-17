@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>UNCSGOIS</title>
+    <link rel = "icon" href ="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" type = "image/x-icon">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic">
@@ -46,20 +47,24 @@
     <!-- Start: Dark NavBar -->
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;color: #ffffff;background: var(--bs-gray-600);">
-            <div class="container-fluid"><a class="navbar-brand" href="{{ url('/') }}"><img src="assets/img/homepage%20pictures/unc-logo.png" style="width: 60px;height: 60px;">&nbsp;</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container-fluid"><a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" style="width: 60px;height: 60px;">&nbsp;</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link active" style="color:#ffffff;" href="{{ url('') }}">&nbsp;HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color:#ffffff;" href="{{ url('') }}">&nbsp;HOME</a></li>
                         <li class="nav-item"></li>
                         <li class="nav-item"></li>
                         <li class="nav-item"></li>
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: var(--bs-body-bg);">SCHOLARSHIPS</a>
-                            <div class="dropdown-menu"><a class="dropdown-item" href="#">SCHOLARSHIPS</a><a class="dropdown-item" href="#">GRANTS</a><a class="dropdown-item" href="#">LOANS</a><a class="dropdown-item" href="#">DISCOUNTS</a></div>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ url('/login') }}">SCHOLARSHIPS</a>
+                                <a class="dropdown-item" href="{{ url('/login') }}">GRANTS</a>
+                                <a class="dropdown-item" href="{{ url('/login') }}">LOANS</a>
+                                <a class="dropdown-item" href="{{ url('/login') }}">DISCOUNTS</a></div>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item"></li>
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-body-bg);">CONTACT US</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#footer" style="color: var(--bs-body-bg);">CONTACT US</a></li>
                         <li class="nav-item"></li>
                     </ul><a class="btn active border rounded-pill" role="button" style="background: var(--bs-red);color: var(--bs-body-bg);border-color: transparent;border-top-color: transparent;border-right-color: transparent;border-bottom-color: transparent;border-left-color: transparent;width: 80px;height: 35px;" href="{{ url('/admin') }}">LOGIN</a>
                 </div>
@@ -115,11 +120,11 @@
                 <div class="col-md-3">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">SCHOLARSHIPS&nbsp; &nbsp; &nbsp;&nbsp;</button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">ELEMENTARY&nbsp; DEPARTMENT</a>
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">JUNIOR HIGH SCHOOL DEPARTMENT</a>
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">SENIOR HIGH SCHOOL DEPARTMENT</a>
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">COLLEGE DEPARTMENT</a>
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">GRADUATE SCHOOL AND LAW</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">ELEMENTARY&nbsp; DEPARTMENT</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">JUNIOR HIGH SCHOOL DEPARTMENT</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">SENIOR HIGH SCHOOL DEPARTMENT</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">COLLEGE DEPARTMENT</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">GRADUATE SCHOOL AND LAW</a>
                             <div class="dropdown-divider"></div>
                         </div>
                     </div>
@@ -127,28 +132,28 @@
                 <div class="col-md-3">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">GRANTS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">EDUCATION SERVICE CONTRACTING (ESC) SCHEME FOR JUNIOR HIGH SCHOOL</a>
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">VOUCHER SYSTEM FOR SENIOR HIGH SCHOOL</a>
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">TERTIARY EDUCATION SUBSIDY (TES)</a>
-                            <a class="dropdown-item" href="#" style="font-size: 20px;">COMMISION ON HIGHER EDUCATION SCHOLARSHIP PROGRAMS (CSPs)</a></div>
+                            <a class="dropdown-item"  style="font-size: 20px;">EDUCATION SERVICE CONTRACTING (ESC) SCHEME FOR JUNIOR HIGH SCHOOL</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">VOUCHER SYSTEM FOR SENIOR HIGH SCHOOL</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">TERTIARY EDUCATION SUBSIDY (TES)</a>
+                            <a class="dropdown-item"  style="font-size: 20px;">COMMISION ON HIGHER EDUCATION SCHOLARSHIP PROGRAMS (CSPs)</a></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">LOANS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</button>
                         <div class="dropdown-menu" style="font-size: 20px;">
-                            <a class="dropdown-item" href="#">PGMA HELP</a>
-                            <a class="dropdown-item" href="#">SAFE 4SR</a>
-                            <a class="dropdown-item" href="#">BRIDGE LOAN</a></div>
+                            <a class="dropdown-item" >PGMA HELP</a>
+                            <a class="dropdown-item" >SAFE 4SR</a>
+                            <a class="dropdown-item" >BRIDGE LOAN</a></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">DISCOUNTS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</button>
                         <div class="dropdown-menu" style="font-size: 20px;">
-                            <a class="dropdown-item" href="#">CASH PAYMENT</a>
-                            <a class="dropdown-item" href="#">MEMBERS OF THE SAME FAMILY (MOSF)</a>
-                            <a class="dropdown-item" href="#">ALUMNI DISCOUNT</a>
-                            <a class="dropdown-item" href="#">LOYALTY DISCOUNT</a>
-                            <a class="dropdown-item" href="#">EMPLOYEE BENEFIT</a>
+                            <a class="dropdown-item" >CASH PAYMENT</a>
+                            <a class="dropdown-item" >MEMBERS OF THE SAME FAMILY (MOSF)</a>
+                            <a class="dropdown-item" >ALUMNI DISCOUNT</a>
+                            <a class="dropdown-item" >LOYALTY DISCOUNT</a>
+                            <a class="dropdown-item" >EMPLOYEE BENEFIT</a>
                         </div>
                     </div>
                 </div>
@@ -161,28 +166,28 @@
             <div class="row articles">
                 <div class="col-sm-6 col-md-4 item">
                     <!-- Start: Zoom in Frame -->
-                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/homepage%20pictures/Company-Mission-Statement-1.jpg"></div><!-- End: Zoom in Frame -->
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="{{ asset('unc1.jpg') }}"></div><!-- End: Zoom in Frame -->
                     <h3 class="name">OUR MISSION</h3>
-                    <p class="description">Our mission is to expand opportunities for every Bicolano everywhere and prepare them for a porposeful life, by providing empowering outcome-based education and a nurturing learning environment.</p><a class="action" href="#"></a>
+                    <p class="description">Our mission is to expand opportunities for every Bicolano everywhere and prepare them for a porposeful life, by providing empowering outcome-based education and a nurturing learning environment.</p><a class="action" ></a>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
                     <!-- Start: Zoom in Frame -->
-                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/homepage%20pictures/BLOG_how-to-motivate-students.jpg"></div><!-- End: Zoom in Frame -->
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="{{ asset('unc2.jpg') }}"></div><!-- End: Zoom in Frame -->
                     <h3 class="name">OUR VISION</h3>
                     <p class="description">Our vision is to be the top university of choice for Bicolanos everywhere. We will nurture our students through empowering, outcome-based education, to help them become purposeful, productive, and future-ready human beings who will contribute to the sustainable development of Bicol and better tomorrows for all.&nbsp;</p><a class="action" href="#"></a>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
                     <!-- Start: Zoom in Frame -->
-                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/homepage%20pictures/Success.jpg"></div><!-- End: Zoom in Frame -->
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="{{ asset('unc3.jpg') }}"></div><!-- End: Zoom in Frame -->
                     <h3 class="name">WE CHAMPION EXCELLENCE</h3>
                     <p class="description">We are also among the select college schools in Bicol that offer equally excellent academic programs for pre-school, elementary, and high school students. In addition, we are majority-owned by AC Education, the education arm of the Ayala Group. AC Education helps us introduce innovative learning methods that will further boost the quality of our course offerings.<br><br></p><a class="action" href="#"></a>
                 </div>
             </div><!-- End: Articles -->
         </div>
-        <div class="row">
-            <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow border-start-primary py-2">
-                    <div class="card-body" style="background-color: rgb(185, 93, 93)">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-xl-3 mb-4">
+                    <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
                                 <div class="text-uppercase text-warning fw-bold text-xs mb-1">
@@ -194,10 +199,21 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow border-start-success py-2">
-                    <div class="card-body"style="background-color: rgb(150, 71, 71);">
+                <div class="col-md-6 col-xl-3 mb-4">
+                    <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col me-2">
+                                <div class="text-uppercase text-warning fw-bold text-xs mb-1">
+                                    <center><h5><strong>TOTAL DISCOUNTS</strong></h5></center>
+                                    <center><h5><strong>{{ $totalScholarships ?? 0 }}</strong></h5></center>
+                                </div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3 mb-4">
+                    <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
                                 <div class="text-uppercase text-warning fw-bold text-xs mb-1">
@@ -209,29 +225,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow border-start-info py-2">
-                    <div class="card-body" style="background-color: rgb(185, 93, 93)">
+                <div class="col-md-6 col-xl-3 mb-4">
+                    <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
                                 <div class="text-uppercase text-warning fw-bold text-xs mb-1">
-                                    <center><h5><strong>TOTAL DISCOUNTS</strong></h5></center>
-                                    <center><h5><strong>{{ $totalDiscounts ?? 0 }}</strong></h5></center>
-                                </div>
-                            </div>
-                            <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow border-start-warning py-2">
-                    <div class="card-body" style="background-color: rgb(150, 71, 71);">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col me-2">
-                                <div class="text-uppercase text-warning fw-bold text-xs mb-1">
-                                    <center><h5><strong>OTHER SCHOLARHIPS</strong></h5></center>
+                                    <center><h5><strong>OTHER SCHOLARSHIPS</strong></h5></center>
                                     <center><h5><strong>{{ $totalOthers ?? 0 }}</strong></h5></center>
                                 </div>
                             </div>
@@ -274,7 +273,7 @@
         </div>
     </div><!-- End: Articale List With Image Zoom -->
     <div class="col">
-        <div class="container-fluid">
+        <div class="container-fluid" id="footer">
             <!-- Start: Pretty Footer -->
             <footer style="background: var(--bs-gray-600);">
                 <div class="row">
@@ -299,15 +298,7 @@
                 <p style="text-align: center;font-size: 14px;">University of Nueva Caceres Scholarship and Grants Information System. Copyright&nbsp;© 2022. All Rights Reserved.&nbsp;<br><br><br><br><br></p>
             </footer><!-- End: Pretty Footer -->
         </div>
-    </div><!-- Start: Sakae Simple Section -->
-    <div style="margin: 50px;"></div><!-- End: Sakae Simple Section -->
-    <section></section>
-    <section></section>
-    <section></section>
-    <section></section>
-    <section></section>
-    <section></section>
-    <section></section>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

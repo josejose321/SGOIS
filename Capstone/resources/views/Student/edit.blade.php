@@ -21,22 +21,31 @@
         <form action="{{ url('student/' . $student->student_no . '/update')}}" method="POST">
           @csrf
             <h1>Edit Profile</h1>
+            @if ($errors->any())
+              <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+             </ul>
+            </div>
+            @endif
             <div class="row">
               
               <div class="col-md-4">
                   <label for="student_no">Student_no</label>
-                  <input type="text" class="form-control" name="student_no" placeholder="Student No" value="{{ $student->student_no }}" readonly>
+                  <input type="text" class="form-control" placeholder="Student No" value="{{ $student->student_no }}" readonly>
               </div>
             </div>
             <div class="row">
                 
                 <div class="col-md-4">
                     <label for="inputAddress">Firstname</label>
-                    <input type="text" class="form-control" name="firstname"  placeholder="{{ $student->lastname }}" value="{{ $student->firstname }}">
+                    <input type="text" class="form-control" name="firstname"  placeholder="{{ $student->firstname }}" value="{{ $student->firstname }}">
                 </div>
                 <div class="col-md-4">
                     <label for="inputAddress">Middlename</label>
-                    <input type="text" class="form-control" name="middlename" placeholder="{{ $student->lastname }}"value="{{ $student->middlename }}">
+                    <input type="text" class="form-control" name="middlename" placeholder="{{ $student->middlename }}"value="{{ $student->middlename }}">
                 </div>
                 <div class="col-md-4">
                     <label for="inputAddress">Lastname</label>
@@ -52,11 +61,11 @@
                 </div>
                   <div class="col-md-4">
                       <label for="inputAddress">Department</label>
-                      <input type="text" class="form-control" name="department" placeholder="Department Code" value="{{ $student->departmentCode }}">
+                      <input type="text" class="form-control" name="departmentCode" placeholder="Department Code" value="{{ $student->departmentCode }}">
                   </div>
                   <div class="col-md-4">
                       <label for="inputAddress">Contact Number</label>
-                      <input type="text" class="form-control" name="phone" placeholder="{{ $student->phoneNumber }}" value="{{ $student->phone }}">
+                      <input type="text" class="form-control" name="phone" placeholder="{{ $student->phoneNumber }}" value="{{ $student->phone }}" maxlength="11">
                   </div>
             </div>
             <div class="row">

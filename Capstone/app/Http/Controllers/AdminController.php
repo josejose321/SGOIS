@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
 use App\Mail\WelcomMail;
@@ -28,30 +29,33 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->data = [
-            'total'=> Student::count(),
-            'departments' => Department::all(),
-            'courses'=> Course::all(),
-            'students'=>Student::simplePaginate(20),
-            'admin'=>Admin::find('18-08925'),
-            'totalScholarships'=> 45,
-            'totalLoans'=> Loan::count(),
-            'totalDiscounts'=> Discount::count(),
-            'totalOthers'=> Scholarship::count(),
-        ];
+        
     }
     public function home()
     {
         return view('unc')
-        ->with('totalScholarships',Scholarship::count())
+        ->with('totalScholarships',
+        Scholarship::where('officeVerification','Approved')
+        ->where('adminVerification','Approved')->count())
+        ->with('discounts', Scholarship::where('type','discounts')->count())
         ->with('totalLoans',Loan::count())
-        ->with('totalDiscounts',Discount::count())
-        ->with('totalOthers',Scholarship::count());
+        ->with('discounts', Scholarship::where('type','grant')->count());
     }
     public function index()
     {
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
         // return new WelcomMail();
+        $this->data = [
+            'total'=> Student::count(),
+            'departments' => Department::all(),
+            'courses'=> Course::all(),
+            'students'=>Student::simplePaginate(10),
+            'admin'=>Admin::find('18-08925'),
+            'totalScholarships'=> Scholarship::where('officeVerification','Approved')
+            ->where('adminVerification','Approved')->count(),
+            'totalLoans'=> Loan::count(),
+            'totalOthers'=> Scholarship::count(),
+        ];
 
 
         return view('Admin.index')
@@ -60,11 +64,8 @@ class AdminController extends Controller
     public function showScholarships()
     {
         return view('Admin.scholarship')
-        ->with('students',Student::all())
         ->with('admin',Admin::find('18-08925'))
-        ->with('departments', Department::all())
-        ->with('courses',Course::all())
-        ->with('total', Student::count());
+        ->with('scholarships',Scholarship::where('adminVerification','Pending')->simplePaginate(10));
     }
     public function showProfile()
     {
@@ -78,35 +79,29 @@ class AdminController extends Controller
     public function showLoans()
     {
         return view('Admin.loan')
-        ->with('loans',Loan::all())
-        ->with('students',Student::all())
+        ->with('loans',Scholarship::where('adminVerification','Pending')->simplePaginate(10))
         ->with('admin',Admin::find('18-08925'))
-        ->with('departments', Department::all())
-        ->with('courses',Course::all())
-        ->with('total', Student::count());
+        ->with('scholarships',Scholarship::all());
     }
     public function showDiscounts()
     {
         return view('Admin.discount')
-        ->with('discounts',Discount::all())
-        ->with('students',Student::all())
-        ->with('admin',Admin::find('18-08925'))
-        ->with('departments', Department::all())
-        ->with('courses',Course::all())
-        ->with('total', Student::count());
+        ->with('discounts',Scholarship::where('adminVerification','Pending')
+        ->where('type','Discount')
+        ->simplePaginate(10))
+        ->with('admin',Admin::find('18-08925'));
     }
     public function showStudents()
     {
         return view('Admin.student')
-        ->with($this->data);
+        ->with('students',Student::simplePaginate(10))
+        ->with('admin',Admin::find('18-08925'))
+        ->with('total',Student::count());
     }
     public function show(Admin $admin)
     {
-
-
         return view('Admin.index')
-        ->with('admin', $admin)
-        ->with('students',Student::all());
+        ->with('admin', $admin);
     }
     public function showStats()
     {
@@ -161,15 +156,10 @@ class AdminController extends Controller
     }
 
 
-    public function update(Request $request, Admin $admin)
+    public function updateProfile(AdminUpdateRequest $request, Admin $admin)
     {
-        $admin->firstname = $request->firstname;
-        $admin->middlename= $request->middlename;
-        $admin->lastname = $request->lastname;
-        $admin->email = $request->emaiil;
-        $admin->postition = $request->position;
-        $admin->save();
-        return back()->with('message', 'successfully update!');
+        $admin->update($request->validated());
+        return back()->with('success', 'successfully update!');
     }
 
     public function import(Request $request)
@@ -180,7 +170,7 @@ class AdminController extends Controller
             try{
                 Excel::import(new StudentsImport, $request->file('file')->store('temp'));
                 return back()->with('successImport','Import Successfully!');
-            }catch(LaravelExcelException $e){
+            }catch(Exception $e){
                 return back()->with('errorImport','Import Error!');
             }
         }
@@ -213,32 +203,6 @@ class AdminController extends Controller
     }
     public function storeStudent(StudentRequest $request)
     {
-
-        // try{
-        //     $student = new Student();
-        //     $student->student_no = $request->student_no;
-        //     $student->firstname = $request->firstname;
-        //     $student->middlename = $request->middlename;
-        //     $student->lastname = $request->lastname;
-        //     $student->email = $request->email;
-        //     $student->departmentCode = $request->department;
-        //     $student->phone =$request->phone;
-        //     $student->course = $request->course;
-        //     $student->year = $request->year;
-
-        //     $student->avatar ='defaultAvatar.jpg';
-        //     $student->password = Hash::make("12345");
-        //     $student->save();
-
-        //     return back()->with('success',"student added to the database");
-        // }catch(QueryException $e)
-        // {
-        //     return back()->with('error', 'Failed to Add Record\n Server message:'. $e->getMessage());
-        // }
-        // if($request->fails())
-        // {
-        //     return back()->with('error','Failed to Add Record');
-        // }
         $student = Student::create($request->validated());
         $student->password = Hash::make($student->student_no);
         $student->save();

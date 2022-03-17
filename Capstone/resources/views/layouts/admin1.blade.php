@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
+    <link rel = "icon" href ="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" type = "image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic">
@@ -50,43 +51,44 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js"></script>
     {{--  --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {{-- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> --}}
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
 <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: var(--bs-gray-700);">
-            <div class="container-fluid d-flex flex-column p-0"><img src="{{ asset('assets/img/dashboard%20logo/unc-logo.png') }}" style="width: 100px;height: 100px;margin: 20px;">
-                <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light" id="accordionSidebar">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark   p-0" style="background-color:#334756">
+            <div class="container d-flex flex-column p-1 text-light"><img src="{{ asset('assets/img/dashboard%20logo/unc-logo.png') }}" class="rounded float-left w-50">
+                <hr class="sidebar-divider my-2">
+                <ul class="navbar-nav" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-home"></i><span>DASHBOARD</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.profile') }}"><i class="fas fa-user" style="background: transparent;"></i><span>PROFILE</span></a>
-                    <a class="nav-link active" href="{{ route('admin.students') }}"><i class="fa fa-graduation-cap" style="font-size: 12PX;"></i><span>STUDENTS</span></a><a class="nav-link" href="admin-profile.html"><i class="fa fa-stack-overflow" style="color: rgba(255, 255, 255, 0.3);"></i><span style="color: rgba(255, 255, 255, 0.8);">&nbsp;STATISTICS</span></a></li>
-                    
-                    <li class="nav-item"><a class="nav-link active" href="students.html"><i class="fa fa-list-alt"></i><span>REPORTS</span></a><a class="nav-link"><i class="fa fa-bell"></i><span>ANNOUNCEMENT</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.profile') }}"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.scholarhips') }}"><i class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.discounts') }}"><i class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"><i class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i class="fa fa-graduation-cap"></i><span>STUDENTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i class="fa fa-list-alt"></i><span>REPORTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" type="button" id="announce"><i class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
-        <div class="d-flex flex-column" id="content-wrapper">
+        <div class="d-flex flex-column" id="content-wrapper" style="background-color: #EEEEEE">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                <nav class="navbar navbar-light navbar-expand bg-light shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn py-0" type="button" style="background: var(--bs-danger);border-bottom-color: var(--bs-red);color: var(--bs-body-bg);"><i class="fas fa-search" style="border-bottom-color: var(--bs-body-bg);"></i></button></div>
-                        </form>
+                        <div class="h4 font-weight-bold text-danger">UNIVERSITY SCHOLARSHIP AND GRANTS OFFICE</div>
 
                         <ul class="navbar-nav flex-nowrap ms-auto"> 
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                        <span class="d-none d-lg-inline me-2 text-gray-600 ">{{ $admin->lastname }}, {{ $admin->firstname }} {{ $admin->middlename }}</span>
+                                        <span class="d-none d-lg-inline me-2 text-gray-600 ">{{ $admin->lastname ?? "" }}, {{ $admin->firstname ?? "" }} {{ $admin->middlename ?? "" }}</span>
                                         <img class="border rounded-circle img-profile" src="{{ Storage::url('avatar/defaultAvatar.jpg') }}"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Change Password</a>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
@@ -95,14 +97,9 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h2 class="text-dark mb-4">
-                        <button class="btn pull-right" id="import" type="button" style="background: var(--bs-gray-800);color: var(--bs-body-bg);">
-                            <i class="fa fa-download" ></i>&nbsp; IMPORT STUDENTS</button>
-                        <button class="btn pull-right" type="button" id="addStudent" style="background: var(--bs-red);margin-right: 5px;border-bottom-color: var(--bs-red);color: var(--bs-body-bg);">
-                            <i class="fa fa-pencil-square-o"></i>&nbsp; ADD STUDENT</button>
-                        STUDENTS
-                    </h2>
+                    
                     <main>@yield('content')</main>
+                    
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
@@ -112,27 +109,12 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/bs-init.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
-@include('modals.addStudent')
-@include('modals.addSem')
+
+
 @include('modals.announce')
 @include('modals.import')
-<script>
-    
-$(function() {
-    console.log( "ready!" );
-    $('#import').on('click',function(e){
-        $('#importmodal').modal('show');
-        console.log('hello');
-    });
-    $('#addStudent').on('click',function(e){
-        $('#studentmodal').modal('show');
-        console.log('hello');
-    });
-});
-</script>
+
 </html>

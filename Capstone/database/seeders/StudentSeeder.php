@@ -18,7 +18,7 @@ class StudentSeeder extends Seeder
     public function run()
     {
         //
-        Student::factory()->count(1000)->create();
+        Student::factory()->count(100)->create();
         //Excel::import(new StudentsImport, Storage::url(''));
     }
 }
