@@ -56,23 +56,32 @@ Route::resource('student/scholarship', ScholarshipController::class);
 Route::prefix('admin')
     ->as('admin')
     ->controller(AdminController::class)
+    // ->middleware()
     ->group(function (){
         //scholarships
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
-        Route::post('/scholarships/{scholarship}/approve', 'approve')->name('.aprrove');
-        Route::post('/scholarships/{scholarship}/decline', 'decline')->name('.decline');
+        Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
+        Route::post('/scholarships/{scholarship}/delete', 'scholarshipDelete')->name('.scholarship.delete');
+
         //loans
         Route::get('/loans','showLoans')->name('.loans');
         Route::post('/loans/{loan}/approve', 'approveLoan')->name('.aprroveLoan');
         Route::post('/loans/{loan}/decline', 'declineLoan')->name('.declineLoan');
         //discounts
         Route::get('/discounts','showDiscounts')->name('.discounts');
-        Route::post('/discounts/{discount}/approve', 'approveDiscount')->name('.aprroveDiscount');
-        Route::post('/discounts/{discount}/decline', 'declineDiscount')->name('.declineDiscount');
+
         Route::post('/import','import')->name('.import');
         Route::get('/students','showStudents')->name('.students');
         Route::get('/profile','showProfile')->name('.profile');
         Route::post('/profile{admin}','updateProfile')->name('.update');
+
+
+        //announcement
+        Route::post('/announcements/{admin}', 'storeAnnounce')->name('.announce.store');
+        Route::get('/announcements', 'showAnnounce')->name('.announce.show');
+        Route::post('/announcements/{announcement}/update', 'updateAnnounce')->name('.announce.update');
+        Route::get('/announcements/{announcement}', 'deleteAnnounce')->name('.announce.delete');
+
 
         Route::get('/statistics','showStats')->name('.stats');
         //Route::resource('/', AdminController::class);
@@ -109,18 +118,17 @@ Route::prefix('employee')
 ->group(function (){
         //scholarships
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
-        Route::post('/scholarships/{scholarship}/approve', 'approve')->name('.aprrove');
-        Route::post('/scholarships/{scholarship}/decline', 'decline')->name('.decline'); 
+        Route::post('/scholarships/{scholarship}/approve', 'approve')->name('.scholarship.aprrove');
+        Route::post('/scholarships/{scholarship}/decline', 'decline')->name('.scholarship.decline');
+         
         //loans
         Route::get('/loans','showLoans')->name('.loans');
         Route::post('/loans/{loan}/approve', 'approveLoan')->name('.aprroveLoan');
         Route::post('/loans/{loan}/decline', 'declineLoan')->name('.declineLoan'); 
         //discounts
         Route::get('/discounts','showDiscounts')->name('.discounts');
-        Route::post('/discounts/{discount}/approve', 'approveDiscount')->name('.aprroveDiscount');
-        Route::post('/discounts/{discount}/decline', 'declineDiscount')->name('.declineDiscount');
         
-        Route::get('/{employee}', 'show')->name('.show');
+        Route::get('/profile', 'show')->name('.show');
         Route::get('/{employee}/edit','edit')->name('.edit');
         Route::get('/', 'index')->name('.index');
         Route::post('/', 'store')->name('.store');

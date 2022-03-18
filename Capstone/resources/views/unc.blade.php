@@ -78,8 +78,8 @@
             <!-- Start: Landing content -->
             <div class="d-flex align-items-center order-5" style="height:200px;">
                 <div class="container">
-                    <h1 class="text-center" data-aos="fade-right" style="color: rgb(242,245,248);font-size: 56px;font-weight: bold;font-family: Roboto, sans-serif;">EVERYONE MAKES IT.&nbsp;</h1>
-                    <hr style="width: 100px;height: 3px;background: #ff0000;text-align: center;margin-left: 500px;">
+                    <div class="text-center h1 fw-bold" data-aos="fade-right" style="color: rgb(242,245,248);">EVERYONE MAKES IT.&nbsp;</div>
+            
                     <p style="color: var(--bs-body-bg);text-align: center;"><br>Be an instrument in providing better tomorrows for the BICOLANO'S.&nbsp; Join UNC's Everybody Shares Project.&nbsp;<br><br><br></p>
                 </div>
             </div><!-- End: Landing content -->

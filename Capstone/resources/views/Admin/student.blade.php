@@ -3,34 +3,18 @@
 @section('title','Admin Dashboard')
 @section('content')
     
-
-    <div class="row">
-      <div class="col">
-        <form action="{{ url('/admin/import') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Example file input</label>
-            <input type="file" class="form-control-file" name="file">
-          </div>
-          <button type="submit" class="btn btn-primary">Import File</button>
-        </form>
-      </div>
-      <div class="col">
-
-      </div>
-  </div>
-        <div class="container-fluid">
-              <div class="card bg-light">
+        <div class="row-fluid">
+              <div class="card">
                   <div class="card-header">
                     <h2>Students</h2> <br>
-                    <h3>TOTAL: {{ $total }}</h3>
+                    <h3>TOTAL ACTIVE: {{ $total }}</h3>
                     <div class="form-row w-50 float-right">
                       <div class="col input-group mb-3 w-25">
                         <select class="custom-select" id="sort">
                           <option selected>Sort By:</option>
-                          <option value="1">Department</option>
-                          <option value="2">Course</option>
-                          <option value="3">Phone</option>
+                          <option value="departmentCode">Department</option>
+                          <option value="course">Course</option>
+                          <option value="lastname">Phone</option>
                         </select>
                       </div>
                       <div class=" col input-group mb-3 w-25 float-right">

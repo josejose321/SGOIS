@@ -15,6 +15,15 @@
                   Name: {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
                   Department: {{ $student->department->name }} <br> <br>
                 </div>
+
+                @if ($sem->count()===0)
+                    <div class="alert alert-danger">
+                      <p class="display-5"> You cannot Apply right now</p>
+                      <p> Please Contact the SGO if having any concerns</p>
+                      <p> THANK YOU!</p>
+                    </div>
+                @endif
+
                 @if ($errors->any())
                 <div class="alert alert-danger">
                 <ul>
@@ -71,7 +80,7 @@
                       <option value="50%">25% Discount</option>
                       <option value="75%">25% Discount</option>
                       <option value="100%">25% Discount</option>
-                      <option value="full">Full Scholarship</option>
+                      <option value="Full">Full Scholarship</option>
                     </select>
                   </div>
                 </div>

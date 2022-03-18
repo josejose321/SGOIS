@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Employee;
 use App\Models\Scholarship;
 use App\Models\Student;
@@ -16,15 +17,13 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        return view("employee.index");
+        return view("Employee.index")
+        ->with('announcements',Announcement::all());
     }
-    public function show($employee_no)
+    public function show()
     {
-
-    }
-    public function create()
-    {
-
+        return view('Employee.profile')
+        ->with('employee',Employee::find('18-08925'));
     }
     public function store(Request $request)
     {
@@ -60,7 +59,6 @@ class EmployeeController extends Controller
             $employee->departmentCode = $request->department;
             $employee->email = $request->emaiil;
             $employee->password = $request->password;
-            $employee->updated_at = time();
             return back()->with('message', 'Update Successfully!');
         }catch(QueryException $e)
         {

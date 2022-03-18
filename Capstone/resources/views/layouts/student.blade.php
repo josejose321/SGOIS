@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
-<body>
+<body style="background-color: beige">
     <!-- Start: Dark NavBar -->
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;color: #ffffff;background: var(--bs-gray-600);">
@@ -61,20 +61,27 @@
 
 
 
-    <footer class="bg-white sticky-footer">
+    <footer class=" sticky-footer fixed-bottom" style="background-color: beige">
         <div class="container my-auto">
             <div class="text-center my-auto copyright"><span>Copyright © 2022 | University of Nueva Caceres - UNCSGOIS . All Rights Reserved</span></div>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
+    <script src="{{ asset('assets/js/bs-init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="assets/js/BreakingNews.js"></script>
-    <script src="assets/js/Table-With-Search.js"></script>
-    <script src="assets/js/theme.js"></script>
+    <script src="{{ asset('assets/js/BreakingNews.js') }}"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
-
-
+@if ($errors->any())
+  <script>
+    swal({
+          title: "You have an Error!",
+          text: "Please Check your inputs",
+          icon: "error",
+          button: "ok!",
+        });
+</script>
+@endif
 
 @if (Session::has('successApply'))
 <script>

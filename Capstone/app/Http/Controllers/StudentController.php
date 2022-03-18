@@ -6,6 +6,7 @@ use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\ScholarshipRequest;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StudentUpdateRequest;
+use App\Models\Announcement;
 use App\Models\Category;
 use App\Models\Discount;
 use App\Models\Loan;
@@ -34,7 +35,8 @@ class StudentController extends Controller
         ->with('student',Student::find('18-08925'))
         ->with('offices',Office::all())
         ->with('categories',Category::all())
-        ->with('sem',Semester::latest()->first());
+        ->with('sem',Semester::latest()->first())
+        ->with('announcements',Announcement::latest()->take(3)->get());
 
     }
     function show(Student $student)
@@ -50,7 +52,7 @@ class StudentController extends Controller
         return view("Student.scholarships")
         ->with('scholarships',Scholarship::all())
         ->with('loans',Loan::all())
-        ->with('discounts',Discount::all());
+        ->with('discounts',Scholarship::all());
     }
 
     function edit(Student $student)

@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('categoryNo');
             $table->string('officeCode')->index()->nullable();
             $table->string('name');
-            $table->string('type');
+            $table->string('type')->index();
             $table->string('memberCount');
             $table->string('description');  
             $table->timestamps();

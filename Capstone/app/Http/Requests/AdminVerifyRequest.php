@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ScholarshipRequest extends FormRequest
+class AdminVerifyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,8 @@ class ScholarshipRequest extends FormRequest
     {
         return [
             //
-            "student_no"=>'required',
-            "type"=>'required',
-            "officeCode"=>'required',
-            "semesterCode"=>'required',
-            "categoryNo"=>'required',
-            "discount"=>'required',
-            "requirement"=>"required|mimetypes:application/pdf|max:10000",
-            "photo"=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'discount'=>'required',
+            'remarks'=>'required'
         ];
     }
 }

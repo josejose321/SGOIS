@@ -7,6 +7,15 @@
                     <h3>Add Student</h3>
                 </div>
                 <div class="modal-body bg-light">
+                    @if ($errors->any())
+                <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+                </div>
+                @endif
                     <div class="form-row">
                         <div class="form-group">
                             <label for="id"> Student Number</label>
@@ -36,9 +45,18 @@
                             <label for="id"> Phone number</label>
                             <input type="text" name="phone" class="form-control" placeholder="Phone number"  maxlength="11">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="id">Year/Grade</label>
-                            <input type="text" name="year" class="form-control" placeholder="Year/Grade">
+                        <div class="col-md-4">
+                            <label for="year"> Select Year</label>
+                            <select class="form-select form-select-md mb-3" name="year" aria-label="Default select example">
+                                <option value="1st year">1st year</option>
+                                <option value="2nd year">2nd year</option>
+                                <option value="3rd year">3rd year</option>
+                                <option value="4th year">4th year</option>
+                                <option value="5th year">5th year</option>
+                                @for ($grade = 1 ; $grade < 13 ;$grade++)
+                                <option value="Grade {{ $grade }}">Grade {{ $grade }}</option>
+                                @endfor
+                            </select>
                         </div>
                         
                         
@@ -73,6 +91,17 @@
         </div>
     </div>
   </form>
+@if ($errors->any())
+  <script>
+    swal({
+          title: "Error!",
+          text: "You have an error with the inputs",
+          icon: "error",
+          button: "ok!",
+        });
+</script>
+      
+  @endif
   <script>
       $('#addStudent').on('click',function(e){
           e.preventDefault();

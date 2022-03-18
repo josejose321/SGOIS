@@ -12,8 +12,7 @@
     DASHBOARD
 </h2>
 
-<div class="container-fluid bg-light">
-    <div class="row">
+<div class="row-fluid border">
         <div class="col-md-6 col-xl-3 mb-4 p-2">
             <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                 <div class="row align-items-center no-gutters">
@@ -67,9 +66,12 @@
             </div>
         </div>
     </div>
-</div>
-  @include('modals.addStudent')
-  @include('modals.addSem')
+<canvas id="canvas" height="700" width="1500"></canvas>
+
+@include('charts.departmentGrantees')
+@include('charts.grantees')
+@include('modals.addStudent')
+@include('modals.addSem')
 {{-- message from server --}}
 @if (Session::has('success'))
 <script>

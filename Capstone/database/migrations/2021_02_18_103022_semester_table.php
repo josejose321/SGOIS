@@ -20,6 +20,7 @@ class SemesterTable extends Migration
             $table->string('sem');
             $table->string('year');
             $table->integer('period');
+            $table->boolean('active')->default(1);
             $table->timestamps();
             
         });

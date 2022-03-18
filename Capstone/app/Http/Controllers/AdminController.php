@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminUpdateRequest;
+use App\Http\Requests\AdminVerifyRequest;
+use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
 use App\Mail\WelcomMail;
 use App\Models\Admin;
+use App\Models\Announcement;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Discount;
@@ -21,6 +24,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Exceptions\LaravelExcelException;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\Console\Input\Input;
 
 class AdminController extends Controller
 {
@@ -31,6 +35,7 @@ class AdminController extends Controller
     {
         
     }
+    //home
     public function home()
     {
         return view('unc')
@@ -41,6 +46,41 @@ class AdminController extends Controller
         ->with('totalLoans',Loan::count())
         ->with('discounts', Scholarship::where('type','grant')->count());
     }
+
+    //announcement
+    public function showAnnounce()
+    {
+        return view('Admin.announcements')
+        ->with('announcements',Announcement::simplePaginate(10))
+        ->with('admin',Admin::find('18-08925'));
+    }
+    public function deleteAnnounce(Announcement $announcement)
+    {
+        $announcement->delete();
+        return back()->with('successDelete','You Deleted an Announcement');
+    }
+
+
+
+    public function storeAnnounce(AnnouncementRequest $request, Admin $admin)
+    {
+        $announcement = Announcement::create([
+            'subject' =>$request->subject,
+            'content' =>$request->content,
+            'admin_no'=>$admin->admin_no,
+        ]);
+        return back()->with('successAnnounce','You Added a new Annoucement:');
+
+    }
+    public function updateAnnounce(AnnouncementRequest $request, Announcement $announcement)
+    {
+
+        $announcement->update($request->validated());
+        return back()->with('successUpdate','You update an Annoucement:');
+    }
+
+
+    //Admin index // dashboard
     public function index()
     {
         //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
@@ -51,10 +91,13 @@ class AdminController extends Controller
             'courses'=> Course::all(),
             'students'=>Student::simplePaginate(10),
             'admin'=>Admin::find('18-08925'),
-            'totalScholarships'=> Scholarship::where('officeVerification','Approved')
+            'totalScholarships'=> Scholarship::where('officeVerification','Pending')
             ->where('adminVerification','Approved')->count(),
             'totalLoans'=> Loan::count(),
             'totalOthers'=> Scholarship::count(),
+        ];
+        $grantees = [
+
         ];
 
 
@@ -65,8 +108,16 @@ class AdminController extends Controller
     {
         return view('Admin.scholarship')
         ->with('admin',Admin::find('18-08925'))
-        ->with('scholarships',Scholarship::where('adminVerification','Pending')->simplePaginate(10));
+        ->with('scholarships',Scholarship::where('adminVerification','Pending')->latest()->simplePaginate(10));
     }
+    public function scholarshipDelete($id)
+    {
+
+        dd($id);
+        $scholarship = Scholarship::find($id) ;
+        return back()->with('successDelete','You Deleted Scholarship');
+    }
+
     public function showProfile()
     {
         return view('Admin.profile')
@@ -79,15 +130,14 @@ class AdminController extends Controller
     public function showLoans()
     {
         return view('Admin.loan')
-        ->with('loans',Scholarship::where('adminVerification','Pending')->simplePaginate(10))
-        ->with('admin',Admin::find('18-08925'))
-        ->with('scholarships',Scholarship::all());
+        ->with('loans',Loan::where('adminVerification','Pending')->simplePaginate(10))
+        ->with('admin',Admin::find('18-08925'));
     }
     public function showDiscounts()
     {
         return view('Admin.discount')
-        ->with('discounts',Scholarship::where('adminVerification','Pending')
-        ->where('type','Discount')
+        ->with('scholarships',Scholarship::where('adminVerification','Pending')
+        // ->where('type','Discount')
         ->simplePaginate(10))
         ->with('admin',Admin::find('18-08925'));
     }
@@ -134,16 +184,20 @@ class AdminController extends Controller
     }
 
     //
-    public function approve(Request $request, Scholarship $scholarship)
+    public function verifyScholarship(AdminVerifyRequest $request, Scholarship $scholarship)
     {
 
-        if($scholarship->office->officeCode === 'uncsgo')
-            $scholarship->officeVerification = 'approved';
-        
-        $scholarship->adminVerification = 'approved';
-        $scholarship->discount = $request->discount;
-        $scholarship->save();
-        return back('approved','Approved');
+        // dd($request->all());
+        if($scholarship->office->officeCode != 'UNC-SGO')
+        {
+            return back()->with('error','Verify to the Endorser Office first!');
+        }
+        $scholarship->update([
+            'adminVerification'=>'Approved',
+            'discount' =>$request->discount,
+            'remarks', $request->remarks
+        ]);
+        return back()->with('success','Scholarship Application Approved!');
     }
 
 

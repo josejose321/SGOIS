@@ -18,6 +18,7 @@ class CategoryImport implements ToModel
             //
             'officeCode' =>$row['officeCode'],
             'name'=> $row['name'],
+            'type' => $row['type'],
             'memberCount'=>$row['memberCount'],
             'description' => $row['description']
         ]);

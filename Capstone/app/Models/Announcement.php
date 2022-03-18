@@ -8,15 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Announcement extends Model
 {
     use HasFactory;
-    protected $table ="announcements";
+    protected $table ="annoucements";
 
 
     protected $fillable = [
         'subject',
         'content',
-        'user_no',
-        'created_at',
-        'updated_at'
+        'admin_no',
     ];
     public function admin()
     {

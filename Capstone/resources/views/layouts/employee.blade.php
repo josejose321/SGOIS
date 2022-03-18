@@ -54,34 +54,29 @@
 
     {{-- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> --}}
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    
 </head>
 
 <body id="page-top">
-    <div id="wrapper" style="background-color: beige" >
+    <div id="wrapper">
         <nav class="navbar-fluid navbar-dark align-items-start sidebar sidebar-dark" style="background-color:#334756">
-            <div class="container d-flex flex-column p-0 m-1">
+            <div class="container d-flex flex-column p-0 m-1 text-light">
                 <ul class="navbar-nav" id="accordionSidebar">
                     <li class="nav-item"><img src="{{ asset('assets/img/dashboard%20logo/unc-logo.png') }}" class="rounded w-75"></li>
                     <hr class="sidebar-divider my-2">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-home"></i><span>DASHBOARD</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.profile') }}"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.scholarhips') }}"><i class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.discounts') }}"><i class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"><i class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i class="fa fa-graduation-cap"></i><span>STUDENTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i class="fa fa-list-alt"></i><span>REPORTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.index') }}"><i class="fa fa-home"></i><span>DASHBOARD</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.show') }}"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href=""><i class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href=""><i class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
-        <div class="d-flex flex-column" id="content-wrapper" style="background-color: beige" >
+        <div class="d-flex flex-column" id="content-wrapper" style="background-color: beige">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand shadow mb-4 topbar static-top" style="background-color: #334756" >
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <div class="h5 font-weight-bold text-danger">UNC SCHOLARSHIP AND GRANTS </div>
+                        <div class="h6 font-weight-bold text-danger">UNIVERSITY SCHOLARSHIP AND GRANTS</div>
 
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item m-4 p-0 text-light">Logout</li>
@@ -89,7 +84,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" type="button" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                        <span class="d-none d-lg-inline me-2">{{ $admin->lastname ?? "" }}, {{ $admin->firstname ?? "" }} {{ $admin->middlename ?? "" }}</span>
+                                        <span class="d-none d-lg-inline me-2">Evasco, Jose II V.</span>
                                         <img class="border rounded-circle img-profile" src="{{ Storage::url('avatar/6g4mgyJXAJ7hVC1tolnCBT6u7FjEHrksdJG07n3d.jpg') }}">
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-end">
@@ -112,7 +107,7 @@
                     <div class="text-center text-dark my-auto copyright"><span>Copyright © 2022 | University of Nueva Caceres - UNCSGOIS . All Rights Reserved</span></div>
                 </div>
             </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top" ><i class="fas fa-angle-up"></i></a>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <!-- Charting library -->
     <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
@@ -121,38 +116,7 @@
     <script src="{{ asset('assets/js/bs-init.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
-@if ($errors->any())
-  <script>
-    swal({
-          title: "You have an Error!",
-          text: "Please Check your inputs",
-          icon: "error",
-          button: "ok!",
-        });
-</script>
-@endif
-@if (Session::has('success'))
-  <script>
-    swal({
-          title: "Success!",
-          text: "{{ Session::get('success') }}",
-          icon: "success",
-          button: "ok!",
-        });
-</script>
-@endif
-@if (Session::has('error'))
-  <script>
-    swal({
-          title: "You have an Error!",
-          text: "{{ Session::get('error') }}",
-          icon: "error",
-          button: "ok!",
-        });
-</script>
-@endif
 
-@include('modals.announce')
-@include('modals.import')
+
 
 </html>
