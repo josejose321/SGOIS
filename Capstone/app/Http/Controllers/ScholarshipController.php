@@ -26,8 +26,8 @@ class ScholarshipController extends Controller
         $scholarhip->semesterCode = $request->semesterCode;
         $scholarhip->categoryNo = $request->categoryNo;;
         $scholarhip->discount = $request->discount;
-        $scholarhip->requirement = $this->storeFiles($request->file('requirement'),'public/requirements/');
-        $scholarhip->photo = $this->storeFiles($request->file('photo'),'public/photos/');
+        $scholarhip->requirement = $this->storeFiles($request->file('requirement'),'requirements/');
+        $scholarhip->photo = $this->storeFiles($request->file('photo'),'photos/');
         
     }
     // public function approveByOffice(Request $request, $student_no)
@@ -38,22 +38,11 @@ class ScholarshipController extends Controller
 
     //     return back('verify','Verify');
     // }
-    public function verifyByAdmin(Request $request, $student_no)
-    {
-        
-    }
-    public function verifyByOffice(Request $request, Scholarship $scholarship)
-    {
-        $scholarship->officeVerification = $request->officeVerification;
-        $scholarship->discount = $request->discount;
 
-        //Mail::send($scholarship->student->email, new WelcomMail($scholarhip));
-        return back('verified','approve ka na');
-    }
     private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
     {
         $path = $file->hashName();
-        $file->storeAs($directory,$path);
+        $file->storeAs( 'public/'. $directory,$path);
         return $directory . $path;
     }
 

@@ -16,12 +16,16 @@ use App\Models\Discount;
 use App\Models\Loan;
 use App\Models\Scholarship;
 use App\Models\Student;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF;
 use Exception;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Exceptions\LaravelExcelException;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\Console\Input\Input;
@@ -89,12 +93,17 @@ class AdminController extends Controller
             'total'=> Student::count(),
             'departments' => Department::all(),
             'courses'=> Course::all(),
-            'students'=>Student::simplePaginate(10),
             'admin'=>Admin::find('18-08925'),
-            'totalScholarships'=> Scholarship::where('officeVerification','Pending')
+            'totalScholarships'=> Scholarship::where('type','Scholarship')
+            ->where('officeVerification','Approved')
+            ->where('adminVerification','Approved')->count(),
+            'totalDiscount'=>Scholarship::where('type','Discount')
+            ->where('officeVerification','Approved')
             ->where('adminVerification','Approved')->count(),
             'totalLoans'=> Loan::count(),
-            'totalOthers'=> Scholarship::count(),
+            'totalOthers'=> Scholarship::where('type','Grant')
+            ->where('officeVerification','Approved')
+            ->where('adminVerification','Approved')->count(),
         ];
         $grantees = [
 
@@ -162,26 +171,7 @@ class AdminController extends Controller
         ->with('courses',Course::all());
         
     }
-    public function store(Request $request)
-    {
-        try{
-            $admin = new Admin();
-            $admin->admin_no = $request->admin_no;
-            $admin->firstname = $request->firstname;
-            $admin->middlename= $request->middlename;
-            $admin->lastname = $request->lastname;
-            $admin->email = $request->email;
-            $admin->postition = $request->position;
-            $admin->avatar = 'defaultAvatar.jpg';
-            $admin->password = $request->password;
-            $admin->save();
-            return back()->with('message', 'successfully added!');
-        }catch(QueryException $e)
-        {
-            return back()->with('error','failed to add!\n'. $e->getMessage());
-        }
-        
-    }
+
 
     //
     public function verifyScholarship(AdminVerifyRequest $request, Scholarship $scholarship)
@@ -192,7 +182,9 @@ class AdminController extends Controller
         {
             return back()->with('error','Verify to the Endorser Office first!');
         }
+        
         $scholarship->update([
+            'officeVerification' =>'Approved',
             'adminVerification'=>'Approved',
             'discount' =>$request->discount,
             'remarks', $request->remarks
@@ -201,13 +193,6 @@ class AdminController extends Controller
     }
 
 
-    public function decline(Scholarship $scholarship)
-    {
-        $scholarship->officeVerification ='declined';
-
-
-        return back('decline','Decline Application');
-    }
 
 
     public function updateProfile(AdminUpdateRequest $request, Admin $admin)
@@ -261,6 +246,28 @@ class AdminController extends Controller
         $student->password = Hash::make($student->student_no);
         $student->save();
         return back()->with('success',"student added to the database");
+    }
+
+    public function downLoadRequirement(Scholarship $scholarship)
+    {
+        // $pdf = FacadePdf::loadView('Requirement',Storage::url($scholarship->requirement));
+        // return $pdf->download(Storage::url($scholarship->requirement));
+        if(file_exists(Storage::url($scholarship->requirement)))
+        {
+           Storage::url($scholarship->requirement);
+           return back();
+        }
+        return back()->with('error','cannot download the file:\n check file path');
+    }
+
+    public function downloadPhoto(Scholarship $scholarship)
+    {
+        if(file_exists(Storage::url($scholarship->photo)))
+        {
+            Storage::download($scholarship->photo);
+            return back();
+        }
+        return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
     }
     
 }

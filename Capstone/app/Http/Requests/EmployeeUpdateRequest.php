@@ -32,7 +32,6 @@ class EmployeeUpdateRequest extends FormRequest
         'departmentCode'=>'required',
         'officeCode'=>'required',
         'phone'=>'required',
-        'position'=>'required'
         ];
     }
 }

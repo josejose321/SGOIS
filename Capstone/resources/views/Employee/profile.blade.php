@@ -67,6 +67,16 @@
                                             <label class="form-label" for="phone"><strong>Phone&nbsp;</strong></label>
                                             <input class="form-control" type="text" id="phone" name="phone" value="{{ $employee->phone ?? '' }}" maxlength="11">
                                         </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="officeCode"><strong>Office&nbsp;</strong></label>
+                                            <input class="form-control" type="text" id="officeCode" name="officeCode" value="{{ $employee->phone ?? '' }}" maxlength="11">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="departmentCode"><strong>Department&nbsp;</strong></label>
+                                            <input class="form-control" type="text" id="departmentCode" name="departmentCode" value="{{ $employee->phone ?? '' }}" maxlength="11">
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 <div class="mb-3"><button class="btn btn-sm" type="submit" style="background: var(--bs-red);color: var(--bs-body-bg);">Save Profile</button></div>
                             </form>

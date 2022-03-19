@@ -18,9 +18,20 @@
           Requirement: {{ $scholarship->requirement }} <br>
           photo: {{ $scholarship->photo }} <br>
           
+
+          <div class="row">
+            <div class="col-md-5">
+              <label for="requirement">Requirements</label>
+              <a href="{{ route('admin.scholarship.requirement-download',$scholarship->scholarshipNo) }}" class="btn btn-primary" id="requirement">Download Requirement</a>
+            </div>
+            <div class="col-md-5">
+              <label for="photo">Photo Provided</label>
+              <a href="{{ route('admin.scholarship.photo-download',$scholarship->scholarshipNo) }}" class="btn btn-primary" id="photo">Download Photo</a>
+            </div>
+          </div>
           <div class="form-group">
-            <label for="id"> Discount</label>
-            <select class="form-select form-select-md mb-3" name="discount" aria-label="Default select example">
+            <label for="discount"> Discount</label>
+            <select class="form-select form-select-md mb-3" id="discount" name="discount" aria-label="Default select example">
                 <option value="{{ $scholarship->discount }}">{{ $scholarship->discount }} Discount</option>
                 <option value="25%">25% Discount</option>
                 <option value="50%">50% Discount</option>

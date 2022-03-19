@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="assets/css/Sakae-Simple-Section.css">
     <link rel="stylesheet" href="assets/css/Table-With-Search-1.css">
     <link rel="stylesheet" href="assets/css/Table-With-Search.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body style="background-color: ">
@@ -78,8 +79,7 @@
             <!-- Start: Landing content -->
             <div class="d-flex align-items-center order-5" style="height:200px;">
                 <div class="container">
-                    <div class="text-center h1 fw-bold" data-aos="fade-right" style="color: rgb(242,245,248);">EVERYONE MAKES IT.&nbsp;</div>
-            
+                    <div class="text-center h1"style="color: var(--bs-body-bg);text-align: center;">Everyone Makes It</div>
                     <p style="color: var(--bs-body-bg);text-align: center;"><br>Be an instrument in providing better tomorrows for the BICOLANO'S.&nbsp; Join UNC's Everybody Shares Project.&nbsp;<br><br><br></p>
                 </div>
             </div><!-- End: Landing content -->
@@ -245,12 +245,12 @@
             <section >
                 <!-- Start: Feature - Block Image Three - Full Wide Screen -->
                 <section style="background-color: #efefef;padding-top: 40px;padding-bottom: 40px;">
-                    <p style="text-align: center;font-size: 35px;color: var(--bs-red);">DEVELOPERS PROFILE</p>
+                    <p class="fw-bold" style="text-align: center;font-size: 35px;color: var(--bs-red);">DEVELOPERS PROFILE</p>
                     <h1></h1>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-11 col-md-12 col-lg-4 col-xl-4">
-                                <h1 class="text-center" style="font-family: Oswald, sans-serif;background-color: #efefef;margin: 0px;font-size: 38px;padding-top: 20px;"><img class="rounded-circle" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" style="width: 100px;"><br></h1>
+                                <h1 class="text-center" style="font-family: Oswald, sans-serif;background-color: #efefef;margin: 0px;font-size: 38px;padding-top: 20px;"><img class="rounded-circle" src="{{ Storage::url('avatar/5w3cpHa1tFearfNwwhxBv9kkXBUjfdT8e8c1FXu4.jpg') }}" style="width: 100px;"><br></h1>
                                 <h1 style="text-align: center;font-size: 15px;font-weight: bold;">JOSE V. EVASCO II</h1>
                                 <p class="text-start" style="background-color: #efefef;padding: 10px;margin: 0px;">To deliver High Quality, Cost Effective service &amp; products to our clients by employing and supporting a motivated, flexible and focused team and to actively participate in building &amp; developing an Engineering Business Enterprise based on sound engineering principles coupled with ethical business practices.<br></p>
                             </div>

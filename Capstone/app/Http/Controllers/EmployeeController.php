@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminVerifyRequest;
+use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Employee;
 use App\Models\Scholarship;
@@ -25,63 +27,23 @@ class EmployeeController extends Controller
         return view('Employee.profile')
         ->with('employee',Employee::find('18-08925'));
     }
-    public function store(Request $request)
-    {
-        try{
-            $employee = new Employee();
-            $employee->employee_no = $request->employee;
-            $employee->firstname = $request->firstname;
-            $employee->middlename= $request->middlename;
-            $employee->lastname = $request->lastname;
-            $employee->email = $request->emaiil;
-            $employee->departmentCode = $request->department;
-            $employee->email = $request->emaiil;
-            $employee->postition = $request->position;
-            $employee->avatar = "dafaultAvatar.jpg";
-            $employee->password = $request->password;
-            $employee->created_at = time();
-            $employee->updated_at = time();
-            return back()->with('message', 'successfully added!');
-        }catch(QueryException $e)
-        {
-            return back()->with('error','failed to add!\n'. $e->getMessage());
-        }
-    }
-    public function update(Request $request, $employee_no)
-    {
-        
-        try{
-            $employee = Employee::findOrFail($employee_no);
-            $employee->firstname = $request->firstname;
-            $employee->middlename= $request->middlename;
-            $employee->lastname = $request->lastname;
-            $employee->email = $request->emaiil;
-            $employee->departmentCode = $request->department;
-            $employee->email = $request->emaiil;
-            $employee->password = $request->password;
-            return back()->with('message', 'Update Successfully!');
-        }catch(QueryException $e)
-        {
-            return back()->with('error','failed to add!\n'. $e->getMessage());
-        }catch(ModelNotFoundException $e)
-        {
-            return 'not found!';
-        }
-    }
-    public function approve(Request $request, Scholarship $scholarhip)
-    {
-        $scholarhip->officeVerification = 'approved';
-        $scholarhip->discount = $request->discount;
-        
-        return back('approved','Approved');
-    }
-    public function decline(Scholarship $scholarhip)
-    {
-        $scholarhip->officeVerification ='declined';
 
+    //Verify Pending request
+    public function verifyScholarship(Request $request, Scholarship $scholarship)
+    {
 
-        return back('decline','Decline Application');
+        // dd($request->all());
+        if($scholarship->office->officeCode != 'UNC-SGO')
+        {
+            return back()->with('error','Verify to the Endorser Office first!');
+        }
+        $scholarship->update([
+            'officeVerification'=>'Approved',
+            'discount' =>$request->discount,
+        ]);
+        return back()->with('success','Scholarship Application Approved!');
     }
+
 
     public function updateAvatar(Request $request, $employee_no)
     {
@@ -105,6 +67,24 @@ class EmployeeController extends Controller
 
         
     }
+
+
+    public function showScholarships()
+    {
+        return view('Employee.scholarship')
+        ->with('scholarships',Scholarship::where('officeVerification','Pending')->latest()->simplePaginate(10));
+    }
+    public function showDiscounts()
+    {
+        return view('Employee.scholarship')
+        ->with('scholarships',Scholarship::where('adminVerification','Pending')->latest()->simplePaginate(10));
+    }
+    public function showLoans()
+    {
+        return view('Employee.scholarship')
+        ->with('scholarships',Scholarship::where('adminVerification','Pending')->latest()->simplePaginate(10));
+    }
+    
     private function storeAvatar($file)
     {
         $path = $file->hashName();

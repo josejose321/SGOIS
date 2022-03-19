@@ -62,6 +62,8 @@ Route::prefix('admin')
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
         Route::post('/scholarships/{scholarship}/delete', 'scholarshipDelete')->name('.scholarship.delete');
+        Route::get('/scholarships/{scholarship}/requirement-download', 'downloadRequirement')->name('.scholarship.requirement-download');
+        Route::get('/scholarships/{scholarship}/photo-download', 'downloadPhoto')->name('.scholarship.photo-download');
 
         //loans
         Route::get('/loans','showLoans')->name('.loans');
@@ -117,17 +119,14 @@ Route::prefix('employee')
 ->controller(EmployeeController::class)
 ->group(function (){
         //scholarships
+        Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
-        Route::post('/scholarships/{scholarship}/approve', 'approve')->name('.scholarship.aprrove');
-        Route::post('/scholarships/{scholarship}/decline', 'decline')->name('.scholarship.decline');
-         
         //loans
         Route::get('/loans','showLoans')->name('.loans');
-        Route::post('/loans/{loan}/approve', 'approveLoan')->name('.aprroveLoan');
-        Route::post('/loans/{loan}/decline', 'declineLoan')->name('.declineLoan'); 
         //discounts
         Route::get('/discounts','showDiscounts')->name('.discounts');
         
+
         Route::get('/profile', 'show')->name('.show');
         Route::get('/{employee}/edit','edit')->name('.edit');
         Route::get('/', 'index')->name('.index');

@@ -7,7 +7,7 @@
     <div class=" h2 font-weight-bold">SCHOLARSHIPS</div>
     <div class="card shadow">
         <div class="card-header py-3">
-            <div class="h3 font-weight-bold">Pending Scholarships Request</div>
+            <div class="h3 font-weight-bold">Pending Request</div>
         </div>
         @if ($errors->any())
                 <div class="alert alert-danger">

@@ -76,8 +76,8 @@ class StudentController extends Controller
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
             "discount"=> $request->discount,
-            "requirement"=> $this->storeFiles($request->file('requirement'),'public/requirements/'),
-            "photo"=>$this->storeFiles($request->file('requirement'),'public/photos/'),
+            "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
+            "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
         ]);
         return back()->with('successApply','Your Application is submitted');
     }
@@ -111,7 +111,7 @@ class StudentController extends Controller
     private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
     {
         $path = $file->hashName();
-        $file->storeAs($directory,$path);
+        $file->storeAs( 'public/'. $directory,$path);
         return $directory . $path;
     }
 }

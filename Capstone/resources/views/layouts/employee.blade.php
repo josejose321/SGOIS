@@ -65,9 +65,9 @@
                     <hr class="sidebar-divider my-2">
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.index') }}"><i class="fa fa-home"></i><span>DASHBOARD</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.show') }}"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href=""><i class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href=""><i class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.scholarhips') }}"><i class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.scholarhips') }}"><i class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.scholarhips') }}"><i class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>

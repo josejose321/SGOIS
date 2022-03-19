@@ -18,6 +18,11 @@ class CreateProgramsTable extends Migration
             $table->string('admin_no');
             $table->string('title');
             $table->timestamps();
+
+            $table->foreign('admin_no')
+            ->references('admin_no')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 
