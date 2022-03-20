@@ -41,4 +41,9 @@ class Loan extends Model
     {
         return $this->belongsTo(Category::class,'categoryNo','categoryNo');
     }
+
+    public function admin_getPending()
+    {
+         return $this->where('adminVerification', 'Pending')->simplePaginate(10);
+    }
 }

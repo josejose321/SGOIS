@@ -123,6 +123,11 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'mailgun' => [
+        'domain' => 'mg.website_name.com',
+        'secret' => 'key-123456789',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

@@ -41,4 +41,17 @@ class Scholarship extends Model
     {
         return $this->belongsTo(Category::class,'categoryNo','categoryNo');
     }
+
+    public function countApproved($type)
+    {
+         return $this->all()->where('officeVerification','Approved')
+            ->where('adminVerification','Approved')
+            ->where('type',$type)->count();
+    }
+    public function admin_getPending($type)
+    {
+        return $this->where('type',$type)
+        ->where('adminVerification','Pending')
+        ->latest()->simplePaginate(10);
+    }
 }

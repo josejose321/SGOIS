@@ -17,6 +17,7 @@ class Category extends Model
         'officeCode',
         'name',
         'type',
+        'field_team',
         'memberCount',
         'description'
     ];

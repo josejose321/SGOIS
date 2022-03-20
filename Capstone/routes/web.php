@@ -65,6 +65,10 @@ Route::prefix('admin')
         Route::get('/scholarships/{scholarship}/requirement-download', 'downloadRequirement')->name('.scholarship.requirement-download');
         Route::get('/scholarships/{scholarship}/photo-download', 'downloadPhoto')->name('.scholarship.photo-download');
 
+        Route::get('/applications','showApplication')->name('.application');
+        Route::get('/other-programs','showOtherPrograms')->name('.otherPrograms');
+        Route::get('/reports','showReport')->name('.reports');
+
         //loans
         Route::get('/loans','showLoans')->name('.loans');
         Route::post('/loans/{loan}/approve', 'approveLoan')->name('.aprroveLoan');
@@ -124,7 +128,7 @@ Route::prefix('employee')
         //loans
         Route::get('/loans','showLoans')->name('.loans');
         //discounts
-        Route::get('/discounts','showDiscounts')->name('.discounts');
+        Route::get('/discounts','                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ')->name('.discounts');
         
 
         Route::get('/profile', 'show')->name('.show');
