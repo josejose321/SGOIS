@@ -31,12 +31,6 @@ class EmployeeController extends Controller
     //Verify Pending request
     public function verifyScholarship(Request $request, Scholarship $scholarship)
     {
-
-        // dd($request->all());
-        if($scholarship->office->officeCode != 'UNC-SGO')
-        {
-            return back()->with('error','Verify to the Endorser Office first!');
-        }
         $scholarship->update([
             'officeVerification'=>'Approved',
             'discount' =>$request->discount,

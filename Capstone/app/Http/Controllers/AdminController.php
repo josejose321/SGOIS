@@ -7,6 +7,7 @@ use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
+use App\Mail\ScholarshipMail;
 use App\Mail\WelcomMail;
 use App\Models\Admin;
 use App\Models\Announcement;
@@ -33,22 +34,35 @@ use Symfony\Component\Console\Input\Input;
 class AdminController extends Controller
 {
     private $data;
-
+    private $countResults;
+    private $scholarship;
+    private $loan;
 
     public function __construct()
     {
+        // dd($scholar->countApproved('Scholarship'));
+
+        $this->scholarship = new Scholarship();
+        $this->loan = new Loan();
+
+
+        $this->countResults =[
+            'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
+            'totalDiscounts'=>$this->scholarship->countApproved('discount'),
+            'totalLoans'=> Loan::count(),
+            'totalOthers'=> $this->scholarship->countApproved('Grant')
+        ];
         
     }
+
+
+
     //home
     public function home()
     {
+        // return new ScholarshipMail();
         return view('unc')
-        ->with('totalScholarships',
-        Scholarship::where('officeVerification','Approved')
-        ->where('adminVerification','Approved')->count())
-        ->with('discounts', Scholarship::where('type','discounts')->count())
-        ->with('totalLoans',Loan::count())
-        ->with('discounts', Scholarship::where('type','grant')->count());
+        ->with($this->countResults);
     }
 
     //announcement
@@ -94,82 +108,63 @@ class AdminController extends Controller
             'departments' => Department::all(),
             'courses'=> Course::all(),
             'admin'=>Admin::find('18-08925'),
-            'totalScholarships'=> Scholarship::where('type','Scholarship')
-            ->where('officeVerification','Approved')
-            ->where('adminVerification','Approved')->count(),
-            'totalDiscount'=>Scholarship::where('type','Discount')
-            ->where('officeVerification','Approved')
-            ->where('adminVerification','Approved')->count(),
-            'totalLoans'=> Loan::count(),
-            'totalOthers'=> Scholarship::where('type','Grant')
-            ->where('officeVerification','Approved')
-            ->where('adminVerification','Approved')->count(),
-        ];
-        $grantees = [
-
         ];
 
 
         return view('Admin.index')
-        ->with($this->data);
+        ->with($this->data)
+        ->with($this->countResults);
     }
     public function showScholarships()
     {
-        return view('Admin.scholarship')
-        ->with('admin',Admin::find('18-08925'))
-        ->with('scholarships',Scholarship::where('adminVerification','Pending')->latest()->simplePaginate(10));
+        $this->data =[
+            'admin' =>Admin::find('18-08925'),
+            'scholarships'=> $this->scholarship->admin_getPending('Scholarship')
+        ];
+        
+        return view('Admin.scholarship')->with($this->data);
     }
-    public function scholarshipDelete($id)
+    public function scholarshipDelete(Scholarship $scholarship)
     {
-
-        dd($id);
-        $scholarship = Scholarship::find($id) ;
+        $scholarship->delete();
         return back()->with('successDelete','You Deleted Scholarship');
     }
 
     public function showProfile()
     {
         return view('Admin.profile')
-        ->with('admin',Admin::find('18-08925'))
-        ->with('students',Student::all())
-        ->with('departments', Department::all())
-        ->with('courses',Course::all())
-        ->with('total', Student::count());
+        ->with('admin',Admin::find('18-08925'));
     }
     public function showLoans()
     {
+        $loan = new Loan();
+        $this->data = [
+            'loans'=> $loan->admin_getPending(),
+            'admin'=> Admin::find('18-08925')
+        ];
         return view('Admin.loan')
-        ->with('loans',Loan::where('adminVerification','Pending')->simplePaginate(10))
-        ->with('admin',Admin::find('18-08925'));
+        ->with($this->data);
     }
     public function showDiscounts()
     {
         return view('Admin.discount')
-        ->with('scholarships',Scholarship::where('adminVerification','Pending')
-        // ->where('type','Discount')
-        ->simplePaginate(10))
+        ->with('scholarships',$this->scholarship->admin_getPending('Pending'))
         ->with('admin',Admin::find('18-08925'));
     }
     public function showStudents()
     {
+        $this->data =[
+            'students'=>Student::simplePaginate(10),
+            'admin' =>Admin::find('18-08925'),
+            'total'=>Student::count()
+        ];
         return view('Admin.student')
-        ->with('students',Student::simplePaginate(10))
-        ->with('admin',Admin::find('18-08925'))
-        ->with('total',Student::count());
+        ->with($this->data);
     }
     public function show(Admin $admin)
     {
         return view('Admin.index')
         ->with('admin', $admin);
-    }
-    public function showStats()
-    {
-        return view('Admin.stats')
-        ->with('students',Student::all())
-        ->with('admin',Admin::find('18-08925'))
-        ->with('departments', Department::all())
-        ->with('courses',Course::all());
-        
     }
 
 
@@ -177,10 +172,11 @@ class AdminController extends Controller
     public function verifyScholarship(AdminVerifyRequest $request, Scholarship $scholarship)
     {
 
-        // dd($request->all());
+        //  return new ScholarshipMail;
         if($scholarship->office->officeCode != 'UNC-SGO')
         {
-            return back()->with('error','Verify to the Endorser Office first!');
+            if( $scholarship->officeVerification == 'Pending')
+                return back()->with('error','Verify from Endorser Office first!');
         }
         
         $scholarship->update([
@@ -189,6 +185,10 @@ class AdminController extends Controller
             'discount' =>$request->discount,
             'remarks', $request->remarks
         ]);
+        // dd($scholarship->student->firstname);
+        return new ScholarshipMail($scholarship);
+        Mail::to($scholarship->student->email, new ScholarshipMail($scholarship));
+        
         return back()->with('success','Scholarship Application Approved!');
     }
 
@@ -254,20 +254,44 @@ class AdminController extends Controller
         // return $pdf->download(Storage::url($scholarship->requirement));
         if(file_exists(Storage::url($scholarship->requirement)))
         {
-           Storage::url($scholarship->requirement);
+            Storage::download(Storage::url($scholarship->photo),$scholarship->student->lastname . '-photo', 200);
            return back();
         }
-        return back()->with('error','cannot download the file:\n check file path');
+        return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
     }
 
     public function downloadPhoto(Scholarship $scholarship)
     {
         if(file_exists(Storage::url($scholarship->photo)))
         {
-            Storage::download($scholarship->photo);
+            Storage::download(Storage::url($scholarship->photo),$scholarship->student->lastname . '-photo', 200);
             return back();
         }
         return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
+    }
+
+
+    //application
+    public function showApplication()
+    {
+        $this->data = [
+            'admin'=>Admin::find('18-08925'),
+        ];
+        return view('Admin.application')->with($this->data);
+    }
+    public function showOtherPrograms()
+    {
+        $this->data = [
+            'admin'=>Admin::find('18-08925'),
+        ];
+        return view('Admin.otherProgram')->with($this->data);
+    }
+    public function showReport()
+    {
+        $this->data = [
+            'admin'=>Admin::find('18-08925'),
+        ];
+        return view('Admin.report')->with($this->data);
     }
     
 }
