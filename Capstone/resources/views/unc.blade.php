@@ -205,7 +205,7 @@
                             <div class="col me-2">
                                 <div class="text-uppercase text-warning fw-bold text-xs mb-1">
                                     <center><h5><strong>TOTAL DISCOUNTS</strong></h5></center>
-                                    <center><h5><strong>{{ $totalScholarships ?? 0 }}</strong></h5></center>
+                                    <center><h5><strong>{{ $totalDiscounts ?? 0 }}</strong></h5></center>
                                 </div>
                             </div>
                             <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>

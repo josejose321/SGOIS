@@ -27,7 +27,7 @@
                             <th>STUDENT ID</th>
                             <th>NAME</th>
                             <th>Endorser Office</th>
-                            <th>OFFICE STATUS</th>
+                            <th>ENDORSER STATUS</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -39,7 +39,7 @@
                             <td>{{ $scholarship->student->lastname ?? ''}},{{ $scholarship->student->firstname }} {{ $scholarship->student->middlename }}</td>
                             <td>{{ $scholarship->office->name }}</td>
                             <td>{{ $scholarship->officeVerification }}</td>
-                            <td><button class="btn" type="button" data-toggle="modal" data-target="#admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}" style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i class="fa fa-pencil"></i></button>
+                            <td><button class="btn" type="button" data-toggle="modal" data-target="#viewModalScholarship-{{ $scholarship->scholarshipNo }}" style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i class="fa fa-pencil"></i></button>
                                 <button class="btn" type="button" onclick="deleteScholarship({{ $scholarship->scholarshipNo }})" style="font-size: 14px;text-align: center;margin-left: 2px;background: var(--bs-red);color: var(--bs-body-bg);"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>

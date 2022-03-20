@@ -5,7 +5,7 @@ The body of your message.
 will display a verification
 
 
-
+{{ $details }}
 your loan application is approved!
 
 

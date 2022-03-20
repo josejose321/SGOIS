@@ -14,11 +14,11 @@
         <div class=" border col-md-6">
             <label class="form-label" style="text-align: center;margin-left: 125px;margin-top: 10px;font-weight: bold;color: var(--bs-red);font-size: 20px;">&nbsp;NEWS AND ANNOUNCEMENTS</label>
               @foreach ($announcements as $announcement)
-              <div class="card p-1">
+              <div class="card p-1" style="background-color: beige">
                 <div class="card-header">
                     <h5 class="mb-0 fw-bold">{{ $announcement->subject ?? '' }}</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="background-color: beige">
                     <p class="card-text"> {{ $announcement->content }}</p>
     
                     <p class="card-text">-
@@ -31,7 +31,7 @@
             <br>
               @endforeach
               <center>>end</center>
-          </div>
+        </div>
     </div>
 </div>
 

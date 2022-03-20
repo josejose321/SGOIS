@@ -71,7 +71,9 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.discounts') }}"><i class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"><i class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i class="fa fa-graduation-cap"></i><span>STUDENTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i class="fa fa-list-alt"></i><span>REPORTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}"><i class="fa fa-list-alt"></i><span>REPORTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.application') }}"><i class="fa fa-list-alt"></i><span>APPLICATION</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.otherPrograms') }}"><i class="fa fa-list-alt"></i><span>OTHERS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>

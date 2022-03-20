@@ -1,7 +1,7 @@
 @foreach ($scholarships as $scholarship)
-<form action="{{ route('admin.scholarship.approve',$scholarship->scholarshipNo) }}" method="post">
+<form action="{{ route('employee.scholarship.approve',$scholarship->scholarshipNo) }}" method="post">
   @csrf
-  <div class="modal fade" id="admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" id="viewModalScholarship-{{ $scholarship->scholarshipNo }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">

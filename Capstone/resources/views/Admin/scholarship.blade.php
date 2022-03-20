@@ -28,7 +28,7 @@
                             <th>NAME</th>
                             <th>Endorser Office</th>
                             <th>DEPARTMENT</th>
-                            <th>OFFICE STATUS</th>
+                            <th>ENDORSER STATUS</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>

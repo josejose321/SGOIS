@@ -117,6 +117,15 @@
     <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
 
-
+@if (Session::has('success'))
+  <script>
+    swal({
+          title: "Success!",
+          text: "{{ Session::get('success') }}",
+          icon: "success",
+          button: "ok!",
+        });
+</script>
+@endif
 
 </html>
