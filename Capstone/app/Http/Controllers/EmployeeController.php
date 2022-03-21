@@ -16,11 +16,16 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
     //
+    private $announcement;
+    public function __construct()
+    {
+        $this->announcement = new Announcement();
+    }
 
     public function index()
     {
         return view("Employee.index")
-        ->with('announcements',Announcement::latest()->take(3)->get());
+        ->with('announcements', $this->announcement->getLatest());
     }
     public function show()
     {

@@ -27,25 +27,38 @@ use function PHPUnit\Framework\returnSelf;
 
 class StudentController extends Controller
 {
-    
+    private $announcement;
+    private $semester;
+    private $data;
+    public function __construct()
+    {
+        $this->announcement = new Announcement();
+        $this->semester = new Semester();
+    }
     function index()
     {
+        $this->data = [
+            'student'=>Student::find('18-08925'),
+            'offices' => Office::all(),
+            'categories'=> Category::all(),
+            'sem'=> $this->semester->getLatest(),
+            'announcements' => $this->announcement->getLatest()
+        ];
         //dd($offices);
         return view('Student.index')
-        ->with('student',Student::find('18-08925'))
-        ->with('offices',Office::all())
-        ->with('categories',Category::all())
-        ->with('sem',Semester::latest()->first())
-        ->with('announcements',Announcement::latest()->take(3)->get());
+        ->with($this->data);
 
     }
     function show(Student $student)
     {
+        $this->data = [
+            'student'=>$student,
+            'offices' => Office::all(),
+            'categories'=> Category::all(),
+            'sem'=> $this->semester->getLatest(),
+        ];
         return view("Student.profile")
-        ->with('student',$student)
-        ->with('offices',Office::all())
-        ->with('categories',Category::all())
-        ->with('sem',Semester::latest()->first());
+        ->with($this->data);
     }
     function showScholarships()
     {
