@@ -61,7 +61,7 @@
 
 
 
-    <footer class=" sticky-footer fixed-bottom" style="background-color: beige">
+    <footer class=" sticky-footer" style="background-color: beige">
         <div class="container my-auto">
             <div class="text-center my-auto copyright"><span>Copyright © 2022 | University of Nueva Caceres - UNCSGOIS . All Rights Reserved</span></div>
         </div>
