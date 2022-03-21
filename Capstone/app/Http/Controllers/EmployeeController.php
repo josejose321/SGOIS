@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     public function index()
     {
         return view("Employee.index")
-        ->with('announcements',Announcement::all());
+        ->with('announcements',Announcement::latest()->take(3)->get());
     }
     public function show()
     {
