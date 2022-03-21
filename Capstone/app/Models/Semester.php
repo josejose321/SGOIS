@@ -27,4 +27,9 @@ class Semester extends Model
         return $this->hasMany(Loan::class,"semesterCode","semesterCode");
     }
 
+    public function getLatest()
+    {
+        return $this->latest()->first();
+    }
+
 }

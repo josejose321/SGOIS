@@ -20,4 +20,8 @@ class Announcement extends Model
     {
         return $this->belongsTo(Admin::class,"admin_no","admin_no");
     }
+    public function getLatest()
+    {
+        return $this->latest()->take(3)->get();
+    }
 }
