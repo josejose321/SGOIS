@@ -25,7 +25,7 @@ class EmployeeFactory extends Factory
         'email'=>$this->faker->unique()->safeEmail(),
         'departmentCode' => $this->faker->randomElement(Department::all()->pluck('departmentCode')),
         'phone' =>$this->faker->numerify('09#########'),
-        'position'=>$this->faker->randomElement('Director','Office Staff','Assistant','Regular Employee'),
+        'position'=>$this->faker->randomElement(['Director','Office Staff','Assistant','Regular Employee']),
         'avatar' => 'defaultAvatar.jpg',
         'password' => Hash::make('password'),
         ];
