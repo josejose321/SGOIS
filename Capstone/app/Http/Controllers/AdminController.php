@@ -8,28 +8,21 @@ use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
 use App\Mail\ScholarshipMail;
-use App\Mail\WelcomMail;
 use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Course;
 use App\Models\Department;
-use App\Models\Discount;
 use App\Models\Loan;
 use App\Models\Scholarship;
+use App\Models\Semester;
 use App\Models\Student;
-use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
-use Barryvdh\DomPDF\PDF;
 use Exception;
-use Facade\FlareClient\Http\Response;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Exceptions\LaravelExcelException;
 use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\Console\Input\Input;
 
 class AdminController extends Controller
 {
@@ -48,9 +41,16 @@ class AdminController extends Controller
 
         $this->countResults =[
             'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
-            'totalDiscounts'=>$this->scholarship->countApproved('discount'),
+            'totalDiscounts'=>$this->scholarship->countApproved('Discount'),
             'totalLoans'=> Loan::count(),
-            'totalOthers'=> $this->scholarship->countApproved('Grant')
+            'totalOthers'=> $this->scholarship->countApproved('Grant'),
+            'chartResult' => [
+                $this->scholarship->countGrantee('UNC-SDO','Scholarship'),
+                $this->scholarship->countGrantee('UNC-CULTURE&ARTS','Scholarship'),
+                $this->scholarship->countGrantee('UNC-HR','Scholarship'),
+                $this->scholarship->countApproved('Discount'),
+                $this->scholarship->countApproved('Grant'),
+            ]
         ];
         
     }
@@ -61,6 +61,12 @@ class AdminController extends Controller
     public function home()
     {
         // return new ScholarshipMail();
+        $this->countResults =[
+            'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
+            'totalDiscounts'=>$this->scholarship->countApproved('Discount'),
+            'totalLoans'=> Loan::count(),
+            'totalOthers'=> $this->scholarship->countApproved('Grant'),
+        ];
         return view('unc')
         ->with($this->countResults);
     }
@@ -101,8 +107,6 @@ class AdminController extends Controller
     //Admin index // dashboard
     public function index()
     {
-        //Mail::to('jose.evascoii1150@gmail.com')->send( new WelcomMail());
-        // return new WelcomMail();
         $this->data = [
             'total'=> Student::count(),
             'departments' => Department::all(),
@@ -183,11 +187,11 @@ class AdminController extends Controller
             'officeVerification' =>'Approved',
             'adminVerification'=>'Approved',
             'discount' =>$request->discount,
-            'remarks', $request->remarks
+            'remarks'=> $request->remarks
         ]);
         // dd($scholarship->student->firstname);
-        return new ScholarshipMail($scholarship);
-        Mail::to($scholarship->student->email, new ScholarshipMail($scholarship));
+        // return new ScholarshipMail($scholarship);
+        // Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
         
         return back()->with('success','Scholarship Application Approved!');
     }
@@ -252,21 +256,27 @@ class AdminController extends Controller
     {
         // $pdf = FacadePdf::loadView('Requirement',Storage::url($scholarship->requirement));
         // return $pdf->download(Storage::url($scholarship->requirement));
-        if(file_exists(Storage::url($scholarship->requirement)))
+        if(file_exists(Storage::get($scholarship->requirement)))
         {
-            Storage::download(Storage::url($scholarship->photo),$scholarship->student->lastname . '-photo', 200);
-           return back();
+            Storage::download(Storage::get($scholarship->requirement),$scholarship->student->lastname . '-photo', 200);
+            return back();
         }
+        // dd($scholarship->requirement);
+        Storage::download($scholarship->requirement);
+
+        // return response()->download('off');
+        // return back();
         return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
     }
 
     public function downloadPhoto(Scholarship $scholarship)
     {
-        if(file_exists(Storage::url($scholarship->photo)))
+        if(file_exists(Storage::get($scholarship->photo)))
         {
-            Storage::download(Storage::url($scholarship->photo),$scholarship->student->lastname . '-photo', 200);
+            Storage::download(Storage::get($scholarship->photo),$scholarship->student->lastname . '-photo', 200);
             return back();
         }
+        
         return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
     }
 
@@ -276,6 +286,7 @@ class AdminController extends Controller
     {
         $this->data = [
             'admin'=>Admin::find('18-08925'),
+            'semesters' => Semester::all()
         ];
         return view('Admin.application')->with($this->data);
     }

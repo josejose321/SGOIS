@@ -17,6 +17,6 @@ class OfficeSeeder extends Seeder
     public function run()
     {
         //
-        Excel::import(new Office,asset('storage/sgodata/offices.xlsx'));
+        Excel::import(new Office,Storage::get('public/offices.xlsx'));
     }
 }

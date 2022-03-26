@@ -54,4 +54,13 @@ class Scholarship extends Model
         ->where('adminVerification','Pending')
         ->latest()->simplePaginate(10);
     }
+
+    public function countGrantee($office, $type)
+    {
+        return $this->all()->where('officeVerification','Approved')
+            ->where('adminVerification','Approved')
+            ->where('type',$type)
+            ->where('officeCode',$office)
+            ->count();
+    }
 }

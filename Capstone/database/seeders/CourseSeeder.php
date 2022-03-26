@@ -17,6 +17,6 @@ class CourseSeeder extends Seeder
     public function run()
     {
         //
-        Excel::import(new Course,asset('storage/courses.xlsx'));
+        Excel::import(new Course,Storage::get('public/courses.xlsx'));
     }
 }

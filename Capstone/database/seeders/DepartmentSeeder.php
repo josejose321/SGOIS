@@ -6,6 +6,7 @@ use App\Models\Department;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Reader\Ods;
 
 class DepartmentSeeder extends Seeder
 {
@@ -17,6 +18,6 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         //
-        Excel::import(new Department, Storage::url('sgodata/departments.xlsx'));
+        Excel::import(new Department, Storage::get('public/departments.xlsx'));
     }
 }

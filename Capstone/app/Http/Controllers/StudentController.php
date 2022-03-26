@@ -8,6 +8,8 @@ use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Announcement;
 use App\Models\Category;
+use App\Models\Course;
+use App\Models\Department;
 use App\Models\Discount;
 use App\Models\Loan;
 use App\Models\Office;
@@ -64,14 +66,15 @@ class StudentController extends Controller
     {
         return view("Student.scholarships")
         ->with('scholarships',Scholarship::all())
-        ->with('loans',Loan::all())
-        ->with('discounts',Scholarship::all());
+        ->with('loans',Loan::all());
     }
 
     function edit(Student $student)
     {
         return view("Student.edit")
-        ->with(compact('student'));
+        ->with(compact('student'))
+        ->with('courses',Course::all())
+        ->with('departments',Department::all());
     }
 
     public function updateProfile(StudentUpdateRequest $request, Student $student)
@@ -89,17 +92,9 @@ class StudentController extends Controller
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
             "discount"=> $request->discount,
-            "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
-            "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
+            "requirement"=> $this->storeFiles($request->file('requirement'),'public/requirements/'),
+            "photo"=>$this->storeFiles($request->file('photo'),'public/photos/'),
         ]);
-        return back()->with('successApply','Your Application is submitted');
-    }
-    public function applyLoan(Request $request, Student $student)
-    {
-        return back()->with('successApply','Your Application is submitted');
-    }
-    public function applyDiscount(Request $request, Student $student)
-    {
         return back()->with('successApply','Your Application is submitted');
     }
 
@@ -124,7 +119,7 @@ class StudentController extends Controller
     private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
     {
         $path = $file->hashName();
-        $file->storeAs( 'public/'. $directory,$path);
+        $file->storeAs($directory,$path);
         return $directory . $path;
     }
 }

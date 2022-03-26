@@ -17,6 +17,6 @@ class CategorySeeder extends Seeder
     public function run()
     {
         //
-        Excel::import(new Category,asset('storage/sgodata/categories.xlsx'));
+        Excel::import(new Category,Storage::get('public/categories.xlsx'));
     }
 }

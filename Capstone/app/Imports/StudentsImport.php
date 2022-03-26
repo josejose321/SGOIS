@@ -18,7 +18,7 @@ class StudentsImport implements ToModel, WithHeadingRow
     private $students;
     public function __construct()
     {
-        
+        $this->students =  Student::all();
     }
     public function model(array $row)
     {
@@ -35,8 +35,6 @@ class StudentsImport implements ToModel, WithHeadingRow
             'year'=>$row['year'],
             'avatar'=>'defaultAvatar.jpg',
             'password'=>Hash::make($row['student_no']),
-            'created_at'=>time(),
-            'updated_at'=>time()
         ]);
     }
 }
