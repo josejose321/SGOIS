@@ -57,7 +57,7 @@
                 <div class="row align-items-center no-gutters">
                     <div class="col me-2">
                         <div class="text-uppercase text-warning fw-bold text-xs mb-1">
-                            <center><h5><strong>OTHER GRANTEES</strong></h5></center>
+                            <center><h5><strong>OTHER SCHOLARSHIPS</strong></h5></center>
                             <center><h5><strong>{{ $totalOthers ?? 0 }}</strong></h5></center>
                         </div>
                     </div>
@@ -66,9 +66,9 @@
             </div>
         </div>
     </div>
-<canvas id="canvas" height="700" width="1500"></canvas>
-
-@include('charts.departmentGrantees')
+<canvas id="canvas" height="500" width="1200"></canvas>
+{{-- {{ dd($chartResult) }} --}}
+{{-- @include('charts.departmentGrantees') --}}
 @include('charts.grantees')
 @include('modals.addStudent')
 @include('modals.addSem')

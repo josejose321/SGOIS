@@ -1,6 +1,6 @@
 <script>
-    var year = ['SPORTS DEV','CULTURE AND ARTS','HUMAN RESOURCE','DISCOUNTS','GOVERNMENT','OTHERS']
-    var user = [54,34,23,65,23, 67,32];
+    var year = ['SPORTS DEV','CULTURE AND ARTS','HUMAN RESOURCE','DISCOUNTS','OTHERS']
+    var user = JSON.parse('{{ json_encode($chartResult) }}');
     var barChartData = {
         labels: year,
         datasets: [{

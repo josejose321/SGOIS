@@ -32,22 +32,22 @@
             @endif
             <div class="row">
               
-              <div class="col-md-4">
+              <div class="col-md-6">
                   <label for="student_no">Student_no</label>
                   <input type="text" class="form-control" placeholder="Student No" value="{{ $student->student_no }}" readonly>
               </div>
             </div>
             <div class="row">
                 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="inputAddress">Firstname</label>
                     <input type="text" class="form-control" name="firstname"  placeholder="{{ $student->firstname }}" value="{{ $student->firstname }}">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="inputAddress">Middlename</label>
                     <input type="text" class="form-control" name="middlename" placeholder="{{ $student->middlename }}"value="{{ $student->middlename }}">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="inputAddress">Lastname</label>
                     <input type="text" class="form-control" name="lastname" placeholder="{{ $student->lastname }}"value="{{ $student->lastname }}">
                 </div>
@@ -55,27 +55,28 @@
                   
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="inputAddress">Email</label>
                     <input type="email" class="form-control" name="email" placeholder="{{ $student->email }}" value="{{ $student->email }}">
                 </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                       <label for="inputAddress">Department</label>
                       <input type="text" class="form-control" name="departmentCode" placeholder="Department Code" value="{{ $student->departmentCode }}">
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                       <label for="inputAddress">Contact Number</label>
                       <input type="text" class="form-control" name="phone" placeholder="{{ $student->phoneNumber }}" value="{{ $student->phone }}" maxlength="11">
                   </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="inputAddress">Course</label>
                     <input type="text" class="form-control" name="course"  placeholder="{{ $student->course }}" value="{{ $student->course }}">
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <label for="year"> Select Year</label>
                     <select class="form-select form-select-md mb-3" name="year" aria-label="Default select example">
+                      <option>{{ $student->year }}</option>
                         <option value="1st year">1st year</option>
                         <option value="2nd year">2nd year</option>
                         <option value="3rd year">3rd year</option>

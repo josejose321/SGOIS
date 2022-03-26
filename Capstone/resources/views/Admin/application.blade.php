@@ -17,7 +17,7 @@
                       </div>
                     <thead>
                         <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                            <th >SemesterNo</th>
+                            <th >SemesterCode</th>
                             <th>SEMESTER</th>
                             <th >PERIOD</th>
                             <th >STATUS</th>
@@ -25,19 +25,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($announcements ?? '' as $announcement)
+                        @foreach ($semesters ?? '' as $semester)
                         <tr>
-                            <td>{{ $announcement->id ?? '' }}</td>
-                            <td>{{ $announcement->subject ?? ''}}</td>
-                            <td>{{ $announcement->admin->lastname ?? '' }}, 
-                                {{ $announcement->admin->firstname ?? '' }} 
-                                {{ $announcement->admin->middlename ?? '' }}</p></td>
+                            <td>{{ $semester->semesterCode ?? '' }}</td>
+                            <td>{{ $semester->sem ?? ''}}</td>
+                            <td>{{ $semester->period ?? '' }}</td>
+                            <td>{{ $semester->active ?? '' }}</td>
                             <td>
-                                <button class="btn" type="button" data-toggle="modal" data-target="#viewAnnouce-{{ $announcement->id }}" style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i class="fa fa-pencil"></i></button>
-                                <a href="{{ route('admin.announce.delete',$announcement->id) }}"><button class="btn" type="button" style="font-size: 14px;text-align: center;margin-left: 2px;background: var(--bs-red);color: var(--bs-body-bg);"><i class="fa fa-trash-o"></i></button></a>
+                                <button class="btn" type="button" data-toggle="modal" data-target="#viewAnnouce-{{ $semester->semesterCode }}" style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i class="fa fa-pencil"></i></button>
+                                <a href="#"><button class="btn" type="button" style="font-size: 14px;text-align: center;margin-left: 2px;background: var(--bs-red);color: var(--bs-body-bg);"><i class="fa fa-trash-o"></i></button></a>
                             </td>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
                 <center>

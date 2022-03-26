@@ -12,7 +12,7 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="subject">Subject</label>
-          <input type="text" class="form-control" name="subject" id="subject" aria-describedby="emailHelp" placeholder="Subject">
+          <input type="text" class="form-control" name="subject" id="subject" autocomplete="off" aria-describedby="emailHelp" placeholder="Subject">
         </div>
         
         <div class="form-group">

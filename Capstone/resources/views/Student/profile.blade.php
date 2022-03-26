@@ -5,7 +5,7 @@
   <!-- Large modal -->
 
  <div class="jumbotron">
-  <div class="w-50"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="img-thumbnail w-25" alt="avatar.jpeg"><br></div>
+  <div class="w-50"><img src="{{ Storage::url('avatar/'. $student->avatar) }}" class="rounded w-25" alt="avatar.jpeg"><br></div>
    <h1 class="display-8">
      Hello, Mr./Ms 
           {{ $student->firstname}}
