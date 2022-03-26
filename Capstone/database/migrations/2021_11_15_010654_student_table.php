@@ -25,8 +25,8 @@ class StudentTable extends Migration
             $table->string('course');
             $table->string('year', 10);
             $table->string('avatar')->default('defaultAvatar.jpg');
-            $table->boolean('active')->default(1);
-            $table->string('password');
+            $table->enum('status',['active','disabled','graduate'])->default('active');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
             

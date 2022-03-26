@@ -18,7 +18,7 @@ class ScholarshipTable extends Migration
         Schema::create('scholarships', function (Blueprint $table)
         {
             $table->increments("scholarshipNo");
-            $table->string('type')->default('Scholarship');
+            $table->enum('type',['Scholarship','Discount','Grant'])->default('Scholarship');
             $table->string('student_no',8)->index();
             $table->string('officeCode',20)->index();
             $table->string('semesterCode',20)->index();
@@ -26,8 +26,8 @@ class ScholarshipTable extends Migration
             $table->string('discount');
             $table->string('requirement');
             $table->string('photo');
-            $table->string('officeVerification')->default('Pending');
-            $table->string('adminVerification')->default('Pending');
+            $table->enum('officeVerification',['Declined','Approved','Pending','Endorsed'])->default('Pending');
+            $table->enum('adminVerification',['Declined','Approved','Pending','Endorsed'])->default('Pending');
             $table->string('remarks')->nullable();
             $table->timestamps();
             $table->foreign('student_no')->references('student_no')->on('students')->onDelete('cascade');
