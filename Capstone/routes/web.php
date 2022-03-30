@@ -79,7 +79,8 @@ Route::prefix('admin')
         Route::post('/import','import')->name('.import');
         Route::get('/students','showStudents')->name('.students');
         Route::get('/profile','showProfile')->name('.profile');
-        Route::post('/profile{admin}','updateProfile')->name('.update');
+        Route::post('profile/{admin}/avatar','updateAvatar')->name('.profile.updateAvatar');
+        Route::post('/profile/{admin}','updateProfile')->name('.update');
 
 
         //announcement
