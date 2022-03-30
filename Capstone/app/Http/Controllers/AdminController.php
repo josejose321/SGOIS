@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AnnouncementRequest;
+use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
 use App\Mail\ScholarshipMail;
@@ -61,6 +62,16 @@ class AdminController extends Controller
     public function home()
     {
         // return new ScholarshipMail();
+
+        $try = [
+
+            (object) ['title' =>'Total Scholarships', 'total' =>$this->scholarship->countApproved('Scholarship')],
+            (object) ['title' =>' Total Discounts', 'total' =>$this->scholarship->countApproved('Discount')],
+            (object) ['title' =>' Total Loans', 'total' =>Loan::count()],
+            (object) ['title' =>'Other Grants', 'total' =>$this->scholarship->countApproved('Grant')],
+        ];
+
+        // return ($try);
         $this->countResults =[
             'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
             'totalDiscounts'=>$this->scholarship->countApproved('Discount'),
@@ -68,14 +79,15 @@ class AdminController extends Controller
             'totalOthers'=> $this->scholarship->countApproved('Grant'),
         ];
         return view('unc')
-        ->with($this->countResults);
+        // ->with($this->countResults)
+        ->with('scholarshipsResults',$try);
     }
 
     //announcement
     public function showAnnounce()
     {
         return view('Admin.announcements')
-        ->with('announcements',Announcement::simplePaginate(10))
+        ->with('announcements',Announcement::latest()->simplePaginate(10))
         ->with('admin',Admin::find('18-08925'));
     }
     public function deleteAnnounce(Announcement $announcement)
@@ -221,18 +233,18 @@ class AdminController extends Controller
     }
 
     
-    public function updateAvatar(Request $request, Admin $admin)
+    public function updateAvatar(AvatarRequest $request, Admin $admin)
     {
         try
         {
             //save upload path
             $admin->avatar = $this->storeAvatar($request->file('avatar'));
             $admin->save();
-            return redirect()->back()->with('avatarSuccess',"Succes!");
+            return redirect()->back()->with('success',"Avatar successfully updated!");
 
         }catch(Exception $e)
         {
-            return back()->with('avatarError','Upload Error!\n'. $e->getMessage());
+            return back()->with('error','Upload Error!\n'. $e->getMessage());
         }
 
         
