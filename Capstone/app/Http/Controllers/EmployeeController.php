@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminVerifyRequest;
+use App\Http\Requests\AvatarRequest;
 use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Employee;
@@ -44,34 +45,23 @@ class EmployeeController extends Controller
     }
 
 
-    public function updateAvatar(Request $request, $employee_no)
+    public function updateAvatar(AvatarRequest $request, Employee $employee)
     {
-        try
-        {
-            //save upload path
-            $employee = Employee::findOrFail($employee_no);
-            $employee->image = $this->storeAvatar($request->file('avatar'));
-            $employee->save();
+        //save upload path
+        $employee->update([
+            'avatar' => $this->storeAvatar($request->file('avatar'))
+        ]);
+        return back()->with('success',"Update avatar");
 
-
-            return back()->with('avatarSuccess',"Succes!");
-
-        }catch(ModelNotFoundException $e)
-        {
-            return back()->with('avatarError','Uploading Error!\n'. $e->getMessage());
-        }catch(Exception $e)
-        {
-            return back()->with('unknownError',"Unknown Error occured!\n Error Message:".$e->getMessage());
-        }
-
-        
     }
 
 
     public function showScholarships()
     {
         return view('Employee.scholarship')
-        ->with('scholarships',Scholarship::where('officeVerification','Pending')->latest()->simplePaginate(10));
+        ->with('scholarships',Scholarship::where('officeVerification','Pending')
+        ->latest()
+        ->simplePaginate(10));
     }
     public function showDiscounts()
     {
