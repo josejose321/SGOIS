@@ -58,6 +58,6 @@
             </div>
         </div>
     </div>
-    @include('modals.addScholarship')
+
 
 @endsection
