@@ -76,7 +76,7 @@
                             <label for="category">Category</label>
                             <select class="form-select form-select-md mb-3" name="categoryNo" id="category" value="{{ old('category') }}"
                                 aria-label="Default select example">
-                                @foreach ($categories as $category)
+                                @foreach ($categories->where('officeCode','UNC-SDO')->get() as $category)
                                     <option value="{{ $category->categoryNo }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>

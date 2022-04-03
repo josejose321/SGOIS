@@ -32,7 +32,7 @@
                             <label for="id"> Firstname</label>
                             <input type="text" name="firstname" class="form-control" placeholder="First name"
                                 value="{{ old('firstname') }}">
-                                @if ($errors->has('firstname'))
+                            @if ($errors->has('firstname'))
                                 <small class="input-error text-danger">{{ $errors->first('firstname') }}</small>
                             @endif
                         </div>
@@ -40,7 +40,7 @@
                             <label for="id"> Middlename</label>
                             <input type="text" name="middlename" class="form-control" placeholder="middlename"
                                 value="{{ old('middlename') }}">
-                                @if ($errors->has('middlename'))
+                            @if ($errors->has('middlename'))
                                 <small class="input-error text-danger">{{ $errors->first('middlename') }}</small>
                             @endif
                         </div>
@@ -48,7 +48,7 @@
                             <label for="id"> Lastname</label>
                             <input type="text" name="lastname" class="form-control" placeholder="lastname"
                                 value="{{ old('lastname') }}">
-                                @if ($errors->has('lastname'))
+                            @if ($errors->has('lastname'))
                                 <small class="input-error text-danger">{{ $errors->first('lastname') }}</small>
                             @endif
                         </div>
@@ -58,7 +58,7 @@
                             <label for="id"> email</label>
                             <input type="email" name="email" class="form-control" placeholder="Email here"
                                 value="{{ old('email') }}">
-                                @if ($errors->has('email'))
+                            @if ($errors->has('email'))
                                 <small class="input-error text-danger">{{ $errors->first('email') }}</small>
                             @endif
                         </div>
@@ -66,7 +66,7 @@
                             <label for="id"> Phone number</label>
                             <input type="text" name="phone" class="form-control" placeholder="Phone number"
                                 maxlength="11" value="{{ old('phone') }}">
-                                @if ($errors->has('phone'))
+                            @if ($errors->has('phone'))
                                 <small class="input-error text-danger">{{ $errors->first('phone') }}</small>
                             @endif
                         </div>
@@ -120,6 +120,7 @@
         </div>
     </div>
 </form>
+
 
 <script>
     $('#addStudent').on('click', function(e) {

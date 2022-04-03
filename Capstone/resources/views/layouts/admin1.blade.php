@@ -100,7 +100,7 @@
                     style="background-color: #334756">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <div class="h5 font-weight-bold text-danger">UNC SCHOLARSHIP AND GRANTS </div>
+                        <div class="h4 fw-bold text-light">UNC SCHOLARSHIP AND GRANTS </div>
 
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item m-4 p-0 text-light">Logout</li>
@@ -137,7 +137,8 @@
                             Caceres - UNCSGOIS . All Rights Reserved</span></div>
                 </div>
             </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
+        <a class=" rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <!-- Charting library -->
     <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
