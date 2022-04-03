@@ -6,17 +6,13 @@
         <div class="jumbotron">
             <div class="w-50"><img src="{{ Storage::url('avatar/' . $student->avatar) }}" class="rounded w-25"
                     alt="avatar.jpeg"><br></div>
-            <h1 class="display-8">
+            <h6 class="">
                 Hello, Mr./Ms
                 {{ $student->firstname }}
                 {{ $student->middlename }}
                 {{ $student->lastname }} <br>
                 {{ $student->student_no }} <br>
-                {{ $student->email }}<br>
-                {{ $student->department->name }}<br>
-                {{ $student->phone }}<br>
-                {{ $student->course }}<br>
-            </h1>
+            </h6>
             <a href="{{ url('student/' . $student->student_no . '/edit') }}"><button type="button"
                     class="btn btn-primary">Edit Profile</button></a>
             <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis nisi aut
