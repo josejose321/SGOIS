@@ -40,14 +40,14 @@
 
                         @foreach ($students as $student)
                             <tr>
-                                <th scope="col"> {{ $student->student_no }}</th>
-                                <th scope="col"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }}
-                                    {{ $student->middlename ?? '' }}</th>
-                                <th scope="col"> {{ $student->departmentCode ?? '' }}</th>
-                                <th scope="col">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#viewStudent-{{ $student->student_no }}">view</button>
-                                </th>
+                                <td scope="col"> {{ $student->student_no }}</td>
+                                <td scope="col"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }}
+                                    {{ $student->middlename ?? '' }}</td>
+                                <td scope="col"> {{ $student->departmentCode ?? '' }}</td>
+                                <td scope="col">
+                                    <button type="button" class="btn-lg btn-secondary" data-toggle="modal"
+                                        data-target="#viewStudent-{{ $student->student_no }}"><i class="fa fa-eye"></i></button>
+                                </td>
                             </tr>
                         @endforeach
 
