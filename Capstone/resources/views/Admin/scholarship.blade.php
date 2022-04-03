@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class=" h2 font-weight-bold">SCHOLARSHIPS</div>
+        <div class=" h1 font-weight-bold">SCHOLARSHIPS</div>
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h3 font-weight-bold">Pending Request</div>
+                <div class="h2 font-weight-bold">PENDING REQUEST</div>
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -34,21 +34,21 @@
                         <tbody>
                             @foreach ($scholarships as $scholarship)
                                 <tr>
-                                    <td>{{ $scholarship->scholarshipNo ?? '' }}</td>
+                                    <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
                                     <td>{{ $scholarship->student_no ?? '' }}</td>
                                     <td>{{ $scholarship->student->lastname ?? '' }},{{ $scholarship->student->firstname }}
                                         {{ $scholarship->student->middlename }}</td>
                                     <td>{{ $scholarship->office->name }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
-                                    <td><button class="btn" type="button" data-toggle="modal"
-                                            data-target="#admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}"
-                                            style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i
-                                                class="fa fa-pencil"></i></button>
-                                        <button class="btn" type="button"
-                                            onclick="deleteScholarship({{ $scholarship->scholarshipNo }})"
-                                            style="font-size: 14px;text-align: center;margin-left: 2px;background: var(--bs-red);color: var(--bs-body-bg);"><i
-                                                class="fa fa-trash-o"></i></button>
+                                    <td><button class="btn-lg btn-secondary" type="button" data-toggle="modal"
+                                            data-target="#admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}">
+                                            <i class="fa fa-pencil"></i></button>
+                                        <button class="btn-lg btn-danger" type="button"
+                                            onclick="deleteScholarship({{ $scholarship->scholarshipNo }})">
+                                            <i class="fa fa-trash-o"></i></button>
                                     </td>
+                                    {{-- <td><img src="{{ Storage::url($scholarship->photo) }}" class="rounded w-25"
+                                        alt="avatar.jpeg"></td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
