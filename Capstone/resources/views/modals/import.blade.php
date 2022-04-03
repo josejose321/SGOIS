@@ -14,7 +14,10 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Choose File Here..</label>
-                        <input type="file" class="form-control-file" name="file">
+                        <input type="file" class="form-control-file" name="file" value="{{ old('file') }}">
+                        @if ($errors->has('file'))
+                            <small class="input-error text-danger">{{ $errors->first('file') }}</small>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
