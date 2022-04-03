@@ -18,6 +18,7 @@ use App\Models\Scholarship;
 use App\Models\Semester;
 use App\Models\Student;
 use Exception;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -89,6 +90,7 @@ class AdminController extends Controller
         return view('Admin.announcements')
         ->with('announcements',Announcement::latest()->simplePaginate(10))
         ->with('admin',Admin::find('18-08925'));
+        //auth()->admin
     }
     public function deleteAnnounce(Announcement $announcement)
     {
@@ -125,6 +127,7 @@ class AdminController extends Controller
             'courses'=> Course::all(),
             'admin'=>Admin::find('18-08925'),
         ];
+        //auth()->admin
 
 
         return view('Admin.index')
@@ -133,6 +136,7 @@ class AdminController extends Controller
     }
     public function showScholarships()
     {
+        //auth()->admin
         $this->data =[
             'admin' =>Admin::find('18-08925'),
             'scholarships'=> $this->scholarship->admin_getPending('Scholarship')
@@ -149,14 +153,14 @@ class AdminController extends Controller
     public function showProfile()
     {
         return view('Admin.profile')
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'));//auth()->admin
     }
     public function showLoans()
     {
         $loan = new Loan();
         $this->data = [
             'loans'=> $loan->admin_getPending(),
-            'admin'=> Admin::find('18-08925')
+            'admin'=> Admin::find('18-08925')//auth()->admin
         ];
         return view('Admin.loan')
         ->with($this->data);
@@ -165,13 +169,13 @@ class AdminController extends Controller
     {
         return view('Admin.discount')
         ->with('scholarships',$this->scholarship->admin_getPending('Pending'))
-        ->with('admin',Admin::find('18-08925'));
+        ->with('admin',Admin::find('18-08925'));//auth()->admin
     }
     public function showStudents()
     {
         $this->data =[
             'students'=>Student::simplePaginate(10),
-            'admin' =>Admin::find('18-08925'),
+            'admin' =>Admin::find('18-08925'),//auth()->admin
             'total'=>Student::count()
         ];
         return view('Admin.student')
@@ -180,7 +184,7 @@ class AdminController extends Controller
     public function show(Admin $admin)
     {
         return view('Admin.index')
-        ->with('admin', $admin);
+        ->with('admin', $admin);//auth()->admin
     }
 
 
@@ -267,14 +271,15 @@ class AdminController extends Controller
     public function downLoadRequirement(Scholarship $scholarship)
     {
         // $pdf = FacadePdf::loadView('Requirement',Storage::url($scholarship->requirement));
+        //dd(Storage::url($scholarship->requirement));
         // return $pdf->download(Storage::url($scholarship->requirement));
-        if(file_exists(Storage::get($scholarship->requirement)))
+        if(file_exists(Storage::url($scholarship->requirement)))
         {
-            Storage::download(Storage::get($scholarship->requirement),$scholarship->student->lastname . '-photo', 200);
+            Storage::download($scholarship->photo,$scholarship->student->lastname . '-photo', 200);
             return back();
         }
         // dd($scholarship->requirement);
-        Storage::download($scholarship->requirement);
+        // return response()->download($scholarship->requirement);
 
         // return response()->download('off');
         // return back();
@@ -283,9 +288,9 @@ class AdminController extends Controller
 
     public function downloadPhoto(Scholarship $scholarship)
     {
-        if(file_exists(Storage::get($scholarship->photo)))
+        if(file_exists(Storage::url($scholarship->photo)))
         {
-            Storage::download(Storage::get($scholarship->photo),$scholarship->student->lastname . '-photo', 200);
+            Storage::download($scholarship->photo,$scholarship->student->lastname . '-photo', 200);
             return back();
         }
         
@@ -305,7 +310,7 @@ class AdminController extends Controller
     public function showOtherPrograms()
     {
         $this->data = [
-            'admin'=>Admin::find('18-08925'),
+            'admin'=>Admin::find('18-08925'), //auth()->admin()
         ];
         return view('Admin.otherProgram')->with($this->data);
     }

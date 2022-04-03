@@ -18,14 +18,16 @@ class ScholarshipTable extends Migration
         Schema::create('scholarships', function (Blueprint $table)
         {
             $table->increments("scholarshipNo");
-            $table->enum('type',['Scholarship','Discount','Grant'])->default('Scholarship');
+            $table->enum('type',['Scholarship','Discount','Grant'])->default('Scholarship');//will remove later
             $table->string('student_no',8)->index();
-            $table->string('officeCode',20)->index();
+            $table->string('officeCode',20)->index();//will remove later
             $table->string('semesterCode',20)->index();
             $table->unsignedBigInteger('categoryNo')->index()->nullable();
-            $table->string('discount');
+            $table->string('discount')->default('NA');
+            $table->double('amount')->default(0);
             $table->string('requirement');
             $table->string('photo');
+            $table->enum('deanVerification',['Declined','Approved','Pending','Endorsed','NA'])->default('NA');
             $table->enum('officeVerification',['Declined','Approved','Pending','Endorsed'])->default('Pending');
             $table->enum('adminVerification',['Declined','Approved','Pending','Endorsed'])->default('Pending');
             $table->string('remarks')->nullable();

@@ -54,7 +54,7 @@ class StudentController extends Controller
     function show(Student $student)
     {
         $this->data = [
-            'student'=>$student,
+            'student'=>$student, //auth()->student()
             'offices' => Office::all(),
             'categories'=> Category::all(),
             'sem'=> $this->semester->getLatest(),
@@ -72,7 +72,7 @@ class StudentController extends Controller
     function edit(Student $student)
     {
         return view("Student.edit")
-        ->with(compact('student'))
+        ->with(compact('student')) //auth()->student()
         ->with('courses',Course::all())
         ->with('departments',Department::all());
     }
@@ -92,8 +92,8 @@ class StudentController extends Controller
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
             "discount"=> $request->discount,
-            "requirement"=> $this->storeFiles($request->file('requirement'),'public/requirements/'),
-            "photo"=>$this->storeFiles($request->file('photo'),'public/photos/'),
+            "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
+            "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
         ]);
         return back()->with('successApply','Your Application is submitted');
     }
@@ -119,7 +119,7 @@ class StudentController extends Controller
     private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
     {
         $path = $file->hashName();
-        $file->storeAs($directory,$path);
+        $file->storeAs('public/'.$directory,$path);
         return $directory . $path;
     }
 }

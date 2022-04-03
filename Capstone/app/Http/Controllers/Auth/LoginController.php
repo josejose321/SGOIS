@@ -40,8 +40,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
-        $this->middleware('guest:writer')->except('logout');
+        $this->middleware('guest:employee')->except('logout');
+        $this->middleware('guest:student')->except('logout');
     }
+
+
+
     public function adminLogin(LoginRequest $request)
     {
         if (Auth::guard('admin')->attempt(['admin_no' => $request->admin_no, 'password' => $request->password], $request->get('remember'))) {
@@ -49,6 +53,7 @@ class LoginController extends Controller
         }
         return back()->withInput($request->only('admin_no', 'remember'));
     }
+
     public function employeeLogin(LoginRequest $request)
     {
 
@@ -58,6 +63,8 @@ class LoginController extends Controller
         }
         return back()->withInput($request->only('employee', 'remember'));
     }
+
+
     public function studentLogin(LoginRequest $request)
     {
 

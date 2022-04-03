@@ -31,7 +31,7 @@ class EmployeeController extends Controller
     public function show()
     {
         return view('Employee.profile')
-        ->with('employee',Employee::find('18-08925'));
+        ->with('employee',Employee::find('18-08925')); //auth()->employee
     }
 
     //Verify Pending request
