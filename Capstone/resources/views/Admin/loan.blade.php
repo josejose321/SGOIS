@@ -14,18 +14,18 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th style="text-align: center;font-size: 14px;">STUDENT ID</th>
-                                <th style="text-align: center;">NAME</th>
-                                <th style="text-align: center;">EMAIL</th>
-                                <th style="text-align: center;">DEPARTMENT</th>
-                                <th style="text-align: center;">OFFICE STATUS</th>
-                                <th style="text-align: center;">ACTION</th>
+                                <th >LOAN NO.</th>
+                                <th >NAME</th>
+                                <th >EMAIL</th>
+                                <th >DEPARTMENT</th>
+                                <th >OFFICE STATUS</th>
+                                <th >ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($loans as $loan)
                                 <tr>
-                                    <td>{{ $loan->student_no }}</td>
+                                    <td>{{ str_pad($loan->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
                                     <td>{{ $loan->student->lastname }},{{ $loan->student->firstname }}
                                         {{ $loan->student->middlename }}</td>
                                     <td>{{ $loan->student->email }}</td>

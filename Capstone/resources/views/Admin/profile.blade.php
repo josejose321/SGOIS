@@ -14,13 +14,14 @@
                             @csrf
                             <label for="avatar">
                                 <img class="rounded-circle mb-3 mt-4 w-50"
-                                    src="{{ Storage::url('avatar/6g4mgyJXAJ7hVC1tolnCBT6u7FjEHrksdJG07n3d.jpg') }}">
+                                    src="{{ Storage::url('avatar/'. $admin->avatar) }}">
                                 <input type="file" id="avatar" name="avatar" style="display:none">
 
                             </label>
                             <div class="mb-3">
                                 <button class="btn btn-sm" type="submit"
-                                    style="background: var(--bs-red);color: var(--bs-body-bg);">Change Photo</button>
+                                    style="background: var(--bs-red);color: var(--bs-body-bg);">Change Photo
+                                </button>
                             </div>
                         </form>
                     </div>

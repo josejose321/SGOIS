@@ -15,7 +15,7 @@
     </h2>
 
     <div class="row-fluid border">
-        <div class="col-md-6 col-xl-3 mb-4 p-2">
+        <div class="col-md-6 col-lg-3 mb-4 p-1">
             <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                 <div class="row align-items-center no-gutters">
                     <div class="col me-2">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-3 mb-4 p-2">
+        <div class="col-md-6 col-xl-3 mb-4 p-1">
             <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                 <div class="row align-items-center no-gutters">
                     <div class="col me-2">
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-3 mb-4 p-2">
+        <div class="col-md-6 col-xl-3 mb-4 p-1">
             <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                 <div class="row align-items-center no-gutters">
                     <div class="col me-2">
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-3 mb-4 p-2">
+        <div class="col-md-6 col-xl-3 mb-4 p-1">
             <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                 <div class="row align-items-center no-gutters">
                     <div class="col me-2">
@@ -79,14 +79,13 @@
                             </center>
                         </div>
                     </div>
-                    <div class="col-auto"><i class="fas fa-solid fa-school fa-2x text-gray-300"></i></div>
+                    <div class="col-auto"><i class="fas fa-school fa-2x text-gray-300"></i></div>
                 </div>
             </div>
         </div>
     </div>
-    <canvas id="canvas" height="500" width="1200"></canvas>
-    {{-- {{ dd($chartResult) }} --}}
-    {{-- @include('charts.departmentGrantees') --}}
+    <canvas id="canvas" height="450" width="1200"></canvas>
+
     @include('charts.grantees')
     @include('modals.addStudent')
     @include('modals.addSem')
@@ -94,7 +93,7 @@
     @if (Session::has('success'))
         <script>
             swal({
-                title: "Successfully Added!",
+                title: "Success!",
                 text: "{{ Session::get('success') }}",
                 icon: "success",
                 button: "ok!",
@@ -141,7 +140,6 @@
     @include('modals.addStudent')
     @include('modals.addSem')
 
-    </html>
 
 
 
