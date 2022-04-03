@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label for="subject">Subject</label>
                         <input type="text" class="form-control" name="subject" id="subject" autocomplete="off"
-                            aria-describedby="emailHelp" placeholder="Subject">
+                            placeholder="Subject" value="{{ old('subject') }}">
                     </div>
 
                     <div class="form-group">
