@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Scholarship extends Model
 {
@@ -57,10 +58,20 @@ class Scholarship extends Model
 
     public function countGrantee($office, $type)
     {
-        return $this->all()->where('officeVerification','Approved')
+        return $this->where('officeVerification','Approved')
             ->where('adminVerification','Approved')
             ->where('type',$type)
             ->where('officeCode',$office)
             ->count();
     }
+    public function getPendingDeansVerification($departmentCode)
+    {
+        return $this->select('scholarships.*')
+        ->join('students','scholarships.student_no','=','students.student_no')
+        //->where('deansVerification','Pending')
+        ->where('students.departmentCode',$departmentCode)
+        ->where('students.status','Active')
+        ->get();
+    }
+    
 }
