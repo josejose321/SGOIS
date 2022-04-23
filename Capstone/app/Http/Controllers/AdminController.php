@@ -8,6 +8,7 @@ use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
+use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
 use App\Models\Admin;
 use App\Models\Announcement;
@@ -54,6 +55,8 @@ class AdminController extends Controller
                 $this->scholarship->countApproved('Grant'),
             ]
         ];
+
+
         
     }
 
@@ -64,24 +67,17 @@ class AdminController extends Controller
     {
         // return new ScholarshipMail();
 
-        $try = [
+        $results = [
 
             (object) ['title' =>'Total Scholarships', 'total' =>$this->scholarship->countApproved('Scholarship')],
-            (object) ['title' =>' Total Discounts', 'total' =>$this->scholarship->countApproved('Discount')],
-            (object) ['title' =>' Total Loans', 'total' =>Loan::count()],
+            (object) ['title' =>'Total Discounts', 'total' =>$this->scholarship->countApproved('Discount')],
+            (object) ['title' =>'Total Loans', 'total' =>Loan::count()],
             (object) ['title' =>'Other Grants', 'total' =>$this->scholarship->countApproved('Grant')],
         ];
 
-        // return ($try);
-        $this->countResults =[
-            'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
-            'totalDiscounts'=>$this->scholarship->countApproved('Discount'),
-            'totalLoans'=> Loan::count(),
-            'totalOthers'=> $this->scholarship->countApproved('Grant'),
-        ];
         return view('unc')
         // ->with($this->countResults)
-        ->with('scholarshipsResults',$try);
+        ->with('scholarshipsResults',$results);
     }
 
     //announcement
@@ -95,7 +91,7 @@ class AdminController extends Controller
     public function deleteAnnounce(Announcement $announcement)
     {
         $announcement->delete();
-        return back()->with('successDelete','You Deleted an Announcement');
+        return back()->with('success','You Deleted an Announcement');
     }
 
 
@@ -107,14 +103,14 @@ class AdminController extends Controller
             'content' =>$request->content,
             'admin_no'=>$admin->admin_no,
         ]);
-        return back()->with('successAnnounce','You Added a new Annoucement:');
+        return back()->with('success','You Added a new Annoucement:');
 
     }
     public function updateAnnounce(AnnouncementRequest $request, Announcement $announcement)
     {
 
         $announcement->update($request->validated());
-        return back()->with('successUpdate','You update an Annoucement:');
+        return back()->with('success','You update an Annoucement:');
     }
 
 
@@ -205,9 +201,7 @@ class AdminController extends Controller
             'discount' =>$request->discount,
             'remarks'=> $request->remarks
         ]);
-        // dd($scholarship->student->firstname);
-        // return new ScholarshipMail($scholarship);
-        // Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
+        Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
         
         return back()->with('success','Scholarship Application Approved!');
     }
@@ -228,7 +222,7 @@ class AdminController extends Controller
         {
             try{
                 Excel::import(new StudentsImport, $request->file('file')->store('temp'));
-                return back()->with('successImport','Import Successfully!');
+                return back()->with('success','Import Successfully!');
             }catch(Exception $e){
                 return back()->with('errorImport','Import Error!');
             }
@@ -265,24 +259,19 @@ class AdminController extends Controller
         $student = Student::create($request->validated());
         $student->password = Hash::make($student->student_no);
         $student->save();
+        Mail::to($student->email)->send(new RegistrationMail($student));
         return back()->with('success',"student added to the database");
     }
 
     public function downLoadRequirement(Scholarship $scholarship)
     {
-        // $pdf = FacadePdf::loadView('Requirement',Storage::url($scholarship->requirement));
-        //dd(Storage::url($scholarship->requirement));
-        // return $pdf->download(Storage::url($scholarship->requirement));
+
         if(file_exists(Storage::url($scholarship->requirement)))
         {
             Storage::download($scholarship->photo,$scholarship->student->lastname . '-photo', 200);
             return back();
         }
-        // dd($scholarship->requirement);
-        // return response()->download($scholarship->requirement);
 
-        // return response()->download('off');
-        // return back();
         return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
     }
 
