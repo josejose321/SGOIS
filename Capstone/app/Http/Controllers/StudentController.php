@@ -95,21 +95,16 @@ class StudentController extends Controller
             "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
             "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
         ]);
-        return back()->with('successApply','Your Application is submitted');
+        return back()->with('success','Your Application is submitted');
     }
 
-    public function updateAvatar(Request $request, Student $student)
-    {
-        if($request->avatar == null)
-            return back()->with('avatarError','Import your file First!');
-            
-             
-        //save upload path
-        $student->avatar = $this->storeAvatar($request->file('avatar'));
-        $student->save();
-        return back()->with('avatarSuccess',"Succes!");
-        
+    public function updateAvatar(AvatarRequest $request, Student $student)
+    { 
+        $student->update(['avatar'=> $this->storeAvatar($request->file('avatar'))]);
+        return back()->with('success',"You update your profile!");
     }
+
+    
     private function storeAvatar($file)//get avatarname and upload to storage
     {
         $path = $file->hashName();
