@@ -48,8 +48,8 @@
                             <select class="form-select form-select-md mb-3" name="type" id="type"
                                 aria-label="Default select example">
                                 <option value="Scholarship">Scholarship</option>
-                                <option value="discount">Discount</option>
-                                <option value="grant">Others</option>
+                                <option value="Discount">Discount</option>
+                                <option value="Grant">Others</option>
                             </select>
                         </div>
                     </div>

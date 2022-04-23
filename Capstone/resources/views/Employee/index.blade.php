@@ -31,7 +31,7 @@
                             <h5 class="mb-0 fw-bold">{{ $announcement->subject ?? '' }}</h5>
                         </div>
                         <div class="card-body" style="background-color: beige">
-                            <p class="card-text"> {{ $announcement->content }}</p>
+                            <p class="card-text"> {{ $announcement->content ?? '' }}</p>
 
                             <p class="card-text">-Admin
                                 {{ $announcement->admin->lastname }},
