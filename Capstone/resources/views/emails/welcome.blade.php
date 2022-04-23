@@ -2,12 +2,18 @@
 # New Account
 
 
-This will be the Registration info and account info
-this is a test
-@component('mail::button', ['url' => 'https://www.unc.edu.ph/'])
+Welcome! Mr./Mrs {{ $student->firstname }}
+
+
+
+Your Account Information 
+
+Student ID: {{ $student->student_no }} <br>
+Password:{{ $student->student_no }} <br>
+@component('mail::button', ['url' => 'https://www.unc.edu.ph/', 'color'=>'success'])
 Visit Site
 @endcomponent
 
-Thanks,<br>
+Thanks,<br> 
 {{ config('app.name') }}
 @endcomponent
