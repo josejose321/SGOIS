@@ -31,26 +31,7 @@
     </div>
 </form>
 
-@if (Session::has('errorAnnounce'))
-    <script>
-        swal({
-            title: "Failed to Compose Announcement!",
-            text: "{{ Session::get('errorAnnounce') }}",
-            icon: "error",
-            button: "ok!",
-        });
-    </script>
-@endif
-@if (Session::has('successAnnounce'))
-    <script>
-        swal({
-            title: "SUCCESS",
-            text: "{{ Session::get('successAnnounce') }}",
-            icon: "success",
-            button: "ok!",
-        });
-    </script>
-@endif
+
 
 <script>
     $('#announce').on('click', function(e) {
