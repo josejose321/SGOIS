@@ -99,17 +99,28 @@
     </script>
 @endif
 
-@if (Session::has('successApply'))
+@if (Session::has('success'))
     <script>
         swal({
-            title: "Import Success!",
-            text: "{{ Session::get('successApply') }}",
+            title: "Success!",
+            text: "{{ Session::get('success') }}",
             icon: "success",
             button: "ok!",
         });
     </script>
 @endif
 
-{{ @Session::forget('successApply') }}
+@if (Session::has('error'))
+    <script>
+        swal({
+            title: "You have an Error!",
+            text: "{{ Session::get('error') }}",
+            icon: "error",
+            button: "ok!",
+        });
+    </script>
+@endif
+
+{{ @Session::forget('success') }}
 
 </html>
