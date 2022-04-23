@@ -16,9 +16,11 @@ class RegistrationMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    private $student;
+    public function __construct($student)
     {
         //
+        $this->student = $student;
     }
 
     /**
@@ -28,6 +30,8 @@ class RegistrationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Account Registration')->markdown('emails.welcome');
+        return $this->subject('Account Registration')
+        ->markdown('emails.welcome')
+        ->with('student',$this->student);
     }
 }
