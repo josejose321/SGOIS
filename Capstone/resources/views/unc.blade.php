@@ -44,6 +44,9 @@
     <link rel="stylesheet" href="assets/css/Table-With-Search.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" 
+        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body style="background-color: ">
@@ -51,13 +54,13 @@
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
             style="background-color: #2C394B">
-            <div class="container-fluid"><a class="navbar-brand" href="{{ url('/') }}"><img
+            <div class="container-fluid animate__animated animate__fadeIn"><a class="navbar-brand" href="{{ url('/') }}"><img
                         src="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}"
                         style="width: 80px;height: 80px;">&nbsp;</a><button data-bs-toggle="collapse"
                     class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
                         navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto animate__animated animate__fadeIn">
                         <li class="nav-item"><a class="nav-link" style="color:#ffffff;"
                                 href="{{ url('') }}">&nbsp;HOME</a></li>
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
@@ -70,7 +73,7 @@
                             </div>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav animate__animated animate__fadeIn">
                         <li class="nav-item"></li>
                         <li class="nav-item"><a class="nav-link" href="#footer"
                                 style="color: var(--bs-body-bg);">CONTACT US</a></li>
@@ -91,9 +94,9 @@
             <!-- Start: Landing content -->
             <div class="d-flex align-items-center order-5" style="height:200px;">
                 <div class="container">
-                    <div class="display-4 text-center text-light">Everyone Makes It
+                    <div class="display-4 text-center text-light fw-bold animate__animated animate__fadeInLeft">Everyone Makes It
                     </div>
-                    <p style="color: var(--bs-body-bg);text-align: center;"><br>Be an instrument in providing better
+                    <p style="color: var(--bs-body-bg);text-align: center;" class="animate__animated animate__fadeInRight"><br>Be an instrument in providing better
                         tomorrows for the BICOLANO'S.&nbsp; Join UNC's Everybody Shares Project.&nbsp;<br><br><br></p>
                 </div>
             </div><!-- End: Landing content -->
@@ -113,7 +116,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center" style="color: var(--bs-red);">AVAILABLE SCHOLARSHIPS</h2>
+                    <h2 class="text-center fw-bold animate__animated animate__slideInDown" style="color: var(--bs-red);">AVAILABLE SCHOLARSHIPS</h2>
                     <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -135,7 +138,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 animate__animated animate__fadeInUp">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">SCHOLARSHIPS&nbsp;
@@ -150,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 animate__animated animate__fadeInUp">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">GRANTS&nbsp;
@@ -165,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 animate__animated animate__fadeInUp">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">LOANS&nbsp;
@@ -177,7 +180,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 animate__animated animate__fadeInUp">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">DISCOUNTS&nbsp;
@@ -259,9 +262,8 @@
             <section>
                 <!-- Start: Feature - Block Image Three - Full Wide Screen -->
                 <section style="background-color: #efefef;padding-top: 40px;padding-bottom: 40px;">
-                    <p class="fw-bold" style="text-align: center;font-size: 35px;color: var(--bs-red);">
+                    <p class="fw-bold animate__animated animate__fadeIn" style="text-align: center;font-size: 35px;color: var(--bs-red);">
                         DEVELOPERS PROFILE</p>
-                    <h1></h1>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-11 col-md-12 col-lg-4 col-xl-4">
