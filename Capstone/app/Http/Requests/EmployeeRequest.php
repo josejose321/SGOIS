@@ -26,6 +26,11 @@ class EmployeeRequest extends FormRequest
         return [
             
             //
+            'firstname' =>'required',
+            'middlename' =>'required',
+            'lastname' =>'required',
+            'email' =>'required',
+            'phone' =>'required',
         
         ];
     }
