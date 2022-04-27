@@ -43,9 +43,9 @@
                                     <td><button class="btn-lg btn-secondary" type="button" data-toggle="modal"
                                             data-target="#admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}">
                                             <i class="fa fa-pencil"></i></button>
-                                        <button class="btn-lg btn-danger" type="button"
+                                        {{-- <button class="btn-lg btn-danger" type="button"
                                             onclick="deleteScholarship({{ $scholarship->scholarshipNo }})">
-                                            <i class="fa fa-trash-o"></i></button>
+                                            <i class="fa fa-trash-o"></i></button> --}}
                                     </td>
                                     {{-- <td><img src="{{ Storage::url($scholarship->photo) }}" class="rounded w-25"
                                         alt="avatar.jpeg"></td> --}}
@@ -60,14 +60,13 @@
             </div>
         </div>
     </div>
-    <script>
+    {{-- <script>
         function deleteScholarship(scholarshipNo) {
             if (confirm("Do you really want to delete this scholarship?:\nScholarshipNo:" + scholarshipNo)) {
-                alert(scholarshipNo);
-                window.location.href = "{{ url('admin/${scholarship}/delete') }}";
+                window.location.href = "{{ url('admin/scholarships/${scholarshipNo}/delete') }}";
             }
         }
-    </script>
+    </script> --}}
 
     @include('modals.admin_viewScholarship')
 @endsection
