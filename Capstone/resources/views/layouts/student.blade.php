@@ -91,7 +91,7 @@
 @if ($errors->any())
     <script>
         swal({
-            title: "You have an Error!",
+            title: "Invalid Action!",
             text: "Please Check your inputs",
             icon: "error",
             button: "ok!",
@@ -102,7 +102,7 @@
 @if (Session::has('success'))
     <script>
         swal({
-            title: "Success!",
+            title: "Action Success!",
             text: "{{ Session::get('success') }}",
             icon: "success",
             button: "ok!",
@@ -113,7 +113,7 @@
 @if (Session::has('error'))
     <script>
         swal({
-            title: "You have an Error!",
+            title: "Invalid Action!",
             text: "{{ Session::get('error') }}",
             icon: "error",
             button: "ok!",
@@ -122,5 +122,6 @@
 @endif
 
 {{ @Session::forget('success') }}
+{{ @Session::forget('error') }}
 
 </html>
