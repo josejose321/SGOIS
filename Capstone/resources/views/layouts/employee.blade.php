@@ -146,12 +146,26 @@
 @if (Session::has('success'))
     <script>
         swal({
-            title: "Success!",
+            title: "Action Success!",
             text: "{{ Session::get('success') }}",
             icon: "success",
             button: "ok!",
         });
     </script>
 @endif
+
+@if (Session::has('error'))
+    <script>
+        swal({
+            title: "Invalid Action!",
+            text: "{{ Session::get('error') }}",
+            icon: "error",
+            button: "ok!",
+        });
+    </script>
+@endif
+
+{{ @Session::forget('success') }}
+{{ @Session::forget('error') }}
 
 </html>

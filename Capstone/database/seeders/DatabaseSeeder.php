@@ -19,9 +19,10 @@ class DatabaseSeeder extends Seeder
             // CourseSeeder::class,
             // OfficeSeeder::class,
             // CategorySeeder::class,
-            AdminSeeder::class,
-            EmployeeSeeder::class,
-            StudentSeeder::class
+            // AdminSeeder::class,
+            // EmployeeSeeder::class,
+            // StudentSeeder::class,
+            ScholarshipSeeder::class,
         ]);
     }
 }

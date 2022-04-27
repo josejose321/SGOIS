@@ -3,9 +3,9 @@
 @section('title', 'Admin Dashboard')
 @section('content')
 
-    <h2 class="text-dark mb-4 font-weight-bold">
+    <h2 class="text-dark mb-4 font-weight-bold ">
 
-        <button class="btn pull-right" id="import" type="button"
+        <button class="btn pull-right " id="import" type="button"
             style="background: var(--bs-gray-800);color: var(--bs-body-bg);">
             <i class="fa fa-download"></i>&nbsp; IMPORT STUDENTS</button>
         <button class="btn pull-right" type="button" id="addStudent"
@@ -16,7 +16,7 @@
 
     <div class="row-fluid border">
         <div class="col-md-6 col-lg-3 mb-4 p-1">
-            <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
+            <div class="card-body " style="color: var(--bs-body-bg);background: var(--bs-red);">
                 <div class="row align-items-center no-gutters">
                     <div class="col me-2">
                         <div class="text-uppercase text-warning fw-bold text-xs mb-1">
