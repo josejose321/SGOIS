@@ -57,6 +57,9 @@
     {{-- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> --}}
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />    
 </head>
 
 <body id="page-top">
@@ -80,6 +83,9 @@
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('employee.scholarhips') }}"><i
                                 class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
+                                <li class="nav-item"><a class="nav-link"
+                                    href="{{ route('employee.categories') }}"><i
+                                        class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
