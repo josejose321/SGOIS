@@ -12,9 +12,11 @@ use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
 use App\Models\Admin;
 use App\Models\Announcement;
+use App\Models\Category;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Loan;
+use App\Models\Office;
 use App\Models\Scholarship;
 use App\Models\Semester;
 use App\Models\Student;
@@ -309,6 +311,16 @@ class AdminController extends Controller
             'admin'=>Admin::find('18-08925'),
         ];
         return view('Admin.report')->with($this->data);
+    }
+    public function showCategories()
+    {
+        $this->data = [
+            'admin'=> Admin::find('18-08925'),
+            'categories'=> Category::simplePaginate(15),
+            'offices'=> Office::all()
+        ];
+        return view('Admin.categories')
+        ->with($this->data);
     }
     
 }
