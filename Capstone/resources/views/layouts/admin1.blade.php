@@ -18,26 +18,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome5-overrides.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Articale-List-With-Image-Zoom.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/BreakingNews-1.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/BreakingNews.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Button-Change-Text-on-Hover.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/CoolFont---Text-Container.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Customizable-Background--Overlay.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Dark-NavBar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Feature-Block-Image-Three-With-Full-Wide-Screen.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Features-Boxed.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/gradient-navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/HoverDownButton.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/News-Cards.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Newsletter-v2.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Pretty-Footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Responsiv-News-Crawler-in-column-No-Costum-Code.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/Sakae-Simple-Section.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Table-With-Search-1.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Table-With-Search.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -54,7 +40,7 @@
     {{--  --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    {{-- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> --}}
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -64,7 +50,7 @@
 <body id="page-top">
     <div id="wrapper" style="background-color: beige">
         <nav class="navbar-fluid navbar-dark align-items-start sidebar sidebar-dark" style="background-color:#334756">
-            <div class="container d-flex flex-column p-0 m-1">
+            <div class="container d-flex flex-column p-0 m-1 ">
                 <ul class="navbar-nav" id="accordionSidebar">
                     <li class="nav-item"><img src="{{ asset('assets/img/dashboard%20logo/unc-logo.png') }}"
                             class="rounded w-75"></li>
@@ -72,19 +58,21 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}"><i
                                 class="fa fa-home"></i><span>DASHBOARD</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.profile') }}"><i
-                                class="fas fa-user"></i><span>PROFILE</span></a></li>
+                                class="fa fa-user"></i><span>PROFILE</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.scholarhips') }}"><i
-                                class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
+                                class="fa fa-list-alt"></i><span>SCHOLARSHIPS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.discounts') }}"><i
                                 class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"><i
-                                class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
+                                class="fa fa-list-alt"></i><span>LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i
                                 class="fa fa-graduation-cap"></i><span>STUDENTS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}"><i
                                 class="fa fa-list-alt"></i><span>REPORTS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.application') }}"><i
                                 class="fa fa-list-alt"></i><span>APPLICATION</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories') }}"><i
+                                    class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.otherPrograms') }}"><i
                                 class="fa fa-list-alt"></i><span>OTHERS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i
