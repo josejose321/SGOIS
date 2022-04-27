@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Admin;
 use App\Models\Announcement;
+use App\Models\Category;
 use App\Models\Employee;
+use App\Models\Office;
 use App\Models\Scholarship;
 use App\Models\Student;
 use Exception;
@@ -17,6 +20,7 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
     //
+    private $data;
     private $announcement;
     public function __construct()
     {
@@ -79,5 +83,22 @@ class EmployeeController extends Controller
         $path = $file->hashName();
         $file->storeAs('public/avatar/',$path);
         return $path;
+    }
+    public function updateProfile(EmployeeRequest $request, Employee $employee)
+    {
+        $employee->update($request->validated());
+        return redirect()->back()-with('success', ' Your Profile Succefully Updated!');
+    }
+
+    public function showCategories()
+    {
+        $this->data =[
+            'employee'=> Employee::find('18-08925'),
+            'categories'=> Category::simplePaginate(15),
+            'offices'=> Office::all()
+        ];
+
+        return view('Employee.categories')
+        ->with($this->data);
     }
 }
