@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="content">Input Details Here</label>
+                        <label for="content">Your Content Here..</label>
                         <textarea class="form-control" name="content" id="content" rows="6"></textarea>
                     </div>
                 </div>
