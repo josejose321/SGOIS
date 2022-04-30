@@ -6,6 +6,7 @@ use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
 use App\Mail\RegistrationMail;
@@ -21,9 +22,7 @@ use App\Models\Scholarship;
 use App\Models\Semester;
 use App\Models\Student;
 use Exception;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +33,7 @@ class AdminController extends Controller
     private $data;
     private $countResults;
     private $scholarship;
-    private $loan;
+    private  $semester;
 
     public function __construct()
     {
@@ -42,7 +41,7 @@ class AdminController extends Controller
 
         $this->scholarship = new Scholarship();
         $this->loan = new Loan();
-
+        $this->semester = new Semester();
 
         $this->countResults =[
             'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
@@ -155,9 +154,8 @@ class AdminController extends Controller
     }
     public function showLoans()
     {
-        $loan = new Loan();
         $this->data = [
-            'loans'=> $loan->admin_getPending(),
+            'loans'=> $this->loan->admin_getPending('Loan'),
             'admin'=> Admin::find('18-08925')//auth()->admin
         ];
         return view('Admin.loan')
@@ -166,7 +164,7 @@ class AdminController extends Controller
     public function showDiscounts()
     {
         return view('Admin.discount')
-        ->with('scholarships',$this->scholarship->admin_getPending('Pending'))
+        ->with('scholarships',$this->scholarship->admin_getPending('Discount'))
         ->with('admin',Admin::find('18-08925'));//auth()->admin
     }
     public function showStudents()
@@ -174,7 +172,9 @@ class AdminController extends Controller
         $this->data =[
             'students'=>Student::simplePaginate(10),
             'admin' =>Admin::find('18-08925'),//auth()->admin
-            'total'=>Student::count()
+            'total'=>Student::count(),
+            'courses'=>Course::all(),
+            'departments'=> Department::all()
         ];
         return view('Admin.student')
         ->with($this->data);
@@ -290,13 +290,30 @@ class AdminController extends Controller
 
 
     //application
-    public function showApplication()
+    public function showSemester()
     {
         $this->data = [
             'admin'=>Admin::find('18-08925'),
-            'semesters' => Semester::all()
+            'semesters' => $this->semester->getALL()->simplePaginate(10),
         ];
-        return view('Admin.application')->with($this->data);
+        return view('Admin.semester')->with($this->data);
+    }
+    public function storeSemester(SemesterRequest $request)
+    {
+        try
+        {
+            $sem= Semester::create([
+                'semesterCode' => $request->sem. '_' .$request->year  ,
+                'sem' =>$request->sem,
+                'year'=> $request->year,
+                'period'=>$request->period,
+                'active'=>1,
+            ]);
+        }catch(Exception $e)
+        {
+            return redirect()->back()->with('error','Cannot Add new Semester');
+        }
+        return redirect()->back()->with('success','New Semester Added!');
     }
     public function showOtherPrograms()
     {
@@ -316,7 +333,7 @@ class AdminController extends Controller
     {
         $this->data = [
             'admin'=> Admin::find('18-08925'),
-            'categories'=> Category::simplePaginate(15),
+            'categories'=> Category::paginate(15),
             'offices'=> Office::all()
         ];
         return view('Admin.categories')
