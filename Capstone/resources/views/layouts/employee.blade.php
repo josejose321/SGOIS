@@ -18,26 +18,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome5-overrides.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Articale-List-With-Image-Zoom.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/BreakingNews-1.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/BreakingNews.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Button-Change-Text-on-Hover.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/CoolFont---Text-Container.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Customizable-Background--Overlay.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Dark-NavBar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Feature-Block-Image-Three-With-Full-Wide-Screen.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Features-Boxed.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/gradient-navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/HoverDownButton.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/News-Cards.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Newsletter-v2.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Pretty-Footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Responsiv-News-Crawler-in-column-No-Costum-Code.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/Sakae-Simple-Section.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Table-With-Search-1.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/Table-With-Search.css') }}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -97,24 +79,26 @@
                     style="background-color: #334756">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <div class="h6 font-weight-bold text-danger">UNIVERSITY SCHOLARSHIP AND GRANTS</div>
+                        <div class="h4 fw-bold text-light">UNC SCHOLARSHIP AND GRANTS </div>
 
-                        <ul class="navbar-nav flex-nowrap ms-auto">
-                            <li class="nav-item m-4 p-0 text-light">Logout</li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
+                        <ul class="navbar-nav ms-auto float-right">
+
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow">
-                                    <a class="dropdown-toggle nav-link" type="button" aria-expanded="false"
-                                        data-bs-toggle="dropdown" href="#">
-                                        <span class="d-none d-lg-inline me-2">Evasco, Jose II V.</span>
+                                    <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="d-none d-lg-inline me-2">Evasco, Jose II Vargas</span>
                                         <img class="border rounded-circle img-profile"
                                             src="{{ Storage::url('avatar/6g4mgyJXAJ7hVC1tolnCBT6u7FjEHrksdJG07n3d.jpg') }}">
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-end">
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
-                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
-                                                class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                                class="fas fa-user"></i>&nbsp;Profile</a>
+                                        <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                                            <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>
+                                            &nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
