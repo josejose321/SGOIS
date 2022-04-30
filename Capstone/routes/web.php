@@ -62,10 +62,13 @@ Route::prefix('admin')
         Route::get('/scholarships/{scholarship}/requirement-download', 'downloadRequirement')->name('.scholarship.requirement-download');
         Route::get('/scholarships/{scholarship}/photo-download', 'downloadPhoto')->name('.scholarship.photo-download');
 
-        Route::get('/applications','showApplication')->name('.application');
+        Route::get('/semesters','showSemester')->name('.semester');
+        Route::post('/semesters','storeSemester')->name('.semester.store');
         Route::get('/other-programs','showOtherPrograms')->name('.otherPrograms');
         Route::get('/reports','showReport')->name('.reports');
         Route::get('/categories','showCategories')->name('.categories');
+        Route::post('/categories','storeCategory')->name('.categories.store');
+        Route::post('categories/update','updateCategory')->name('.categories.update');
 
         //loans
         Route::get('/loans','showLoans')->name('.loans');
@@ -109,10 +112,12 @@ Route::prefix('student')
         Route::post('/{student}/scholarship','applyScholarship')->name('.apply.scholarship');
         Route::post('/{student}/discount','applyDiscount')->name('.apply.discount');
         Route::post('/{student}/loan','applyLoan')->name('.apply.loan');
+        Route::get('/scholarship-sportsdev','showSportsDev')->name('.sportsDev');
 
         Route::get('/{student}', 'show')->name('.show');
         Route::get('/{student}/edit','edit')->name('.edit');
         Route::get('/', 'index')->name('.index');
+        
         
     });
 
@@ -128,7 +133,8 @@ Route::prefix('employee')
         Route::get('/loans','showLoans')->name('.loans');
         //discounts
         Route::get('/discounts','showDiscounts')->name('.discounts');
-        Route::get('/categories','showCategories')->name('.categories');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        Route::get('/categories','showCategories')->name('.categories');
+        ROute::get('categories/update','updateCategory')->name('.categories.update');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
         
 
         Route::get('/profile', 'show')->name('.show');
@@ -141,10 +147,6 @@ Route::prefix('employee')
 
 
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
