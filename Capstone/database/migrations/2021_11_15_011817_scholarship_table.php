@@ -18,7 +18,7 @@ class ScholarshipTable extends Migration
         Schema::create('scholarships', function (Blueprint $table)
         {
             $table->increments("scholarshipNo");
-            $table->enum('type',['Scholarship','Discount','Grant'])->default('Scholarship');//will remove later
+            $table->enum('type',['Scholarship','Discount','Grant','Loan'])->default('Scholarship');//will remove later
             $table->string('student_no',8)->index();
             $table->string('officeCode',20)->index();//will remove later
             $table->string('semesterCode',20)->index();
