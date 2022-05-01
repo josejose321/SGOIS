@@ -4,28 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\ScholarshipRequest;
-use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Announcement;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Department;
-use App\Models\Discount;
 use App\Models\Loan;
 use App\Models\Office;
 use App\Models\Scholarship;
 use App\Models\Semester;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Models\Student;
-use Exception;
-use GrahamCampbell\ResultType\Success;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 
-use function PHPUnit\Framework\returnSelf;
 
 class StudentController extends Controller
 {
@@ -46,7 +35,6 @@ class StudentController extends Controller
             'sem'=> $this->semester->getLatest(),
             'announcements' => $this->announcement->getLatest()
         ];
-        //dd($offices);
         return view('Student.index')
         ->with($this->data);
 
@@ -100,6 +88,7 @@ class StudentController extends Controller
 
     public function updateAvatar(AvatarRequest $request, Student $student)
     { 
+
         $student->update(['avatar'=> $this->storeAvatar($request->file('avatar'))]);
         return back()->with('success',"You update your profile!");
     }
@@ -116,5 +105,9 @@ class StudentController extends Controller
         $path = $file->hashName();
         $file->storeAs('public/'.$directory,$path);
         return $directory . $path;
+    }
+    public function showSportsDev()
+    {
+        return view('Student.sportsdev');
     }
 }

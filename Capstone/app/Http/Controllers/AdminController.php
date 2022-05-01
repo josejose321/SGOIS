@@ -9,8 +9,10 @@ use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
+use App\Mail\AnnouncementMail;
 use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
+use App\Mail\WelcomMail;
 use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Category;
@@ -38,7 +40,6 @@ class AdminController extends Controller
     public function __construct()
     {
         // dd($scholar->countApproved('Scholarship'));
-
         $this->scholarship = new Scholarship();
         $this->loan = new Loan();
         $this->semester = new Semester();
@@ -118,6 +119,9 @@ class AdminController extends Controller
     //Admin index // dashboard
     public function index()
     {
+        // return new RegistrationMail(Student::find('18-08925'));
+        // return new ScholarshipMail(Scholarship::latest()->first());
+        // return new AnnouncementMail(null);
         $this->data = [
             'total'=> Student::count(),
             'departments' => Department::all(),

@@ -64,6 +64,16 @@ class Scholarship extends Model
             ->where('officeCode',$office)
             ->count();
     }
+    public function countGrantees($office, $type)
+    {
+        return $this->select('scholarships.*')
+            ->join('categories','categories.categoryNo','scholarships.categoryNo')
+            ->where('scholarships.officeVerification','Approved')
+            ->where('scholarships.adminVerification','Approved')
+            ->where('categories.type',$type)
+            ->where('scholarships.officeCode',$office)
+            ->count();
+    }
     public function getPendingDeansVerification($departmentCode)
     {
         return $this->select('scholarships.*')

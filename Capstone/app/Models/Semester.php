@@ -32,5 +32,9 @@ class Semester extends Model
     {
         return $this->latest()->first();
     }
+    public function getALL()
+    {
+        return $this->latest();
+    }
 
 }
