@@ -1,6 +1,6 @@
 @extends('layouts.admin1')
 
-@section('title', 'Admin Dashboard')
+@section('title', ' UNC Students')
 @section('content')
 
     <div class="row-fluid">
@@ -8,19 +8,20 @@
             <div class="card-header">
                 <h2>Students</h2> <br>
                 <h3>TOTAL ACTIVE: {{ $total }}</h3>
-                <div class="form-row w-50 float-right">
-                    <div class="col input-group mb-3 w-25">
-                        <select class="custom-select" id="sort">
-                            <option selected>Sort By:</option>
-                            <option value="departmentCode">Department</option>
-                            <option value="course">Course</option>
-                            <option value="lastname">Phone</option>
-                        </select>
-                    </div>
-                    <div class=" col input-group mb-3 w-25 float-right">
+                <div class="float-left">
+                    <button class="btn" id="import" type="button"
+                    style="background: var(--bs-gray-800);color: var(--bs-body-bg);">
+                    <i class="fa fa-download"></i>&nbsp; IMPORT STUDENTS</button>
+                <button class="btn" type="button" id="addStudent"
+                    style="background: var(--bs-red);margin-right: 5px;border-bottom-color: var(--bs-red);color: var(--bs-body-bg);">
+                    <i class="fa fa-plus"></i>&nbsp; ADD STUDENT</button>
+                </div>&nbsp;&nbsp;
+                <div class="form-row w-25 float-right">
+
+                    <div class="col input-group mb-3 w-25 float-right">
                         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                             aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-primary">search</button>
+                        <button type="button" class="btn btn-secondary">search</button>
                     </div>
                 </div>
 
@@ -46,7 +47,8 @@
                                 <td scope="col"> {{ $student->departmentCode ?? '' }}</td>
                                 <td scope="col">
                                     <button type="button" class="btn-lg btn-secondary" data-toggle="modal"
-                                        data-target="#viewStudent-{{ $student->student_no }}"><i class="fa fa-eye"></i></button>
+                                        data-target="#viewStudent-{{ $student->student_no }}"><i
+                                            class="fa fa-eye"></i> View</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -62,54 +64,8 @@
         </div>
     </div>
     @include('modals.viewStudent')
-    {{-- message from server --}}
-    @if (Session::has('success'))
-        <script>
-            swal({
-                title: "Successfully Added!",
-                text: "{{ Session::get('success') }}",
-                icon: "success",
-                button: "ok!",
-            });
-        </script>
-    @endif
-
-
-
-    @if (Session::has('successImport'))
-        <script>
-            swal({
-                title: "Import Success!",
-                text: "{{ Session::get('successImport') }}",
-                icon: "success",
-                button: "ok!",
-            });
-        </script>
-    @endif
-    @if (Session::has('errorImport'))
-        <script>
-            swal({
-                title: "Import Failed!",
-                text: "{{ Session::get('errorImport') }}",
-                icon: "error",
-                button: "ok!",
-            });
-        </script>
-    @endif
-
-
-
-
-    @if (Session::has('error'))
-        <script>
-            swal({
-                title: "Something Went Wrong!",
-                text: "{{ Session::get('error') }}",
-                icon: "error",
-                button: "ok!",
-            });
-        </script>
-    @endif
+    @include('modals.addStudent')
+    @include('modals.import')
 
     </html>
 

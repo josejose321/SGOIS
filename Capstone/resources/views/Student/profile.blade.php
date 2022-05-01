@@ -1,4 +1,5 @@
 @extends('layouts.student')
+@section('title', 'Profile')
 @section('content')
     <section class="container">
         <!-- Large modal -->

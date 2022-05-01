@@ -23,7 +23,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="{{ asset('assets/css/Sakae-Simple-Section.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -40,7 +42,8 @@
     {{--  --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -60,19 +63,19 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.profile') }}"><i
                                 class="fa fa-user"></i><span>PROFILE</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.scholarhips') }}"><i
-                                class="fa fa-list-alt"></i><span>SCHOLARSHIPS</span></a></li>
+                                class="fa fa-graduation-cap" aria-hidden="true"></i><span>SCHOLARSHIPS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.discounts') }}"><i
                                 class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"><i
-                                class="fa fa-list-alt"></i><span>LOANS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"> <i
+                                class="fa fa-comment-dollar"></i><span>LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i
                                 class="fa fa-graduation-cap"></i><span>STUDENTS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}"><i
                                 class="fa fa-list-alt"></i><span>REPORTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.application') }}"><i
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.semester') }}"><i
                                 class="fa fa-list-alt"></i><span>APPLICATION</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories') }}"><i
-                                    class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
+                                class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.otherPrograms') }}"><i
                                 class="fa fa-list-alt"></i><span>OTHERS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i
@@ -90,13 +93,12 @@
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <div class="h4 fw-bold text-light">UNC SCHOLARSHIP AND GRANTS </div>
 
-                        <ul class="navbar-nav flex-nowrap ms-auto">
-                            <li class="nav-item m-4 p-0 text-light">Logout</li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
+                        <ul class="navbar-nav ms-auto float-right">
+
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow">
-                                    <a class="dropdown-toggle nav-link" type="button" aria-expanded="false"
-                                        data-bs-toggle="dropdown" href="#">
+                                    <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="d-none d-lg-inline me-2">{{ $admin->lastname ?? '' }},
                                             {{ $admin->firstname ?? '' }} {{ $admin->middlename ?? '' }}</span>
                                         <img class="border rounded-circle img-profile"
@@ -104,9 +106,12 @@
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-end">
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
-                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
-                                                class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                                class="fas fa-user"></i>&nbsp;Profile</a>
+                                        <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                                            <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>
+                                            &nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
@@ -169,7 +174,7 @@
 {{ Session::forget('error') }}
 {{ Session::forget('success') }}
 
-@include('modals.announce')
-@include('modals.import')
+
+
 
 </html>

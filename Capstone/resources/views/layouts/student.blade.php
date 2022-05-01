@@ -31,6 +31,12 @@
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body style="background-color: beige">
@@ -48,7 +54,8 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link"
                                 style="color: #ffffff;background: transparent;"
-                                href="{{ route('student.index') }}">&nbsp;Home</a></li>
+                                href="{{ route('student.index') }}">&nbsp;
+                                <i class="fa fa-home"></i> Home</a></li>
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                 data-bs-toggle="dropdown" href="#" style="color: var(--bs-body-bg);">ApplyNow</a>
                             <div class="dropdown-menu"><a class="dropdown-item" href="#">Scholarships</a><a
@@ -61,9 +68,10 @@
                                     src="{{ Storage::url('avatar/defaultAvatar.jpg') }}"
                                     style="width: 32px;height: 32px;"></a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('student/18-08925') }}">My Profile&nbsp;</a>
-                                <a class="dropdown-item" href="#">My Application</a>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="{{ url('student/18-08925') }}"><i
+                                        class="fa fa-user" aria-hidden="true"></i> My Profile&nbsp;</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-book"></i></i> My Application</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </li>
                     </ul>

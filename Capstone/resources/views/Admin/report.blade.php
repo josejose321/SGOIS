@@ -1,5 +1,5 @@
 @extends('layouts.admin1')
-@section('title', 'Admin Profile')
+@section('title', 'UNC REPORT')
 
 
 @section('content')

@@ -42,13 +42,8 @@
                                     <td>{{ $scholarship->officeVerification }}</td>
                                     <td><button class="btn-lg btn-secondary" type="button" data-toggle="modal"
                                             data-target="#admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}">
-                                            <i class="fa fa-pencil"></i></button>
-                                        {{-- <button class="btn-lg btn-danger" type="button"
-                                            onclick="deleteScholarship({{ $scholarship->scholarshipNo }})">
-                                            <i class="fa fa-trash-o"></i></button> --}}
+                                            <i class="fa fa-pencil"></i> View</button>
                                     </td>
-                                    {{-- <td><img src="{{ Storage::url($scholarship->photo) }}" class="rounded w-25"
-                                        alt="avatar.jpeg"></td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

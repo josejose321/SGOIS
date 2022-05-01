@@ -56,25 +56,6 @@
             </div>
         </div>
     </div>
-    @if (Session::has('successDelete'))
-        <script>
-            swal({
-                title: "Success Delete!",
-                text: "{{ Session::get('successDelete') }}",
-                icon: "success",
-                button: "ok!",
-            });
-        </script>
-    @endif
-    @if (Session::has('successUpdate'))
-        <script>
-            swal({
-                title: "Success Update!",
-                text: "{{ Session::get('successUpdate') }}",
-                icon: "success",
-                button: "ok!",
-            });
-        </script>
-    @endif
     @include('modals.viewAnnounce')
+    @include('modals.announce')
 @endsection
