@@ -17,10 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('categoryNo');
             $table->string('officeCode')->index()->nullable();
             $table->string('name');
-            $table->enum('type',['scholarship','discount','grant'])->index();
+            $table->enum('type',['Scholarship','Discount','Grant','Loan'])->index();
             $table->string('field_team');
-            $table->string('memberCount');
-            $table->string('description');  
+            $table->string('allocation');
             $table->timestamps();
 
             $table->foreign('officeCode')
