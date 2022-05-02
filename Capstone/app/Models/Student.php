@@ -15,7 +15,7 @@ class Student extends Model
     protected $primaryKey ='student_no';
 
     protected $fillable = [
-        'student_no',
+        'user_id',
         'firstname',
         'middlename',
         'lastname',
@@ -26,7 +26,6 @@ class Student extends Model
         'year',
         'avatar',
         'status',
-        'password'
 
     ];
 
@@ -46,6 +45,6 @@ class Student extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_no','student_no');
+        return $this->belongsTo(User::class,'user_id','user_id');
     }
 }

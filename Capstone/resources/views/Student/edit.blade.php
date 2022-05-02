@@ -36,7 +36,7 @@
                     <div class="col-md-6">
                         <label for="student_no">Student_no</label>
                         <input type="text" class="form-control" placeholder="Student No"
-                            value="{{ $student->student_no }}" readonly>
+                            value="{{ $student->user_id }}" readonly>
                     </div>
                 </div>
                 <div class="row">

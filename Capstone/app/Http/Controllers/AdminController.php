@@ -8,6 +8,7 @@ use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
+use App\Imports\dataImport;
 use App\Imports\StudentsImport;
 use App\Mail\AnnouncementMail;
 use App\Mail\RegistrationMail;
@@ -41,13 +42,13 @@ class AdminController extends Controller
     {
         // dd($scholar->countApproved('Scholarship'));
         $this->scholarship = new Scholarship();
-        $this->loan = new Loan();
+        $this->loan = new Scholarship();
         $this->semester = new Semester();
 
         $this->countResults =[
             'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
             'totalDiscounts'=>$this->scholarship->countApproved('Discount'),
-            'totalLoans'=> Loan::count(),
+            'totalLoans'=> $this->scholarship->countApproved('Loan'),
             'totalOthers'=> $this->scholarship->countApproved('Grant'),
             'chartResult' => [
                 $this->scholarship->countGrantee('UNC-SDO','Scholarship'),
@@ -73,7 +74,7 @@ class AdminController extends Controller
 
             (object) ['title' =>'Total Scholarships', 'total' =>$this->scholarship->countApproved('Scholarship')],
             (object) ['title' =>'Total Discounts', 'total' =>$this->scholarship->countApproved('Discount')],
-            (object) ['title' =>'Total Loans', 'total' =>Loan::count()],
+            (object) ['title' =>'Total Loans', 'total' =>$this->scholarship->countApproved('Loan')],
             (object) ['title' =>'Other Grants', 'total' =>$this->scholarship->countApproved('Grant')],
         ];
 
@@ -100,17 +101,11 @@ class AdminController extends Controller
 
     public function storeAnnounce(AnnouncementRequest $request, Admin $admin)
     {
-        $announcement = Announcement::create([
-            'subject' =>$request->subject,
-            'content' =>$request->content,
-            'admin_no'=>$admin->admin_no,
-        ]);
+        $admin->announcements()->create($request->validated());
         return back()->with('success','You Added a new Annoucement:');
-
     }
     public function updateAnnounce(AnnouncementRequest $request, Announcement $announcement)
     {
-
         $announcement->update($request->validated());
         return back()->with('success','You update an Annoucement:');
     }
@@ -119,6 +114,7 @@ class AdminController extends Controller
     //Admin index // dashboard
     public function index()
     {
+        // mail debug
         // return new RegistrationMail(Student::find('18-08925'));
         // return new ScholarshipMail(Scholarship::latest()->first());
         // return new AnnouncementMail(null);
@@ -159,7 +155,7 @@ class AdminController extends Controller
     public function showLoans()
     {
         $this->data = [
-            'loans'=> $this->loan->admin_getPending('Loan'),
+            'scholarships'=> $this->loan->admin_getPending('Loan'),
             'admin'=> Admin::find('18-08925')//auth()->admin
         ];
         return view('Admin.loan')
@@ -263,8 +259,6 @@ class AdminController extends Controller
     public function storeStudent(StudentRequest $request)
     {
         $student = Student::create($request->validated());
-        $student->password = Hash::make($student->student_no);
-        $student->save();
         Mail::to($student->email)->send(new RegistrationMail($student));
         return back()->with('success',"student added to the database");
     }

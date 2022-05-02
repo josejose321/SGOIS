@@ -31,7 +31,6 @@ class StudentFactory extends Factory
         'course' => $this->faker->randomElement(Department::find($this->department)->courses->pluck('name')),
         'year' =>strval($this->faker->numberBetween(1,5)),
         'avatar' => 'defaultAvatar.jpg',
-        'password' => Hash::make('password'),
         ];
     }
     protected $model = Student::class;

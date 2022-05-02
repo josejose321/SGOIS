@@ -129,7 +129,13 @@ Route::prefix('employee')
         //scholarships
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
+
+        Route::post('/{employee}/avatar','updateAvatar')->name('.avatar.update');
         //loans
+        Route::post('/profile/{employee}', 'updateProfile')->name('.profile.update');
+        Route::get('/profile', 'show')->name('.show');
+
+
         Route::get('/loans','showLoans')->name('.loans');
         //discounts
         Route::get('/discounts','showDiscounts')->name('.discounts');
@@ -137,11 +143,9 @@ Route::prefix('employee')
         ROute::get('categories/update','updateCategory')->name('.categories.update');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
         
 
-        Route::get('/profile', 'show')->name('.show');
-        Route::get('/{employee}/edit','edit')->name('.edit');
+        
         Route::get('/', 'index')->name('.index');
-        Route::post('/', 'store')->name('.store');
-        Route::post('/{employee}', 'update')->name('.update');  
+          
     });
 
 

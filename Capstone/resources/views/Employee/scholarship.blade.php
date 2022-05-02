@@ -34,7 +34,7 @@
                             @foreach ($scholarships as $scholarship)
                                 <tr>
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
-                                    <td>{{ $scholarship->student_no ?? '' }}</td>
+                                    <td>{{ $scholarship->student->user_id ?? '' }}</td>
                                     <td>{{ $scholarship->student->lastname ?? '' }},{{ $scholarship->student->firstname }}
                                         {{ $scholarship->student->middlename }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>

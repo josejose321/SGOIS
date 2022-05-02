@@ -18,15 +18,16 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'user_no',
+        'user_id',
         'email',
         'password',
+        'status'
     ];
 
 
     public function student()
     {
-        return $this->hasOne(Student::class, 'student_no','user_no');
+        return $this->hasOne(Student::class, 'user_id','user_id');
     }
     public function employee()
     {

@@ -23,33 +23,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($loans as $loan)
+                            @foreach ($scholarships as $scholarship)
                                 <tr>
-                                    <td>{{ str_pad($loan->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
-                                    <td>{{ $loan->student->lastname }},{{ $loan->student->firstname }}
-                                        {{ $loan->student->middlename }}</td>
-                                    <td>{{ $loan->student->email }}</td>
-                                    <td>{{ $loan->student->departmentCode }}</td>
-                                    <td>{{ $loan->officeVerification }}</td>
-                                    <td><button class="btn btn-lg" type="button"
-                                            style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i
-                                                class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-lg" type="button"
-                                            style="font-size: 14px;text-align: center;margin-left: 2px;background: var(--bs-red);color: var(--bs-body-bg);"><i
-                                                class="fa fa-trash-o"></i></button>
-                                    </td>
+                                    <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
+                                    <td>{{ $scholarship->student->lastname }},{{ $scholarship->student->firstname }}
+                                        {{ $scholarship->student->middlename }}</td>
+                                    <td>{{ $scholarship->student->email }}</td>
+                                    <td>{{ $scholarship->student->departmentCode }}</td>
+                                    <td>{{ $scholarship->officeVerification }}</td>
+                                    <td><button class="btn-lg btn-secondary" type="button" data-toggle="modal"
+                                        data-target="#admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}">
+                                        <i class="fa fa-pencil"></i> View</button>
+                                </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $loans->links() !!}
+                    {!! $scholarships->links() !!}
                 </div>
                 <div class="row">
                 </div>
             </div>
         </div>
     </div>
-
+    @include('modals.admin_viewScholarship')
 
 
 @endsection

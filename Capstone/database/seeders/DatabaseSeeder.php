@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             // EmployeeSeeder::class,
             // StudentSeeder::class,
             ScholarshipSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

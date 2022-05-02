@@ -22,6 +22,7 @@ class ScholarshipFactory extends Factory
         
         return [
             //
+        "type" => $this->faker->randomElement(['Scholarship','Loan','Discount','Grant']),
         "student_no"=> $this->faker->randomElement(Student::all()->pluck('student_no')),
         "officeCode" =>$this->faker->randomElement(Office::all()->pluck('officeCode')),
         "semesterCode"=>$this->faker->randomElement(Semester::all()->pluck('semesterCode')),

@@ -37,7 +37,7 @@ class Employee extends Authenticatable
     ];
     public function department()
     {
-        return $this->belongsTo(Department::class,"employee_no","employee_no");
+        return $this->belongsTo(Department::class,"departmentCode","departmentCode");
     }
     public function office()
     {

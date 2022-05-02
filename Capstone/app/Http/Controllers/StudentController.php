@@ -54,7 +54,7 @@ class StudentController extends Controller
     {
         return view("Student.scholarships")
         ->with('scholarships',Scholarship::all())
-        ->with('loans',Loan::all());
+        ->with('loans',Scholarship::where('type','Loan'));
     }
 
     function edit(Student $student)
@@ -69,7 +69,7 @@ class StudentController extends Controller
     {
         // dd($request->input());
         $student->update($request->validated());
-        return back()->with('successUpdate','successfully updated');
+        return back()->with('success','successfully updated');
  
     }
     public function applyScholarship(ScholarshipRequest $request, Student $student)

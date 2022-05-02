@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -15,11 +16,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'user_id'=>$this->faker->unique()->numerify('##-#####')?? null,
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'type' => $this->faker->randomElement(['admin','student','employee','sgoStaff','endorser']),
+            'type' => $this->faker->randomElement(['director','student','employee','sgoStaff']),
             'remember_token' => Str::random(10),
         ];
     }
@@ -37,4 +38,5 @@ class UserFactory extends Factory
             ];
         });
     }
+    public $model = User::class;
 }

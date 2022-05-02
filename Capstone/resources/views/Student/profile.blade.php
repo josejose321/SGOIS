@@ -12,7 +12,7 @@
                 {{ $student->firstname }}
                 {{ $student->middlename }}
                 {{ $student->lastname }} <br>
-                {{ $student->student_no }} <br>
+                {{ $student->user_id }} <br>
             </h6>
             <a href="{{ url('student/' . $student->student_no . '/edit') }}"><button type="button"
                     class="btn btn-primary">Edit Profile</button></a>

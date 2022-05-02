@@ -84,12 +84,12 @@
     <canvas id="canvas" height="450" width="1200"></canvas> <br>
     <div class="row">
         <h3>SPORTS DEVELOPMENT OFFICE</h3>
-        <h2>Total Varsities</h2>
+        <h2>Total Varsities: 100</h2>
         <div class="col w-72">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class='fa fa-volleyball'></i> Volleyball</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class='fas fa-swimming-pool'></i> Swimming</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"> <i class="fa fa-running"></i> Athletics</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
@@ -133,7 +133,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-music"></i> UNC BAND</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-music"></i> GLEE CLUB</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
@@ -149,11 +149,48 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-music"></i> PEP Squad</h5>
-                    <p class="card-text">0/10</p>
+                    <p class="card-text">0 out of 0</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <h3> Other Scholarships</h3>
+        <div class="col w-72">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                    <p class="card-text">0 out of 0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col w-72">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-solid fa-music"></i> UNC BAND</h5>
+                    <p class="card-text">0 out of 0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col w-72">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-solid fa-music"></i> GLEE CLUB</h5>
+                    <p class="card-text">0 out of 0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col w-72">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-solid fa-music"></i> PEP Squad</h5>
+                    <p class="card-text">0 out of 0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <br>
     <a href="#" class="btn btn-lg btn-primary float-right"> Export Data</a>

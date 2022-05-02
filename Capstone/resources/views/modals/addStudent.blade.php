@@ -20,10 +20,10 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="id"> Student Number</label>
-                            <input type="text" name="student_no" class="form-control" placeholder="Student No"
+                            <input type="text" name="user_id" class="form-control" placeholder="Student No"
                                 maxlength="8" value="{{ old('student_no') }}">
-                            @if ($errors->has('student_no'))
-                                <small class="input-error text-danger">{{ $errors->first('student_no') }}</small>
+                            @if ($errors->has('user_id'))
+                                <small class="input-error text-danger">{{ $errors->first('user_id') }}</small>
                             @endif
                         </div>
                     </div>

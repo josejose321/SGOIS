@@ -43,7 +43,7 @@
     <!-- Start: Dark NavBar -->
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
-            style="height: 80px;color: #ffffff;background: var(--bs-gray-600);">
+            style="height: 90px;color: #ffffff;background: var(--bs-gray-600);">
             <div class="container">
                 <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                     <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>

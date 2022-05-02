@@ -30,6 +30,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
+                            <th scope="col">No#</th>
                             <th scope="col">STUDENT ID</th>
                             <th scope="col">NAME</th>
                             <th scope="col">DEPARTMENT</th>
@@ -42,6 +43,7 @@
                         @foreach ($students as $student)
                             <tr>
                                 <td scope="col"> {{ $student->student_no }}</td>
+                                <td scope="col"> {{ $student->user_id }}</td>
                                 <td scope="col"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }}
                                     {{ $student->middlename ?? '' }}</td>
                                 <td scope="col"> {{ $student->departmentCode ?? '' }}</td>

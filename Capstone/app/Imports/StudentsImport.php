@@ -24,7 +24,7 @@ class StudentsImport implements ToModel, WithHeadingRow
     {
         return new Student([
             //
-            'student_no'=>$row['student_no'],
+            'user_id'=>$row['student_no'],
             'firstname'=>$row['firstname'],
             'middlename'=>$row['middlename'],
             'lastname'=>$row["lastname"],
@@ -34,7 +34,6 @@ class StudentsImport implements ToModel, WithHeadingRow
             'course'=>$row['course'],
             'year'=>$row['year'],
             'avatar'=>'defaultAvatar.jpg',
-            'password'=>Hash::make($row['student_no']),
         ]);
     }
 }

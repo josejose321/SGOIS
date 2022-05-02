@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
 use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Category;
@@ -35,7 +36,7 @@ class EmployeeController extends Controller
     public function show()
     {
         return view('Employee.profile')
-        ->with('employee',Employee::find('18-08925')); //auth()->employee
+        ->with('employee',Employee::find('18-08926')); //auth()->employee
     }
 
     //Verify Pending request
@@ -84,10 +85,10 @@ class EmployeeController extends Controller
         $file->storeAs('public/avatar/',$path);
         return $path;
     }
-    public function updateProfile(EmployeeRequest $request, Employee $employee)
+    public function updateProfile(EmployeeUpdateRequest $request, Employee $employee)
     {
         $employee->update($request->validated());
-        return redirect()->back()-with('success', ' Your Profile Succefully Updated!');
+        return back()->with('success', 'Your Profile Succefully Updated!');
     }
 
     public function showCategories()

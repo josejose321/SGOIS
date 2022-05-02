@@ -26,7 +26,7 @@ class AdminVerifyRequest extends FormRequest
         return [
             //
             'discount'=>'required',
-            'remarks'=>'required'
+            'remarks'=>''
         ];
     }
 }
