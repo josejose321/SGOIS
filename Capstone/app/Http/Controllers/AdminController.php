@@ -37,6 +37,7 @@ class AdminController extends Controller
     private $countResults;
     private $scholarship;
     private  $semester;
+    private $category;
 
     public function __construct()
     {
@@ -44,22 +45,24 @@ class AdminController extends Controller
         $this->scholarship = new Scholarship();
         $this->loan = new Scholarship();
         $this->semester = new Semester();
+        $this->category = new Category();
 
         $this->countResults =[
-            'totalScholarships'=> $this->scholarship->countApproved('Scholarship'),
-            'totalDiscounts'=>$this->scholarship->countApproved('Discount'),
-            'totalLoans'=> $this->scholarship->countApproved('Loan'),
-            'totalOthers'=> $this->scholarship->countApproved('Grant'),
+            'totalScholarships'=> $this->scholarship->approved('Scholarship')->count(),
+            'totalDiscounts'=>$this->scholarship->approved('Discount')->count(),
+            'totalLoans'=> $this->scholarship->approved('Loan')->count(),
+            'totalOthers'=> $this->scholarship->approved('Grant')->count(),
             'chartResult' => [
-                $this->scholarship->countGrantee('UNC-SDO','Scholarship'),
-                $this->scholarship->countGrantee('UNC-CULTURE&ARTS','Scholarship'),
-                $this->scholarship->countGrantee('UNC-HR','Scholarship'),
-                $this->scholarship->countApproved('Discount'),
-                $this->scholarship->countApproved('Grant'),
-            ]
+                $this->scholarship->officeGrantees('UNC-SDO','Scholarship')->count(),
+                $this->scholarship->officeGrantees('UNC-CULTURE&ARTS','Scholarship')->count(),
+                $this->scholarship->officeGrantees('UNC-HR','Scholarship')->count(),
+                $this->scholarship->approved('Discount')->count(),
+                $this->scholarship->approved('Grant')->count(),
+            ],
+            'totalVarsity'=> $this->scholarship->officeGrantees('UNC-SDO','Scholarship')->count(),
         ];
 
-
+        
         
     }
 
@@ -72,10 +75,10 @@ class AdminController extends Controller
 
         $results = [
 
-            (object) ['title' =>'Total Scholarships', 'total' =>$this->scholarship->countApproved('Scholarship')],
-            (object) ['title' =>'Total Discounts', 'total' =>$this->scholarship->countApproved('Discount')],
-            (object) ['title' =>'Total Loans', 'total' =>$this->scholarship->countApproved('Loan')],
-            (object) ['title' =>'Other Grants', 'total' =>$this->scholarship->countApproved('Grant')],
+            (object) ['title' =>'Total Scholarships', 'total' =>$this->scholarship->approved('Scholarship')->count()],
+            (object) ['title' =>'Total Discounts', 'total' =>$this->scholarship->approved('Discount')->count()],
+            (object) ['title' =>'Total Loans', 'total' =>$this->scholarship->approved('Loans')->count()],
+            (object) ['title' =>'Other Grants', 'total' =>$this->scholarship->approved('Grant')->count()],
         ];
 
         return view('unc')
@@ -104,6 +107,7 @@ class AdminController extends Controller
         $admin->announcements()->create($request->validated());
         return back()->with('success','You Added a new Annoucement:');
     }
+    
     public function updateAnnounce(AnnouncementRequest $request, Announcement $announcement)
     {
         $announcement->update($request->validated());
@@ -111,11 +115,43 @@ class AdminController extends Controller
     }
 
 
+    private function getSummaryReport()
+    {
+        $arr = [];
+        foreach(Category::all()->pluck('categoryNo') as $categoryNo)
+        {
+            $category= Category::find($categoryNo);
+            array_push($arr,
+            (object) array(
+               'categoryNo' =>$category->categoryNo,
+               'categoryName'=> $category->name,
+               'field_team'=> $category->field_team,
+               'allocation'=> $category->allocation,
+               'first' => $category->approvedByDiscount($categoryNo,'10%')->count(),
+               'second' => $category->approvedByDiscount($categoryNo,'15%')->count(),
+               'third' => $category->approvedByDiscount($categoryNo,'25%')->count(),
+               'fourth' => $category->approvedByDiscount($categoryNo,'50%')->count(),
+               'fifth' => $category->approvedByDiscount($categoryNo,'75%')->count(),
+               'sixth' => $category->approvedByDiscount($categoryNo,'100%')->count(),
+               'seventh' => $category->approvedByDiscount($categoryNo,'Full')->count(),
+               'total'=> $this->category->approved($categoryNo)->count()//count scholarships where it belongs to this category
+                )
+            );
+        }
+        return $arr;
+    }
     //Admin index // dashboard
     public function index()
     {
+        //for summary Report
+        
+        
+        $allocations = $this->getSummaryReport();
+
+
         // mail debug
-        // return new RegistrationMail(Student::find('18-08925'));
+
+        // return new RegistrationMail(Student::find(35));
         // return new ScholarshipMail(Scholarship::latest()->first());
         // return new AnnouncementMail(null);
         $this->data = [
@@ -129,7 +165,8 @@ class AdminController extends Controller
 
         return view('Admin.index')
         ->with($this->data)
-        ->with($this->countResults);
+        ->with($this->countResults)
+        ->with('allocations',$allocations);
     }
     public function showScholarships()
     {
@@ -144,7 +181,7 @@ class AdminController extends Controller
     public function scholarshipDelete(Scholarship $scholarship)
     {
         $scholarship->delete();
-        return back()->with('successDelete','You Deleted Scholarship');
+        return back()->with('success','You Deleted Scholarship');
     }
 
     public function showProfile()
@@ -203,7 +240,7 @@ class AdminController extends Controller
             'discount' =>$request->discount,
             'remarks'=> $request->remarks
         ]);
-        Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
+        // Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
         
         return back()->with('success','Scholarship Application Approved!');
     }
@@ -219,17 +256,17 @@ class AdminController extends Controller
 
     public function import(Request $request)
     {
-        
+        // dd($request->file('file'));
         if($request->file != null)
         {
             try{
                 Excel::import(new StudentsImport, $request->file('file')->store('temp'));
                 return back()->with('success','Import Successfully!');
             }catch(Exception $e){
-                return back()->with('errorImport','Import Error!');
+                return back()->with('error','Import Error!');
             }
         }
-        return back()->with('errorImport','Select File First!');
+        return back()->with('error','Select File First!');
     }
 
     
