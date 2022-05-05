@@ -61,6 +61,7 @@ Route::prefix('admin')
         Route::get('/scholarships/{scholarship}/delete', 'scholarshipDelete')->name('.scholarship.delete');
         Route::get('/scholarships/{scholarship}/requirement-download', 'downloadRequirement')->name('.scholarship.requirement-download');
         Route::get('/scholarships/{scholarship}/photo-download', 'downloadPhoto')->name('.scholarship.photo-download');
+        Route::get('/application-view/{scholarship}','viewApplication')->name('.application.view');
 
         Route::get('/semesters','showSemester')->name('.semester');
         Route::post('/semesters','storeSemester')->name('.semester.store');
@@ -129,6 +130,7 @@ Route::prefix('employee')
         //scholarships
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
+        Route::get('/application-view/{scholarship}','viewApplication')->name('.application.view');
 
         Route::post('/{employee}/avatar','updateAvatar')->name('.avatar.update');
         //loans
@@ -150,7 +152,7 @@ Route::prefix('employee')
 
 
 
-
+Route::view('/pdf', 'Admin.application-view');
 
 Auth::routes();
 
