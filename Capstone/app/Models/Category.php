@@ -29,8 +29,27 @@ class Category extends Model
     {
         return $this->hasMany(Scholarship::class,'categoryNo','categoryNo');
     }
-    public function loans()
+
+    public function getByFieldTeam($name)
     {
-        return $this->hasMany(Loan::class,'categoryNo','categoryNo');
+        return self::where('name', $name);
+    }
+
+    public function approved($categoryNo)
+    {
+        return self::find($categoryNo)
+        ->scholarships
+        ->where('officeVerification','Approved')
+        ->where('adminVerification','Approved')
+        ->where('semesterCode',Semester::latest()->first()->semesterCode);
+    }
+    public function approvedByDiscount($categoryNo, $discount)
+    {
+        return self::find($categoryNo)
+        ->scholarships
+        ->where('officeVerification','Approved')
+        ->where('adminVerification','Approved')
+        ->where('semesterCode',Semester::latest()->first()->semesterCode)
+        ->where('discount',$discount);
     }
 }

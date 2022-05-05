@@ -43,12 +43,19 @@ class Scholarship extends Model
         return $this->belongsTo(Category::class,'categoryNo','categoryNo');
     }
 
-    public function countApproved($type)
+    // public function countApproved($type)
+    // {
+    //      return $this->where('officeVerification','Approved')
+    //         ->where('adminVerification','Approved')
+    //         ->where('type',$type)->count();
+    // }
+    public function approved($type)
     {
-         return $this->all()->where('officeVerification','Approved')
+        return $this->where('officeVerification','Approved')
             ->where('adminVerification','Approved')
-            ->where('type',$type)->count();
+            ->where('type',$type);
     }
+
     public function admin_getPending($type)
     {
         return $this->where('type',$type)
@@ -56,24 +63,34 @@ class Scholarship extends Model
         ->latest()->simplePaginate(10);
     }
 
-    public function countGrantee($office, $type)
+    
+    public function officeGrantees($office, $type)
     {
         return $this->where('officeVerification','Approved')
             ->where('adminVerification','Approved')
             ->where('type',$type)
-            ->where('officeCode',$office)
-            ->count();
+            ->where('officeCode',$office);
     }
-    public function countGrantees($office, $type)
-    {
-        return $this->select('scholarships.*')
-            ->join('categories','categories.categoryNo','scholarships.categoryNo')
-            ->where('scholarships.officeVerification','Approved')
-            ->where('scholarships.adminVerification','Approved')
-            ->where('categories.type',$type)
-            ->where('scholarships.officeCode',$office)
-            ->count();
-    }
+    // public function countGrantees($office, $type)
+    // {
+    //     return $this->select('scholarships.*')
+    //         ->join('categories','categories.categoryNo','scholarships.categoryNo')
+    //         ->where('scholarships.officeVerification','Approved')
+    //         ->where('scholarships.adminVerification','Approved')
+    //         ->where('categories.type',$type)
+    //         ->where('scholarships.officeCode',$office)
+    //         ->count();
+    // }
+
+    // public function getByType($type)
+    // {
+    //     return $this->select('scholarships.*')
+    //     ->join('categories','categories.categoryNo','scholarships.categoryNo')
+    //         ->where('scholarships.officeVerification','Approved')
+    //         ->where('scholarships.adminVerification','Approved')
+    //         ->where('categories.type',$type)->get();
+    // }
+
     public function getPendingDeansVerification($departmentCode)
     {
         return $this->select('scholarships.*')
@@ -83,5 +100,9 @@ class Scholarship extends Model
         ->where('students.status','Active')
         ->get();
     }
+
+
+
+    
     
 }

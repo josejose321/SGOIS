@@ -27,17 +27,10 @@ class Office extends Model
     {
         return $this->hasMany(Scholarship::class,"officeCode","officeCode");
     }
-    public function discounts()
-    {
-        return $this->hasMany(Discount::class,"officeCode","officeCode");
-    }
-    public function loans()
-    {
-        return $this->hasMany(Loan::class,"officeCode","officeCode");
-    }
 
     public function categories()
     {
         return $this->hasMany(Category::class,'officeCode','officeCode');
     }
+
 }
