@@ -40,27 +40,29 @@
 </head>
 
 <body style="background-color: beige">
-    <!-- Start: Dark NavBar -->
-    <div>
-        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
-            style="height: 90px;color: #ffffff;background: var(--bs-gray-600);">
+    <div class="container-fluid bg-dark">
+        <nav class="navbar navbar-dark navbar-expand-lg p-1 m-0 h-100 animate__animated animate__fadeIn">
             <div class="container">
                 <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                     <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
                 </button><img src="{{ asset('assets/img/student%20dashboard%20pictures/unc-logo.png') }}"
                     style="width: 70px;height: 70px;">
-                <div class="collapse navbar-collapse" id="navcol-1"
-                    style="background: var(--bs-gray-600);width: 1000px;">
+                <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
+                                href="{{ route('student.index') }}">&nbsp;
+                                <i class="fa fa-book-reader"></i> SCHOLARSHIPS</a></li>
+                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
+                                href="{{ route('student.index') }}">&nbsp;
+                                <i class="fa fa-dollar" aria-hidden="true"></i> LOAN</a></li>
+                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
+                                href="{{ route('student.index') }}">
+                                <i class="fa fa-tag"></i> DISCOUNTS</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto m-2 fw-bold">
                         <li class="nav-item"><a class="nav-link"
-                                style="color: #ffffff;background: transparent;"
                                 href="{{ route('student.index') }}">&nbsp;
                                 <i class="fa fa-home"></i> Home</a></li>
-                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
-                                data-bs-toggle="dropdown" href="#" style="color: var(--bs-body-bg);">ApplyNow</a>
-                            <div class="dropdown-menu"><a class="dropdown-item" href="#">Scholarships</a><a
-                                    class="dropdown-item" href="#">Grants</a><a class="dropdown-item"
-                                    href="#">Loans</a><a class="dropdown-item" href="#">Discounts</a></div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"
@@ -80,13 +82,14 @@
         </nav>
     </div>
 
-    <main>@yield('content')</main>
+    <main> @yield('content')</main>
 
 
 
-    <footer class=" sticky-footer" style="background-color: beige">
+    <footer class=" sticky-footer h1 animate__animated animate__fadeInDown" style="background-color: beige">
         <div class="container my-auto">
-            <div class="text-center my-auto copyright"><span>Copyright © 2022 | University of Nueva Caceres - UNCSGOIS .
+            <div class="text-center my-auto copyright fw-bold"><span>Copyright © 2022 | University of Nueva Caceres -
+                    UNCSGOIS .
                     All Rights Reserved</span></div>
         </div>
     </footer>

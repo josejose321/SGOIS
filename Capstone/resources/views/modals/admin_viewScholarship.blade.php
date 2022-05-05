@@ -24,13 +24,13 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <label for="requirement">Attachment</label>
-                                <a href="{{ Storage::url($scholarship->requirement) }}" class=""
-                                    id="requirement" target="_blank"
-                                    download="{{ $scholarship->student->lastname . '-requirement.pdf' }}">requirement.pdf</a>
+                                <a href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"
+                                    class="btn btn-primary" id="requirement" target="_blank">requirement.pdf</a>
                             </div>
                             <div class="col-md-5">
                                 <label for="photo">Photo Provided</label>
-                                <a href="{{ Storage::url($scholarship->photo) }}" id="photo">Photo.jpeg</a>
+                                <a href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"
+                                    id="photo">Photo.jpeg</a>
                             </div>
                         </div>
                         <div class="form-group">

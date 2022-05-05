@@ -23,14 +23,14 @@
 
                         <div class="row">
                             <div class="col-md-5">
-                                <label for="requirement">Requirements</label>
-                                <a href="{{ route('admin.scholarship.requirement-download', $scholarship->scholarshipNo) }}"
-                                    class="btn btn-primary" id="requirement">Download Requirement</a>
+                                <label for="requirement">Attachment</label>
+                                <a href="{{ route('employee.application.view', $scholarship->scholarshipNo) }}"
+                                    class="btn btn-primary" id="requirement" target="_blank">requirement.pdf</a>
                             </div>
                             <div class="col-md-5">
                                 <label for="photo">Photo Provided</label>
-                                <a href="{{ route('admin.scholarship.photo-download', $scholarship->scholarshipNo) }}"
-                                    class="btn btn-primary" id="photo">Download Photo</a>
+                                <a href="{{ route('employee.application.view', $scholarship->scholarshipNo) }}"
+                                    id="photo">Photo.jpeg</a>
                             </div>
                         </div>
                         <div class="form-group">

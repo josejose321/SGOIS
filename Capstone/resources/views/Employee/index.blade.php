@@ -3,7 +3,7 @@
 @section('title', 'Admin Dashboard')
 @section('content')
 
-    <div class="container-fluid border">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
                 <p><br>
@@ -21,10 +21,10 @@
                 in your educational development. Most of all, an opportunity for you to become a better student.<br><br></p>
                 <h1>NON SCHOLAE SED VITAE</h1>
             </div>
-            <div class=" border col-md-6">
-                <label class="form-label"
-                    style="text-align: center;margin-left: 125px;margin-top: 10px;font-weight: bold;color: var(--bs-red);font-size: 20px;">&nbsp;NEWS
-                    AND ANNOUNCEMENTS</label>
+            <div class=" col-md-6">
+                <label class="form-label fw-bold"
+                    style="text-align: center;margin-left: 125px;margin-top: 10px;font-weight: bold;color: var(--bs-red);font-size: 20px;">&nbsp;
+                    <i class="fa fa-bullhorn"></i> NEWS AND ANNOUNCEMENTS</label>
                 @foreach ($announcements as $announcement)
                     <div class="card p-1" style="background-color: beige">
                         <div class="card-header">
@@ -34,7 +34,7 @@
                             <p class="card-text"> {{ $announcement->content ?? '' }}</p>
 
                             <p class="card-text">-Admin
-                                {{ $announcement->admin->lastname }},
+                                {{ $announcement->admin->lastname }}, 
                                 {{ $announcement->admin->firstname }}
                                 {{ $announcement->admin->middlename }}</p>
 

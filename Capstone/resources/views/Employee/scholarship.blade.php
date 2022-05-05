@@ -26,7 +26,7 @@
                                 <th>SCHOLARSHIP NO</th>
                                 <th>STUDENT ID</th>
                                 <th>NAME</th>
-                                <th>ENDORSER STATUS</th>
+                                <th>STATUS</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>

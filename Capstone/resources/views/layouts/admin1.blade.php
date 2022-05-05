@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
     <link rel="icon" href="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/css/Sakae-Simple-Section.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -16,17 +17,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/Sakae-Simple-Section.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"> --}}
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -54,10 +56,12 @@
     <div id="wrapper" style="background-color: beige">
         <nav class="navbar-fluid navbar-dark align-items-start sidebar sidebar-dark" style="background-color:#334756">
             <div class="container d-flex flex-column p-0 m-1 ">
-                <ul class="navbar-nav" id="accordionSidebar">
-                    <li class="nav-item"><img src="{{ asset('assets/img/dashboard%20logo/unc-logo.png') }}"
-                            class="rounded w-75"></li>
-                    <hr class="sidebar-divider my-2">
+                <ul class="navbar-nav fw-bold" id="accordionSidebar">
+                    <center>
+                        <li class="nav-item"><img src="{{ asset('unc-logo.png') }}"
+                                class="rounded w-50"></li>
+                    </center>
+                    <hr class="sidebar-divider my-4">
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}"><i
                                 class="fa fa-home"></i><span>DASHBOARD</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.profile') }}"><i
@@ -76,8 +80,6 @@
                                 class="fa fa-list-alt"></i><span>APPLICATION</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories') }}"><i
                                 class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.otherPrograms') }}"><i
-                                class="fa fa-list-alt"></i><span>OTHERS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i
                                 class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
                 </ul>
@@ -143,7 +145,7 @@
 @if ($errors->any())
     <script>
         swal({
-            title: "You have an Error!",
+            title: "Invalid Action!",
             text: "Please Check your inputs",
             icon: "error",
             button: "ok!",
@@ -163,7 +165,7 @@
 @if (Session::has('error'))
     <script>
         swal({
-            title: "You have an Error!",
+            title: "Invalid Action!",
             text: "{{ Session::get('error') }}",
             icon: "error",
             button: "ok!",

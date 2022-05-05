@@ -1,5 +1,5 @@
 @foreach ($students as $student)
-    <div class="modal fade" id="viewStudent-{{ $student->user_id }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="viewStudent-{{ $student->student_no }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -14,7 +14,7 @@
                         <div><img src="{{ Storage::url('avatar/' . $student->avatar) }}" class="img-thumbnail w-25"
                                 alt="avatar.jpeg"><br></div>
                     </div>
-                    Student_No: {{ $student->student_no }} <br>
+                    Student_No: {{ $student->user_id }} <br>
                     Name:{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
                     Department: @if ($student->department->exists())
                         {{ $student->department->name }}

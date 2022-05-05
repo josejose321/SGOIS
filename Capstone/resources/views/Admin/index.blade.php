@@ -11,9 +11,8 @@
         <button class="btn pull-right" type="button" id="addStudent"
             style="background: var(--bs-red);margin-right: 5px;border-bottom-color: var(--bs-red);color: var(--bs-body-bg);">
             <i class="fa fa-plus"></i>&nbsp; ADD STUDENT</button>
-        
+
     </h2>
-    <br>
     <hr>
 
     <div class="row-fluid border">
@@ -41,7 +40,7 @@
                                 <h5><strong>TOTAL DISCOUNTS</strong></h5>
                                 <h5><strong>{{ $totalDiscounts ?? 0 }}</strong></h5>
                             </center>
-                            
+
                         </div>
                     </div>
                     <div class="col-auto"><i class="fa fa-solid fa-school fa-2x text-gray-300"></i></div>
@@ -57,7 +56,7 @@
                                 <h5><strong>TOTAL LOANS</strong></h5>
                                 <h5><strong>{{ $totalLoans ?? 0 }}</strong></h5>
                             </center>
-                            
+
                         </div>
                     </div>
                     <div class="col-auto"><i class="fas fa-certificate fa-2x text-gray-300"></i></div>
@@ -70,10 +69,10 @@
                     <div class="col me-2">
                         <div class="text-uppercase text-warning fw-bold text-xs mb-1">
                             <center>
-                                <h5><strong>OTHER SCHOLARSHIPS</strong></h5>
+                                <h5><strong>OTHER Grants</strong></h5>
                                 <h5><strong>{{ $totalOthers ?? 0 }}</strong></h5>
                             </center>
-                            
+
                         </div>
                     </div>
                     <div class="col-auto"><i class="fa fa-school fa-2x text-gray-300"></i></div>
@@ -81,119 +80,141 @@
             </div>
         </div>
     </div>
-    <canvas id="canvas" height="450" width="1200"></canvas> <br>
-    <div class="row">
+    <canvas id="canvas" height="450" width="1200"></canvas>
+    {{-- <div class="row">
         <h3>SPORTS DEVELOPMENT OFFICE</h3>
-        <h2>Total Varsities: 100</h2>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <h2>Total Varsities:{{ $totalVarsity }}</h2>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class='fa fa-volleyball'></i> Volleyball</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-warning m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Sepak Takraw</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class='fas fa-swimming-pool'></i> Swimming</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-primary m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"> <i class="fa fa-running"></i> Athletics</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-info m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
     </div>
     <br>
     <div class="row">
         <h3> University Culture And Arts Scholarship</h3>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Band</h5>
+                <p class="card-text">0 out of 10</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fa-solid fa-music"></i> UNC BAND</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fa-solid fa-music"></i> GLEE CLUB</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fa-solid fa-music"></i> PEP Squad</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
     </div>
 
     <div class="row">
         <h3> Other Scholarships</h3>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fa-solid fa-music"></i> UNC BAND</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fa-solid fa-music"></i> GLEE CLUB</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-        <div class="col w-72">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fa-solid fa-music"></i> PEP Squad</h5>
-                    <p class="card-text">0 out of 0</p>
-                </div>
+        <div class="col card bg-success m-4 p-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
+                <p class="card-text">0 out of 0</p>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     <br>
-    <a href="#" class="btn btn-lg btn-primary float-right"> Export Data</a>
+    <a href="#" class="btn btn-lg btn-primary float-right"> Export Data</a> <br> <br>
+
+    <div class="card-body" style="font-size: 14px;">
+        <div class="table" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
+                        <th>Category No.</th>
+                        <th>CATEGORY</th>
+                        <th>Field/Team</th>
+                        <th>10%</th>
+                        <th>15%</th>
+                        <th>25%</th>
+                        <th>50%</th>
+                        <th>75%</th>
+                        <th>100%</th>
+                        <th>Full</th>
+                        <th>APPROVED</th>
+                        <th>TOTAL SLOT</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($allocations as $allocation)
+                        <tr>
+                            <td>{{ $allocation->categoryNo ?? '' }}</td>
+                            <td>{{ $allocation->categoryName ?? '' }}</td>
+                            <td>{{ $allocation->field_team }}</td>
+                            <td>{{ $allocation->first }}</td>
+                            <td>{{ $allocation->second }}</td>
+                            <td>{{ $allocation->third }}</td>
+                            <td>{{ $allocation->fourth }}</td>
+                            <td>{{ $allocation->fifth }}</td>
+                            <td>{{ $allocation->sixth }}</td>
+                            <td>{{ $allocation->seventh }}</td>
+                            <td>{{ $allocation->total ?? '' }}</td>
+                            <td>{{ $allocation->allocation ?? '' }}</td>
+                            <td><button class="btn btn-secondary" type="button" data-toggle="modal"
+                                data-target="#">
+                                <i class="fa fa-add"></i>Add Slot</button>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
     @include('charts.grantees')
     @include('modals.addStudent')
     @include('modals.addSem')
