@@ -11,7 +11,6 @@ class Student extends Model
 
     protected $table = 'students';
     public $incrementing = false;
-    protected $keyType = 'string';
     protected $primaryKey ='student_no';
 
     protected $fillable = [
