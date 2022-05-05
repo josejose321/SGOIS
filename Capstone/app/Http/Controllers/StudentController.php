@@ -21,10 +21,12 @@ class StudentController extends Controller
     private $announcement;
     private $semester;
     private $data;
+    private $category;
     public function __construct()
     {
         $this->announcement = new Announcement();
         $this->semester = new Semester();
+        $this->category = new Category();
     }
     function index()
     {
@@ -74,8 +76,8 @@ class StudentController extends Controller
     }
     public function applyScholarship(ScholarshipRequest $request, Student $student)
     {
-        $scholarship = Scholarship::create([
-            'student_no'=> $request->student_no,
+        $student->scholarships()->create([
+            "type" => $request->type,
             "officeCode"=>$request->officeCode,
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
@@ -108,6 +110,14 @@ class StudentController extends Controller
     }
     public function showSportsDev()
     {
-        return view('Student.sportsdev');
+        $this->data = [
+            'student'=>Student::find(35),
+            'sem'=> $this->semester->getLatest(),
+            'office' => Office::find('UNC-SDO'),
+            'categories'=> Category::where('field_team','Varsity')->get(),
+        ];
+        // dd(Student::find(35));
+        return view('Student.sportsdev')
+        ->with($this->data);
     }
 }

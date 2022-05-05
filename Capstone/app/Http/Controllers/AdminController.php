@@ -148,7 +148,6 @@ class AdminController extends Controller
         
         $allocations = $this->getSummaryReport();
 
-
         // mail debug
 
         // return new RegistrationMail(Student::find(35));
@@ -361,6 +360,7 @@ class AdminController extends Controller
     {
         $this->data = [
             'admin'=>Admin::find('18-08925'),
+            'allocations'=>$this->getSummaryReport()
         ];
         return view('Admin.report')->with($this->data);
     }
@@ -372,6 +372,15 @@ class AdminController extends Controller
             'offices'=> Office::all()
         ];
         return view('Admin.categories')
+        ->with($this->data);
+    }
+    public function viewApplication(Scholarship $scholarship)
+    {
+        $this->data = [
+            'admin'=>Admin::find('18-08925'),
+            'scholarship'=>$scholarship
+        ];
+        return view('Admin.application-view')
         ->with($this->data);
     }
     

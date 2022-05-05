@@ -20,7 +20,7 @@ class CategoryImport implements ToModel
             'name'=> $row['name'],
             'type' => $row['type'],
             'field_team' =>$row['field_team'],
-            'memberCount'=>$row['allocation'],
+            'allocation'=>$row['allocation'],
         ]);
     }
 }
