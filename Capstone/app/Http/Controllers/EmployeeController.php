@@ -102,4 +102,13 @@ class EmployeeController extends Controller
         return view('Employee.categories')
         ->with($this->data);
     }
+    public function viewApplication(Scholarship $scholarship)
+    {
+        $this->data = [
+            'employee'=>Employee::find('18-08925'),
+            'scholarship'=>$scholarship
+        ];
+        return view('Admin.application-view')
+        ->with($this->data);
+    }
 }
