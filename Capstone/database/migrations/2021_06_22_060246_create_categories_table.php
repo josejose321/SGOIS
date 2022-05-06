@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->enum('type',['Scholarship','Discount','Grant','Loan'])->index();
             $table->string('field_team');
-            $table->string('allocation');
+            $table->integer('allocation');
             $table->timestamps();
 
             $table->foreign('officeCode')

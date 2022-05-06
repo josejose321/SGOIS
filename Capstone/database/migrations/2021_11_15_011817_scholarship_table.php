@@ -23,7 +23,7 @@ class ScholarshipTable extends Migration
             $table->string('officeCode',20)->index();//will remove later
             $table->string('semesterCode',20)->index();
             $table->unsignedBigInteger('categoryNo')->index()->nullable();
-            $table->string('discount')->default('NA');
+            $table->enum('discount',['NA','10%','15%','25%','50%','100%','Full%',])->default('NA');
             $table->double('amount')->default(0);
             $table->string('requirement');
             $table->string('photo');
