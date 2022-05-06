@@ -8,8 +8,8 @@
 <main>
   <div class="container-fluid py-4 animate__animated animate__fadeInUp">
     <header class="pb-3 mb-4 border-bottom bg-danger">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none p-3 m-3">
-        <span class="fs-4 h2 fw-bold"><i class="fa fa-running"></i> UNC SPORTS DEVELOPMENT SCHOLARSHIPS</span>
+      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4 h2 fw-bold p-2 m-2"><i class="fa fa-running"></i> UNC SPORTS DEVELOPMENT SCHOLARSHIPS</span>
       </a>
     </header>
 

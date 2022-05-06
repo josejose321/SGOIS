@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>UNCSGOIS</title>
-    <link rel="icon" href="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('unc-logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -55,7 +55,7 @@
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
             style="background-color: #2C394B">
             <div class="container-fluid animate__animated animate__fadeIn"><a class="navbar-brand" href="{{ url('/') }}"><img
-                        src="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}"
+                        src="{{ asset('unc-logo.png') }}"
                         style="width: 80px;height: 80px;">&nbsp;</a><button data-bs-toggle="collapse"
                     class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
                         navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -323,7 +323,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-4 footer-navigation">
                     <h3><a href="#"><span></span></a></h3><img
-                        src="assets/img/student%20dashboard%20pictures/unc-logo.png"
+                        src="unc-logo.png"
                         style="width: 200px;height: 200px;margin-bottom: 50px;text-align: center;">
                 </div>
                 <div class="col-sm-6 col-md-4 footer-contacts">

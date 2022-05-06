@@ -55,7 +55,7 @@
 <body id="page-top">
     <div id="wrapper" style="background-color: beige">
         <nav class="navbar-fluid navbar-dark align-items-start sidebar sidebar-dark" style="background-color:#334756">
-            <div class="container d-flex flex-column p-0 m-1 ">
+            <div class="container d-flex flex-column p-0 m-0 ">
                 <ul class="navbar-nav fw-bold" id="accordionSidebar">
                     <center>
                         <li class="nav-item"><img src="{{ asset('unc-logo.png') }}"
@@ -97,7 +97,7 @@
 
                         <ul class="navbar-nav ms-auto float-right">
 
-                            <li class="nav-item dropdown no-arrow">
+                            <li class="nav-item dropdown no-arrow ">
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,7 +106,7 @@
                                         <img class="border rounded-circle img-profile"
                                             src="{{ Storage::url('avatar/6g4mgyJXAJ7hVC1tolnCBT6u7FjEHrksdJG07n3d.jpg') }}">
                                     </a>
-                                    <div class="dropdown-menu shadow dropdown-menu-end">
+                                    <div class="dropdown-menu shadow">
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
                                                 class="fas fa-user"></i>&nbsp;Profile</a>
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}">

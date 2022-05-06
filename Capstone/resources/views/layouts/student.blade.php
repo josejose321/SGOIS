@@ -86,7 +86,7 @@
 
 
 
-    <footer class=" sticky-footer h1 animate__animated animate__fadeInDown" style="background-color: beige">
+    <footer class="sticky-footer bg-dark h1 animate__animated animate__fadeInDown" style="background-color: beige">
         <div class="container my-auto">
             <div class="text-center my-auto copyright fw-bold"><span>Copyright © 2022 | University of Nueva Caceres -
                     UNCSGOIS .

@@ -195,14 +195,14 @@
                         <tr>
                             <td>{{ $allocation->categoryNo ?? '' }}</td>
                             <td>{{ $allocation->categoryName ?? '' }}</td>
-                            <td>{{ $allocation->field_team }}</td>
-                            <td>{{ $allocation->first }}</td>
-                            <td>{{ $allocation->second }}</td>
-                            <td>{{ $allocation->third }}</td>
-                            <td>{{ $allocation->fourth }}</td>
-                            <td>{{ $allocation->fifth }}</td>
-                            <td>{{ $allocation->sixth }}</td>
-                            <td>{{ $allocation->seventh }}</td>
+                            <td>{{ $allocation->field_team ?? '' }}</td>
+                            <td>{{ $allocation->first ?? '' }}</td>
+                            <td>{{ $allocation->second ?? '' }}</td>
+                            <td>{{ $allocation->third ?? '' }}</td>
+                            <td>{{ $allocation->fourth ?? '' }}</td>
+                            <td>{{ $allocation->fifth ?? '' }}</td>
+                            <td>{{ $allocation->sixth ?? '' }}</td>
+                            <td>{{ $allocation->seventh ?? '' }}</td>
                             <td>{{ $allocation->total ?? '' }}</td>
                             <td>{{ $allocation->allocation ?? '' }}</td>
                             <td><button class="btn btn-secondary" type="button" data-toggle="modal"

@@ -16,7 +16,8 @@
                         <img src="{{ Storage::url('avatar/' . $student->avatar) }}" class="img-thumbnail w-25"
                             alt="avatar.jpeg"><br>
                         Name: {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
-                        Department: {{ $student->department->name }} <br> <br>
+                        Department: {{ $student->department->name }} <br>
+                        Course: {{  $student->course }} <br> <br>
                     </div>
 
                     @if ($sem->count() === 0)
@@ -68,7 +69,7 @@
                             <label for="category">Category</label>
                             <select class="form-select form-select-md mb-3" name="categoryNo" id="category"
                                 value="{{ old('category') }}" aria-label="Default select example">
-                                @foreach ($categories as $category)
+                                @foreach ($office->categories as $category)
                                     <option value="{{ $category->categoryNo }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
@@ -77,6 +78,8 @@
                             <label for="category">Discount</label>
                             <select class="form-select form-select-md mb-3" name="discount"
                                 value="{{ old('discount') }}" aria-label="Default select example">
+                                <option value="10%">10% Discount</option>
+                                <option value="15%">15% Discount</option>
                                 <option value="25%">25% Discount</option>
                                 <option value="50%">25% Discount</option>
                                 <option value="75%">25% Discount</option>
