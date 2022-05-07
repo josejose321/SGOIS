@@ -84,7 +84,7 @@
 
 
     <br>
-    <a href="#" class="btn btn-lg btn-primary float-right"> Export Data</a> <br> <br>
+    <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-primary float-right"> Export Data</a> <br> <br>
 
     <div class="card-body" style="font-size: 14px;">
         <div class="table" id="dataTable" role="grid" aria-describedby="dataTable_info">

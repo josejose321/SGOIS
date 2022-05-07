@@ -26,5 +26,5 @@ Log in to your account
 
 Thanks,<br>
 {{ config('app.name') }}
-    <div class="float-right w-25"><img src="Pictures/unc-logo.png" alt="UNC LOGO" class="img-round w-50"></div>
+    <div class="float-right w-25"><img src="unc-logo.png" alt="UNC LOGO" class="img-round w-50"></div>
 @endcomponent

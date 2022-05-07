@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
     protected $table ='categories';
     protected $primaryKey ="categoryNo";
     public $incrementing = true;
-    
+
     protected $fillable =[
         'officeCode',
         'name',
@@ -51,5 +50,30 @@ class Category extends Model
         ->where('adminVerification','Approved')
         ->where('semesterCode',Semester::latest()->first()->semesterCode)
         ->where('discount',$discount);
+    }
+    public function getSummaryReport()
+    {
+        $categoryData = [];
+        foreach(Category::all()->pluck('categoryNo') as $categoryNo)
+        {
+            $category= Category::find($categoryNo);
+            array_push($categoryData,
+            (object) array(
+               'categoryNo' =>$category->categoryNo,
+               'categoryName'=> $category->name,
+               'field_team'=> $category->field_team,
+               'first' => $this->approvedByDiscount($categoryNo,'10%')->count(),
+               'second' => $this->approvedByDiscount($categoryNo,'15%')->count(),
+               'third' => $this->approvedByDiscount($categoryNo,'25%')->count(),
+               'fourth' => $this->approvedByDiscount($categoryNo,'50%')->count(),
+               'fifth' => $this->approvedByDiscount($categoryNo,'75%')->count(),
+               'sixth' => $this->approvedByDiscount($categoryNo,'100%')->count(),
+               'seventh' => $this->approvedByDiscount($categoryNo,'Full')->count(),
+               'total'=> $this->approved($categoryNo)->count(),//count scholarships where it belongs to this category
+               'allocation'=> $category->allocation,
+                )
+            );
+        }
+        return $categoryData;
     }
 }

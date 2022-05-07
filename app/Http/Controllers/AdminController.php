@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SummaryReport;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AnnouncementRequest;
@@ -24,11 +25,13 @@ use App\Models\Office;
 use App\Models\Scholarship;
 use App\Models\Semester;
 use App\Models\Student;
+use Barryvdh\DomPDF\PDF;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -113,41 +116,16 @@ class AdminController extends Controller
         $announcement->update($request->validated());
         return back()->with('success','You update an Annoucement:');
     }
-
-
-    private function getSummaryReport()
-    {
-        $categoryData = [];
-        foreach(Category::all()->pluck('categoryNo') as $categoryNo)
-        {
-            $category= Category::find($categoryNo);
-            array_push($categoryData,
-            (object) array(
-               'categoryNo' =>$category->categoryNo,
-               'categoryName'=> $category->name,
-               'field_team'=> $category->field_team,
-               'allocation'=> $category->allocation,
-               'first' => $category->approvedByDiscount($categoryNo,'10%')->count(),
-               'second' => $category->approvedByDiscount($categoryNo,'15%')->count(),
-               'third' => $category->approvedByDiscount($categoryNo,'25%')->count(),
-               'fourth' => $category->approvedByDiscount($categoryNo,'50%')->count(),
-               'fifth' => $category->approvedByDiscount($categoryNo,'75%')->count(),
-               'sixth' => $category->approvedByDiscount($categoryNo,'100%')->count(),
-               'seventh' => $category->approvedByDiscount($categoryNo,'Full')->count(),
-               'total'=> $this->category->approved($categoryNo)->count()//count scholarships where it belongs to this category
-                )
-            );
-        }
-        return $categoryData;
-    }
     //Admin index // dashboard
     public function index()
     {
         //for summary Report
 
+        // dd(Category::all());
+        // return Excel::download(new SummaryReport, 'report.xlsx');
 
-        $allocations = $this->getSummaryReport();
-
+        $allocations = $this->category->getSummaryReport();
+        // dd($allocations);
         // mail debug
 
         // return new RegistrationMail(Student::find(35));
@@ -271,19 +249,10 @@ class AdminController extends Controller
 
     public function updateAvatar(AvatarRequest $request, Admin $admin)
     {
-        try
-        {
-            //save upload path
-            $admin->avatar = $this->storeAvatar($request->file('avatar'));
-            $admin->save();
-            return redirect()->back()->with('success',"Avatar successfully updated!");
-
-        }catch(Exception $e)
-        {
-            return back()->with('error','Upload Error!\n'. $e->getMessage());
-        }
-
-
+        $admin->update([
+            'avatar'=>$this->storeAvatar($request->file('avatar')),
+        ]);
+        return redirect()->back()->with('success',"Avatar successfully updated!");
     }
 
     private function storeAvatar($file)//get avatarname and upload to storage
@@ -297,29 +266,6 @@ class AdminController extends Controller
         $student = Student::create($request->validated());
         Mail::to($student->email)->send(new RegistrationMail($student));
         return back()->with('success',"student added to the database");
-    }
-
-    public function downLoadRequirement(Scholarship $scholarship)
-    {
-
-        if(file_exists(Storage::url($scholarship->requirement)))
-        {
-            Storage::download($scholarship->photo,$scholarship->student->lastname . '-photo', 200);
-            return back();
-        }
-
-        return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
-    }
-
-    public function downloadPhoto(Scholarship $scholarship)
-    {
-        if(file_exists(Storage::url($scholarship->photo)))
-        {
-            Storage::download($scholarship->photo,$scholarship->student->lastname . '-photo', 200);
-            return back();
-        }
-
-        return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
     }
 
 
@@ -360,7 +306,7 @@ class AdminController extends Controller
     {
         $this->data = [
             'admin'=>Admin::find('18-08925'),
-            'allocations'=>$this->getSummaryReport()
+            'allocations'=>$this->category->getSummaryReport()
         ];
         return view('Admin.report')->with($this->data);
     }
@@ -382,6 +328,11 @@ class AdminController extends Controller
         ];
         return view('Admin.application-view')
         ->with($this->data);
+    }
+
+    public function downloadReport()
+    {
+        return Excel::download(new SummaryReport, 'SGO-SUMMARY-REPORT.xlsx');
     }
 
 }
