@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
 
-    <link rel="icon" href="{{ asset('assets/img/homepage%20pictures/unc-logo.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('unc-logo.png') }}" type="image/x-icon">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -86,7 +86,7 @@
 
 
 
-    <footer class="sticky-footer bg-dark h1 animate__animated animate__fadeInDown" style="background-color: beige">
+    <footer class="bg-dark animate__animated animate__fadeInDown p-4 m-0" style="background-color: beige">
         <div class="container my-auto">
             <div class="text-center my-auto copyright fw-bold"><span>Copyright © 2022 | University of Nueva Caceres -
                     UNCSGOIS .

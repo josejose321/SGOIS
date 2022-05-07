@@ -12,10 +12,10 @@
                 <button type="button" class="btn btn-lg btn-secondary float-right" id="categoryBtn"><i
                     class="fa fa-plus"></i><span>Add new</span></button>
             </div>
-            
+
             <div class="card-body" style="font-size: 14px;">
                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                    
+
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
@@ -35,12 +35,10 @@
                                     <th>{{ $category->name }}</th>
                                     <th>{{ $category->type }}</th>
                                     <th>{{ $category->field_team }}</th>
-                                    <th>{{ $category->memberCount }}</th>
+                                    <th>{{ $category->allocation ?? ''}}</th>
                                     <td><button class="btn-lg btn-secondary" type="button" data-toggle="modal"
                                         data-target="#viewCategory-{{ $category->categoryNo }}">
                                         <i class="fa fa-pencil"></i></button>
-                                    <button class="btn-lg btn-danger" type="button">
-                                        <i class="fa fa-trash-o"></i></button>
                                 </td>
                                 </tr>
                             @endforeach

@@ -62,8 +62,8 @@ class AdminController extends Controller
             'totalVarsity'=> $this->scholarship->officeGrantees('UNC-SDO','Scholarship')->count(),
         ];
 
-        
-        
+
+
     }
 
 
@@ -107,7 +107,7 @@ class AdminController extends Controller
         $admin->announcements()->create($request->validated());
         return back()->with('success','You Added a new Annoucement:');
     }
-    
+
     public function updateAnnounce(AnnouncementRequest $request, Announcement $announcement)
     {
         $announcement->update($request->validated());
@@ -117,11 +117,11 @@ class AdminController extends Controller
 
     private function getSummaryReport()
     {
-        $arr = [];
+        $categoryData = [];
         foreach(Category::all()->pluck('categoryNo') as $categoryNo)
         {
             $category= Category::find($categoryNo);
-            array_push($arr,
+            array_push($categoryData,
             (object) array(
                'categoryNo' =>$category->categoryNo,
                'categoryName'=> $category->name,
@@ -138,14 +138,14 @@ class AdminController extends Controller
                 )
             );
         }
-        return $arr;
+        return $categoryData;
     }
     //Admin index // dashboard
     public function index()
     {
         //for summary Report
-        
-        
+
+
         $allocations = $this->getSummaryReport();
 
         // mail debug
@@ -174,7 +174,7 @@ class AdminController extends Controller
             'admin' =>Admin::find('18-08925'),
             'scholarships'=> $this->scholarship->admin_getPending('Scholarship')
         ];
-        
+
         return view('Admin.scholarship')->with($this->data);
     }
     public function scholarshipDelete(Scholarship $scholarship)
@@ -232,7 +232,7 @@ class AdminController extends Controller
             if( $scholarship->officeVerification == 'Pending')
                 return back()->with('error','Verify from Endorser Office first!');
         }
-        
+
         $scholarship->update([
             'officeVerification' =>'Approved',
             'adminVerification'=>'Approved',
@@ -240,7 +240,7 @@ class AdminController extends Controller
             'remarks'=> $request->remarks
         ]);
         // Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
-        
+
         return back()->with('success','Scholarship Application Approved!');
     }
 
@@ -268,7 +268,7 @@ class AdminController extends Controller
         return back()->with('error','Select File First!');
     }
 
-    
+
     public function updateAvatar(AvatarRequest $request, Admin $admin)
     {
         try
@@ -283,7 +283,7 @@ class AdminController extends Controller
             return back()->with('error','Upload Error!\n'. $e->getMessage());
         }
 
-        
+
     }
 
     private function storeAvatar($file)//get avatarname and upload to storage
@@ -318,7 +318,7 @@ class AdminController extends Controller
             Storage::download($scholarship->photo,$scholarship->student->lastname . '-photo', 200);
             return back();
         }
-        
+
         return back()->with('error','cannot download the file:\n File not exists\nPlease check file path');
     }
 
@@ -383,5 +383,5 @@ class AdminController extends Controller
         return view('Admin.application-view')
         ->with($this->data);
     }
-    
+
 }

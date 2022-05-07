@@ -34,14 +34,12 @@
                                         {{ $announcement->admin->middlename }}</p>
                                     </td>
                                     <td>
-                                        <button class="btn" type="button" data-toggle="modal"
-                                            data-target="#viewAnnouce-{{ $announcement->id }}"
-                                            style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i
-                                                class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-primary" type="button" data-toggle="modal"
+                                            data-target="#viewAnnouce-{{ $announcement->id }}">
+                                            <i class="fa fa-pencil"></i></button>
                                         <a href="{{ route('admin.announce.delete', $announcement->id) }}"><button
-                                                class="btn" type="button"
-                                                style="font-size: 14px;text-align: center;margin-left: 2px;background: var(--bs-red);color: var(--bs-body-bg);"><i
-                                                    class="fa fa-trash-o"></i></button></a>
+                                                class="btn btn-danger" type="button">
+                                                <i class="fa fa-trash-o"></i></button></a>
                                     </td>
                                 </tr>
                             @endforeach

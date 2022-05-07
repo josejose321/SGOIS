@@ -3,12 +3,14 @@
 @section('title', 'Student')
 @section('content')
 
-    <hr>
-    <div class="container border animate__animated animate__fadeInUp">
+    <br>
+    <div class="container animate__animated animate__fadeInUp">
         <div class="row">
+
             <div class="col-md-6 animate__animated animate__fadeInLeft">
-                <p><br>
-                <h1 class="text-danger">Welcome Students!</h1>
+                <p>
+                    <img src="{{ asset('greyhound.png') }}" class="img img-round w-25" alt="">
+                <h1 class="text-danger border border-2">Welcome Students!</h1>
                 Finally, you have in your fingertips the information you need as a student.
                 The myUNC: Student Module will give you access to your class schedule for the
                 semester you are currently enrolled in, view your statement of accounts earlier
@@ -16,23 +18,19 @@
                 attendance both absences and lateness, and most the most important is, Graduate-on-Time by
                 being able to see your Student Evaluation based from your course curriculum for any problems
                 regarding your subjects taken.</p>
-                <h4>NON SCHOLAE SED VITAE</h4><br>
-                <hr>
+                <h4>NON SCHOLAE SED VITAE</h4>
                 <div class="jumbotron">
                     <h1 class="display-6">Looking for Scholarships?</h1>
                     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling
                         extra attention to featured content or information.</p>
-                    <hr class="my-4">
-                    <p>University Scholarship And Grants Office Brings you best Scholarships and loan offers! <br>
-                        Click here...
-                    </p>
                     <p class="lead ">
-                        <a class="btn btn-danger btn-lg" href="{{ route('student.scholarships') }}" role="button">Apply
+                        <a class="btn btn-danger btn-lg float-right" href="{{ route('student.scholarships') }}"
+                            role="button">Apply
                             Now!</a>
                     </p>
                 </div>
             </div>
-            <div class="border col-md-6 animate__animated animate__fadeInRight">
+            <div class=" col-md-6 animate__animated animate__fadeInRight">
                 <label class="form-label"
                     style="text-align: center;margin-left: 125px;margin-top: 10px;font-weight: bold;color: var(--bs-red);font-size: 20px;">&nbsp;
                     <i class="fa fa-bullhorn"></i> NEWS AND ANNOUNCEMENTS</label>

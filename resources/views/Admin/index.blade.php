@@ -3,16 +3,16 @@
 @section('title', 'Admin Dashboard')
 @section('content')
 
-    <h2 class="text-dark mb-4 font-weight-bold ">
-        DASHBOARD
-        <button class="btn pull-right " id="import" type="button"
-            style="background: var(--bs-gray-800);color: var(--bs-body-bg);">
-            <i class="fa fa-download"></i>&nbsp; IMPORT STUDENTS</button>
-        <button class="btn pull-right" type="button" id="addStudent"
-            style="background: var(--bs-red);margin-right: 5px;border-bottom-color: var(--bs-red);color: var(--bs-body-bg);">
-            <i class="fa fa-plus"></i>&nbsp; ADD STUDENT</button>
+        <h2 class="text-dark mb-4 font-weight-bold ">
+            DASHBOARD
+            <button class="btn pull-right " id="import" type="button"
+                style="background: var(--bs-gray-800);color: var(--bs-body-bg);">
+                <i class="fa fa-download"></i>&nbsp; IMPORT STUDENTS</button>
+            <button class="btn pull-right" type="button" id="addStudent"
+                style="background: var(--bs-red);margin-right: 5px;border-bottom-color: var(--bs-red);color: var(--bs-body-bg);">
+                <i class="fa fa-plus"></i>&nbsp; ADD STUDENT</button>
 
-    </h2>
+        </h2>
     <hr>
 
     <div class="row-fluid border">
@@ -81,90 +81,6 @@
         </div>
     </div>
     <canvas id="canvas" height="450" width="1200"></canvas>
-    {{-- <div class="row">
-        <h3>SPORTS DEVELOPMENT OFFICE</h3>
-        <h2>Total Varsities:{{ $totalVarsity }}</h2>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-warning m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Sepak Takraw</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-primary m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-info m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <h3> University Culture And Arts Scholarship</h3>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Band</h5>
-                <p class="card-text">0 out of 10</p>
-            </div>
-        </div>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <h3> Other Scholarships</h3>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-        <div class="col card bg-success m-4 p-3">
-            <div class="card-body">
-                <h5 class="card-title"><i class='fa fa-basketball-ball'></i> Basketball</h5>
-                <p class="card-text">0 out of 0</p>
-            </div>
-        </div>
-    </div> --}}
 
 
     <br>
@@ -221,10 +137,5 @@
     @include('modals.addStudent')
 
     @include('modals.import')
-
-
-
-
-
 
 @endsection

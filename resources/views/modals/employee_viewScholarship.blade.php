@@ -17,8 +17,6 @@
                         {{ $scholarship->student->firstname }} {{ $scholarship->student->middlename }} <br>
                         Endorser Office: {{ $scholarship->office->name }} <br>
                         Endorser Status: {{ $scholarship->officeVerification }} <br>
-                        Requirement: {{ $scholarship->requirement }} <br>
-                        photo: {{ $scholarship->photo }} <br>
 
 
                         <div class="row">
