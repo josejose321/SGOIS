@@ -23,7 +23,7 @@ class Employee extends Authenticatable
     public $incrementing = false;
 
     protected $fillable = [
-        'employee_no',
+        'userNo',
         'firstname',
         'middlename',
         'lastname',
@@ -46,6 +46,10 @@ class Employee extends Authenticatable
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_no','employee_no');
+        return $this->belongsTo(User::class,'userNo','userNo');
+    }
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class, 'employee_no','employee_no');
     }
 }

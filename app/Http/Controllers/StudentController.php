@@ -14,14 +14,14 @@ use App\Models\Office;
 use App\Models\Scholarship;
 use App\Models\Semester;
 use App\Models\Student;
-
+use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 
 class StudentController extends Controller
 {
     private $announcement;
     private $semester;
     private $data;
-    private $category;
     public function __construct()
     {
         $this->announcement = new Announcement();
@@ -31,7 +31,7 @@ class StudentController extends Controller
     function index()
     {
         $this->data = [
-            'student'=>Student::find('18-08925'),
+            'student'=>Student::find(2),
             'offices' => Office::all(),
             'categories'=> Category::all(),
             'sem'=> $this->semester->getLatest(),
@@ -54,13 +54,20 @@ class StudentController extends Controller
     }
     function showScholarships()
     {
+        $this->data = [
+            'student'=>Student::find(2),
+            'offices' => Office::all(),
+            'categories'=> Category::all(),
+            'sem'=> $this->semester->getLatest(),
+            'announcements' => $this->announcement->getLatest()
+        ];
         return view("Student.scholarships")
-        ->with('scholarships',Scholarship::all())
-        ->with('loans',Scholarship::where('type','Loan'));
+        ->with($this->data);
     }
 
     function edit(Student $student)
     {
+        // dd($student->user);
         return view("Student.edit")
         ->with(compact('student')) //auth()->student()
         ->with('courses',Course::all())
@@ -70,12 +77,23 @@ class StudentController extends Controller
     public function updateProfile(StudentUpdateRequest $request, Student $student)
     {
         // dd($request->input());
-        $student->update($request->validated());
-        return back()->with('success','successfully updated');
- 
+        $student->user()->update([
+            'firstname'=> $request->firstname,
+            'middlename'=> $request->middlename,
+            'lastname'=> $request->lastname,
+            'email'=> $request->email,
+            'phone'=> $request->phone,
+        ]);
+        $student->update([
+            'courseNo'=> $request->courseNo,
+            'year'=> $request->year,
+        ]);
+        return back()->withSuccess('successfully updated');
+
     }
     public function applyScholarship(ScholarshipRequest $request, Student $student)
     {
+        // dd($request->validated());
         $student->scholarships()->create([
             "type" => $request->type,
             "officeCode"=>$request->officeCode,
@@ -85,17 +103,18 @@ class StudentController extends Controller
             "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
             "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
         ]);
-        return back()->with('success','Your Application is submitted');
+        return back()->withSuccess('Your Application is submitted');
     }
 
     public function updateAvatar(AvatarRequest $request, Student $student)
-    { 
+    {
 
-        $student->update(['avatar'=> $this->storeAvatar($request->file('avatar'))]);
-        return back()->with('success',"You update your profile!");
+        // dd($request->validated());
+        $student->user()->update(['avatar'=> $this->storeAvatar($request->file('avatar'))]);
+        return back()->withSuccess("You update your profile!");
     }
 
-    
+
     private function storeAvatar($file)//get avatarname and upload to storage
     {
         $path = $file->hashName();
@@ -111,7 +130,7 @@ class StudentController extends Controller
     public function showSportsDev()
     {
         $this->data = [
-            'student'=>Student::find(35),
+            'student'=>Student::find(2),
             'sem'=> $this->semester->getLatest(),
             'office' => Office::find('UNC-SDO'),
             'categories'=> Category::where('field_team','Varsity')->get(),
@@ -120,4 +139,53 @@ class StudentController extends Controller
         return view('Student.sportsdev')
         ->with($this->data);
     }
+    public function showCultureAndArts()
+    {
+        $this->data = [
+            'student'=>Student::find(2),
+            'sem'=> $this->semester->getLatest(),
+            'office' => Office::find('UNC-CULTURE&ARTS'),
+        ];
+        // dd(Student::find(35));
+        return view('Student.culture')
+        ->with($this->data);
+    }
+    public function showLoans()
+    {
+        $this->data = [
+            'student'=>Student::find(2),
+            'sem'=> $this->semester->getLatest(),
+            'office' => Office::find('UNC-CULTURE&ARTS'),
+        ];
+        // dd(Student::find(35));
+        return view('Student.loans')
+        ->with($this->data);
+    }
+    public function showDiscounts()
+    {
+        $this->data = [
+            'student'=>Student::find(2),
+            'sem'=> $this->semester->getLatest(),
+            'office' => Office::find('UNC-CULTURE&ARTS'),
+        ];
+        // dd(Student::find(35));
+        return view('Student.discounts')
+        ->with($this->data);
+    }
+    public function showApplication()
+    {
+        $this->data = [
+            'student'=>Student::find(2),
+            'scholarships'=>
+            Scholarship::where('student_no',
+            Student::find(2)
+            ->student_no)
+            ->latest()->simplePaginate(5)
+        ];
+
+        return view('Student.applications')
+        ->with($this->data);
+    }
+
+
 }

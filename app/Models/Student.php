@@ -15,17 +15,9 @@ class Student extends Model
 
     protected $fillable = [
         'user_id',
-        'firstname',
-        'middlename',
-        'lastname',
-        'email',
-        'departmentCode',
-        'phone',
-        'course',
         'year',
-        'avatar',
-        'status',
-
+        'courseNo',
+        'parentName',
     ];
 
     public function scholarships()
@@ -41,9 +33,13 @@ class Student extends Model
     {
         return $this->belongsTo(Department::class,'departmentCode','departmentCode');
     }
+    public function course()
+    {
+        return $this->hasOne(Course::class,'courseNo','courseNo');
+    }
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','user_id');
+        return $this->belongsTo(User::class,'userNo','userNo');
     }
 }

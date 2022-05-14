@@ -5,16 +5,16 @@
         <!-- Large modal -->
 
         <div class="jumbotron">
-            <div class="w-50"><img src="{{ Storage::url('avatar/' . $student->avatar) }}" class="rounded w-25"
+            <div class="w-50"><img src="{{ Storage::url('avatar/' . $student->user->avatar) }}" class="rounded w-25"
                     alt="avatar.jpeg"><br></div>
             <h6 class="">
                 Hello, Mr./Ms
-                {{ $student->firstname }}
-                {{ $student->middlename }}
-                {{ $student->lastname }} <br>
-                {{ $student->user_id }} <br>
+                {{ $student->user->firstname }}
+                {{ $student->user->middlename }}
+                {{ $student->user->lastname }} <br>
+                {{ $student->user->user_id }} <br>
             </h6>
-            <a href="{{ url('student/' . $student->student_no . '/edit') }}"><button type="button"
+            <a href="{{ route('student.edit',$student->user->student->student_no) }}"><button type="button"
                     class="btn btn-primary">Edit Profile</button></a>
             <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet perferendis nisi aut
                 voluptate expedita,

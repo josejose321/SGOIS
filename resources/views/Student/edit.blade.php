@@ -3,23 +3,21 @@
 @section('title', 'Edit Profile')
 @section('content')
 
-    <br><br>
-
-    <section class="container w-75" style="background-color: rgb(196, 195, 195)"><br>
-        <form action="{{ url('student/' . $student->student_no . '/avatar') }}" method="POST" enctype="multipart/form-data">
+    <section class="container w-50 bg-light"><br>
+        <form action="{{ route('student.avatar.update', $student->student_no) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
+                <label for="avatar">
+                    <img src="{{ Storage::url('avatar/' . $student->user->avatar) }}" class="img-round w-25"
+                        alt="avatar.jpeg">
+                    <input type="file" id="avatar" class="form-control-file" name="avatar" style="display:none">
 
-            <div class="w-50"><img src="{{ Storage::url('avatar/' . $student->avatar) }}"
-                    class="img-thumbnail w-25" alt="avatar.jpeg"><br></div>
-            <div class="form-group">
-                <label for="exampleFormControlFile1"></label>
-                <input type="file" class="form-control-file" name="avatar">
-            </div>
-            <button type="submit" class="btn btn-primary"> update avatar</button>
+                </label>
+                <button type="submit" class="btn btn-primary p-1 m-1"> update avatar</button>
         </form>
 
         <div class="container">
-            <form action="{{ url('student/' . $student->student_no . '/update') }}" method="POST">
+            <form action="{{ route('student.studentUpdate', $student->student_no) }}" method="POST">
                 @csrf
                 <h1>Edit Profile</h1>
                 @if ($errors->any())
@@ -36,25 +34,25 @@
                     <div class="col-md-6">
                         <label for="student_no">Student_no</label>
                         <input type="text" class="form-control" placeholder="Student No"
-                            value="{{ $student->user_id }}" readonly>
+                            value="{{ $student->user->user_id }}" readonly>
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
                         <label for="inputAddress">Firstname</label>
-                        <input type="text" class="form-control" name="firstname" placeholder="{{ $student->firstname }}"
-                            value="{{ $student->firstname }}">
+                        <input type="text" class="form-control" name="firstname"
+                            placeholder="{{ $student->user->firstname }}" value="{{ $student->user->firstname }}">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress">Middlename</label>
                         <input type="text" class="form-control" name="middlename"
-                            placeholder="{{ $student->middlename }}" value="{{ $student->middlename }}">
+                            placeholder="{{ $student->user->middlename }}" value="{{ $student->user->middlename }}">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress">Lastname</label>
-                        <input type="text" class="form-control" name="lastname" placeholder="{{ $student->lastname }}"
-                            value="{{ $student->lastname }}">
+                        <input type="text" class="form-control" name="lastname"
+                            placeholder="{{ $student->user->lastname }}" value="{{ $student->user->lastname }}">
                     </div>
 
 
@@ -62,25 +60,25 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputAddress">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="{{ $student->email }}"
-                            value="{{ $student->email }}">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputAddress">Department</label>
-                        <input type="text" class="form-control" name="departmentCode" placeholder="Department Code"
-                            value="{{ $student->departmentCode }}">
+                        <input type="email" class="form-control" name="email" placeholder="{{ $student->user->email }}"
+                            value="{{ $student->user->email }}">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress">Contact Number</label>
-                        <input type="text" class="form-control" name="phone" placeholder="{{ $student->phoneNumber }}"
-                            value="{{ $student->phone }}" maxlength="11">
+                        <input type="text" class="form-control" name="phone"
+                            placeholder="{{ $student->user->phoneNumber }}" value="{{ $student->user->phone }}"
+                            maxlength="11">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="inputAddress">Course</label>
-                        <input type="text" class="form-control" name="course" placeholder="{{ $student->course }}"
-                            value="{{ $student->course }}">
+                        <label for="courseNo"> Select Year</label>
+                        <select class="form-select form-select-md mb-3" name="courseNo" aria-label="Default select example">
+                            <option value="{{ $student->courseNo }}">{{ $student->course->name }}</option>
+                            @foreach ($courses as $course)
+                                <option value="{{ $course->courseNo }}">{{ $course->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="year"> Select Year</label>

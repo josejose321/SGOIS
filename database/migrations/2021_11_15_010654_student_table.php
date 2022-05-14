@@ -16,24 +16,23 @@ class StudentTable extends Migration
         //
         Schema::create('students', function (Blueprint $table){
             $table->bigIncrements('student_no');
-            $table->string('user_id',8)->unique();
-            $table->string('firstname',50);
-            $table->string('middlename',50);
-            $table->string('lastname',50);
-            $table->string('email',50)->unique();
-            $table->string('departmentCode',10)->index()->nullable();
-            $table->string('phone',11);
-            $table->string('course');
+            $table->unsignedInteger('userNo')->unique();
+            $table->unsignedBigInteger('courseNo')->index()->nullable();
             $table->string('year', 10);
-            $table->string('avatar')->default('defaultAvatar.jpg');
-            $table->enum('status',['active','inactive','graduated'])->default('active');
+            $table->string('parentName');
             $table->timestamps();
-            
-            $table->foreign('departmentCode')
-            ->references('departmentCode')
-            ->on('departments')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+
+            $table->foreign('courseNo')
+            ->references('courseNo')
+            ->on('courses')
+            ->cascadeOnDelete()
+            ->cascadeOnUpdate();
+
+            $table->foreign('userNo')
+            ->references('userNo')
+            ->on('users')
+            ->cascadeOnDelete()
+            ->cascadeOnUpdate();
         });
     }
 

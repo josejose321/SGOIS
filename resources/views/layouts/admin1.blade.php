@@ -101,8 +101,8 @@
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="d-none d-lg-inline me-2">{{ $admin->lastname ?? '' }},
-                                            {{ $admin->firstname ?? '' }} {{ $admin->middlename ?? '' }}</span>
+                                        <span class="d-none d-lg-inline me-2">{{ $employee->user->lastname ?? '' }},
+                                            {{ $employee->user->firstname ?? '' }} {{ $employee->user->middlename ?? '' }}</span>
                                         <img class="border rounded-circle img-profile"
                                             src="{{ Storage::url('avatar/6g4mgyJXAJ7hVC1tolnCBT6u7FjEHrksdJG07n3d.jpg') }}">
                                     </a>

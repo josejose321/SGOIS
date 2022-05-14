@@ -28,5 +28,5 @@ class AvatarRequest extends FormRequest
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
-    
+
 }

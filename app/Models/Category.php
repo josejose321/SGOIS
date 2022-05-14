@@ -40,7 +40,7 @@ class Category extends Model
         ->scholarships
         ->where('officeVerification','Approved')
         ->where('adminVerification','Approved')
-        ->where('semesterCode',Semester::latest()->first()->semesterCode);
+        ->where('semesterCode',Semester::latest()->first()->semesterCode ?? '');
     }
     public function approvedByDiscount($categoryNo, $discount)
     {
@@ -48,7 +48,7 @@ class Category extends Model
         ->scholarships
         ->where('officeVerification','Approved')
         ->where('adminVerification','Approved')
-        ->where('semesterCode',Semester::latest()->first()->semesterCode)
+        ->where('semesterCode',Semester::latest()->first()->semesterCode ?? '')
         ->where('discount',$discount);
     }
     public function getSummaryReport()

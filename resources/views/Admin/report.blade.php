@@ -5,6 +5,9 @@
 @section('content')
     <div class="card-body" style="font-size: 14px;">
         <div class="table" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <br>
+            <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-primary float-right p-1 m-2">Generate Report</a> <br>
+            <br>
             <table class="table my-0" id="dataTable">
                 <thead>
                     <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
@@ -20,7 +23,6 @@
                         <th>Full</th>
                         <th>APPROVED</th>
                         <th>TOTAL SLOT</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,15 +33,13 @@
                             <td>{{ $allocation->categoryName ?? '' }}</td>
                             <td>{{ $allocation->first ?? '' }}</td>
                             <td>{{ $allocation->second ?? '' }}</td>
-                            <td>{{ $allocation->third ??'' }}</td>
+                            <td>{{ $allocation->third ?? '' }}</td>
                             <td>{{ $allocation->fourth ?? '' }}</td>
                             <td>{{ $allocation->fifth ?? '' }}</td>
                             <td>{{ $allocation->sixth ?? '' }}</td>
                             <td>{{ $allocation->seventh ?? '' }}</td>
                             <td>{{ $allocation->total ?? '' }}</td>
                             <td>{{ $allocation->allocation ?? '' }}</td>
-                            <td><button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#">
-                                    <i class="fa fa-add"></i>Add Slot</button>
 
                         </tr>
                     @endforeach
@@ -47,5 +47,6 @@
             </table>
         </div>
     </div>
+    @include('modals.editCategoryAllo')
 
 @endsection

@@ -84,7 +84,7 @@
 
 
     <br>
-    <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-primary float-right"> Export Data</a> <br> <br>
+    <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-primary float-right"> Generate Report</a> <br> <br>
 
     <div class="card-body" style="font-size: 14px;">
         <div class="table" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -103,7 +103,6 @@
                         <th>Full</th>
                         <th>APPROVED</th>
                         <th>TOTAL SLOT</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,9 +120,6 @@
                             <td>{{ $allocation->seventh ?? '' }}</td>
                             <td>{{ $allocation->total ?? '' }}</td>
                             <td>{{ $allocation->allocation ?? '' }}</td>
-                            <td><button class="btn btn-secondary" type="button" data-toggle="modal"
-                                data-target="#">
-                                <i class="fa fa-add"></i>Add Slot</button>
 
                         </tr>
                     @endforeach
@@ -135,7 +131,6 @@
     @include('modals.addStudent')
     @include('modals.addSem')
     @include('modals.addStudent')
-
     @include('modals.import')
 
 @endsection

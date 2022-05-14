@@ -1,13 +1,37 @@
-@extends('layouts.employee')
-@section('title', 'Scholarhips')
+@extends('layouts.student')
 
-
+@section('title', 'Student')
 @section('content')
+@section('background')
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            /* The image used */
+            /* background-image: url("{{ asset('student/sportsDev.jpg') }}"); */
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
+@stop
+
+<br> <br><br>
+<div class="container animate__animated animate__fadeInUp">
     <div class="container-fluid">
-        <div class=" h2 font-weight-bold">SCHOLARSHIPS</div>
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h3 font-weight-bold">Pending Request</div>
+                <div class="h2 font-weight-bold">My Application</div>
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -24,9 +48,10 @@
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th>SCHOLARSHIP NO</th>
-                                <th>STUDENT ID</th>
-                                <th>NAME</th>
-                                <th>STATUS</th>
+                                <th>Application Type</th>
+                                <th>Endorser Office</th>
+                                <th>ENDORSER STATUS</th>
+                                <th>SGO STATUS</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -34,14 +59,12 @@
                             @foreach ($scholarships as $scholarship)
                                 <tr>
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
-                                    <td>{{ $scholarship->student->user->user_id ?? '' }}</td>
-                                    <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}
-                                        {{ $scholarship->student->user->middlename }}</td>
+                                    <td>{{ $scholarship->office->name }}</td>
+                                    <td>{{ $scholarship->type }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
-                                    <td><a class="btn-lg btn-secondary"
-                                            href="{{ route('employee.application.view', $scholarship->scholarshipNo) }}"
-                                            type="button">
-                                            <i class="fa fa-pencil"></i>Preview</a>
+                                    <td>{{ $scholarship->adminVerification }}</td>
+                                    <td><button class="btn btn-secondary" type="button">
+                                            <i class="fa fa-eye"></i>Preview</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,14 +77,7 @@
             </div>
         </div>
     </div>
-    {{-- <script>
-    function deleteScholarship(scholarshipNo){
-        if (confirm("Do you really want to delete this scholarship?:\nScholarshipNo:"+scholarshipNo)) {
-            alert(scholarshipNo);
-            window.location.href = "{{ url('admin/${scholarship}/delete') }}";
-        }
-    }
-</script> --}}
+</div>
 
-    @include('modals.employee_viewScholarship')
+
 @endsection

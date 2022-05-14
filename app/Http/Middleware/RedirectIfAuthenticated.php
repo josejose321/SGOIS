@@ -20,17 +20,14 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, $guard = null)
     {
 
-            if ($guard == "admin" && Auth::guard($guard)->check()) {
-                return redirect('/admin');
+            if ($guard == "isAdmin" && Auth::guard($guard)->check()) {
+                return redirect()->route('admin.index');
             }
-            if ($guard == "student" && Auth::guard($guard)->check()) {
-                return redirect('/student');
+            if ($guard == "isStudent" && Auth::guard($guard)->check()) {
+                return redirect()->route('student.index');
             }
-            if ($guard == "employee" && Auth::guard($guard)->check()) {
-                return redirect('/employee');
-            }
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+            if ($guard == "isEndorser" && Auth::guard($guard)->check()) {
+                return redirect()->route('employee.index');
             }
 
         return $next($request);

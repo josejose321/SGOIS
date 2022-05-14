@@ -53,7 +53,7 @@ Route::resource('student/scholarship', ScholarshipController::class);
 Route::prefix('admin')
     ->as('admin')
     ->controller(AdminController::class)
-    // ->middleware()
+    // ->middleware(['isAdmin','auth'])
     ->group(function (){
         //scholarships
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
@@ -62,6 +62,7 @@ Route::prefix('admin')
         Route::get('/scholarships/{scholarship}/requirement-download', 'downloadRequirement')->name('.scholarship.requirement-download');
         Route::get('/scholarships/{scholarship}/photo-download', 'downloadPhoto')->name('.scholarship.photo-download');
         Route::get('/application-view/{scholarship}','viewApplication')->name('.application.view');
+        Route::get('/download-report', 'downloadReport')->name('.report.download');
 
         Route::get('/semesters','showSemester')->name('.semester');
         Route::post('/semesters','storeSemester')->name('.semester.store');
@@ -81,12 +82,12 @@ Route::prefix('admin')
         Route::post('/import','import')->name('.import');
         Route::get('/students','showStudents')->name('.students');
         Route::get('/profile','showProfile')->name('.profile');
-        Route::post('profile/{admin}/avatar','updateAvatar')->name('.profile.updateAvatar');
-        Route::post('/profile/{admin}','updateProfile')->name('.update');
+        Route::post('profile/{employee}/avatar','updateAvatar')->name('.profile.updateAvatar');
+        Route::post('/profile/{employee}','updateProfile')->name('.update');
 
 
         //announcement
-        Route::post('/announcements/{admin}', 'storeAnnounce')->name('.announce.store');
+        Route::post('/announcements/{employee}', 'storeAnnounce')->name('.announce.store');
         Route::get('/announcements', 'showAnnounce')->name('.announce.show');
         Route::post('/announcements/{announcement}/update', 'updateAnnounce')->name('.announce.update');
         Route::get('/announcements/{announcement}', 'deleteAnnounce')->name('.announce.delete');
@@ -106,26 +107,31 @@ Route::prefix('admin')
 Route::prefix('student')
     ->as('student')
     ->controller(StudentController::class)
+    // ->middleware(['isStudent','auth'])
     ->group(function(){
-        Route::post('/{student}/avatar','updateAvatar')->name('.updateAvatar');
+        Route::get('/dashboard', 'index')->name('.index');
+        Route::post('/{student}/avatar','updateAvatar')->name('.avatar.update');
         Route::post('/{student}/update','updateProfile')->name('.studentUpdate');
         Route::get('/scholarships','showScholarships')->name('.scholarships');
         Route::post('/{student}/scholarship','applyScholarship')->name('.apply.scholarship');
-        Route::post('/{student}/discount','applyDiscount')->name('.apply.discount');
-        Route::post('/{student}/loan','applyLoan')->name('.apply.loan');
         Route::get('/scholarship-sportsdev','showSportsDev')->name('.sportsDev');
+        Route::get('/scholarship-culture-arts','showCultureAndArts')->name('.culture');
+        Route::get('/discounts','showDiscounts')->name('.discount.show');
+        Route::get('/loans','showLoans')->name('.loan.show');
+        Route::get('/applications','showApplication')->name('.applications.view');
 
         Route::get('/{student}', 'show')->name('.show');
         Route::get('/{student}/edit','edit')->name('.edit');
-        Route::get('/', 'index')->name('.index');
-        
-        
+
+
+
     });
 
 
 Route::prefix('employee')
 ->as('employee')
 ->controller(EmployeeController::class)
+// ->middleware(['isEndorser','auth'])
 ->group(function (){
         //scholarships
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
@@ -142,17 +148,16 @@ Route::prefix('employee')
         //discounts
         Route::get('/discounts','showDiscounts')->name('.discounts');
         Route::get('/categories','showCategories')->name('.categories');
-        ROute::get('categories/update','updateCategory')->name('.categories.update');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-        
+        ROute::get('categories/update','updateCategory')->name('.categories.update');
 
-        
+
+
         Route::get('/', 'index')->name('.index');
-          
+
     });
 
 
 
-Route::view('/pdf', 'Admin.application-view');
 
 Auth::routes();
 

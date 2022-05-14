@@ -34,9 +34,9 @@
                             <p class="card-text"> {{ $announcement->content ?? '' }}</p>
 
                             <p class="card-text">-Admin
-                                {{ $announcement->admin->lastname }}, 
-                                {{ $announcement->admin->firstname }}
-                                {{ $announcement->admin->middlename }}</p>
+                                {{ $announcement->employee->lastname ?? '' }},
+                                {{ $announcement->employee->firstname ?? '' }}
+                                {{ $announcement->employee->middlename ??'' }}</p>
 
                         </div>
                     </div>

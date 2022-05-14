@@ -17,7 +17,11 @@ class UserFactory extends Factory
     {
         return [
             'user_id'=>$this->faker->unique()->numerify('##-#####')?? null,
+            'firstname' =>$this->faker->firstName,
+            'middlename' =>$this->faker->lastName,
+            'lastname'=>$this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail(),
+            'phone' =>$this->faker->numerify('09#########'),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'type' => $this->faker->randomElement(['director','student','employee','sgoStaff']),

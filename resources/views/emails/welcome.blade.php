@@ -16,9 +16,9 @@ Welcome! Mr./Mrs {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }}
 
 # Your Account Information,
 <div>
-   <strong>Student ID: {{ $student->user_id ?? '' }}</strong> <br>
+   <strong>Student ID: {{ $student->user->user_id ?? '' }}</strong> <br>
    <strong>Email: {{ $student->email ?? '' }}</strong> <br>
-   <strong>Password:{{ $student->user_id ?? '' }}</strong> <br>
+   <strong>Password:{{ $student->user->user_id ?? '' }}</strong> <br>
 </div>
 @component('mail::button', ['url' => 'http://127.0.0.1:8000', 'color'=>'error'])
 Log in to your account

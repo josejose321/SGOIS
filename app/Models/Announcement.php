@@ -14,11 +14,11 @@ class Announcement extends Model
     protected $fillable = [
         'subject',
         'content',
-        'admin_no',
+        'employee_no',
     ];
-    public function admin()
+    public function employee()
     {
-        return $this->belongsTo(Admin::class,"admin_no","admin_no");
+        return $this->belongsTo(Employee::class,"employee_no","employee_no");
     }
     public function getLatest()
     {

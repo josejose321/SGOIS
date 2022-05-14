@@ -29,9 +29,9 @@
                                 <tr>
                                     <td>{{ $announcement->id ?? '' }}</td>
                                     <td>{{ $announcement->subject ?? '' }}</td>
-                                    <td>{{ $announcement->admin->lastname }},
-                                        {{ $announcement->admin->firstname }}
-                                        {{ $announcement->admin->middlename }}</p>
+                                    <td>{{ $announcement->employee->user->lastname }},
+                                        {{ $announcement->employee->user->firstname }}
+                                        {{ $announcement->employee->user->middlename }}</p>
                                     </td>
                                     <td>
                                         <button class="btn btn-primary" type="button" data-toggle="modal"

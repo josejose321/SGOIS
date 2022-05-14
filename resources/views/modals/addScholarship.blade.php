@@ -1,4 +1,4 @@
-<form action="{{ route('student.apply.scholarship', $student->student_no) }}" method="POST"
+<form action="{{ route('student.apply.scholarship', $student->student_no ?? '') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
     <div class="modal fade bd-example-modal-lg" id="addscholar" tabindex="-1" role="dialog"
@@ -13,13 +13,13 @@
                 </div>
                 <div class="modal-body bg-light">
                     <div class="w-50">
-                        <img src="{{ Storage::url('avatar/' . $student->avatar) }}" class="img-thumbnail w-25"
+                        <img src="{{ Storage::url('avatar/' . $student->user->avatar) }}" class="img-thumbnail w-25"
                             alt="avatar.jpeg"><br>
-                        Name: {{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} <br>
-                        Department: {{ $student->department->name }} <br> <br>
+                        Name: {{ $student->user->lastname }}, {{ $student->user->firstname }} {{ $student->user->middlename }} <br>
+                        {{-- Department: {{ $student->course->department->name }} <br> <br> --}}
                     </div>
 
-                    @if ($sem->count() === 0)
+                    @if ($sem->count()== null)
                         <div class="alert alert-danger">
                             <p class="display-5"> You cannot Apply right now</p>
                             <p> Please Contact the SGO if having any concerns</p>
@@ -41,7 +41,7 @@
                         <div class="col-md-4">
                             <label for="semester">Student_no</label>
                             <input type="text" name="student_no" class="form-control" readonly
-                                value="{{ $student->student_no ?? '' }}">
+                                value="{{ $student->user->user_id ?? '' }}">
                         </div>
                         <div class="col-md-4">
                             <label for="type">Type</label>
@@ -49,6 +49,7 @@
                                 aria-label="Default select example">
                                 <option value="Scholarship">Scholarship</option>
                                 <option value="Discount">Discount</option>
+                                <option value="Loan">Loan</option>
                                 <option value="Grant">Others</option>
                             </select>
                         </div>
@@ -91,7 +92,7 @@
                                 <option value="50%">50% Discount</option>
                                 <option value="75%">25% Discount</option>
                                 <option value="100%">100% Discount</option>
-                                <option value="Full">Full Scholarship</option>
+                                <option value="Full">FullScholarship</option>
                             </select>
                         </div>
                     </div>

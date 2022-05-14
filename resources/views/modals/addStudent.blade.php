@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label for="id"> Student Number</label>
                             <input type="text" name="user_id" class="form-control" placeholder="Student No"
-                                maxlength="8" value="{{ old('student_no') }}">
+                                maxlength="8" value="{{ old('user_id') }}">
                             @if ($errors->has('user_id'))
                                 <small class="input-error text-danger">{{ $errors->first('user_id') }}</small>
                             @endif
@@ -90,24 +90,21 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="id"> Course</label>
-                            <select class="form-select form-select-md mb-3" name="course"
+                            <select class="form-select form-select-md mb-3" name="courseNo"
                                 aria-label="Default select example">
                                 <option selected>Select Course</option>
                                 @foreach ($courses as $course)
-                                    <option value="{{ $course->name }}">{{ $course->name }}</option>
+                                    <option value="{{ $course->courseNo ?? ''}}">{{ $course->name ?? '' }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="id"> Department</label>
-                            <select class="form-select form-select-md mb-3" name="departmentCode"
-                                aria-label="Default select example">
-                                <option selected>Select Department</option>
-                                @foreach ($departments as $department)
-                                    <option value="{{ $department->departmentCode }}">{{ $department->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label for="id"> Parent Name</label>
+                            <input type="text" name="parentName" class="form-control" placeholder="Lastname,Firstname, MI"
+                                maxlength="11" value="{{ old('parentName') }}">
+                            @if ($errors->has('parentName'))
+                                <small class="input-error text-danger">{{ $errors->first('parentName') }}</small>
+                            @endif
                         </div>
 
                     </div>

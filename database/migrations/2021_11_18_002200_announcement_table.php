@@ -19,11 +19,13 @@ class AnnouncementTable extends Migration
             $table->id();
             $table->string('subject');
             $table->longText('content');
-            $table->string('admin_no',8)->index();
+            $table->unsignedBigInteger('employee_no')->index();
             $table->timestamps();
-            $table->foreign('admin_no')
-            ->references('admin_no')
-            ->on('admins')
+
+
+            $table->foreign('employee_no')
+            ->references('employee_no')
+            ->on('employees')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });

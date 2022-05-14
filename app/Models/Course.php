@@ -22,4 +22,9 @@ class Course extends Model
     {
         return $this->belongsTo(Department::class,'departmentCode','departmentCode');
     }
+
+    public function student()
+    {
+        return $this->hasOne(Course::class,'courseNo','courseNo');
+    }
 }

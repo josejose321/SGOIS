@@ -13,6 +13,7 @@ use App\Models\Employee;
 use App\Models\Office;
 use App\Models\Scholarship;
 use App\Models\Student;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -36,7 +37,7 @@ class EmployeeController extends Controller
     public function show()
     {
         return view('Employee.profile')
-        ->with('employee',Employee::find('18-08926')); //auth()->employee
+        ->with('user',User::latest()->first()); //auth()->employee
     }
 
     //Verify Pending request
@@ -46,17 +47,19 @@ class EmployeeController extends Controller
             'officeVerification'=>'Approved',
             'discount' =>$request->discount,
         ]);
-        return back()->with('success','Scholarship Application Approved!');
+        return redirect('/employee/scholarships')->withSuccess('Scholarship Application Approved!');
     }
 
 
-    public function updateAvatar(AvatarRequest $request, Employee $employee)
+    public function updateAvatar(AvatarRequest $request, User $user)
     {
         //save upload path
-        $employee->update([
+
+        // dd($user);
+        $user->update([
             'avatar' => $this->storeAvatar($request->file('avatar'))
         ]);
-        return back()->with('success',"Update avatar");
+        return back()->withSuccess("Update avatar");
 
     }
 
@@ -78,23 +81,23 @@ class EmployeeController extends Controller
         return view('Employee.scholarship')
         ->with('scholarships',Scholarship::where('adminVerification','Pending')->latest()->simplePaginate(10));
     }
-    
+
     private function storeAvatar($file)
     {
         $path = $file->hashName();
         $file->storeAs('public/avatar/',$path);
         return $path;
     }
-    public function updateProfile(EmployeeUpdateRequest $request, Employee $employee)
+    public function updateProfile(EmployeeUpdateRequest $request, User $user)
     {
-        $employee->update($request->validated());
-        return back()->with('success', 'Your Profile Succefully Updated!');
+        $user->update($request->validated());
+        return back()->withSuccess( 'Your Profile Succefully Updated!');
     }
 
     public function showCategories()
     {
         $this->data =[
-            'employee'=> Employee::find('18-08925'),
+            'user'=>User::latest()->first(),
             'categories'=> Category::simplePaginate(15),
             'offices'=> Office::all()
         ];
@@ -105,10 +108,10 @@ class EmployeeController extends Controller
     public function viewApplication(Scholarship $scholarship)
     {
         $this->data = [
-            'employee'=>Employee::find('18-08925'),
+            'user'=>Employee::latest()->first(),
             'scholarship'=>$scholarship
         ];
-        return view('Admin.application-view')
+        return view('Employee.application-view')
         ->with($this->data);
     }
 }

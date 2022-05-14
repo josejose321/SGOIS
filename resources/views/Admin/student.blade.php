@@ -30,26 +30,24 @@
                 <table class="table table-striped">
                     <thead>
                         <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                            <th scope="col">No#</th>
-                            <th scope="col">STUDENT ID</th>
-                            <th scope="col">NAME</th>
-                            <th scope="col">DEPARTMENT</th>
-                            <th scope="col">ACTION</th>
+                            <th>No#</th>
+                            <th>STUDENT ID</th>
+                            <th>NAME</th>
+                            <th>ACTION</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                        @foreach ($students as $student)
+                        @foreach ($users as $user)
                             <tr>
-                                <td scope="col"> {{ $student->student_no }}</td>
-                                <td scope="col"> {{ $student->user_id }}</td>
-                                <td scope="col"> {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }}
-                                    {{ $student->middlename ?? '' }}</td>
-                                <td scope="col"> {{ $student->departmentCode ?? '' }}</td>
-                                <td scope="col">
+                                <td> {{ $user->userNo ?? '' }}</td>
+                                <td> {{ $user->user_id ?? '' }}</td>
+                                <td> {{ $user->lastname ?? '' }}, {{ $user->firstname ?? '' }}
+                                    {{ $user->middlename ?? '' }}</td>
+                                <td>
                                     <button type="button" class="btn-lg btn-secondary" data-toggle="modal"
-                                        data-target="#viewStudent-{{ $student->student_no }}"><i
+                                        data-target="#viewStudent-{{ $user->user_id }}"><i
                                             class="fa fa-eye"></i> View</button>
                                 </td>
                             </tr>
@@ -59,7 +57,7 @@
 
                 </table>
                 <center>
-                    {!! $students->links() !!}
+                    {!! $users->links() !!}
                 </center>
             </div>
 

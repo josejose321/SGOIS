@@ -30,9 +30,8 @@ class StudentUpdateRequest extends FormRequest
             'middlename'=> 'required',
             'lastname' => 'required',
             'email' => 'required',
-            'departmentCode'=>'required',
             'phone'=>'required',
-            'course'=>'required',
+            'courseNo'=>'required',
             'year'=>'required'
         ];
     }

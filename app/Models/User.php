@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -17,26 +18,37 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    protected $primaryKey = 'userNo';
+    protected $table = 'users';
     protected $fillable = [
         'user_id',
+        'firstname',
+        'middlename',
+        'lastname',
         'email',
+        'phone',
         'password',
-        'status'
+        'avatar',
+        'isActive',
+        'type'
     ];
 
 
     public function student()
     {
-        return $this->hasOne(Student::class, 'user_id','user_id');
+        return $this->hasOne(Student::class, 'userNo','userNo');
     }
     public function employee()
     {
-        return $this->hasOne(Employee::class, 'employee_no','user_no');
+        return $this->hasOne(Employee::class, 'userNo','userNo');
     }
-    public function admin()
+
+    public function getStudent()
     {
-        return $this->hasOne(Admin::class, 'admin_no','user_no');
+        return $this->where('type','student');
     }
+
+
 
     /**
      * The attributes that should be hidden for serialization.

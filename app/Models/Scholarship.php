@@ -51,7 +51,7 @@ class Scholarship extends Model
     // }
     public function approved($type)
     {
-        return $this->where('officeVerification','Approved')
+        return self::where('officeVerification','Approved')
             ->where('adminVerification','Approved')
             ->where('type',$type);
     }
@@ -63,7 +63,7 @@ class Scholarship extends Model
         ->latest()->simplePaginate(10);
     }
 
-    
+
     public function officeGrantees($office, $type)
     {
         return $this->where('officeVerification','Approved')
@@ -103,6 +103,6 @@ class Scholarship extends Model
 
 
 
-    
-    
+
+
 }

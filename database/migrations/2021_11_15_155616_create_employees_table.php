@@ -10,36 +10,30 @@ class CreateEmployeesTable extends Migration
      * Run the migrations.
      *
      * @return void
-     * 
+     *
      */
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->string('employee_no',8)->primary();
-            $table->string('firstname',50);
-            $table->string('middlename',50);
-            $table->string('lastname',50);
-            $table->string('email',50)->unique();
-            $table->string('departmentCode',10)->index()->nullable();
+            $table->bigIncrements('employee_no');
+            $table->unsignedInteger('userNo')->unique();
+            $table->string('user_id',9)->unique();
             $table->string('officeCode',20)->index()->nullable();
-            $table->string('phone',11);
-            $table ->string('position');
-            $table->string('avatar');
-            $table->string('password');
+            $table->string('position')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('departmentCode')
-            ->references('departmentCode')
-            ->on('departments')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
 
             $table->foreign('officeCode')
             ->references('officeCode')
             ->on('offices')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+
+            $table->foreign('userNo')
+            ->references('userNo')
+            ->on('users')
+            ->cascadeOnDelete()
+            ->cascadeOnUpdate();
         });
     }
 

@@ -9,29 +9,23 @@ use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
-use App\Imports\dataImport;
 use App\Imports\StudentsImport;
-use App\Mail\AnnouncementMail;
 use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
-use App\Mail\WelcomMail;
-use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Department;
-use App\Models\Loan;
+use App\Models\Employee;
 use App\Models\Office;
 use App\Models\Scholarship;
 use App\Models\Semester;
 use App\Models\Student;
-use Barryvdh\DomPDF\PDF;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -41,6 +35,7 @@ class AdminController extends Controller
     private $scholarship;
     private  $semester;
     private $category;
+    private $user;
 
     public function __construct()
     {
@@ -49,6 +44,7 @@ class AdminController extends Controller
         $this->loan = new Scholarship();
         $this->semester = new Semester();
         $this->category = new Category();
+        $this->user = new User;
 
         $this->countResults =[
             'totalScholarships'=> $this->scholarship->approved('Scholarship')->count(),
@@ -92,29 +88,34 @@ class AdminController extends Controller
     //announcement
     public function showAnnounce()
     {
+        $this->data = [
+            'announcements'=>Announcement::latest()->simplePaginate(10),
+            'employee' => Employee::find(1)
+        ];
+        // dd(User::find(11)->employee);
         return view('Admin.announcements')
-        ->with('announcements',Announcement::latest()->simplePaginate(10))
-        ->with('admin',Admin::find('18-08925'));
+        ->with($this->data);
         //auth()->admin
     }
     public function deleteAnnounce(Announcement $announcement)
     {
         $announcement->delete();
-        return back()->with('success','You Deleted an Announcement');
+        return back()->withSuccess('You Deleted an Announcement');
     }
 
 
 
-    public function storeAnnounce(AnnouncementRequest $request, Admin $admin)
+    public function storeAnnounce(AnnouncementRequest $request, Employee $employee)
     {
-        $admin->announcements()->create($request->validated());
-        return back()->with('success','You Added a new Annoucement:');
+
+        $employee->announcements()->create($request->validated());
+        return back()->withSuccess('You Added a new Annoucement:');
     }
 
     public function updateAnnounce(AnnouncementRequest $request, Announcement $announcement)
     {
         $announcement->update($request->validated());
-        return back()->with('success','You update an Annoucement:');
+        return back()->withSuccess('You update an Annoucement:');
     }
     //Admin index // dashboard
     public function index()
@@ -124,7 +125,6 @@ class AdminController extends Controller
         // dd(Category::all());
         // return Excel::download(new SummaryReport, 'report.xlsx');
 
-        $allocations = $this->category->getSummaryReport();
         // dd($allocations);
         // mail debug
 
@@ -135,21 +135,21 @@ class AdminController extends Controller
             'total'=> Student::count(),
             'departments' => Department::all(),
             'courses'=> Course::all(),
-            'admin'=>Admin::find('18-08925'),
+            'employee'=>Employee::latest()->first(),
+            'allocations' => $this->category->getSummaryReport()
         ];
         //auth()->admin
 
 
         return view('Admin.index')
         ->with($this->data)
-        ->with($this->countResults)
-        ->with('allocations',$allocations);
+        ->with($this->countResults);
     }
     public function showScholarships()
     {
         //auth()->admin
         $this->data =[
-            'admin' =>Admin::find('18-08925'),
+            'employee'=>Employee::latest()->first(),
             'scholarships'=> $this->scholarship->admin_getPending('Scholarship')
         ];
 
@@ -158,45 +158,50 @@ class AdminController extends Controller
     public function scholarshipDelete(Scholarship $scholarship)
     {
         $scholarship->delete();
-        return back()->with('success','You Deleted Scholarship');
+        return back()->withSuccess('You Deleted Scholarship');
     }
 
     public function showProfile()
     {
         return view('Admin.profile')
-        ->with('admin',Admin::find('18-08925'));//auth()->admin
+        ->with('employee',Employee::latest()->first());
     }
     public function showLoans()
     {
         $this->data = [
-            'scholarships'=> $this->loan->admin_getPending('Loan'),
-            'admin'=> Admin::find('18-08925')//auth()->admin
+            'scholarships'=> $this->scholarship->admin_getPending('Loan'),
+            'employee'=>Employee::latest()->first(),
         ];
         return view('Admin.loan')
         ->with($this->data);
     }
     public function showDiscounts()
     {
+        $this->data = [
+            'employee'=>Employee::latest()->first(),
+            'scholarships'=>$this->scholarship->admin_getPending('Discount')
+        ];
         return view('Admin.discount')
-        ->with('scholarships',$this->scholarship->admin_getPending('Discount'))
-        ->with('admin',Admin::find('18-08925'));//auth()->admin
+        ->with($this->data);
     }
     public function showStudents()
     {
+        // return $this->user->getStudent()->simplePaginate(15);
         $this->data =[
-            'students'=>Student::simplePaginate(10),
-            'admin' =>Admin::find('18-08925'),//auth()->admin
-            'total'=>Student::count(),
+            'users'=>$this->user->getStudent()->simplePaginate(15),
+            'employee'=>Employee::latest()->first(),
+            'total'=>$this->user->getStudent()->simplePaginate(15),
             'courses'=>Course::all(),
-            'departments'=> Department::all()
+            'departments'=> Department::all(),
+            'employee'=>Employee::latest()->first(),
         ];
         return view('Admin.student')
         ->with($this->data);
     }
-    public function show(Admin $admin)
+    public function show(User $user)
     {
         return view('Admin.index')
-        ->with('admin', $admin);//auth()->admin
+        ->with('admin', $user);//auth()->admin
     }
 
 
@@ -217,18 +222,18 @@ class AdminController extends Controller
             'discount' =>$request->discount,
             'remarks'=> $request->remarks
         ]);
-        // Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
+        Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
 
-        return back()->with('success','Scholarship Application Approved!');
+        return redirect('/admin/scholarships')->withSuccess('Scholarship Application Approved!');
     }
 
 
 
 
-    public function updateProfile(AdminUpdateRequest $request, Admin $admin)
+    public function updateProfile(AdminUpdateRequest $request, Employee $employee)
     {
-        $admin->update($request->validated());
-        return back()->with('success', 'successfully update!');
+        $employee->user()->update($request->validated());
+        return back()->withSuccess( 'successfully update!');
     }
 
     public function import(Request $request)
@@ -238,7 +243,7 @@ class AdminController extends Controller
         {
             try{
                 Excel::import(new StudentsImport, $request->file('file')->store('temp'));
-                return back()->with('success','Import Successfully!');
+                return back()->withSuccess('Import Successfully!');
             }catch(Exception $e){
                 return back()->with('error','Import Error!');
             }
@@ -247,12 +252,12 @@ class AdminController extends Controller
     }
 
 
-    public function updateAvatar(AvatarRequest $request, Admin $admin)
+    public function updateAvatar(AvatarRequest $request, Employee $employee)
     {
-        $admin->update([
+        $employee->user()->update([
             'avatar'=>$this->storeAvatar($request->file('avatar')),
         ]);
-        return redirect()->back()->with('success',"Avatar successfully updated!");
+        return redirect()->back()->withSuccess("Avatar successfully updated!");
     }
 
     private function storeAvatar($file)//get avatarname and upload to storage
@@ -263,9 +268,23 @@ class AdminController extends Controller
     }
     public function storeStudent(StudentRequest $request)
     {
-        $student = Student::create($request->validated());
-        Mail::to($student->email)->send(new RegistrationMail($student));
-        return back()->with('success',"student added to the database");
+        // dd($request->validated());
+        $user = User::create([
+            'user_id'=> $request->user_id,
+            'firstname'=> $request->firstname,
+            'middlename'=> $request->middlename,
+            'lastname'=> $request->lastname,
+            'email'=> $request->email,
+            'phone'=> $request->phone,
+            'password'=>Hash::make($request->user_id)
+        ]);
+       $user->student()->create([
+        'courseNo'=> $request->courseNo,
+        'year'=> $request->year,
+        'parentName'=> $request->parentName,
+       ]);
+        Mail::to($user->email)->send(new RegistrationMail($user));
+        return back()->withSuccess("student added to the database");
     }
 
 
@@ -273,7 +292,7 @@ class AdminController extends Controller
     public function showSemester()
     {
         $this->data = [
-            'admin'=>Admin::find('18-08925'),
+            'employee'=>Employee::latest()->first(),
             'semesters' => $this->semester->getALL()->simplePaginate(10),
         ];
         return view('Admin.semester')->with($this->data);
@@ -293,19 +312,12 @@ class AdminController extends Controller
         {
             return redirect()->back()->with('error','Cannot Add new Semester');
         }
-        return redirect()->back()->with('success','New Semester Added!');
-    }
-    public function showOtherPrograms()
-    {
-        $this->data = [
-            'admin'=>Admin::find('18-08925'), //auth()->admin()
-        ];
-        return view('Admin.otherProgram')->with($this->data);
+        return redirect()->back()->withSuccess('New Semester Added!');
     }
     public function showReport()
     {
         $this->data = [
-            'admin'=>Admin::find('18-08925'),
+            'employee'=>Employee::latest()->first(),
             'allocations'=>$this->category->getSummaryReport()
         ];
         return view('Admin.report')->with($this->data);
@@ -313,7 +325,7 @@ class AdminController extends Controller
     public function showCategories()
     {
         $this->data = [
-            'admin'=> Admin::find('18-08925'),
+            'employee'=>Employee::latest()->first(),
             'categories'=> Category::paginate(15),
             'offices'=> Office::all()
         ];
@@ -323,7 +335,7 @@ class AdminController extends Controller
     public function viewApplication(Scholarship $scholarship)
     {
         $this->data = [
-            'admin'=>Admin::find('18-08925'),
+            'employee'=>Employee::latest()->first(),
             'scholarship'=>$scholarship
         ];
         return view('Admin.application-view')

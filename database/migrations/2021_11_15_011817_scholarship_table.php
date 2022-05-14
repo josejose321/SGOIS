@@ -23,7 +23,7 @@ class ScholarshipTable extends Migration
             $table->string('officeCode',20)->index();//will remove later
             $table->string('semesterCode',20)->index();
             $table->unsignedBigInteger('categoryNo')->index()->nullable();
-            $table->enum('discount',['NA','10%','15%','25%','50%','100%','Full%',])->default('NA');
+            $table->string('discount')->default('NA');
             $table->double('amount')->default(0);
             $table->string('requirement');
             $table->string('photo');
@@ -32,9 +32,9 @@ class ScholarshipTable extends Migration
             $table->enum('adminVerification',['Declined','Approved','Pending','Endorsed'])->default('Pending');
             $table->string('remarks')->nullable();
             $table->timestamps();
-            
+
             $table->foreign('student_no')->references('student_no')->on('students')->onDelete('cascade');
-            
+
             $table->foreign('officeCode')
             ->references('officeCode')
             ->on('offices')
@@ -52,9 +52,9 @@ class ScholarshipTable extends Migration
             ->on('categories')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            
-            
-            
+
+
+
 
         });
     }

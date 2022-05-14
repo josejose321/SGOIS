@@ -1,14 +1,14 @@
 <form action="{{ route('student.apply.scholarship', $student->student_no ?? '') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
-    <div class="modal fade bd-example-modal-lg" id="varsityModal" tabindex="-1" role="dialog"
+    <div class="modal fade bd-example-modal-lg" id="cultureModal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
 
             <div class="modal-content">
                 <div class="modal-header bg-dark text-light">
-                    <h3> <i class="fa fa-basketball-ball"></i> Varisity Scholarship Form</h3>
+                    <h3> <i class="fa fa-music"></i> Culture And Arts Scholarship Form</h3>
                     <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
                 </div>
                 <div class="modal-body bg-light">

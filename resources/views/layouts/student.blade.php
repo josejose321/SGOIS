@@ -37,42 +37,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @yield('background')
 </head>
 
-<body style="background-color: beige">
+<body style="background-color: beige;" class="bg">
     <div class="container-fluid bg-dark">
         <nav class="navbar navbar-dark navbar-expand-lg p-1 m-0 h-100 animate__animated animate__fadeIn">
             <div class="container">
                 <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                     <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
-                </button><img src="{{ asset('assets/img/student%20dashboard%20pictures/unc-logo.png') }}"
-                    style="width: 70px;height: 70px;">
+                </button>
+                <a href="{{ route('student.index') }}"><img src="{{ asset('unc-logo.png') }}"
+                    style="width: 70px;height: 70px;"></a>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item m-3 fw-bold"><a class="nav-link"
                                 href="{{ route('student.index') }}">&nbsp;
-                                <i class="fa fa-book-reader"></i> SCHOLARSHIPS</a></li>
-                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
-                                href="{{ route('student.index') }}">&nbsp;
-                                <i class="fa fa-dollar" aria-hidden="true"></i> LOAN</a></li>
-                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
-                                href="{{ route('student.index') }}">
-                                <i class="fa fa-tag"></i> DISCOUNTS</a></li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto m-2 fw-bold">
-                        <li class="nav-item"><a class="nav-link"
-                                href="{{ route('student.index') }}">&nbsp;
                                 <i class="fa fa-home"></i> Home</a></li>
                         </li>
+                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
+                                href="{{ route('student.scholarships') }}">&nbsp;
+                                <i class="fa fa-book-reader"></i> SCHOLARSHIPS</a></li>
+                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
+                                href="{{ route('student.loan.show') }}">&nbsp;
+                                <i class="fa fa-dollar" aria-hidden="true"></i> LOAN</a></li>
+                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
+                                href="{{ route('student.discount.show') }}">
+                                <i class="fa fa-tag"></i> DISCOUNTS</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto m-3 fw-bold">
+                        <li class="nav-item fw-bold"><a class="nav-link"
+                                href="{{ route('student.index') }}">&nbsp;
+                                {{ $student->user->lastname ?? '' }},
+                                {{ $student->user->firstname ?? '' }}
+                                {{ $student->user->middlename ?? '' }}</a></li>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"
                                 style="color: var(--bs-body-bg);"><img class="rounded-circle"
-                                    src="{{ Storage::url('avatar/defaultAvatar.jpg') }}"
+                                    src="{{ Storage::url('avatar/' . $student->user->avatar ?? '') }}"
                                     style="width: 32px;height: 32px;"></a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('student/18-08925') }}"><i
+                                <a class="dropdown-item" href="{{ route('student.edit', $student->student_no) }}"><i
                                         class="fa fa-user" aria-hidden="true"></i> My Profile&nbsp;</a>
-                                <a class="dropdown-item" href="#"><i class="fa fa-book"></i></i> My Application</a>
+                                <a class="dropdown-item" href="{{ route('student.applications.view') }}"><i class="fa fa-book"></i></i> My Application</a>
                                 <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </li>

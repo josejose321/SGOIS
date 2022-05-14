@@ -31,12 +31,10 @@
                                         {{ $scholarship->student->middlename }}</td>
                                     <td>{{ $scholarship->student->email }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
-                                    <td><button class="btn btn-lg btn-primary" type="button" data-toggle="modal"
-                                            data-target="#admin_viewModalScholarship-{{ $scholarship->scholarshipNo }}"><i
-                                                class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-lg btn-danger" type="button"
-                                            onclick="deleteScholarship({{ $scholarship->scholarshipNo }})">
-                                            <i class="fa fa-trash-o"></i></button>
+                                    <td><a class="btn-lg btn-secondary"
+                                            href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"
+                                            type="button">
+                                            <i class="fa fa-pencil"></i>Preview</a>
                                     </td>
                                 </tr>
                             @endforeach
