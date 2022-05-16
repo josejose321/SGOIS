@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PasswordRequest;
+use App\Http\Requests\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,39 +39,23 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function redirectedTo()
-    {
-        if(Auth()->user()->type === 'admin')
-        {
-            return route('admin.index');
-        }
-        elseif(Auth()->user()->type === 'endorser')
-        {
-            return route('employee.index');
-        }
-        elseif(Auth()->user()->type === 'student')
-        {
-            return route('student.index');
-        }
-    }
-    public function login(PasswordRequest $request)
+    public function login(LoginRequest $request)
     {
 
+        if( auth()->attempt(array('email'=>$request->email, 'password'=>$request->password)) ){
 
-        if( auth()->attempt(array('email'=>$request['email'], 'password'=>$request['password'])) ){
-
-         if( auth()->user()->type == 'admin' ){
-             return redirect()->route('admin.dashboard')->withSuccess('Successfully login!');
+         if( auth()->user()->type == 'director' ){
+             return redirect()->route('admin.index')->withSuccess('Successfully login!');
          }
-         elseif( auth()->user()->type == 'endorser' ){
-             return redirect()->route('employee.dashboard')->withSuccess('Successfully login!');
+         elseif( auth()->user()->type == 'user' ){
+             return redirect()->route('employee.index')->withSuccess('Successfully login!');
          }
          elseif( auth()->user()->type == 'student' ){
-            return redirect()->route('student.dashboard')->withSuccess('Successfully login!');
+            return redirect()->route('student.index')->withSuccess('Successfully login!');
         }
 
         }else{
-            return redirect()->back()->with('error','Please Check your Credentials');
+            return redirect()->back()->with('error','Email and password are wrong');
         }
      }
 }
