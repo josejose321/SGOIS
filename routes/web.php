@@ -53,7 +53,7 @@ Route::resource('student/scholarship', ScholarshipController::class);
 Route::prefix('admin')
     ->as('admin')
     ->controller(AdminController::class)
-    // ->middleware(['isAdmin','auth'])
+    ->middleware(['isAdmin','auth'])
     ->group(function (){
         //scholarships
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
@@ -107,7 +107,7 @@ Route::prefix('admin')
 Route::prefix('student')
     ->as('student')
     ->controller(StudentController::class)
-    // ->middleware(['isStudent','auth'])
+    ->middleware(['isStudent','auth'])
     ->group(function(){
         Route::get('/dashboard', 'index')->name('.index');
         Route::post('/{student}/avatar','updateAvatar')->name('.avatar.update');
@@ -158,6 +158,10 @@ Route::prefix('employee')
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

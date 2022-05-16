@@ -37,7 +37,7 @@ class EmployeeController extends Controller
     public function show()
     {
         return view('Employee.profile')
-        ->with('user',User::latest()->first()); //auth()->employee
+        ->with('employee',Employee::latest()->first()); //auth()->employee
     }
 
     //Verify Pending request
@@ -51,12 +51,12 @@ class EmployeeController extends Controller
     }
 
 
-    public function updateAvatar(AvatarRequest $request, User $user)
+    public function updateAvatar(AvatarRequest $request, Employee $employee)
     {
         //save upload path
 
         // dd($user);
-        $user->update([
+        $employee->user->update([
             'avatar' => $this->storeAvatar($request->file('avatar'))
         ]);
         return back()->withSuccess("Update avatar");
@@ -88,16 +88,16 @@ class EmployeeController extends Controller
         $file->storeAs('public/avatar/',$path);
         return $path;
     }
-    public function updateProfile(EmployeeUpdateRequest $request, User $user)
+    public function updateProfile(EmployeeUpdateRequest $request,Employee $employee)
     {
-        $user->update($request->validated());
+        $employee->user->update($request->validated());
         return back()->withSuccess( 'Your Profile Succefully Updated!');
     }
 
     public function showCategories()
     {
         $this->data =[
-            'user'=>User::latest()->first(),
+            'employee'=>Employee::latest()->first(),
             'categories'=> Category::simplePaginate(15),
             'offices'=> Office::all()
         ];
@@ -108,7 +108,7 @@ class EmployeeController extends Controller
     public function viewApplication(Scholarship $scholarship)
     {
         $this->data = [
-            'user'=>Employee::latest()->first(),
+            'employee'=>Employee::latest()->first(),
             'scholarship'=>$scholarship
         ];
         return view('Employee.application-view')

@@ -44,19 +44,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
-        'employee' => [
-            'driver' => 'session',
-            'provider' => 'employees',
-        ],
-        'student' => [
-            'driver' => 'session',
-            'provider' => 'student',
-        ],
     ],
 
     /*
@@ -80,19 +67,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
-
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => Admin::class,
-        ],
-        'employee' => [
-            'driver' => 'eloquent',
-            'model' => Employee::class,
-        ],
-        'student' => [
-            'driver' => 'eloquent',
-            'model' => Student::class,
         ],
     ],
 

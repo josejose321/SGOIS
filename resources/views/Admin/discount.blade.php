@@ -27,9 +27,9 @@
                                 <tr>
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
                                     <td>{{ $scholarship->student_no ?? '' }}</td>
-                                    <td>{{ $scholarship->student->lastname ?? '' }},{{ $scholarship->student->firstname }}
-                                        {{ $scholarship->student->middlename }}</td>
-                                    <td>{{ $scholarship->student->email }}</td>
+                                    <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}
+                                        {{ $scholarship->student->user->middlename }}</td>
+                                    <td>{{ $scholarship->student->user->email }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
                                     <td><a class="btn-lg btn-secondary"
                                             href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"

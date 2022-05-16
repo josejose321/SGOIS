@@ -39,6 +39,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
+        // $this->middleware(['auth','isAdmin']);
         // dd($scholar->countApproved('Scholarship'));
         $this->scholarship = new Scholarship();
         $this->loan = new Scholarship();
@@ -222,7 +223,7 @@ class AdminController extends Controller
             'discount' =>$request->discount,
             'remarks'=> $request->remarks
         ]);
-        Mail::to($scholarship->student->email)->send(new ScholarshipMail($scholarship));
+        Mail::to($scholarship->student->user->email)->send(new ScholarshipMail($scholarship));
 
         return redirect('/admin/scholarships')->withSuccess('Scholarship Application Approved!');
     }
@@ -277,8 +278,8 @@ class AdminController extends Controller
             'email'=> $request->email,
             'phone'=> $request->phone,
             'password'=>Hash::make($request->user_id)
-        ]);
-       $user->student()->create([
+        ])
+        ->student()->create([
         'courseNo'=> $request->courseNo,
         'year'=> $request->year,
         'parentName'=> $request->parentName,
