@@ -17,7 +17,7 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->type === 'endorser' )
+        if(Auth::check() && Auth::user()->type === 'director' )
         {
             return $next($request);
         }
