@@ -49,37 +49,41 @@
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
     <div id="wrapper" style="background-color: beige">
         <nav class="navbar-fluid navbar-dark align-items-start sidebar sidebar-dark" style="background-color:#334756">
+            <center>
+                <a class="navbar-brand"><img src="{{ asset('unc-logo.png') }}" class="rounded w-75"></a>
+            </center>
             <div class="container d-flex flex-column p-0 m-0 ">
-                <ul class="navbar-nav fw-bold" id="accordionSidebar">
-                    <center>
-                        <li class="nav-item"><img src="{{ asset('unc-logo.png') }}"
-                                class="rounded w-50"></li>
-                    </center>
+
+                <ul class="navbar-nav fw-bold display-7" id="accordionSidebar">
+
                     <hr class="sidebar-divider my-4">
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}"><i
                                 class="fa fa-home"></i><span>DASHBOARD</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.profile') }}"><i
-                                class="fa fa-user"></i><span>PROFILE</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.scholarhips') }}"><i
-                                class="fa fa-graduation-cap" aria-hidden="true"></i><span>SCHOLARSHIPS</span></a></li>
+                                class="fa fa-graduation-cap" aria-hidden="true"></i><span>
+                                SCHOLARSHIPS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.discounts') }}"><i
-                                class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
+                                class="fa fa-graduation-cap"></i><span> DISCOUNTS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"> <i
-                                class="fa fa-comment-dollar"></i><span>LOANS</span></a></li>
+                                class="fa fa-comment-dollar"></i><span> LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i
-                                class="fa fa-graduation-cap"></i><span>STUDENTS</span></a></li>
+                                class="fa fa-graduation-cap"></i><span>LIST OF STUDENTS</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i
+                                class="fa fa-list-alt"></i><span>LIST OF GRANTEES</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}"><i
-                                class="fa fa-list-alt"></i><span>REPORTS</span></a></li>
+                                class="fa fa-list-alt"></i><span>SUMMARY REPORT</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.semester') }}"><i
-                                class="fa fa-list-alt"></i><span>APPLICATION</span></a></li>
+                                class="fa fa-list-alt"></i><span>SGO APPLICATION</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories') }}"><i
-                                class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
+                                class="fa fa-list-alt"></i><span>SGO PROGRAMS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i
                                 class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
                 </ul>
@@ -101,10 +105,11 @@
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="d-none d-lg-inline me-2">{{ $employee->user->lastname ?? '' }},
-                                            {{ $employee->user->firstname ?? '' }} {{ $employee->user->middlename ?? '' }}</span>
+                                        <span class="d-none d-lg-inline me-2">{{ Auth::user()->lastname ?? '' }},
+                                            {{ Auth::user()->firstname ?? '' }}
+                                            {{ Auth::user()->middlename ?? '' }}</span>
                                         <img class="border rounded-circle img-profile"
-                                            src="{{ Storage::url('avatar/6g4mgyJXAJ7hVC1tolnCBT6u7FjEHrksdJG07n3d.jpg') }}">
+                                            src="{{ Storage::url('avatar/' . Auth::user()->avatar) }}">
                                     </a>
                                     <div class="dropdown-menu shadow">
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
@@ -112,7 +117,8 @@
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}">
                                             <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>
+                                        <a class="dropdown-item" href="{{ route('admin.logout') }}"><i
+                                                class="fa fa-sign-out"></i>
                                             &nbsp;Logout</a>
                                     </div>
                                 </div>
@@ -142,6 +148,9 @@
     <script src="{{ asset('assets/js/bs-init.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
+<script>
+    AOS.init();
+</script>
 @if ($errors->any())
     <script>
         swal({

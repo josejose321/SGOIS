@@ -3,11 +3,10 @@
 
 
 @section('content')
-    <div class="container-fluid">
-        <div class=" h2 font-weight-bold">SCHOLARSHIPS</div>
+    <div class="container-fluid" data-aos="fade-up">
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h3 font-weight-bold">Pending Request</div>
+                <div class="h3 font-weight-bold">PENDING SCHOLARSHIP</div>
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -32,7 +31,7 @@
                         </thead>
                         <tbody>
                             @foreach ($scholarships as $scholarship)
-                                <tr>
+                                <tr data-aos="fade-right">
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->user_id ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}

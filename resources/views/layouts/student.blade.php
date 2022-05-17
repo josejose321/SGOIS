@@ -37,6 +37,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     @yield('background')
 </head>
 
@@ -68,21 +70,21 @@
                     <ul class="navbar-nav ms-auto m-3 fw-bold">
                         <li class="nav-item fw-bold"><a class="nav-link"
                                 href="{{ route('student.index') }}">&nbsp;
-                                {{ $student->user->lastname ?? '' }},
-                                {{ $student->user->firstname ?? '' }}
-                                {{ $student->user->middlename ?? '' }}</a></li>
+                                {{ Auth::user()->lastname ?? '' }},
+                                {{ Auth::user()->firstname ?? '' }}
+                                {{ Auth::user()->middlename ?? '' }}</a></li>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"
                                 style="color: var(--bs-body-bg);"><img class="rounded-circle"
-                                    src="{{ Storage::url('avatar/' . $student->user->avatar ?? '') }}"
+                                    src="{{ Storage::url('avatar/' . Auth::user()->avatar ?? '') }}"
                                     style="width: 32px;height: 32px;"></a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('student.edit', $student->student_no) }}"><i
+                                <a class="dropdown-item" href="{{ route('student.edit', Auth::user()->student) }}"><i
                                         class="fa fa-user" aria-hidden="true"></i> My Profile&nbsp;</a>
                                 <a class="dropdown-item" href="{{ route('student.applications.view') }}"><i class="fa fa-book"></i></i> My Application</a>
-                                <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a class="dropdown-item" href="{{ route('student.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -108,6 +110,9 @@
     <script src="{{ asset('assets/js/BreakingNews.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
+<script>
+    AOS.init();
+</script>
 @if ($errors->any())
     <script>
         swal({

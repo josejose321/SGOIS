@@ -14,11 +14,11 @@
                     Category: {{ $category->name ?? '' }} <br>
                     Category Type: {{ $category->type ?? '' }} <br>
                     Fied/Team: {{ $category->field_team ?? '' }} <br>
-                    Allocation: {{ $category->allocation ?? '' }} <br> <br><br>
+                    Allocation: {{ $category->allocation ?? '' }}
 
-                    <div class="col-md-6">
+                    <div class="form-group">
                         <label for="allocation">Edit Allocation</label>
-                        <input type="number" name="student_no" class="form-control"
+                        <input type="number" class="form-control" name="student_no" class="form-control"
                             value="{{ $category->allocation ?? '' }}">
                     </div>
 

@@ -44,12 +44,14 @@
     <link rel="stylesheet" href="assets/css/Table-With-Search.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" 
-        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body style="background-color: ">
+<body>
     <!-- Start: Dark NavBar -->
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
@@ -94,9 +96,9 @@
             <!-- Start: Landing content -->
             <div class="d-flex align-items-center order-5" style="height:200px;">
                 <div class="container">
-                    <div class="display-4 text-center text-light fw-bold animate__animated animate__fadeInLeft">Everyone Makes It
+                    <div data-aos="fade-up" class="display-4 text-center text-light fw-bold">Everyone Makes It
                     </div>
-                    <p style="color: var(--bs-body-bg);text-align: center;" class="animate__animated animate__fadeInRight"><br>Be an instrument in providing better
+                    <p style="color: var(--bs-body-bg);text-align: center;" data-aos="fade-down"><br>Be an instrument in providing better
                         tomorrows for the BICOLANO'S.&nbsp; Join UNC's Everybody Shares Project.&nbsp;<br><br><br></p>
                 </div>
             </div><!-- End: Landing content -->
@@ -104,14 +106,8 @@
         </div><!-- End: Overlay -->
     </div><!-- End: Customizable Background & Overlay -->
     <!-- Start: Articale List With Image Zoom -->
-    <div class="article-list">
-        <div class="container-fluid">
-            <!-- Start: Intro -->
-            <div class="intro"></div><!-- End: Intro -->
-        </div>
-    </div><!-- End: Articale List With Image Zoom -->
     <!-- Start: Articale List With Image Zoom -->
-    <div class="article-list" style="background-color: #B4A5A5">
+    <div  class="article-list" style="background-color: #B4A5A5">
         <!-- Start: 2 Rows 1+4 Columns -->
         <div class="container-fluid">
             <div class="row">
@@ -137,8 +133,8 @@
                         style="width: 100px;height: 3px;text-align: center;background: #ff0000;color: var(--bs-red);margin-left: 500px;">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3 animate__animated animate__fadeInUp">
+            <div class="row" data-aos="fade-up">
+                <div class="col-md-3" data-aos="fade-right">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">SCHOLARSHIPS&nbsp;
@@ -153,7 +149,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 animate__animated animate__fadeInUp">
+                <div class="col-md-3" data-aos="fade-left">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">GRANTS&nbsp;
@@ -168,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 animate__animated animate__fadeInUp">
+                <div class="col-md-3" data-aos="fade-right">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;background: var(--bs-red);color: var(--bs-body-bg);">LOANS&nbsp;
@@ -180,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 animate__animated animate__fadeInUp">
+                <div class="col-md-3" data-aos="fade-left">
                     <div class="dropdown"><button class="btn dropdown-toggle" aria-expanded="false"
                             data-bs-toggle="dropdown" type="button"
                             style="width: 270px;height: 60px;font-size: 20px;color: var(--bs-body-bg);background: var(--bs-red);">DISCOUNTS&nbsp;
@@ -196,7 +192,7 @@
                 </div>
             </div>
         </div><!-- End: 2 Rows 1+4 Columns -->
-        <div class="container-fluid text-danger">
+        <div data-aos="fade-up" class="container-fluid text-danger">
             <!-- Start: Intro -->
             <div class="intro"></div><!-- End: Intro -->
             <div class="w-100"></div><!-- Start: Articles -->
@@ -236,7 +232,7 @@
         <div class="container-fluid" id="results">
             <div class="row">
                 @foreach ($scholarshipsResults as $result)
-                    <div class="col-md-6 col-xl-3 mb-4">
+                    <div class="col-md-6 col-xl-3 mb-4" data-aos="fade-up">
                         <div class="card-body" style="color: var(--bs-body-bg);background: var(--bs-red);">
                             <div class="row align-items-center no-gutters">
                                 <div class="col me-2">
@@ -261,7 +257,7 @@
             <!-- Start: Feature Block Image Three With Full Wide Screen -->
             <section>
                 <!-- Start: Feature - Block Image Three - Full Wide Screen -->
-                <section style="background-color: #efefef;padding-top: 40px;padding-bottom: 40px;">
+                <section data-aos="fade-down" style="background-color: #efefef;padding-top: 40px;padding-bottom: 40px;">
                     <p class="fw-bold animate__animated animate__fadeIn" style="text-align: center;font-size: 35px;color: var(--bs-red);">
                         DEVELOPERS PROFILE</p>
                     <div class="container-fluid">
@@ -317,7 +313,7 @@
             </section><!-- End: Feature Block Image Three With Full Wide Screen -->
         </div>
     </div><!-- End: Articale List With Image Zoom -->
-    <div class="col" id="footer">
+    <div class="col" id="footer" data-aos="fade-up">
         <!-- Start: Pretty Footer -->
         <footer style="background-color: #2C394B">
             <div class="row">
@@ -360,11 +356,7 @@
     <script src="assets/js/theme.js"></script>
 </body>
 <script>
-    $(function() {
-    $('#results').scroll(function(e)[
-        $(this).fadeIn('slow');
-    ])
-    }]);
+    AOS.init();
 </script>
 
 </html>

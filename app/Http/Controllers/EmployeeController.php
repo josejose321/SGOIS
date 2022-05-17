@@ -18,6 +18,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -36,8 +37,7 @@ class EmployeeController extends Controller
     }
     public function show()
     {
-        return view('Employee.profile')
-        ->with('employee',Employee::latest()->first()); //auth()->employee
+        return view('Employee.profile'); //auth()->employee
     }
 
     //Verify Pending request
@@ -51,12 +51,12 @@ class EmployeeController extends Controller
     }
 
 
-    public function updateAvatar(AvatarRequest $request, Employee $employee)
+    public function updateAvatar(AvatarRequest $request, User $user)
     {
         //save upload path
 
         // dd($user);
-        $employee->user->update([
+        $user->update([
             'avatar' => $this->storeAvatar($request->file('avatar'))
         ]);
         return back()->withSuccess("Update avatar");
@@ -68,6 +68,8 @@ class EmployeeController extends Controller
     {
         return view('Employee.scholarship')
         ->with('scholarships',Scholarship::where('officeVerification','Pending')
+        ->where('type','Scholarship')
+        ->where('officeCode',Auth::user()->employee->officeCode ?? '')
         ->latest()
         ->simplePaginate(10));
     }
@@ -88,16 +90,15 @@ class EmployeeController extends Controller
         $file->storeAs('public/avatar/',$path);
         return $path;
     }
-    public function updateProfile(EmployeeUpdateRequest $request,Employee $employee)
+    public function updateProfile(EmployeeUpdateRequest $request,User $user)
     {
-        $employee->user->update($request->validated());
+        $user->update($request->validated());
         return back()->withSuccess( 'Your Profile Succefully Updated!');
     }
 
     public function showCategories()
     {
         $this->data =[
-            'employee'=>Employee::latest()->first(),
             'categories'=> Category::simplePaginate(15),
             'offices'=> Office::all()
         ];
@@ -113,5 +114,10 @@ class EmployeeController extends Controller
         ];
         return view('Employee.application-view')
         ->with($this->data);
+    }
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login');
     }
 }

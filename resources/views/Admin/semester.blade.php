@@ -3,11 +3,10 @@
 
 
 @section('content')
-    <div class="container-fluid">
-        <div class=" h2 font-weight-bold">Scholarship Applications</div>
+    <div class="container-fluid" data-aos="fade-right">
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h3 font-weight-bold">Scholarship Applications</div>
+                <div class="h3 font-weight-bold">Semesters</div>
             </div>
             <div class="card-body" style="font-size: 14px;">
                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">

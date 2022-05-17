@@ -4,10 +4,9 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class=" h2 font-weight-bold">ANNOUNCEMENTS</div>
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h3 font-weight-bold">Recent Announcements</div>
+                <div class="h3 font-weight-bold">Announcements</div>
             </div>
             <div class="card-body" style="font-size: 14px;">
                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">

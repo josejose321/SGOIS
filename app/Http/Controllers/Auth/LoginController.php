@@ -47,7 +47,7 @@ class LoginController extends Controller
          if( auth()->user()->type == 'director' ){
              return redirect()->route('admin.index')->withSuccess('Successfully login!');
          }
-         elseif( auth()->user()->type == 'user' ){
+         elseif( auth()->user()->type == 'endorser' || auth()->user()->type == 'employee'){
              return redirect()->route('employee.index')->withSuccess('Successfully login!');
          }
          elseif( auth()->user()->type == 'student' ){

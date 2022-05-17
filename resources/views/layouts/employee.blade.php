@@ -39,9 +39,11 @@
     {{-- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"> --}}
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -56,8 +58,7 @@
                                 class="fa fa-home"></i><span>DASHBOARD</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.show') }}"><i
                                 class="fas fa-user"></i><span>PROFILE</span></a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="{{ route('employee.scholarhips') }}"><i
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.scholarhips') }}"><i
                                 class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('employee.scholarhips') }}"><i
@@ -65,9 +66,8 @@
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('employee.scholarhips') }}"><i
                                 class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
-                                <li class="nav-item"><a class="nav-link"
-                                    href="{{ route('employee.categories') }}"><i
-                                        class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.categories') }}"><i
+                                class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
@@ -87,17 +87,17 @@
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="d-none d-lg-inline me-2">Evasco, Jose II Vargas</span>
+                                        <span class="d-none d-lg-inline me-2">{{ Auth::user()->lastname ?? '' }}, {{ Auth::user()->firstname ?? '' }} {{ Auth::user()->middlename ?? '' }}</span>
                                         <img class="border rounded-circle img-profile"
-                                            src="{{ Storage::url('avatar/6g4mgyJXAJ7hVC1tolnCBT6u7FjEHrksdJG07n3d.jpg') }}">
+                                            src="{{ Storage::url('avatar/'. Auth::user()->avatar ?? '') }}">
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-end">
-                                        <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                                        <a class="dropdown-item" href="{{ route('employee.show') }}"><i
                                                 class="fas fa-user"></i>&nbsp;Profile</a>
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}">
                                             <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>
+                                        <a class="dropdown-item" href="{{ route('employee.logout') }}"><i class="fa fa-sign-out"></i>
                                             &nbsp;Logout</a>
                                     </div>
                                 </div>
@@ -126,7 +126,9 @@
     <script src="{{ asset('assets/js/bs-init.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
-
+<script>
+    AOS.init();
+</script>
 @if (Session::has('success'))
     <script>
         swal({

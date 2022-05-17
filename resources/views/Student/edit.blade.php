@@ -4,11 +4,11 @@
 @section('content')
 
     <section class="container w-50 bg-light"><br>
-        <form action="{{ route('student.avatar.update', $student->student_no) }}" method="POST"
+        <form action="{{ route('student.avatar.update', Auth::user()->student) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
                 <label for="avatar">
-                    <img src="{{ Storage::url('avatar/' . $student->user->avatar) }}" class="img-round w-25"
+                    <img src="{{ Storage::url('avatar/' . Auth::user()->avatar) }}" class="img-round w-25"
                         alt="avatar.jpeg">
                     <input type="file" id="avatar" class="form-control-file" name="avatar" style="display:none">
 
@@ -17,7 +17,7 @@
         </form>
 
         <div class="container">
-            <form action="{{ route('student.studentUpdate', $student->student_no) }}" method="POST">
+            <form action="{{ route('student.studentUpdate', Auth::user()->student) }}" method="POST">
                 @csrf
                 <h1>Edit Profile</h1>
                 @if ($errors->any())
@@ -34,7 +34,7 @@
                     <div class="col-md-6">
                         <label for="student_no">Student_no</label>
                         <input type="text" class="form-control" placeholder="Student No"
-                            value="{{ $student->user->user_id }}" readonly>
+                            value="{{ Auth::user()->user_id }}" readonly>
                     </div>
                 </div>
                 <div class="row">
@@ -42,17 +42,17 @@
                     <div class="col-md-6">
                         <label for="inputAddress">Firstname</label>
                         <input type="text" class="form-control" name="firstname"
-                            placeholder="{{ $student->user->firstname }}" value="{{ $student->user->firstname }}">
+                            placeholder="{{ Auth::user()->firstname }}" value="{{ Auth::user()->firstname }}">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress">Middlename</label>
                         <input type="text" class="form-control" name="middlename"
-                            placeholder="{{ $student->user->middlename }}" value="{{ $student->user->middlename }}">
+                            placeholder="{{ Auth::user()->middlename }}" value="{{ Auth::user()->middlename }}">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress">Lastname</label>
                         <input type="text" class="form-control" name="lastname"
-                            placeholder="{{ $student->user->lastname }}" value="{{ $student->user->lastname }}">
+                            placeholder="{{ Auth::user()->lastname }}" value="{{ Auth::user()->lastname }}">
                     </div>
 
 
@@ -60,13 +60,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputAddress">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="{{ $student->user->email }}"
-                            value="{{ $student->user->email }}">
+                        <input type="email" class="form-control" name="email" placeholder="{{Auth::user()->email }}"
+                            value="{{Auth::user()->email }}">
                     </div>
                     <div class="col-md-6">
                         <label for="inputAddress">Contact Number</label>
                         <input type="text" class="form-control" name="phone"
-                            placeholder="{{ $student->user->phoneNumber }}" value="{{ $student->user->phone }}"
+                            placeholder="{{ Auth::user()->phone }}" value="{{ Auth::user()->phone }}"
                             maxlength="11">
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="col-md-6">
                         <label for="courseNo"> Select Year</label>
                         <select class="form-select form-select-md mb-3" name="courseNo" aria-label="Default select example">
-                            <option value="{{ $student->courseNo }}">{{ $student->course->name }}</option>
+                            <option value="{{ Auth::user()->student->courseNo }}">{{ Auth::user()->student->course->name }}</option>
                             @foreach ($courses as $course)
                                 <option value="{{ $course->courseNo }}">{{ $course->name }}</option>
                             @endforeach
@@ -83,7 +83,7 @@
                     <div class="col-md-6">
                         <label for="year"> Select Year</label>
                         <select class="form-select form-select-md mb-3" name="year" aria-label="Default select example">
-                            <option>{{ $student->year }}</option>
+                            <option>{{ Auth::user()->student->year }}</option>
                             <option value="1st year">1st year</option>
                             <option value="2nd year">2nd year</option>
                             <option value="3rd year">3rd year</option>

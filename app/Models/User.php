@@ -45,7 +45,8 @@ class User extends Authenticatable
 
     public function getStudent()
     {
-        return $this->where('type','student');
+        return $this->where('type','student')
+        ->where('isActive',1);
     }
 
 

@@ -1,4 +1,4 @@
-<form action="{{ route('admin.announce.store', $employee->employee_no) }}" method="POST">
+<form action="{{ route('admin.announce.store', Auth::user()->employee) }}" method="POST">
     @csrf
     <div class="modal fade" id="announceModal" tabindex="-1" role="dialog" aria-labelledby="announceLabel"
         aria-hidden="true">

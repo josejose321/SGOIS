@@ -75,10 +75,10 @@ class AdminController extends Controller
 
         $results = [
 
-            (object) ['title' =>'Total Scholarships', 'total' =>$this->scholarship->approved('Scholarship')->count()],
-            (object) ['title' =>'Total Discounts', 'total' =>$this->scholarship->approved('Discount')->count()],
-            (object) ['title' =>'Total Loans', 'total' =>$this->scholarship->approved('Loans')->count()],
-            (object) ['title' =>'Other Grants', 'total' =>$this->scholarship->approved('Grant')->count()],
+            (object) ['title' =>'Scholarships', 'total' =>$this->scholarship->approved('Scholarship')->count()],
+            (object) ['title' =>'Discounts', 'total' =>$this->scholarship->approved('Discount')->count()],
+            (object) ['title' =>'Loans', 'total' =>$this->scholarship->approved('Loans')->count()],
+            (object) ['title' =>'Grants', 'total' =>$this->scholarship->approved('Grant')->count()],
         ];
 
         return view('unc')
@@ -91,7 +91,6 @@ class AdminController extends Controller
     {
         $this->data = [
             'announcements'=>Announcement::latest()->simplePaginate(10),
-            'employee' => Employee::find(1)
         ];
         // dd(User::find(11)->employee);
         return view('Admin.announcements')
@@ -136,7 +135,6 @@ class AdminController extends Controller
             'total'=> Student::count(),
             'departments' => Department::all(),
             'courses'=> Course::all(),
-            'employee'=>Employee::latest()->first(),
             'allocations' => $this->category->getSummaryReport()
         ];
         //auth()->admin
@@ -150,7 +148,6 @@ class AdminController extends Controller
     {
         //auth()->admin
         $this->data =[
-            'employee'=>Employee::latest()->first(),
             'scholarships'=> $this->scholarship->admin_getPending('Scholarship')
         ];
 
@@ -171,7 +168,6 @@ class AdminController extends Controller
     {
         $this->data = [
             'scholarships'=> $this->scholarship->admin_getPending('Loan'),
-            'employee'=>Employee::latest()->first(),
         ];
         return view('Admin.loan')
         ->with($this->data);
@@ -179,7 +175,6 @@ class AdminController extends Controller
     public function showDiscounts()
     {
         $this->data = [
-            'employee'=>Employee::latest()->first(),
             'scholarships'=>$this->scholarship->admin_getPending('Discount')
         ];
         return view('Admin.discount')
@@ -190,14 +185,16 @@ class AdminController extends Controller
         // return $this->user->getStudent()->simplePaginate(15);
         $this->data =[
             'users'=>$this->user->getStudent()->simplePaginate(15),
-            'employee'=>Employee::latest()->first(),
-            'total'=>$this->user->getStudent()->simplePaginate(15),
+            'total'=>$this->user->getStudent()->count(),
             'courses'=>Course::all(),
             'departments'=> Department::all(),
-            'employee'=>Employee::latest()->first(),
         ];
         return view('Admin.student')
         ->with($this->data);
+    }
+    public function searchStudent()
+    {
+
     }
     public function show(User $user)
     {
@@ -231,9 +228,9 @@ class AdminController extends Controller
 
 
 
-    public function updateProfile(AdminUpdateRequest $request, Employee $employee)
+    public function updateProfile(AdminUpdateRequest $request, User $user)
     {
-        $employee->user()->update($request->validated());
+        $user->update($request->validated());
         return back()->withSuccess( 'successfully update!');
     }
 
@@ -253,9 +250,10 @@ class AdminController extends Controller
     }
 
 
-    public function updateAvatar(AvatarRequest $request, Employee $employee)
+    public function updateAvatar(AvatarRequest $request, User $user)
     {
-        $employee->user()->update([
+        // dd($user);
+        $user->update([
             'avatar'=>$this->storeAvatar($request->file('avatar')),
         ]);
         return redirect()->back()->withSuccess("Avatar successfully updated!");
@@ -293,7 +291,6 @@ class AdminController extends Controller
     public function showSemester()
     {
         $this->data = [
-            'employee'=>Employee::latest()->first(),
             'semesters' => $this->semester->getALL()->simplePaginate(10),
         ];
         return view('Admin.semester')->with($this->data);
@@ -318,7 +315,6 @@ class AdminController extends Controller
     public function showReport()
     {
         $this->data = [
-            'employee'=>Employee::latest()->first(),
             'allocations'=>$this->category->getSummaryReport()
         ];
         return view('Admin.report')->with($this->data);
@@ -326,7 +322,6 @@ class AdminController extends Controller
     public function showCategories()
     {
         $this->data = [
-            'employee'=>Employee::latest()->first(),
             'categories'=> Category::paginate(15),
             'offices'=> Office::all()
         ];
@@ -336,7 +331,6 @@ class AdminController extends Controller
     public function viewApplication(Scholarship $scholarship)
     {
         $this->data = [
-            'employee'=>Employee::latest()->first(),
             'scholarship'=>$scholarship
         ];
         return view('Admin.application-view')
@@ -346,6 +340,11 @@ class AdminController extends Controller
     public function downloadReport()
     {
         return Excel::download(new SummaryReport, 'SGO-SUMMARY-REPORT.xlsx');
+    }
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login');
     }
 
 }

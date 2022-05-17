@@ -3,6 +3,7 @@
 @section('title', 'Admin Dashboard')
 @section('content')
 
+    <div data-aos = "fade-down">
         <h2 class="text-dark mb-4 font-weight-bold ">
             DASHBOARD
             <button class="btn pull-right " id="import" type="button"
@@ -13,9 +14,10 @@
                 <i class="fa fa-plus"></i>&nbsp; ADD STUDENT</button>
 
         </h2>
+    </div>
     <hr>
 
-    <div class="row-fluid border">
+    <div class="row-fluid border" data-aos="fade-up">
         <div class="col-md-6 col-lg-3 mb-4 p-1">
             <div class="card-body " style="color: var(--bs-body-bg);background: var(--bs-red);">
                 <div class="row align-items-center no-gutters">
@@ -84,7 +86,8 @@
 
 
     <br>
-    <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-primary float-right"> Generate Report</a> <br> <br>
+    <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-primary float-right"> Generate Report</a> <br>
+    <br>
 
     <div class="card-body" style="font-size: 14px;">
         <div class="table" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -107,7 +110,7 @@
                 </thead>
                 <tbody>
                     @foreach ($allocations as $allocation)
-                        <tr>
+                        <tr data-aos="fade-right">
                             <td>{{ $allocation->categoryNo ?? '' }}</td>
                             <td>{{ $allocation->categoryName ?? '' }}</td>
                             <td>{{ $allocation->field_team ?? '' }}</td>

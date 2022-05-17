@@ -1,4 +1,4 @@
-<form action="{{ route('student.apply.scholarship', $student->student_no ?? '') }}" method="POST"
+<form action="{{ route('student.apply.scholarship', Auth::user()->student ?? '') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
     <div class="modal fade bd-example-modal-lg" id="addscholar" tabindex="-1" role="dialog"
@@ -13,9 +13,9 @@
                 </div>
                 <div class="modal-body bg-light">
                     <div class="w-50">
-                        <img src="{{ Storage::url('avatar/' . $student->user->avatar) }}" class="img-thumbnail w-25"
+                        <img src="{{ Storage::url('avatar/' .Auth::user()->avatar) }}" class="img-thumbnail w-25"
                             alt="avatar.jpeg"><br>
-                        Name: {{ $student->user->lastname }}, {{ $student->user->firstname }} {{ $student->user->middlename }} <br>
+                        Name: {{ Auth::user()->lastname }}, {{ Auth::user()->firstname }} {{ Auth::user()->middlename }} <br>
                         {{-- Department: {{ $student->course->department->name }} <br> <br> --}}
                     </div>
 
@@ -41,7 +41,7 @@
                         <div class="col-md-4">
                             <label for="semester">Student_no</label>
                             <input type="text" name="student_no" class="form-control" readonly
-                                value="{{ $student->user->user_id ?? '' }}">
+                                value="{{ Auth::user()->user_id ?? '' }}">
                         </div>
                         <div class="col-md-4">
                             <label for="type">Type</label>

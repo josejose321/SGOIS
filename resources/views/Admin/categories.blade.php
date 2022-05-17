@@ -4,11 +4,10 @@
 
 
 @section('content')
-    <div class="container-fluid">
-        <div class="h2 font-weight-bold">SCHOLARSHIP AND GRANTS CATEGORIES</div>
+    <div class="container-fluid" >
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h2 font-weight-bold">Available Categories</div>
+                <div class="h2 font-weight-bold">SCHOLARSHIP AND GRANTS PROGRAMS</div>
                 <button type="button" class="btn btn-lg btn-secondary float-right" id="categoryBtn"><i
                     class="fa fa-plus"></i><span>Add new</span></button>
             </div>
@@ -19,8 +18,8 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th>Category No</th>
-                                <th>Category Name</th>
+                                <th>Program No</th>
+                                <th>Program Name</th>
                                 <th>Type</th>
                                 <th>Field/Team</th>
                                 <th>Allocation</th>
@@ -29,7 +28,7 @@
                         </thead>
                         <tbody>
                             @foreach ($categories as $category)
-                                <tr>
+                                <tr data-aos="fade-right">
 
                                     <th>{{ $category->categoryNo }}</th>
                                     <th>{{ $category->name }}</th>

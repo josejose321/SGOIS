@@ -3,8 +3,7 @@
 
 
 @section('content')
-    <div class="container-fluid">
-        <div class=" h1 font-weight-bold">SCHOLARSHIPS</div>
+    <div class="container-fluid" data-aos="fade-right">
         <div class="card shadow">
             <div class="card-header py-3">
                 <div class="h2 font-weight-bold">PENDING REQUEST</div>

@@ -16,6 +16,7 @@ use App\Models\Semester;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -31,7 +32,6 @@ class StudentController extends Controller
     function index()
     {
         $this->data = [
-            'student'=>Student::find(2),
             'offices' => Office::all(),
             'categories'=> Category::all(),
             'sem'=> $this->semester->getLatest(),
@@ -55,7 +55,6 @@ class StudentController extends Controller
     function showScholarships()
     {
         $this->data = [
-            'student'=>Student::find(2),
             'offices' => Office::all(),
             'categories'=> Category::all(),
             'sem'=> $this->semester->getLatest(),
@@ -130,7 +129,6 @@ class StudentController extends Controller
     public function showSportsDev()
     {
         $this->data = [
-            'student'=>Student::find(2),
             'sem'=> $this->semester->getLatest(),
             'office' => Office::find('UNC-SDO'),
             'categories'=> Category::where('field_team','Varsity')->get(),
@@ -142,7 +140,6 @@ class StudentController extends Controller
     public function showCultureAndArts()
     {
         $this->data = [
-            'student'=>Student::find(2),
             'sem'=> $this->semester->getLatest(),
             'office' => Office::find('UNC-CULTURE&ARTS'),
         ];
@@ -153,7 +150,6 @@ class StudentController extends Controller
     public function showLoans()
     {
         $this->data = [
-            'student'=>Student::find(2),
             'sem'=> $this->semester->getLatest(),
             'office' => Office::find('UNC-CULTURE&ARTS'),
         ];
@@ -164,7 +160,6 @@ class StudentController extends Controller
     public function showDiscounts()
     {
         $this->data = [
-            'student'=>Student::find(2),
             'sem'=> $this->semester->getLatest(),
             'office' => Office::find('UNC-CULTURE&ARTS'),
         ];
@@ -175,16 +170,19 @@ class StudentController extends Controller
     public function showApplication()
     {
         $this->data = [
-            'student'=>Student::find(2),
             'scholarships'=>
             Scholarship::where('student_no',
-            Student::find(2)
-            ->student_no)
-            ->latest()->simplePaginate(5)
+            Auth::user()->student->student_no)
+            ->latest()->simplePaginate(10)
         ];
 
         return view('Student.applications')
         ->with($this->data);
+    }
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login');
     }
 
 

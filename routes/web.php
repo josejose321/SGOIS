@@ -53,7 +53,7 @@ Route::resource('student/scholarship', ScholarshipController::class);
 Route::prefix('admin')
     ->as('admin')
     ->controller(AdminController::class)
-    ->middleware(['isAdmin','auth'])
+    ->middleware(['isAdmin','auth','prevent-back-history'])
     ->group(function (){
         //scholarships
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
@@ -82,8 +82,8 @@ Route::prefix('admin')
         Route::post('/import','import')->name('.import');
         Route::get('/students','showStudents')->name('.students');
         Route::get('/profile','showProfile')->name('.profile');
-        Route::post('profile/{employee}/avatar','updateAvatar')->name('.profile.updateAvatar');
-        Route::post('/profile/{employee}','updateProfile')->name('.update');
+        Route::post('profile/{user}/avatar','updateAvatar')->name('.update.avatar');
+        Route::post('/profile/{user}','updateProfile')->name('.update');
 
 
         //announcement
@@ -98,16 +98,15 @@ Route::prefix('admin')
         //route resource
         Route::get('/{admin}', 'show')->name('.show');
         Route::get('/', 'index')->name('.index');
-        Route::post('/', 'store')->name('.store');
         Route::post('/', 'storeStudent')->name('.student.store');
-        //Route::resource('',AdminController::class)->except('destroy');
+        Route::get('/logout','logout')->name('.logout');
 
     });
 
 Route::prefix('student')
     ->as('student')
     ->controller(StudentController::class)
-    ->middleware(['isStudent','auth'])
+    ->middleware(['isStudent','auth','prevent-back-history'])
     ->group(function(){
         Route::get('/dashboard', 'index')->name('.index');
         Route::post('/{student}/avatar','updateAvatar')->name('.avatar.update');
@@ -120,8 +119,8 @@ Route::prefix('student')
         Route::get('/loans','showLoans')->name('.loan.show');
         Route::get('/applications','showApplication')->name('.applications.view');
 
-        Route::get('/{student}', 'show')->name('.show');
-        Route::get('/{student}/edit','edit')->name('.edit');
+        Route::get('/profile','edit')->name('.edit');
+        Route::get('/logout','logout')->name('.logout');
 
 
 
@@ -131,16 +130,16 @@ Route::prefix('student')
 Route::prefix('employee')
 ->as('employee')
 ->controller(EmployeeController::class)
-// ->middleware(['isEndorser','auth'])
+// ->middleware(['isEndorser','auth','prevent-back-history'])
 ->group(function (){
         //scholarships
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
         Route::get('/application-view/{scholarship}','viewApplication')->name('.application.view');
 
-        Route::post('/{employee}/avatar','updateAvatar')->name('.avatar.update');
+        Route::post('/avatar/{user}','updateAvatar')->name('.avatar.update');
         //loans
-        Route::post('/profile/{employee}', 'updateProfile')->name('.profile.update');
+        Route::post('/profile/{user}', 'updateProfile')->name('.profile.update');
         Route::get('/profile', 'show')->name('.show');
 
 
@@ -153,6 +152,7 @@ Route::prefix('employee')
 
 
         Route::get('/', 'index')->name('.index');
+        Route::get('/logout','logout')->name('.logout');
 
     });
 
