@@ -40,19 +40,10 @@ class Handler extends ExceptionHandler
         });
     }
     protected function unauthenticated($request, AuthenticationException $exception)
-        {
-            if ($request->expectsJson()) {
-                return response()->json(['error' => 'Unauthenticated.'], 401);
-            }
-            if ($request->is('admin') || $request->is('admin/*')) {
-                return redirect()->guest('/login/admin');
-            }
-            if ($request->is('employee') || $request->is('employee/*')) {
-                return redirect()->guest('/login/employee');
-            }
-            if ($request->is('student') || $request->is('student/*')) {
-                return redirect()->guest('/login/student');
-            }
-            return redirect()->guest(route('login'));
-        }
+    {
+        // if ($request->expectsJson()) {
+        //      return response()->json(['error' => 'Unauthenticated.'], 401);
+        // }
+        return redirect()->guest(route('login'));
+    }
 }
