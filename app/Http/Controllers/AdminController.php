@@ -135,7 +135,7 @@ class AdminController extends Controller
             'total'=> Student::count(),
             'departments' => Department::all(),
             'courses'=> Course::all(),
-            'allocations' => $this->category->getSummaryReport()
+            'reports' => $this->category->getSummaryReport()
         ];
         //auth()->admin
 

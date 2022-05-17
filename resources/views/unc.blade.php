@@ -68,10 +68,10 @@
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                 data-bs-toggle="dropdown" href="#" style="color: var(--bs-body-bg);">SCHOLARSHIPS</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ url('/login') }}">SCHOLARSHIPS</a>
-                                <a class="dropdown-item" href="{{ url('/login') }}">GRANTS</a>
-                                <a class="dropdown-item" href="{{ url('/login') }}">LOANS</a>
-                                <a class="dropdown-item" href="{{ url('/login') }}">DISCOUNTS</a>
+                                <a class="dropdown-item" href="{{ route('login') }}">SCHOLARSHIPS</a>
+                                <a class="dropdown-item" href="{{ route('login') }}">GRANTS</a>
+                                <a class="dropdown-item" href="{{ route('login') }}">LOANS</a>
+                                <a class="dropdown-item" href="{{ route('login') }}">DISCOUNTS</a>
                             </div>
                         </li>
                     </ul>
@@ -82,7 +82,7 @@
                         <li class="nav-item"></li>
                     </ul><a class="btn active border rounded-pill" role="button"
                         style="background: var(--bs-red);color: var(--bs-body-bg);border-color: transparent;border-top-color: transparent;border-right-color: transparent;border-bottom-color: transparent;border-left-color: transparent;width: 80px;height: 35px;"
-                        href="{{ url('/admin') }}">LOGIN</a>
+                        href="{{ url('/login') }}">LOGIN</a>
                 </div>
             </div>
         </nav>

@@ -109,20 +109,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($allocations as $allocation)
+                    @foreach ($reports as $report)
                         <tr data-aos="fade-right">
-                            <td>{{ $allocation->categoryNo ?? '' }}</td>
-                            <td>{{ $allocation->categoryName ?? '' }}</td>
-                            <td>{{ $allocation->field_team ?? '' }}</td>
-                            <td>{{ $allocation->first ?? '' }}</td>
-                            <td>{{ $allocation->second ?? '' }}</td>
-                            <td>{{ $allocation->third ?? '' }}</td>
-                            <td>{{ $allocation->fourth ?? '' }}</td>
-                            <td>{{ $allocation->fifth ?? '' }}</td>
-                            <td>{{ $allocation->sixth ?? '' }}</td>
-                            <td>{{ $allocation->seventh ?? '' }}</td>
-                            <td>{{ $allocation->total ?? '' }}</td>
-                            <td>{{ $allocation->allocation ?? '' }}</td>
+                            <td>{{ $report->categoryNo ?? '' }}</td>
+                            <td>{{ $report->categoryName ?? '' }}</td>
+                            <td>{{ $report->field_team ?? '' }}</td>
+                            <td>{{ $report->first ?? '' }}</td>
+                            <td>{{ $report->second ?? '' }}</td>
+                            <td>{{ $report->third ?? '' }}</td>
+                            <td>{{ $report->fourth ?? '' }}</td>
+                            <td>{{ $report->fifth ?? '' }}</td>
+                            <td>{{ $report->sixth ?? '' }}</td>
+                            <td>{{ $report->seventh ?? '' }}</td>
+                            <td>{{ $report->total ?? '' }}</td>
+                            <td>{{ $report->allocation ?? '' }}</td>
 
                         </tr>
                     @endforeach

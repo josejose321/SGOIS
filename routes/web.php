@@ -130,7 +130,7 @@ Route::prefix('student')
 Route::prefix('employee')
 ->as('employee')
 ->controller(EmployeeController::class)
-// ->middleware(['isEndorser','auth','prevent-back-history'])
+->middleware(['isEndorser','auth','prevent-back-history'])
 ->group(function (){
         //scholarships
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
