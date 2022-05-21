@@ -17,15 +17,6 @@ class AdminFactory extends Factory
     {
         return [
             //
-            'admin_no' => $this->faker->unique()->numerify('##-#####'),
-            'firstname' =>$this->faker->firstName,
-            'middlename' =>$this->faker->lastName,
-            'lastname'=>$this->faker->lastName,
-            'email'=>$this->faker->unique()->safeEmail(),
-            'phone' =>$this->faker->numerify('09#########'),
-            'position'=>$this->faker->randomElement(['Director','Staff','Assistant']),
-            'avatar' => 'defaultAvatar.jpg',
-            'password' => Hash::make('password'),
         ];
     }
 

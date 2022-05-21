@@ -57,13 +57,10 @@
 <body id="page-top">
     <div id="wrapper" style="background-color: beige">
         <nav class="navbar-fluid navbar-dark align-items-start sidebar sidebar-dark" style="background-color:#334756">
-            <center>
-                <a class="navbar-brand"><img src="{{ asset('unc-logo.png') }}" class="rounded w-75"></a>
-            </center>
             <div class="container d-flex flex-column p-0 m-0 ">
 
                 <ul class="navbar-nav fw-bold display-7" id="accordionSidebar">
-
+                    <center><a class="navbar-brand"><img src="{{ asset('unc-logo.png') }}" class="rounded w-75"></a></center>
                     <hr class="sidebar-divider my-4">
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}"><i
                                 class="fa fa-home"></i><span>DASHBOARD</span></a></li>

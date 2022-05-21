@@ -17,9 +17,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('employee_no');
             $table->unsignedInteger('userNo')->unique();
-            $table->string('user_id',9)->unique();
             $table->string('officeCode',20)->index()->nullable();
-            $table->string('position')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

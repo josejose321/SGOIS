@@ -24,10 +24,6 @@ class Student extends Model
     {
         return $this->hasMany(Scholarship::class, "student_no","student_no");
     }
-    public function discounts()
-    {
-        return $this->hasMany(Discount::class,"student_no","student_no");
-    }
 
     public function department()
     {

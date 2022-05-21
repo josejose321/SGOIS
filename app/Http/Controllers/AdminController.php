@@ -7,6 +7,7 @@ use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\ChangePassRequest;
 use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentsImport;
@@ -340,11 +341,18 @@ class AdminController extends Controller
     public function downloadReport()
     {
         return Excel::download(new SummaryReport, 'SGO-SUMMARY-REPORT.xlsx');
+
     }
     public function logout()
     {
         auth()->logout();
         return redirect()->route('login');
+    }
+    public function changePassword(ChangePassRequest $request)
+    {
+        User::find(auth()->user()->userNo)->update(['password' => Hash::make($request->new_password)]);
+
+        return back()->withSuccess('Password change Successfully');
     }
 
 }

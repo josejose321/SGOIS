@@ -45,10 +45,12 @@
                                 <label for="scholarship">Scholarship Office</label>
                                 <select class="form-select" name="office" id="office"
                                     aria-label="Default select example">
-                                    @foreach ($offices as $office)
-                                        <option value="{{ $office->officeCode }}">{{ $office->officeCode }} -
-                                            {{ $office->name }}</option>
-                                    @endforeach
+                                    @if (Session::has('offices'))
+                                        @foreach ($offices as $office)
+                                            <option value="{{ $office->officeCode }}">{{ $office->officeCode }} -
+                                                {{ $office->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="col-4">

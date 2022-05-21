@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\ChangePassRequest;
 use App\Http\Requests\ScholarshipRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Announcement;
@@ -17,6 +18,7 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -183,6 +185,12 @@ class StudentController extends Controller
     {
         auth()->logout();
         return redirect()->route('login');
+    }
+    public function changePassword(ChangePassRequest $request)
+    {
+        User::find(auth()->user()->userNo)->update(['password' => Hash::make($request->new_password)]);
+
+        return back()->withSuccess('Password change Successfully');
     }
 
 

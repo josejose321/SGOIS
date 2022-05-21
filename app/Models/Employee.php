@@ -24,16 +24,7 @@ class Employee extends Authenticatable
 
     protected $fillable = [
         'userNo',
-        'firstname',
-        'middlename',
-        'lastname',
-        'email',
-        'departmentCode',
         'officeCode',
-        'phone',
-        'position',
-        'avatar',
-        'password',
     ];
     public function department()
     {

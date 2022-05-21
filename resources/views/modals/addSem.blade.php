@@ -24,14 +24,9 @@
                         <label for="year"> For Year</label>
                         <input type="text" id="year" name="year" class="form-control" readonly>
                     </div>
-
                     <div class="form-group">
-                        <label for="period"> Application Period</label>
-                        <select class="form-select form-select-md mb-3" name="period"
-                            aria-label="Default select example">
-                            <option value="30">30 days</option>
-                            <option value="60">60 days</option>
-                        </select>
+                        <label for="period">Days Active</label>
+                        <input type="number" class="form-control" name="period" min="0" max="100" step="1" value="30">
                     </div>
                 </div>
                 <div class="modal-footer">

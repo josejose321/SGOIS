@@ -1,6 +1,6 @@
 <script>
     var year = ['SPORTS DEV','CULTURE AND ARTS','HUMAN RESOURCE','DISCOUNTS','OTHERS']
-    var data = JSON.parse('{{ json_encode($chartResult) }}');
+    var data = JSON.parse('{{ json_encode($chartResult ?? '') }}');
     var barChartData = {
         labels: year,
         datasets: [{
@@ -11,7 +11,7 @@
                 'rgba(0, 0, 0, 0.46)',
                 'rgba(0, 0, 0, 0.46)',
                 'rgba(0, 0, 0, 0.46)',
-                
+
             ],
             data: data
         }]

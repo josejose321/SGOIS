@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\ChangePassRequest;
 use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\EmployeeUpdateRequest;
 use App\Models\Admin;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -119,5 +121,11 @@ class EmployeeController extends Controller
     {
         auth()->logout();
         return redirect()->route('login');
+    }
+    public function changePassword(ChangePassRequest $request)
+    {
+        User::find(auth()->user()->userNo)->update(['password' => Hash::make($request->new_password)]);
+
+        return back()->withSuccess('Password change Successfully');
     }
 }

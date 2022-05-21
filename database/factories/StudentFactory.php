@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,16 +22,9 @@ class StudentFactory extends Factory
     {
         return [
             //
-        'student_no' => $this->faker->unique()->numerify('##-#####')?? null,
-        'firstname' =>$this->faker->firstName,
-        'middlename' =>$this->faker->lastName,
-        'lastname'=>$this->faker->lastName,
-        'email'=>$this->faker->numerify('###').$this->faker->unique()->safeEmail(),
-        'departmentCode' => ($this->department =$this->faker->randomElement(Department::all()->pluck('departmentCode'))),
-        'phone' =>$this->faker->numerify('09#########'),
-        'course' => $this->faker->randomElement(Department::find($this->department)->courses->pluck('name')),
-        'year' =>strval($this->faker->numberBetween(1,5)),
-        'avatar' => 'defaultAvatar.jpg',
+            'year' => $this->faker->randomElement(['1st Year','2nd Year','3rd Year','4th Year','5th Year',]),
+            'courseNo'=> $this->faker->randomElement(Course::all()->pluck('courseNo')),
+            'parentName'=> $this->faker->name,
         ];
     }
     protected $model = Student::class;

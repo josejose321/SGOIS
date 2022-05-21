@@ -3,7 +3,7 @@
 @section('title', 'Admin Dashboard')
 @section('content')
 
-    <div data-aos = "fade-down">
+    <div data-aos="fade-down">
         <h2 class="text-dark mb-4 font-weight-bold ">
             DASHBOARD
             <button class="btn pull-right " id="import" type="button"
@@ -126,6 +126,7 @@
 
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
         </div>

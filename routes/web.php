@@ -56,6 +56,7 @@ Route::prefix('admin')
     ->middleware(['isAdmin','auth','prevent-back-history'])
     ->group(function (){
         //scholarships
+        Route::get('/logout','logout')->name('.logout');
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
         Route::get('/scholarships/{scholarship}/delete', 'scholarshipDelete')->name('.scholarship.delete');
@@ -99,7 +100,7 @@ Route::prefix('admin')
         Route::get('/{admin}', 'show')->name('.show');
         Route::get('/', 'index')->name('.index');
         Route::post('/', 'storeStudent')->name('.student.store');
-        Route::get('/logout','logout')->name('.logout');
+
 
     });
 

@@ -39,7 +39,7 @@
                                         {{ $scholarship->student->user->middlename }}</td>
                                     <td>{{ $scholarship->office->name }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
-                                    <td><a class="btn-lg btn-secondary" href="{{ route('admin.application.view',$scholarship->scholarshipNo) }}" type="button">
+                                    <td><a class="btn btn-secondary" href="{{ route('admin.application.view',$scholarship->scholarshipNo) }}" type="button">
                                             <i class="fa fa-pencil"></i>Preview</a>
                                     </td>
                                 </tr>
