@@ -323,7 +323,7 @@ class AdminController extends Controller
     public function showCategories()
     {
         $this->data = [
-            'categories'=> Category::paginate(15),
+            'categories'=> Category::simplePaginate(15),
             'offices'=> Office::all()
         ];
         return view('Admin.categories')
@@ -352,7 +352,12 @@ class AdminController extends Controller
     {
         User::find(auth()->user()->userNo)->update(['password' => Hash::make($request->new_password)]);
 
-        return back()->withSuccess('Password change Successfully');
+        return redirect()->route('admin.index')->withSuccess('Password change Successfully');
+    }
+    public function showChangePassword()
+    {
+        return view('Admin.change_pass')
+        ->with($this->data);
     }
 
 }
