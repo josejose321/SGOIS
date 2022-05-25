@@ -23,9 +23,13 @@
                                     style="background: var(--bs-red);color: var(--bs-body-bg);">Change Photo
                                 </button>
                             </div>
+
                         </form>
+                        <div class="overlay">update avatar</div>
                     </div>
                 </div>
+
+
             </div>
             <div class="col-lg-8" data-aos="fade-left">
 
@@ -98,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

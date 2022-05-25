@@ -94,7 +94,7 @@
                                     <div class="dropdown-menu shadow dropdown-menu-end">
                                         <a class="dropdown-item" href="{{ route('employee.show') }}"><i
                                                 class="fas fa-user"></i>&nbsp;Profile</a>
-                                        <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                                        <a class="dropdown-item" href="{{ route('employee.show.password') }}">
                                             <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('employee.logout') }}"><i class="fa fa-sign-out"></i>

@@ -84,6 +84,7 @@
                                 <a class="dropdown-item" href="{{ route('student.edit', Auth::user()->student) }}"><i
                                         class="fa fa-user" aria-hidden="true"></i> My Profile&nbsp;</a>
                                 <a class="dropdown-item" href="{{ route('student.applications.view') }}"><i class="fa fa-book"></i></i> My Application</a>
+                                <a class="dropdown-item" href="{{ route('student.show.password') }}"><i class="fa fa-key"></i></i> Change Password</a>
                                 <a class="dropdown-item" href="{{ route('student.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </li>
