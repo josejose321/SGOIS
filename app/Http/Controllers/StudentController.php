@@ -190,7 +190,11 @@ class StudentController extends Controller
     {
         User::find(auth()->user()->userNo)->update(['password' => Hash::make($request->new_password)]);
 
-        return back()->withSuccess('Password change Successfully');
+        return redirect()->route('student.index')->withSuccess('Password change Successfully');
+    }
+    public function showChangePassword()
+    {
+        return view('Student.change_pass');
     }
 
 
