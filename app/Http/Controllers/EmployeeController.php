@@ -111,7 +111,7 @@ class EmployeeController extends Controller
     public function viewApplication(Scholarship $scholarship)
     {
         $this->data = [
-            'employee'=>Employee::latest()->first(),
+
             'scholarship'=>$scholarship
         ];
         return view('Employee.application-view')
@@ -126,6 +126,11 @@ class EmployeeController extends Controller
     {
         User::find(auth()->user()->userNo)->update(['password' => Hash::make($request->new_password)]);
 
-        return back()->withSuccess('Password change Successfully');
+        return redirect()->route('employee.index')->withSuccess('Password change Successfully');
+    }
+    public function showChangePassword()
+    {
+        return view('Employee.change_pass')
+        ->with($this->data);
     }
 }
