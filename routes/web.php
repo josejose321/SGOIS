@@ -56,6 +56,8 @@ Route::prefix('admin')
     ->middleware(['isAdmin','auth','prevent-back-history'])
     ->group(function (){
         //scholarships
+        Route::get('/password','showChangePassword')->name('.show.password');
+        Route::post('/password','changePassword')->name('.update.password');
         Route::get('/logout','logout')->name('.logout');
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
@@ -102,6 +104,7 @@ Route::prefix('admin')
         Route::post('/', 'storeStudent')->name('.student.store');
 
 
+
     });
 
 Route::prefix('student')
@@ -109,6 +112,8 @@ Route::prefix('student')
     ->controller(StudentController::class)
     ->middleware(['isStudent','auth','prevent-back-history'])
     ->group(function(){
+        Route::get('/password','showChangePassword')->name('.show.password');
+        Route::post('/password','changePassword')->name('.update.password');
         Route::get('/dashboard', 'index')->name('.index');
         Route::post('/{student}/avatar','updateAvatar')->name('.avatar.update');
         Route::post('/{student}/update','updateProfile')->name('.studentUpdate');
@@ -134,6 +139,8 @@ Route::prefix('employee')
 ->middleware(['isEndorser','auth','prevent-back-history'])
 ->group(function (){
         //scholarships
+        Route::get('/password','showChangePassword')->name('.show.password');
+        Route::post('/password','changePassword')->name('.update.password');
         Route::post('/scholarships/{scholarship}/verify', 'verifyScholarship')->name('.scholarship.approve');
         Route::get('/scholarships','showScholarships')->name('.scholarhips');
         Route::get('/application-view/{scholarship}','viewApplication')->name('.application.view');
