@@ -1,29 +1,53 @@
-@foreach ($users as $user)
-    <div class="modal fade" id="viewStudent-{{ $user->user_id }}" tabindex="-1" role="dialog"
+@foreach ($students as $student)
+    <div class="modal fade" id="viewStudent-{{ $student->student_no }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">user</h5>
+                <div class="modal-header bg-secondary text-light">
+                    <h5 class="modal-title" id="exampleModalLabel">STUDENTS</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="w-100">
-                        <div><img src="{{ Storage::url('avatar/' . $user->avatar) }}" class="img-thumbnail w-25"
+                    <div class="w-75">
+                        <div><img src="{{ Storage::url('avatar/' . $student->user->avatar ?? '') }}" class="img-thumbnail w-25"
                                 alt="avatar.jpeg"><br></div>
+                    </div> <br>
+
+                    <div class="form-row ">
+                        <div class="form-group col-md-5">
+                            <label for="id"> Student Number</label>
+                            <input type="text" class="form-control" readonly value="{{ $student->user->user_id ?? '' }}">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="id"> Name</label>
+                            <input type="text" class="form-control" readonly value="{{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }} {{ $student->user->middlename ?? '' }} ">
+                        </div>
                     </div>
-                    user_No: {{ $user->user_id }} <br>
-                    Name:{{ $user->lastname }}, {{ $user->firstname }} {{ $user->middlename }} <br>
-                    Course: {{ $user->student->course->name ?? '' }} <br>
-                    Year/Grade: {{ $user->student->year ?? '' }} <br>
-                    Contact: {{ $user->phone ?? '' }} <br>
-                    Email: {{ $user->email ?? '' }}
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="id"> Course</label>
+                            <input type="text" class="form-control" readonly value="{{ $student->course->name ?? '' }}">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="id"> YEAR</label>
+                            <input type="text" class="form-control" readonly value="{{ $student->year ?? '' }}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="id"> CONTACT NUMBER</label>
+                            <input type="text" class="form-control" readonly value="{{ $student->user->phone ?? '' }}">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="id"> EMAIL</label>
+                            <input type="text" class="form-control" readonly value="{{ $student->user->email ?? '' }}">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

@@ -57,6 +57,35 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-5">
+                <div class="container border" style="background-color: rgba(73, 73, 73, 0.737)">
+                    <div class="jumbotron">
+                        <div class="row">
+                            <div>
+                                <h1 class="display-6 fw-bold">Culture And Arts Scholarship</h1>
+                                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for
+                                    calling extra attention to featured content or information.</p>
+                            </div>
+                        </div>
+                        <a class="btn btn-danger btn-lg" href="{{ route('student.culture') }}" role="button"> Apply</a><br> <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="container border" style="background-color: rgba(73, 73, 73, 0.737)">
+                    <div class="jumbotron">
+                        <div class="row">
+                            <div>
+                                <h1 class="display-6 fw-bold">Culture And Arts Scholarship</h1>
+                                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for
+                                    calling extra attention to featured content or information.</p>
+                            </div>
+                        </div>
+                        <a class="btn btn-danger btn-lg" href="{{ route('student.culture') }}" role="button"> Apply</a><br> <br>
+                    </div>
+                </div>
+            </div>
+            <hr>
         </div>
     </div> <br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br>

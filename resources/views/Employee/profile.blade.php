@@ -1,5 +1,5 @@
 @extends('layouts.employee')
-@section('title', 'Admin Profile')
+@section('title', 'Endorser_Employee Profile')
 
 
 @section('content')

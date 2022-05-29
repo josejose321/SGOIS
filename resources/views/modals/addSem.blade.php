@@ -1,9 +1,9 @@
 <form action="{{ route('admin.semester.store') }}" method="POST">
     @csrf
-    <div class="modal fade" id="semModal" tabindex="-1" role="dialog" aria-labelledby="importLabel"
+    <div class="modal fade " id="semModal" tabindex="-1" role="dialog" aria-labelledby="importLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content ">
                 <div class="modal-header">
                     <h5 class="modal-title h4 font-weight-bold" id="importLabel">Open Scholarship Application</strong>
                     </h5>
@@ -14,7 +14,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="semester"> Semester</label>
-                        <select class="form-select form-select-md mb-3" name="sem" aria-label="Default select example">
+                        <select class="form-control" name="sem" aria-label="Default select example">
                             <option value="1STSEM">1st Semester</option>
                             <option value="2NDSEM">2nd Semester</option>
                             <option value="SUMMER"> Summer</option>
@@ -25,8 +25,8 @@
                         <input type="text" id="year" name="year" class="form-control" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="period">Days Active</label>
-                        <input type="number" class="form-control" name="period" min="0" max="100" step="1" value="30">
+                        <label for="deadline">Deadline Of Submission</label>
+                        <input type="date" class="form-control" name="deadline" min="0" max="100" step="1" value="30">
                     </div>
                 </div>
                 <div class="modal-footer">

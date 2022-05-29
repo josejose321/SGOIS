@@ -19,7 +19,7 @@ class StudentTable extends Migration
             $table->unsignedInteger('userNo')->unique();
             $table->unsignedBigInteger('courseNo')->index()->nullable();
             $table->string('year', 10);
-            $table->string('parentName');
+            $table->string('parentName')->nullable();
             $table->timestamps();
 
             $table->foreign('courseNo')

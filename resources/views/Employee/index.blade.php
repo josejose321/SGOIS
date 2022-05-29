@@ -1,6 +1,6 @@
 @extends('layouts.employee')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Endorser_Employee Dashboard')
 @section('content')
 
     <div class="container-fluid">
@@ -37,6 +37,7 @@
                                 {{ $announcement->employee->lastname ?? '' }},
                                 {{ $announcement->employee->firstname ?? '' }}
                                 {{ $announcement->employee->middlename ??'' }}</p>
+                            <p>Date Created: {{ $announcement->created_at ?? '' }}</p>
 
                         </div>
                     </div>

@@ -14,6 +14,7 @@
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th>SCHOLARSHIP NO</th>
+                                <th>SCHOLARSHIP</th>
                                 <th>STUDENT ID</th>
                                 <th>NAME</th>
                                 <th>EMAIL</th>
@@ -22,10 +23,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($scholarships as $scholarship)
+                            @forelse ($scholarships as $scholarship)
                                 <tr>
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
-                                    <td>{{ $scholarship->student_no ?? '' }}</td>
+                                    <td>{{ $scholarship->category->name }}</td>
+                                    <td>{{ $scholarship->student->user->user_id ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}
                                         {{ $scholarship->student->user->middlename }}</td>
                                     <td>{{ $scholarship->student->user->email }}</td>
@@ -36,7 +38,9 @@
                                             <i class="fa fa-pencil"></i>Preview</a>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr><td>No Pending Request</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <center>

@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\DBAL\Schema\Table;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,10 +20,10 @@ class SemesterTable extends Migration
             $table->string('semesterCode',20)->primary();
             $table->string('sem');
             $table->string('year');
-            $table->integer('period');
             $table->boolean('active')->default(1);
+            $table->timestamp('deadline');
             $table->timestamps();
-            
+
         });
     }
 

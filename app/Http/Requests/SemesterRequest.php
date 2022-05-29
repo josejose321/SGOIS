@@ -28,7 +28,7 @@ class SemesterRequest extends FormRequest
             'semesterCode'=>'',
             'year'=>'required',
             'sem'=>'required',
-            'period'=>'required'
+            'deadline'=>'required'
         ];
     }
 }

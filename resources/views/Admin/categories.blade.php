@@ -1,15 +1,23 @@
 @extends('layouts.admin1')
 
-@section('title', 'Categories')
+@section('title', 'Available Programs')
 
 
 @section('content')
-    <div class="container-fluid" >
+    <div class="container-fluid">
         <div class="card shadow">
             <div class="card-header py-3">
                 <div class="h2 font-weight-bold">SCHOLARSHIP AND GRANTS PROGRAMS</div>
-                <button type="button" class="btn btn-lg btn-secondary float-right" id="categoryBtn"><i
-                    class="fa fa-plus"></i><span>Add new</span></button>
+                <button type="button" class="btn btn-secondary float-left" data-target="#categoryModal"
+                    data-toggle="modal"><i class="fa fa-plus"></i><span>Add new</span></button>
+                <form action="{{ route('admin.programs.search') }}" method="post">
+                    @csrf
+                    <div class="col-md-5 input-group float-right">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                            aria-describedby="search-addon" name="term" />
+                        <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> search</button>
+                    </div>
+                </form>
             </div>
 
             <div class="card-body" style="font-size: 14px;">
@@ -32,13 +40,19 @@
 
                                     <th>{{ $category->categoryNo }}</th>
                                     <th>{{ $category->name }}</th>
-                                    <th>{{ $category->type }}</th>
+                                    <th>
+                                        @if ($category->type ?? '' == 'Academic' || $category->type ?? '' =='Administrative' || $category->type ?? '' =='External')
+                                            {{ $category->type ?? '' }} {{ 'Scholarship' }}
+                                        @else
+                                            {{ $category->type ?? '' }}
+                                        @endif
+                                    </th>
                                     <th>{{ $category->field_team }}</th>
-                                    <th>{{ $category->allocation ?? ''}}</th>
-                                    <td><button class="btn-lg btn-secondary" type="button" data-toggle="modal"
-                                        data-target="#viewCategory-{{ $category->categoryNo }}">
-                                        <i class="fa fa-pencil"></i></button>
-                                </td>
+                                    <th>{{ $category->allocation ?? '' }}</th>
+                                    <td><button class="btn btn-secondary" type="button" data-toggle="modal"
+                                            data-target="#viewCategory-{{ $category->categoryNo }}">
+                                            <i class="fa fa-pencil"></i></button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

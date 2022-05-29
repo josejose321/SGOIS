@@ -16,6 +16,7 @@
                                 <img class="rounded-circle mb-3 mt-4 w-50"
                                     src="{{ Storage::url('avatar/'. Auth::user()->avatar ?? '') }}">
                                 <input type="file" id="avatar" name="avatar" style="display:none">
+                                <div class="overlay">update avatar</div>
 
                             </label>
                             <div class="mb-3">
@@ -25,7 +26,7 @@
                             </div>
 
                         </form>
-                        <div class="overlay">update avatar</div>
+
                     </div>
                 </div>
 

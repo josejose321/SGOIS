@@ -8,17 +8,8 @@
                     <h3>Student Registration Form</h3>
                 </div>
                 <div class="modal-body bg-light">
-                    {{-- @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif --}}
-                    <div class="form-row">
-                        <div class="form-group">
+                    <div class="form-row ">
+                        <div class="form-group col-md-5">
                             <label for="id"> Student Number</label>
                             <input type="text" name="user_id" class="form-control" placeholder="Student No"
                                 maxlength="8" value="{{ old('user_id') }}">
@@ -28,7 +19,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="id"> Firstname</label>
                             <input type="text" name="firstname" class="form-control" placeholder="First name"
                                 value="{{ old('firstname') }}">
@@ -36,7 +27,7 @@
                                 <small class="input-error text-danger">{{ $errors->first('firstname') }}</small>
                             @endif
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="id"> Middlename</label>
                             <input type="text" name="middlename" class="form-control" placeholder="middlename"
                                 value="{{ old('middlename') }}">
@@ -44,7 +35,7 @@
                                 <small class="input-error text-danger">{{ $errors->first('middlename') }}</small>
                             @endif
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="id"> Lastname</label>
                             <input type="text" name="lastname" class="form-control" placeholder="lastname"
                                 value="{{ old('lastname') }}">
@@ -54,7 +45,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="id"> email</label>
                             <input type="email" name="email" class="form-control" placeholder="Email here"
                                 value="{{ old('email') }}">
@@ -62,7 +53,7 @@
                                 <small class="input-error text-danger">{{ $errors->first('email') }}</small>
                             @endif
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="id"> Phone number</label>
                             <input type="text" name="phone" class="form-control" placeholder="Phone number"
                                 maxlength="11" value="{{ old('phone') }}">
@@ -70,7 +61,10 @@
                                 <small class="input-error text-danger">{{ $errors->first('phone') }}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
                             <label for="year"> Select Year</label>
                             <select class="form-select form-select-md mb-3" name="year"
                                 aria-label="Default select example">
@@ -84,24 +78,24 @@
                                 @endfor
                             </select>
                         </div>
-
-
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="id"> Course</label>
-                            <select class="form-select form-select-md mb-3" name="courseNo"
+                            <select class="form-select form-select mb-3" name="courseNo"
                                 aria-label="Default select example">
                                 <option selected>Select Course</option>
                                 @foreach ($courses as $course)
-                                    <option value="{{ $course->courseNo ?? ''}}">{{ $course->name ?? '' }}</option>
+                                    <option value="{{ $course->courseNo ?? '' }}">{{ $course->name ?? '' }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                    </div>
+                    <div class="form-row">
+
+                        <div class="form-group col-md-5">
                             <label for="id"> Parent Name</label>
-                            <input type="text" name="parentName" class="form-control" placeholder="Lastname,Firstname, MI"
-                                maxlength="11" value="{{ old('parentName') }}">
+                            <input type="text" name="parentName" class="form-control"
+                                placeholder="Lastname,Firstname, MI" maxlength="11" value="{{ old('parentName') }}">
                             @if ($errors->has('parentName'))
                                 <small class="input-error text-danger">{{ $errors->first('parentName') }}</small>
                             @endif
@@ -109,9 +103,9 @@
 
                     </div>
                 </div>
-                <div class="modal-footer bg-secondary">
+                <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-secondary">Submit</button>
                 </div>
             </div>
         </div>

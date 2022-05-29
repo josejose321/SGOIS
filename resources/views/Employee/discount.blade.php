@@ -1,12 +1,12 @@
-@extends('layouts.admin1')
-@section('title', 'Scholarhips')
+@extends('layouts.employee')
+@section('title', 'Discounts')
 
 
 @section('content')
-    <div class="container-fluid" data-aos="fade-right">
+    <div class="container-fluid" data-aos="fade-up">
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h2 font-weight-bold">PENDING REQUEST</div>
+                <div class="h3 font-weight-bold">PENDING DISCOUNTS</div>
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -22,36 +22,31 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th>SCHOLARSHIP NO</th>
-                                <th>SCHOLARSHIP</th>
+                                <th>DISCOUNT NO</th>
+                                <th>DISCOUNT</th>
                                 <th>STUDENT ID</th>
                                 <th>NAME</th>
-
-                                <th>Endorser Office</th>
                                 <th>STATUS</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($scholarships as $scholarship)
-                                <tr>
+                                <tr data-aos="fade-right">
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
-                                    <td>{{ $scholarship->category->name }}</td>
+                                    <td>{{ $scholarship->category->name ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->user_id ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}
                                         {{ $scholarship->student->user->middlename }}</td>
-                                    <td>{{ $scholarship->office->name }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
                                     <td><a class="btn btn-secondary"
-                                            href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"
+                                            href="{{ route('employee.application.view', $scholarship->scholarshipNo) }}"
                                             type="button">
                                             <i class="fa fa-pencil"></i>Preview</a>
                                     </td>
                                 </tr>
                                 @empty
-                                <tr>
-                                    <td>No Pending Request</td>
-                                </tr>
+                                <td>No Pending Request</td>
                             @endforelse
                         </tbody>
                     </table>
@@ -63,12 +58,13 @@
         </div>
     </div>
     {{-- <script>
-        function deleteScholarship(scholarshipNo) {
-            if (confirm("Do you really want to delete this scholarship?:\nScholarshipNo:" + scholarshipNo)) {
-                window.location.href = "{{ url('admin/scholarships/${scholarshipNo}/delete') }}";
-            }
+    function deleteScholarship(scholarshipNo){
+        if (confirm("Do you really want to delete this scholarship?:\nScholarshipNo:"+scholarshipNo)) {
+            alert(scholarshipNo);
+            window.location.href = "{{ url('admin/${scholarship}/delete') }}";
         }
-    </script> --}}
+    }
+</script> --}}
 
-    @include('modals.admin_viewScholarship')
+    @include('modals.employee_viewScholarship')
 @endsection

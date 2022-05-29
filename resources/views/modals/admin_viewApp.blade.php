@@ -1,21 +1,37 @@
 <form action="{{ route('admin.scholarship.approve', $scholarship->scholarshipNo) }}" method="post">
     @csrf
-    <div class="modal fade" id="modalScholarship" tabindex="-1"
-        role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modalScholarship" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold">Scholarship No. {{ $scholarship->scholarshipNo }}</h5>
+                <div class="modal-header bg-dark text-light">
+                    <h5 class="modal-title fw-bold">Scholarship No. {{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Type: {{ $scholarship->type }} <br>
-                    Name of Applicant: {{ $scholarship->student->user->lastname }},
-                    {{ $scholarship->student->user->firstname }} {{ $scholarship->student->user->middlename }} <br>
-                    Endorser Office: {{ $scholarship->office->name }} <br>
-                    Endorser Status: {{ $scholarship->officeVerification }} <br> <br>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="">Program Type</label>
+                            <input type="text" class="form-control" readonly value="{{ $scholarship->type ?? '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Name</label>
+                            <input type="text" class="form-control" readonly
+                                value="{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname ?? '' }} {{ $scholarship->student->user->middlename ?? '' }}">
+                        </div>
+                    </div> <br>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="">OFFICE</label>
+                            <input type="text" class="form-control" readonly value="{{ $scholarship->office->name  ?? ''}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">STATUS</label>
+                            <input type="text" class="form-control" readonly
+                                value="{{  $scholarship->officeVerification ?? '' }}">
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="discount" class="fw-bold"> Discount</label>
@@ -33,16 +49,17 @@
                     </div>
                     <div class="form-group">
                         <label for="remarks">Remarks</label>
-                        <textarea class="form-control" name="remarks" id="remarks" rows="6"></textarea>
+                        <textarea class="form-control" name="remarks" id="remarks" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Approved this Scholarship</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Approved this Scholarship</button>
+                    <button type="submit" class="btn btn-danger">Decline this Scholarship</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+
 
                 </div>
             </div>
         </div>
     </div>
 </form>
-

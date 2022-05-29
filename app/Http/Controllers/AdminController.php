@@ -7,9 +7,11 @@ use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminVerifyRequest;
 use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ChangePassRequest;
 use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
+use App\Imports\StudentImport;
 use App\Imports\StudentsImport;
 use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
@@ -23,11 +25,13 @@ use App\Models\Scholarship;
 use App\Models\Semester;
 use App\Models\Student;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use Prophecy\Exception\Doubler\ReturnByReferenceException;
 
 class AdminController extends Controller
 {
@@ -37,6 +41,7 @@ class AdminController extends Controller
     private  $semester;
     private $category;
     private $user;
+    private $student;
 
     public function __construct()
     {
@@ -47,6 +52,7 @@ class AdminController extends Controller
         $this->semester = new Semester();
         $this->category = new Category();
         $this->user = new User;
+        $this->student = new Student();
 
         $this->countResults =[
             'totalScholarships'=> $this->scholarship->approved('Scholarship')->count(),
@@ -183,14 +189,26 @@ class AdminController extends Controller
     }
     public function showStudents()
     {
-        // return $this->user->getStudent()->simplePaginate(15);
+        // dd($this->student->searchStudent('Computer Studies')->get());
         $this->data =[
-            'users'=>$this->user->getStudent()->simplePaginate(15),
+            'students'=>$this->student->getActiveStudent()->simplePaginate(15),
             'total'=>$this->user->getStudent()->count(),
             'courses'=>Course::all(),
             'departments'=> Department::all(),
         ];
         return view('Admin.student')
+        ->with($this->data);
+    }
+    public function showGrantees()
+    {
+        // return $this->user->getStudent()->simplePaginate(15);
+        $this->data =[
+            'students'=>$this->student->getGrantees()->simplePaginate(15),
+            'total'=>$this->student->getGrantees()->count(),
+            'courses'=>Course::all(),
+            'departments'=> Department::all(),
+        ];
+        return view('Admin.grantees')
         ->with($this->data);
     }
     public function searchStudent()
@@ -241,7 +259,7 @@ class AdminController extends Controller
         if($request->file != null)
         {
             try{
-                Excel::import(new StudentsImport, $request->file('file')->store('temp'));
+                Excel::import(new StudentImport, $request->file('file')->store('temp'));
                 return back()->withSuccess('Import Successfully!');
             }catch(Exception $e){
                 return back()->with('error','Import Error!');
@@ -269,7 +287,7 @@ class AdminController extends Controller
     public function storeStudent(StudentRequest $request)
     {
         // dd($request->validated());
-        $user = User::create([
+        $student = User::create([
             'user_id'=> $request->user_id,
             'firstname'=> $request->firstname,
             'middlename'=> $request->middlename,
@@ -283,7 +301,7 @@ class AdminController extends Controller
         'year'=> $request->year,
         'parentName'=> $request->parentName,
        ]);
-        Mail::to($user->email)->send(new RegistrationMail($user));
+        Mail::to($student->user->email)->send(new RegistrationMail($student));
         return back()->withSuccess("student added to the database");
     }
 
@@ -291,6 +309,7 @@ class AdminController extends Controller
     //application
     public function showSemester()
     {
+
         $this->data = [
             'semesters' => $this->semester->getALL()->simplePaginate(10),
         ];
@@ -304,8 +323,7 @@ class AdminController extends Controller
                 'semesterCode' => $request->sem. '_' .$request->year  ,
                 'sem' =>$request->sem,
                 'year'=> $request->year,
-                'period'=>$request->period,
-                'active'=>1,
+                'deadline'=>$request->deadline,
             ]);
         }catch(Exception $e)
         {
@@ -313,14 +331,28 @@ class AdminController extends Controller
         }
         return redirect()->back()->withSuccess('New Semester Added!');
     }
+    public function deactivateSem(Request $request, Semester $semester)
+    {
+        if($semester->active === 1)
+        {
+            $semester->update(['active'=>0]);
+            return back()->withSuccess('You Successfully Deactivate Semester');
+        }
+        else
+        {
+            $semester->update(['active'=>1]);
+            return back()->withSuccess('You Successfully Activate Semester');
+        }
+
+    }
     public function showReport()
     {
         $this->data = [
-            'allocations'=>$this->category->getSummaryReport()
+            'reports'=>$this->category->getSummaryReport()
         ];
         return view('Admin.report')->with($this->data);
     }
-    public function showCategories()
+    public function showPrograms ()
     {
         $this->data = [
             'categories'=> Category::simplePaginate(15),
@@ -331,6 +363,8 @@ class AdminController extends Controller
     }
     public function viewApplication(Scholarship $scholarship)
     {
+        if($scholarship->adminVerification === "Approved" && $scholarship->adminVerification === "Approved" )
+            return back()->with('error', 'Cannot open this application. \n Application Already Approved!');
         $this->data = [
             'scholarship'=>$scholarship
         ];
@@ -351,13 +385,41 @@ class AdminController extends Controller
     public function changePassword(ChangePassRequest $request)
     {
         User::find(auth()->user()->userNo)->update(['password' => Hash::make($request->new_password)]);
-
         return redirect()->route('admin.index')->withSuccess('Password change Successfully');
     }
     public function showChangePassword()
     {
-        return view('Admin.change_pass')
+        return view('Admin.change_pass');
+    }
+    public function searchStudents(Request $request)
+    {
+        // dd($request->term);
+        $this->data = [
+            'students'=> $this->student->searchStudent($request->term)->simplePaginate(15),
+            'total'=>$this->user->getStudent()->count(),
+            'courses'=>Course::all(),
+            'departments'=> Department::all(),
+        ];
+
+        return view('Admin.student')
         ->with($this->data);
     }
+    public function storePrograms(CategoryRequest $request)
+    {
+        // dd($request->validated());
+        Category::create($request->validated());
+        return back()->withSuccess('New Scholarship Program Added to database');
+    }
+
+    public function searchPrograms(Request $request)
+    {
+        $this->data = [
+            'categories'=> $this->category->searchPrograms($request->term)->simplePaginate(15),
+            'offices'=> Office::all()
+        ];
+        return view('Admin.categories')
+        ->with($this->data);
+    }
+
 
 }

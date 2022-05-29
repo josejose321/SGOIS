@@ -94,7 +94,16 @@ class StudentController extends Controller
     }
     public function applyScholarship(ScholarshipRequest $request, Student $student)
     {
-        // dd($request->validated());
+        if($student->whereHas('scholarships', function($query){
+            $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+            ->orWhere('officeVerification', 'Approved')
+            ->orWhere('adminVerification','Approved');
+            }
+        )->count() > 0)
+        {
+            return back()->with('error', 'Cannot Process Scholarship Right now\n You have Applied Scholarship or Pending Scholarship');
+        }
+
         $student->scholarships()->create([
             "type" => $request->type,
             "officeCode"=>$request->officeCode,
@@ -154,6 +163,7 @@ class StudentController extends Controller
         $this->data = [
             'sem'=> $this->semester->getLatest(),
             'office' => Office::find('UNC-CULTURE&ARTS'),
+            'loans' => Category::where('type','Loan'),
         ];
         // dd(Student::find(35));
         return view('Student.loans')
@@ -164,6 +174,7 @@ class StudentController extends Controller
         $this->data = [
             'sem'=> $this->semester->getLatest(),
             'office' => Office::find('UNC-CULTURE&ARTS'),
+            'discounts' => Category::where('type','Dsicount'),
         ];
         // dd(Student::find(35));
         return view('Student.discounts')

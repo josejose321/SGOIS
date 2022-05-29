@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,6 +49,26 @@ class User extends Authenticatable
         return $this->where('type','student')
         ->where('isActive',1);
     }
+
+    public function searchStudent($term)
+    {
+        return $this
+        // ->join('students','user_id', 'user_id')
+        ->orWhere('firstname','LIKE','%'.$term.'%')
+        ->orWhere('middlename','LIKE','%'.$term.'%')
+        ->orWhere('lastname','LIKE','%'.$term.'%')
+        ->orWhere('email','LIKE','%'.$term.'%')
+        ->orWhere('phone','LIKE','%'.$term.'%')
+        ->orWhere('user_id','LIKE','%'.$term.'%')
+        ->where('type','LIKE','student');
+    }
+    // public function searchStudents()
+    // {
+    //     return $this->select('users.*')
+    //     ->join('students','user_id','user_id')
+    //     ->join('courses','courseNo','courseNo')
+    //     ->get();
+    // }
 
 
 

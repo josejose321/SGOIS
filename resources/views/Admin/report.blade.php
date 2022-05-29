@@ -6,7 +6,7 @@
     <div class="card-body" style="font-size: 14px;" data-aos="fade-up">
         <div class="table" id="dataTable" role="grid" aria-describedby="dataTable_info">
             <br>
-            <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-primary float-right p-1 m-2">Generate Report</a> <br>
+            <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-secondary float-right p-1 m-2">Generate Report</a> <br>
             <br>
             <table class="table my-0" id="dataTable">
                 <thead>
@@ -26,20 +26,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($allocations as $allocation)
+                    @foreach ($reports as $report)
                         <tr data-aos="fade-right">
-                            <td>{{ $allocation->categoryNo ?? '' }}</td>
-                            <td>{{ $allocation->field_team ?? '' }}</td>
-                            <td>{{ $allocation->categoryName ?? '' }}</td>
-                            <td>{{ $allocation->first ?? '' }}</td>
-                            <td>{{ $allocation->second ?? '' }}</td>
-                            <td>{{ $allocation->third ?? '' }}</td>
-                            <td>{{ $allocation->fourth ?? '' }}</td>
-                            <td>{{ $allocation->fifth ?? '' }}</td>
-                            <td>{{ $allocation->sixth ?? '' }}</td>
-                            <td>{{ $allocation->seventh ?? '' }}</td>
-                            <td>{{ $allocation->total ?? '' }}</td>
-                            <td>{{ $allocation->allocation ?? '' }}</td>
+                            <td>{{ str_pad($report->categoryNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
+                            <td>{{ $report->field_team ?? '' }}</td>
+                            <td>{{ $report->categoryName ?? '' }}</td>
+                            <td>{{ $report->first ?? '' }}</td>
+                            <td>{{ $report->second ?? '' }}</td>
+                            <td>{{ $report->third ?? '' }}</td>
+                            <td>{{ $report->fourth ?? '' }}</td>
+                            <td>{{ $report->fifth ?? '' }}</td>
+                            <td>{{ $report->sixth ?? '' }}</td>
+                            <td>{{ $report->seventh ?? '' }}</td>
+                            <td>{{ $report->total ?? '' }}</td>
+                            <td>{{ $report->allocation ?? '' }}</td>
 
                         </tr>
                     @endforeach
@@ -47,6 +47,6 @@
             </table>
         </div>
     </div>
-    @include('modals.editCategoryAllo')
+    {{-- @include('modals.editCategoryAllo') --}}
 
 @endsection

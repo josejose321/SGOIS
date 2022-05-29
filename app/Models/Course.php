@@ -25,6 +25,6 @@ class Course extends Model
 
     public function student()
     {
-        return $this->hasOne(Course::class,'courseNo','courseNo');
+        return $this->hasMany(Student::class,'courseNo','courseNo');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 
-@section('title', 'Sports Development Scholarships')
+@section('title', 'Available Loans')
 @section('background')
     <style>
         body,
@@ -42,11 +42,18 @@
             <header class="pb-3 mb-4 border-bottom" style="background-color: rgba(74, 74, 74, 0.90)">
                 <span class="fs-4 h2 fw-bold p-2 m-1 text-light"><i class="fa fa-running"></i> UNC AVAILABLE LOANS</span>
             </header>
+            <ul class="">
+                @forelse ($loans as $loan)
+                <li> {{ $loan->name }}</li>
+                @empty
+                    <h5> No Available Loans</h5>
+                @endforelse
+              </ul>
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold"> <i class="fa fa-dog"></i> APPLY NOW!</h1>
                 <p class="col-md-8 fs-4">The Scholarship and Grants Office are offering Scholarships to students who
                     excel in arts, music, and sports. What are you waiting for? Apply Now.</p>
-                <button class="btn btn-success btn-lg" type="button" data-target="#varsityModal"
+                <button class="btn btn-success btn-lg" type="button" data-target="#loanModal"
                     data-toggle="modal">Click Here To Apply..</button>
             </div>
         </div>
@@ -54,5 +61,5 @@
     </div>
 </main>
 
-@include('modals.addVarsity')
+@include('modals.addLoan')
 @endsection

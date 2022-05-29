@@ -20,7 +20,7 @@
                         Course: {{  Auth::user()->student->course->name ?? '' }} <br> <br>
                     </div>
 
-                    @if ($sem->count() === 0)
+                    @if ($sem === null)
                         <div class="alert alert-danger">
                             <p class="display-5"> You cannot Apply right now</p>
                             <p> Please Contact the SGO if having any concerns</p>
@@ -107,7 +107,7 @@
                 <br>
                 <div class="modal-footer bg-dark">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary"  @if ($sem === null) disabled @endif>Submit</button>
 
                 </div>
             </div>

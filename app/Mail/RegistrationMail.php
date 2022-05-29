@@ -30,6 +30,7 @@ class RegistrationMail extends Mailable
      */
     public function build()
     {
+        // dd($this->student);
         return $this->subject('Account Registration')
         ->markdown('emails.welcome')
         ->with('student',$this->student);

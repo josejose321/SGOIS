@@ -1,14 +1,13 @@
 @extends('layouts.employee')
 
-@section('title', 'Categories')
+@section('title', 'Available Programs - SGOIS')
 
 
 @section('content')
     <div class="container-fluid">
-        <div class=" h2 font-weight-bold">Categories</div>
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h3 font-weight-bold">Available Categories</div>
+                <div class="h3 font-weight-bold">Available Programs</div>
             </div>
             <div class="card-body" style="font-size: 14px;">
                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -19,8 +18,8 @@
                         </div>
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th>Category No</th>
-                                <th>Category Name</th>
+                                <th>Program No</th>
+                                <th>Program Name</th>
                                 <th>Type</th>
                                 <th>Field/Team</th>
                                 <th>Allocation</th>
@@ -35,18 +34,18 @@
                                     <th>{{ $category->name }}</th>
                                     <th>{{ $category->type }}</th>
                                     <th>{{ $category->field_team }}</th>
-                                    <th>{{ $category->memberCount }}</th>
-                                    <td><button class="btn-lg btn-secondary" type="button" data-toggle="modal"
+                                    <th>{{ $category->allocation }}</th>
+                                    <td><button class="btn btn-secondary" type="button" data-toggle="modal"
                                         data-target="#admin_viewCategory-{{ $category->categoryNo }}">
                                         <i class="fa fa-pencil"></i></button>
-                                    <button class="btn-lg btn-danger" type="button">
+                                    <button class="btn btn-danger" type="button">
                                         <i class="fa fa-trash-o"></i></button>
                                 </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    
+
                     <center>
                         {!! $categories->links() !!}
                     </center>

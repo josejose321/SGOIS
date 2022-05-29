@@ -17,7 +17,8 @@ class Semester extends Model
         "sem",
         "year",
         "period",
-        'active'
+        'active',
+        'deadline'
     ];
     public function scholarships()
     {
@@ -30,11 +31,15 @@ class Semester extends Model
 
     public function getLatest()
     {
-        return $this->latest()->first();
+        return $this
+        ->where('active',1)
+        ->latest()->first();
     }
     public function getALL()
     {
-        return $this->latest();
+        return $this
+        ->orderBy('active', 'DESC')
+        ->latest();
     }
 
 }

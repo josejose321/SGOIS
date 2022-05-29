@@ -27,9 +27,11 @@ class EmployeeController extends Controller
     //
     private $data;
     private $announcement;
+    private $scholarship;
     public function __construct()
     {
         $this->announcement = new Announcement();
+        $this->scholarship = new Scholarship();
     }
 
     public function index()
@@ -68,17 +70,20 @@ class EmployeeController extends Controller
 
     public function showScholarships()
     {
+        $this->data = [
+            'scholarships' => $this->scholarship->endorser_getPending('Scholarship')->simplePaginate(10)
+        ];
+        // dd($this->scholarship->endorser_getPending('Scholarship')->count());
         return view('Employee.scholarship')
-        ->with('scholarships',Scholarship::where('officeVerification','Pending')
-        ->where('type','Scholarship')
-        ->where('officeCode',Auth::user()->employee->officeCode ?? '')
-        ->latest()
-        ->simplePaginate(10));
+        ->with($this->data);
     }
     public function showDiscounts()
     {
-        return view('Employee.scholarship')
-        ->with('scholarships',Scholarship::where('adminVerification','Pending')->latest()->simplePaginate(10));
+        $this->data = [
+            'scholarships' => $this->scholarship->endorser_getPending('Discount')->simplePaginate(10)
+        ];
+        return view('Employee.discount')
+        ->with($this->data);
     }
     public function showLoans()
     {

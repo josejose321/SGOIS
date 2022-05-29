@@ -12,14 +12,14 @@
                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                     <table class="table my-0" id="dataTable">
                         <div class="col mb-3 w-25 float-right">
-                            <button type="button" class="btn btn-secondary" id="application"><i
+                            <button type="button" class="btn btn-secondary" data-target="#semModal" data-toggle="modal"><i
                                     class="fa fa-bell"></i><span>Open Scholarship Application</span></button>
                         </div>
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th>SemesterCode</th>
                                 <th>SEMESTER</th>
-                                <th>PERIOD</th>
+                                <th>DATE CREATED</th>
                                 <th>STATUS</th>
                                 <th>ACTION</th>
                             </tr>
@@ -29,16 +29,27 @@
                                 <tr>
                                     <td>{{ $semester->semesterCode ?? '' }}</td>
                                     <td>{{ $semester->sem ?? '' }}</td>
-                                    <td>{{ $semester->period ?? '' }}</td>
-                                    <td>@if ($semester->active) Active @else Disabled @endif</td>
+                                    <td>{{ $semester->created_at ?? '' }}</td>
                                     <td>
-                                        <button class="btn btn-lg" type="button" data-toggle="modal"
-                                            data-target="#viewAnnouce-{{ $semester->semesterCode }}"
-                                            style="font-size: 14px;background: var(--bs-gray-600);color: var(--bs-body-bg);"><i
+                                        @if ($semester->active)
+                                            <h6 class="text-success"></i>Active</h6>
+                                        @else
+                                        <h6 class="text-danger"></i>Disabled</h6>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-secondary" type="button" data-toggle="modal"
+                                            data-target="#viewSem-{{ $semester->semesterCode }}"><i
                                                 class="fa fa-pencil"></i> View</button>
-                                        <a href="#"><button class="btn btn-lg" type="button"
-                                                style="font-size: 14px;text-align: center;margin-left: 2px;background: var(--bs-red);color: var(--bs-body-bg);">
-                                                <i class="fa fa-power-off" aria-hidden="true"></i> Deactivate</button></a>
+                                        @if ($semester->active)
+                                            <button class=" btn btn-danger"
+                                                data-target="#deactivate_sem_modal-{{ $semester->semesterCode }}"
+                                                data-toggle="modal"> <i class="fa fa-off"></i>Deactivate</button>
+                                        @else
+                                            <button class=" btn btn-primary"
+                                                data-target="#deactivate_sem_modal-{{ $semester->semesterCode }}"
+                                                data-toggle="modal"> <i class="fa fa-off"></i> Activate</button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,5 +65,7 @@
         </div>
     </div>
     @include('modals.addSem')
+    @include('modals.updateSemester')
+    @include('modals.deactivate_sem')
 
 @endsection

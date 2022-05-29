@@ -5,7 +5,7 @@
 # Account Registration
 
 
-Welcome! Mr./Mrs {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }} {{ $student->middlename ?? '' }}
+Welcome! Mr./Mrs {{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }} {{ $student->user->middlename ?? '' }}
 
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque beatae magni, nobis officiis assumenda adipisci
     ea quisquam cum quis nulla a delectus deleniti, tempore aut veritatis aspernatur nesciunt at dolorum?
@@ -16,9 +16,9 @@ Welcome! Mr./Mrs {{ $student->lastname ?? '' }}, {{ $student->firstname ?? '' }}
 
 # Your Account Information,
 <div>
-   <strong>Student ID: {{ $student->user_id ?? '' }}</strong> <br>
-   <strong>Email: {{ $student->email ?? '' }}</strong> <br>
-   <strong>Password:{{ $student->user_id ?? '' }}</strong> <br>
+   <strong>Student ID: {{ $student->user->user_id ?? '' }}</strong> <br>
+   <strong>Email: {{ $student->user->email ?? '' }}</strong> <br>
+   <strong>Password:{{ $student->user->user_id ?? '' }}</strong> <br>
 </div>
 @component('mail::button', ['url' => 'http://127.0.0.1:8000', 'color'=>'error'])
 Log in to your account

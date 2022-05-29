@@ -73,13 +73,13 @@
                                 class="fa fa-comment-dollar"></i><span> LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i
                                 class="fa fa-graduation-cap"></i><span>LIST OF STUDENTS</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.grantees') }}"><i
                                 class="fa fa-list-alt"></i><span>LIST OF GRANTEES</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}"><i
                                 class="fa fa-list-alt"></i><span>SUMMARY REPORT</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.semester') }}"><i
                                 class="fa fa-list-alt"></i><span>SGO APPLICATION</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories') }}"><i
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.programs') }}"><i
                                 class="fa fa-list-alt"></i><span>SGO PROGRAMS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i
                                 class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
@@ -97,7 +97,6 @@
                         <div class="h4 fw-bold text-light">UNC SCHOLARSHIP AND GRANTS </div>
 
                         <ul class="navbar-nav ms-auto float-right">
-
                             <li class="nav-item dropdown no-arrow ">
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
@@ -161,7 +160,7 @@
 @if (Session::has('success'))
     <script>
         swal({
-            title: "Success!",
+            title: "Session Success!",
             text: "{{ Session::get('success') }}",
             icon: "success",
             button: "ok!",

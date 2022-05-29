@@ -7,15 +7,9 @@
         <div class="card">
             <div class="card-header">
                 <h2>Students</h2> <br>
-                <h3>TOTAL ACTIVE: {{ $total }}</h3>
-                <div class="float-left">
-                    <button class="btn btn-secondary" id="import" type="button">
-                        <i class="fa fa-download"></i>&nbsp; Import Student</button>
-                    <button class="btn btn-danger" type="button" id="addStudent">
-                        <i class="fa fa-plus"></i>&nbsp; Register Student</button>
-                </div>&nbsp;&nbsp;
+                <h3>TOTAL GRANTEES: {{ $total }}</h3>
 
-                <form action="{{ route('admin.students.search') }}" method="post">
+                <form action="" method="">
                     @csrf
                     <div class="col-md-6 input-group float-right">
                         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
@@ -40,7 +34,7 @@
                         @forelse ($students as $student)
                             <tr data-aos="fade-right">
                                 <td> {{ $student->user->student->userNo ?? '' }}</td>
-                                <td> {{ $student->user->user_id ?? '' }}</td>
+                                <td> {{ $student->user->student->user_id ?? '' }}</td>
                                 <td> {{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }}
                                     {{ $student->user->middlename ?? '' }}</td>
                                 <td>

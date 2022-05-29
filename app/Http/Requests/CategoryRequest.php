@@ -29,8 +29,7 @@ class CategoryRequest extends FormRequest
             'name' => 'required',
             'type'=> 'required',
             'field_team'=> 'required',
-            'memberCount'=> 'required',
-            'description' => ''
+            'allocation'=> 'required',
         ];
     }
 }

@@ -61,7 +61,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.scholarhips') }}"><i
                                 class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
                     <li class="nav-item"><a class="nav-link"
-                            href="{{ route('employee.scholarhips') }}"><i
+                            href="{{ route('employee.discounts') }}"><i
                                 class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('employee.scholarhips') }}"><i

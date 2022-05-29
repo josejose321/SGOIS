@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Scholarship extends Model
@@ -58,9 +59,23 @@ class Scholarship extends Model
 
     public function admin_getPending($type)
     {
-        return $this->where('type',$type)
+        return $this
+        ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode)
+        ->where('type',$type)
         ->where('adminVerification','Pending')
         ->latest()->simplePaginate(10);
+    }
+    public function endorser_getPending($type)
+    {
+        return $this
+        ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode)
+        ->where('officeVerification','Pending')
+        ->where('type',$type)
+        ->where('officeCode', Auth::user()->employee->officeCode)
+        // ->whereHas('category', function ($query){
+        //     $query->where('officeCode', Auth::user()->employee->officeCde);
+        // })
+        ->latest();
     }
 
 
@@ -71,25 +86,7 @@ class Scholarship extends Model
             ->where('type',$type)
             ->where('officeCode',$office);
     }
-    // public function countGrantees($office, $type)
-    // {
-    //     return $this->select('scholarships.*')
-    //         ->join('categories','categories.categoryNo','scholarships.categoryNo')
-    //         ->where('scholarships.officeVerification','Approved')
-    //         ->where('scholarships.adminVerification','Approved')
-    //         ->where('categories.type',$type)
-    //         ->where('scholarships.officeCode',$office)
-    //         ->count();
-    // }
 
-    // public function getByType($type)
-    // {
-    //     return $this->select('scholarships.*')
-    //     ->join('categories','categories.categoryNo','scholarships.categoryNo')
-    //         ->where('scholarships.officeVerification','Approved')
-    //         ->where('scholarships.adminVerification','Approved')
-    //         ->where('categories.type',$type)->get();
-    // }
 
     public function getPendingDeansVerification($departmentCode)
     {

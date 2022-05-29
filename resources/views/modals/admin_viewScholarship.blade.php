@@ -12,6 +12,18 @@
                         </button>
                     </div>
                     <div class="modal-body">
+
+                        <div class="form-row">
+                            <div class="col-md-5">
+                                <label for="">Program Type</label>
+                                <input type="text" class="form-control" value="{{ $scholarship->type ?? '' }}">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="">Name</label>
+                                <input type="text" class="form-control" value="{{ $scholarship->student->lastname ?? '' }},
+                                {{ $scholarship->student->firstname ?? '' }} {{ $scholarship->student->middlename ?? '' }}">
+                            </div>
+                        </div>
                         Type: {{ $scholarship->type }} <br>
                         Name of Applicant: {{ $scholarship->student->lastname }},
                         {{ $scholarship->student->firstname }} {{ $scholarship->student->middlename }} <br>

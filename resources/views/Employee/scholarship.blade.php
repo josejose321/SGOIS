@@ -23,6 +23,7 @@
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th>SCHOLARSHIP NO</th>
+                                <th>SCHOLARSHIP</th>
                                 <th>STUDENT ID</th>
                                 <th>NAME</th>
                                 <th>STATUS</th>
@@ -30,20 +31,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($scholarships as $scholarship)
+                            @forelse ($scholarships as $scholarship)
                                 <tr data-aos="fade-right">
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
+                                    <td>{{ $scholarship->category->name ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->user_id ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}
                                         {{ $scholarship->student->user->middlename }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
-                                    <td><a class="btn-lg btn-secondary"
+                                    <td><a class="btn btn-secondary"
                                             href="{{ route('employee.application.view', $scholarship->scholarshipNo) }}"
                                             type="button">
                                             <i class="fa fa-pencil"></i>Preview</a>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr><td>No Pending Request</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <center>

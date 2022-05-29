@@ -5,26 +5,29 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow">
-            <div class="card-header py-3">
+            <div class="card-header">
                 <div class="h3 font-weight-bold">Announcements</div>
+                <div class="col-md-4 float-right">
+                    <button type="button" class="btn btn-secondary" id="announce"><i
+                            class="fa fa-bell"></i><span>COMPOSE ANNOUNCEMENT</span></button>
+                </div> <br>
             </div>
             <div class="card-body" style="font-size: 14px;">
+
                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                     <table class="table my-0" id="dataTable">
-                        <div class="col mb-3 w-25 float-right">
-                            <button type="button" class="btn btn-secondary" id="announce"><i
-                                    class="fa fa-bell"></i><span>COMPOSE ANNOUNCEMENT</span></button>
-                        </div>
+
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th>Announcement No.</th>
                                 <th>SUBJECT</th>
                                 <th>ADMIN</th>
+                                <th>DATE CREATED</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($announcements as $announcement)
+                            @forelse ($announcements as $announcement)
                                 <tr>
                                     <td>{{ $announcement->id ?? '' }}</td>
                                     <td>{{ $announcement->subject ?? '' }}</td>
@@ -32,6 +35,7 @@
                                         {{ $announcement->employee->user->firstname }}
                                         {{ $announcement->employee->user->middlename }}</p>
                                     </td>
+                                    <td>{{ $announcement->created_at }}</td>
                                     <td>
                                         <button class="btn btn-primary" type="button" data-toggle="modal"
                                             data-target="#viewAnnouce-{{ $announcement->id }}">
@@ -41,7 +45,9 @@
                                                 <i class="fa fa-trash-o"></i></button></a>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr><td>No Announcements</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <center>

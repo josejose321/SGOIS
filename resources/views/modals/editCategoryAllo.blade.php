@@ -1,4 +1,4 @@
-@foreach ($allocations as $category)
+@foreach ($reports as $category)
 <div class="modal fade" id="editAllocation-{{ $category->categoryNo }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

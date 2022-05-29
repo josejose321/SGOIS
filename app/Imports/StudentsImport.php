@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Mail\RegistrationMail;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -19,23 +20,25 @@ class StudentsImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        if(!Student::where('user_id', $row['student_no'])->exists())
+        if(!User::where('user_id', $row['student_no'])->exists())
         {
-            $student = new Student([
+            $student = User::create([
                 //
+
                 'user_id'=>$row['student_no'],
                 'firstname'=>$row['firstname'],
                 'middlename'=>$row['middlename'],
                 'lastname'=>$row["lastname"],
                 'email'=>$row['email'],
-                'departmentCode'=>$row['department'],
                 'phone'=>$row['phone'],
-                'course'=>$row['course'],
-                'year'=>$row['year'],
-                'avatar'=>'defaultAvatar.jpg',
+                'password'=>Hash::make($row['student_no'])
+            ])->user()->create([
+                'year'=> $row['year']
             ]);
-            Mail::to($student->email)->send(new RegistrationMail($student));
+            return new RegistrationMail($student);
+            Mail::to($student->user->email)->send(new RegistrationMail($student));
             return $student;
         }
+        return null;
     }
 }

@@ -76,4 +76,17 @@ class Category extends Model
         }
         return $categoryData;
     }
+
+    public function searchPrograms($term)
+    {
+        return $this->select('categories.*')
+        ->join('offices','categories.officeCode','offices.officeCode')
+        ->orWhere('categories.name','LIKE','%'.$term.'%')
+        ->orWhere('categories.type','LIKE','%'.$term.'%')
+        ->orWhere('categories.field_team','LIKE','%'.$term.'%')
+        ->orWhere('offices.name','LIKE','%'.$term.'%')
+        ->orWhere('offices.description','LIKE','%'.$term.'%')
+        ;
+    }
+
 }

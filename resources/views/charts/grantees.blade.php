@@ -1,5 +1,5 @@
 <script>
-    var year = ['SPORTS DEV','CULTURE AND ARTS','HUMAN RESOURCE','DISCOUNTS','OTHERS']
+    var year = ['SPORTS DEV SCHOLARSHIPS','CULTURE AND ARTS SCHOLARSHIPS','HUMAN RESOURCE SCHOLARHIP','DISCOUNTS','EXTERNAL GRANTS']
     var data = JSON.parse('{{ json_encode($chartResult ?? '') }}');
     var barChartData = {
         labels: year,

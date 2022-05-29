@@ -13,16 +13,16 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th>SCHOLARSHIP NO</th>
-                                <th>STUDENT ID</th>
-                                <th>NAME</th>
-                                <th>EMAIL</th>
-                                <th>OFFICE STATUS</th>
-                                <th>ACTION</th>
+                                <th scope="col">SCHOLARSHIP NO</th>
+                                <th scope="col">STUDENT ID</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">OFFICE STATUS</th>
+                                <th scope="col">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($scholarships as $scholarship)
+                            @forelse ($scholarships as $scholarship)
                                 <tr>
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
                                     <td>{{ $scholarship->student_no ?? '' }}</td>
@@ -34,7 +34,9 @@
                                         <i class="fa fa-pencil"></i>Preview</a>
                                 </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                    <td>No Pending Request</td>
+                            @endforelse
                         </tbody>
                     </table>
                     <center>
