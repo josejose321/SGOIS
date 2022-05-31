@@ -45,6 +45,8 @@ class AdminController extends Controller
 
     public function __construct()
     {
+
+
         // $this->middleware(['auth','isAdmin']);
         // dd($scholar->countApproved('Scholarship'));
         $this->scholarship = new Scholarship();
@@ -71,6 +73,8 @@ class AdminController extends Controller
 
 
 
+        $this->filterSemester($this->semester->getActive()->get());
+        //
     }
 
 
@@ -142,7 +146,9 @@ class AdminController extends Controller
             'total'=> Student::count(),
             'departments' => Department::all(),
             'courses'=> Course::all(),
-            'reports' => $this->category->getSummaryReport()
+            'reports' => $this->category->getSummaryReport(),
+            'offices' =>Office::all(),
+            'externals' => Category::where('type','External')->get()
         ];
         //auth()->admin
 
@@ -155,7 +161,7 @@ class AdminController extends Controller
     {
         //auth()->admin
         $this->data =[
-            'scholarships'=> $this->scholarship->admin_getPending('Scholarship')
+            'scholarships'=> $this->scholarship->admin_getPending('Scholarship')->simplePaginate(10)
         ];
 
         return view('Admin.scholarship')->with($this->data);
@@ -174,7 +180,7 @@ class AdminController extends Controller
     public function showLoans()
     {
         $this->data = [
-            'scholarships'=> $this->scholarship->admin_getPending('Loan'),
+            'scholarships'=> $this->scholarship->admin_getPending('Loan')->simplePaginate(10),
         ];
         return view('Admin.loan')
         ->with($this->data);
@@ -182,7 +188,7 @@ class AdminController extends Controller
     public function showDiscounts()
     {
         $this->data = [
-            'scholarships'=>$this->scholarship->admin_getPending('Discount')
+            'scholarships'=>$this->scholarship->admin_getPending('Discount')->simplePaginate(10)
         ];
         return view('Admin.discount')
         ->with($this->data);
@@ -227,7 +233,7 @@ class AdminController extends Controller
     {
 
         //  return new ScholarshipMail;
-        if($scholarship->office->officeCode != 'UNC-SGO')
+        if($scholarship->category->officeCode != 'UNC-SGO')
         {
             if( $scholarship->officeVerification == 'Pending')
                 return back()->with('error','Verify from Endorser Office first!');
@@ -333,17 +339,26 @@ class AdminController extends Controller
     }
     public function deactivateSem(Request $request, Semester $semester)
     {
-        if($semester->active === 1)
+        if($semester->active == 1)
         {
             $semester->update(['active'=>0]);
             return back()->withSuccess('You Successfully Deactivate Semester');
         }
         else
         {
-            $semester->update(['active'=>1]);
-            return back()->withSuccess('You Successfully Activate Semester');
+            return back()->with('error','Semester Already Disabled');
         }
 
+    }
+    public function extendSem(Request $request, Semester $semester)
+    {
+
+        $semester->update([
+            'deadline'=> $request->deadline,
+            'active' => 1
+        ]);
+        // dd($semester->deadline);
+        return back()->withSuccess('Semester Extended');
     }
     public function showReport()
     {
@@ -407,8 +422,29 @@ class AdminController extends Controller
     public function storePrograms(CategoryRequest $request)
     {
         // dd($request->validated());
-        Category::create($request->validated());
+        Category::create([
+            'officeCode' => $request->officeCode,
+            'name' => $request->name,
+            'type' => $request->type,
+            'field_team' => $request->field_team,
+            'allocation' => $request->allocation,
+            'instruction' => $request->instruction,
+
+        ]);
         return back()->withSuccess('New Scholarship Program Added to database');
+    }
+    public function updatePrograms(CategoryRequest $request, Category $category)
+    {
+        // dd($request->validated());
+        $category->update([
+            'officeCode' => $request->officeCode,
+            'name' => $request->name,
+            'type' => $request->type,
+            'field_team' => $request->field_team,
+            'allocation' => $request->allocation,
+            'instruction' => $request->instruction,
+        ]);
+        return back()->withSuccess('Program Successfully updated');
     }
 
     public function searchPrograms(Request $request)
@@ -419,6 +455,28 @@ class AdminController extends Controller
         ];
         return view('Admin.categories')
         ->with($this->data);
+    }
+    private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
+    {
+        $path = $file->hashName();
+        $file->storeAs('public/'.$directory,$path);
+        return $directory . $path;
+    }
+
+    private function filterSemester($semesters)
+    {
+        foreach($semesters as $semester)
+        {
+            $to =Carbon::parse($semester->deadline);
+            $from = Carbon::parse($semester->created_at);
+            $days =$from->diffInDays($to,false);
+            if($days < 1)
+            {
+                $semester->update(['active'=>0]);
+            }
+        }
+
+
     }
 
 
