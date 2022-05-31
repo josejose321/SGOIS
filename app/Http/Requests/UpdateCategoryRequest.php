@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ScholarshipRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ScholarshipRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,13 +24,9 @@ class ScholarshipRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            "type"=>'required',
-            "semesterCode"=>'required',
-            "categoryNo"=>'required',
-            "discount"=>'required',
-            "requirement"=>"required|mimetypes:application/pdf|max:10000",
-            "photo"=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'field_team'=> 'required',
+            'allocation'=> 'required',
+            'instruction' => ''
         ];
     }
 }

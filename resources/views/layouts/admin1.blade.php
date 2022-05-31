@@ -72,7 +72,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.loans') }}"> <i
                                 class="fa fa-comment-dollar"></i><span> LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.students') }}"><i
-                                class="fa fa-graduation-cap"></i><span>LIST OF STUDENTS</span></a></li>
+                                class="fa fa-graduation-cap"></i><span>STUDENTS LIST</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.grantees') }}"><i
                                 class="fa fa-list-alt"></i><span>LIST OF GRANTEES</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.reports') }}"><i
@@ -84,7 +84,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i
                                 class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                <div class="text-center d-none d-md-inline text-light"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
@@ -92,7 +92,7 @@
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand shadow mb-4 topbar static-top"
                     style="background-color: #334756">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
+                    <div class="container-fluid"><button class="btn text-light d-md-none rounded-circle me-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <div class="h4 fw-bold text-light">UNC SCHOLARSHIP AND GRANTS </div>
 

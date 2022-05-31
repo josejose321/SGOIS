@@ -19,7 +19,7 @@
                         <label for="discount" class="fw-bold"> Discount</label>
                         <select class="form-select form-select-md mb-3" id="discount" name="discount"
                             aria-label="Default select example">
-                            <option value="{{ $scholarship->discount }}">{{ $scholarship->discount }} Discount
+                            <option value="{{ $scholarship->discount?? '' }}">{{ $scholarship->discount ?? '' }} Discount
                             </option>
                             <option value="10%">15% Discount</option>
                             <option value="25%">25% Discount</option>

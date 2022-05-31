@@ -16,7 +16,6 @@ class Semester extends Model
         "semesterCode",
         "sem",
         "year",
-        "period",
         'active',
         'deadline'
     ];
@@ -40,6 +39,12 @@ class Semester extends Model
         return $this
         ->orderBy('active', 'DESC')
         ->latest();
+    }
+
+    public function getActive()
+    {
+        return $this
+        ->where('active',1);
     }
 
 }

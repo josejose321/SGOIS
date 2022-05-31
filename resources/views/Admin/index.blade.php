@@ -8,20 +8,24 @@
             DASHBOARD
         </h2>
 
-        <div class="btn-group">
-            <button class="btn btn-secondary float-left" type="button" id="addStudent">
+        <div class="btn-group btn-group-lg d-flex justify-content-center">
+            <button class="btn btn-secondary" type="button" id="addStudent">
                 <i class="fa fa-plus"></i>Register Student</button>
-            <button class="btn btn-secondary float-left " id="import" type="button">
-                <i class="fa fa-download"></i>IMPORT STUDENTS</button>
-            <button class="btn btn-secondary float-left" type="button" id="addStudent">
-                <i class="fa fa-plus"></i>Register Student</button>
+            <button class="btn btn-secondary " id="import" type="button">
+                <i class="fa fa-download"></i>Import Student</button>
+            <button class="btn btn-secondary" type="button" id="addEndorser">
+                <i class="fa fa-plus"></i>Register Endorser</button>
+            <button class="btn btn-secondary" type="button" data-target="#externalModal" data-toggle="modal">
+                <i class="fa fa-external-link"></i>External Summary</button>
+            <button class="btn btn-secondary" type="button" data-target="#masterListModal" data-toggle="modal">
+                <i class="fa fa-list"></i>Import External Masterlist </button>
         </div>
 
 
     </div> <br>
 
-    <div class="form-row">
-        <div class=" card bg-secondary text-light p-1 m-0" style="width: 18rem;">
+    <div class="col-md-12 d-flex justify-content-center" data-aos="fade-up">
+        <div class=" card bg-secondary col-md-3 text-light p-1 m-1" style="width: 18rem;">
             <div class="card-body">
                 <center>
                     <h5 class="card-title"><i class="fa fa-graduation-cap"></i> Scholarships</h5>
@@ -29,7 +33,7 @@
                 </center>
             </div>
         </div>
-        <div class="card bg-secondary text-light p-1 m-0" style="width: 18rem;">
+        <div class="card bg-secondary col-md-3 text-light p-1 m-1" style="width: 18rem;">
             <div class="card-body">
                 <center>
                     <h5 class="card-title"><i class="fa fa-graduation-cap"></i> Discounts</h5>
@@ -37,7 +41,7 @@
                 </center>
             </div>
         </div>
-        <div class="card bg-secondary text-light p-1 m-0" style="width: 18rem;">
+        <div class="card bg-secondary col-md-3 text-light p-1 m-1" style="width: 18rem;">
             <div class="card-body">
                 <center>
                     <h5 class="card-title"> <i class="fa fa-graduation-cap"></i> Loans</h5>
@@ -45,7 +49,7 @@
                 </center>
             </div>
         </div>
-        <div class="card bg-secondary text-light p-1 m-0" style="width: 18rem;">
+        <div class="card bg-secondary col-md-3 text-light p-1 m-1" style="width: 18rem;">
             <div class="card-body">
                 <center>
                     <h5 class="card-title"><i class="fa fa-graduation-cap"></i> External Grants</h5>
@@ -54,7 +58,7 @@
             </div>
         </div>
     </div>
-    <canvas id="canvas" height="450" width="1200"></canvas>
+    <canvas data-aos="fade-up" id="canvas" height="450" width="1200"></canvas>
 
 
     <br>
@@ -107,6 +111,9 @@
     @include('modals.addStudent')
     @include('modals.addSem')
     @include('modals.addStudent')
+    @include('modals.addEndorser')
     @include('modals.import')
+    @include('modals.importMasterList')
+    @include('modals.externalSummary')
 
 @endsection

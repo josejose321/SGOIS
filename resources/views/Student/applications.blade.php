@@ -59,10 +59,10 @@
                             @foreach ($scholarships as $scholarship)
                                 <tr>
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
-                                    <td>{{ $scholarship->office->name }}</td>
-                                    <td>{{ $scholarship->type }}</td>
-                                    <td>{{ $scholarship->officeVerification }}</td>
-                                    <td>{{ $scholarship->adminVerification }}</td>
+                                    <td>{{ $scholarship->category->office->name ?? '' }}</td>
+                                    <td>{{ $scholarship->type ?? '' }}</td>
+                                    <td>{{ $scholarship->officeVerification ?? '' }}</td>
+                                    <td>{{ $scholarship->adminVerification ?? '' }}</td>
                                     <td><button class="btn btn-secondary" type="button">
                                             <i class="fa fa-eye"></i>Preview</button>
                                     </td>

@@ -25,6 +25,7 @@
                             <th>No#</th>
                             <th>STUDENT ID</th>
                             <th>NAME</th>
+                            <th>Deparment</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -34,9 +35,10 @@
                         @forelse ($students as $student)
                             <tr data-aos="fade-right">
                                 <td> {{ $student->user->student->userNo ?? '' }}</td>
-                                <td> {{ $student->user->student->user_id ?? '' }}</td>
+                                <td> {{ $student->user->user_id ?? '' }}</td>
                                 <td> {{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }}
                                     {{ $student->user->middlename ?? '' }}</td>
+                                <td>{{ $student->course->department->name ?? '' }}</td>
                                 <td>
                                     <button type="button" class="btn btn-secondary" data-toggle="modal"
                                         data-target="#viewStudent-{{ $student->student_no}}"><i class="fa fa-eye"></i>

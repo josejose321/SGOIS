@@ -69,7 +69,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.categories') }}"><i
                                 class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                <div class="text-center d-none d-md-inline text-light"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>

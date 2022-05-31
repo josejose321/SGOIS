@@ -59,6 +59,12 @@ class StudentController extends Controller
         $this->data = [
             'offices' => Office::all(),
             'categories'=> Category::all(),
+            'academics' => Category::where('type','Academic')->get(),
+            'sdo_office'=> Office::find('UNC-SDO'),
+            'hr_office' => Office::find('UNC-HR'),
+            'culture_office' =>Office::find('UNC-CULTURE&ARTS'),
+            'discounts' => Category::where('type','Discount')->get(),
+            'externals' => Category::where('type','External')->get( ),
             'sem'=> $this->semester->getLatest(),
             'announcements' => $this->announcement->getLatest()
         ];
@@ -66,11 +72,10 @@ class StudentController extends Controller
         ->with($this->data);
     }
 
-    function edit(Student $student)
+    function edit()
     {
         // dd($student->user);
         return view("Student.edit")
-        ->with(compact('student')) //auth()->student()
         ->with('courses',Course::all())
         ->with('departments',Department::all());
     }
@@ -94,6 +99,7 @@ class StudentController extends Controller
     }
     public function applyScholarship(ScholarshipRequest $request, Student $student)
     {
+        // dd($request->validated());
         if($student->whereHas('scholarships', function($query){
             $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
             ->orWhere('officeVerification', 'Approved')
@@ -104,9 +110,9 @@ class StudentController extends Controller
             return back()->with('error', 'Cannot Process Scholarship Right now\n You have Applied Scholarship or Pending Scholarship');
         }
 
+
         $student->scholarships()->create([
             "type" => $request->type,
-            "officeCode"=>$request->officeCode,
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
             "discount"=> $request->discount,
@@ -141,7 +147,7 @@ class StudentController extends Controller
     {
         $this->data = [
             'sem'=> $this->semester->getLatest(),
-            'office' => Office::find('UNC-SDO'),
+            'sdo_office' => Office::find('UNC-SDO'),
             'categories'=> Category::where('field_team','Varsity')->get(),
         ];
         // dd(Student::find(35));
@@ -152,7 +158,7 @@ class StudentController extends Controller
     {
         $this->data = [
             'sem'=> $this->semester->getLatest(),
-            'office' => Office::find('UNC-CULTURE&ARTS'),
+            'culture_office' => Office::find('UNC-CULTURE&ARTS'),
         ];
         // dd(Student::find(35));
         return view('Student.culture')
@@ -171,10 +177,10 @@ class StudentController extends Controller
     }
     public function showDiscounts()
     {
+
         $this->data = [
             'sem'=> $this->semester->getLatest(),
-            'office' => Office::find('UNC-CULTURE&ARTS'),
-            'discounts' => Category::where('type','Dsicount'),
+            'discounts' => Category::where('type','Discount')->get(),
         ];
         // dd(Student::find(35));
         return view('Student.discounts')

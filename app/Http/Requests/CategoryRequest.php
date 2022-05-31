@@ -30,6 +30,7 @@ class CategoryRequest extends FormRequest
             'type'=> 'required',
             'field_team'=> 'required',
             'allocation'=> 'required',
+            'instruction' => ''
         ];
     }
 }

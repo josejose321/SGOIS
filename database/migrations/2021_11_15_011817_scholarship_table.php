@@ -20,7 +20,6 @@ class ScholarshipTable extends Migration
             $table->increments("scholarshipNo");
             $table->enum('type',['Scholarship','Discount','Grant','Loan'])->default('Scholarship');//will remove later
             $table->unsignedBigInteger('student_no')->index();
-            $table->string('officeCode',20)->index();//will remove later
             $table->string('semesterCode',20)->index();
             $table->unsignedBigInteger('categoryNo')->index()->nullable();
             $table->string('discount')->default('NA');
@@ -35,11 +34,6 @@ class ScholarshipTable extends Migration
 
             $table->foreign('student_no')->references('student_no')->on('students')->onDelete('cascade');
 
-            $table->foreign('officeCode')
-            ->references('officeCode')
-            ->on('offices')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
 
             $table->foreign('semesterCode')
             ->references('semesterCode')

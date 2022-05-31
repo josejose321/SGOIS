@@ -27,8 +27,8 @@
                         Type: {{ $scholarship->type }} <br>
                         Name of Applicant: {{ $scholarship->student->lastname }},
                         {{ $scholarship->student->firstname }} {{ $scholarship->student->middlename }} <br>
-                        Endorser Office: {{ $scholarship->office->name }} <br>
-                        Endorser Status: {{ $scholarship->officeVerification }} <br>
+                        Endorser Office: {{ $scholarship->category->office->name ?? '' }} <br>
+                        Endorser Status: {{ $scholarship->officeVerification ?? '' }} <br>
 
 
                         <div class="row">

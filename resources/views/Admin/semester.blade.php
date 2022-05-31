@@ -3,6 +3,9 @@
 
 
 @section('content')
+    @php
+    use Carbon\Carbon;
+    @endphp
     <div class="container-fluid" data-aos="fade-right">
         <div class="card shadow">
             <div class="card-header py-3">
@@ -17,8 +20,9 @@
                         </div>
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th>SemesterCode</th>
                                 <th>SEMESTER</th>
+                                <th>REMAINING DAY{{ '(s)' }}</th>
+                                <th>DEADLINE</th>
                                 <th>DATE CREATED</th>
                                 <th>STATUS</th>
                                 <th>ACTION</th>
@@ -27,29 +31,36 @@
                         <tbody>
                             @foreach ($semesters ?? '' as $semester)
                                 <tr>
-                                    <td>{{ $semester->semesterCode ?? '' }}</td>
                                     <td>{{ $semester->sem ?? '' }}</td>
-                                    <td>{{ $semester->created_at ?? '' }}</td>
+
+                                    <td>@php
+                                        $to = Carbon::parse($semester->deadline);
+                                        $from = Carbon::parse($semester->created_at);
+                                        $days = $from->diffInDays($to, false);
+                                    @endphp
+
+                                        @if ($days < 1)
+                                            <p class="text-danger"><i class="fa fa-hourglass-end"></i>Ended</p>
+                                        @else
+                                            {{ $days }} {{ 'Day(s) remaining' }}
+                                        @endif
+                                    </td>
+                                    <td>{{ Carbon::parse($semester->deadline)->format('d/m/Y') }}</td>
+                                    <td>{{ Carbon::parse($semester->created_at)->format('d/m/Y') }}</td>
                                     <td>
                                         @if ($semester->active)
                                             <h6 class="text-success"></i>Active</h6>
                                         @else
-                                        <h6 class="text-danger"></i>Disabled</h6>
+                                            <h6 class="text-danger"></i>Disabled</h6>
                                         @endif
                                     </td>
                                     <td>
                                         <button class="btn btn-secondary" type="button" data-toggle="modal"
                                             data-target="#viewSem-{{ $semester->semesterCode }}"><i
-                                                class="fa fa-pencil"></i> View</button>
-                                        @if ($semester->active)
-                                            <button class=" btn btn-danger"
-                                                data-target="#deactivate_sem_modal-{{ $semester->semesterCode }}"
-                                                data-toggle="modal"> <i class="fa fa-off"></i>Deactivate</button>
-                                        @else
-                                            <button class=" btn btn-primary"
-                                                data-target="#deactivate_sem_modal-{{ $semester->semesterCode }}"
-                                                data-toggle="modal"> <i class="fa fa-off"></i> Activate</button>
-                                        @endif
+                                                class="fa fa-pencil"></i> Extend</button>
+                                        <button class=" btn btn-danger"
+                                            data-target="#deactivate_sem_modal-{{ $semester->semesterCode }}"
+                                            data-toggle="modal"> <i class="fa fa-off"></i>Deactivate</button>
                                     </td>
                                 </tr>
                             @endforeach

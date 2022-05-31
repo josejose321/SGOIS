@@ -37,8 +37,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     @yield('background')
 </head>
 
@@ -46,11 +46,11 @@
     <div class="container-fluid bg-dark">
         <nav class="navbar navbar-dark navbar-expand-lg p-1 m-0 h-100 animate__animated animate__fadeIn">
             <div class="container">
-                <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                <button data-bs-toggle="collapse" class="navbar-toggler text-light" data-bs-target="#navcol-1">
                     <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
                 </button>
                 <a href="{{ route('student.index') }}"><img src="{{ asset('unc-logo.png') }}"
-                    style="width: 70px;height: 70px;"></a>
+                        style="width: 70px;height: 70px;"></a>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item m-3 fw-bold"><a class="nav-link"
@@ -59,13 +59,13 @@
                         </li>
                         <li class="nav-item m-3 fw-bold"><a class="nav-link"
                                 href="{{ route('student.scholarships') }}">&nbsp;
-                                <i class="fa fa-book-reader"></i> SCHOLARSHIPS</a></li>
-                        <li class="nav-item m-3 fw-bold"><a class="nav-link"
+                                <i class="fa fa-book-reader"></i> SGO PROGRAMS</a></li>
+                        {{-- <li class="nav-item m-3 fw-bold"><a class="nav-link"
                                 href="{{ route('student.loan.show') }}">&nbsp;
                                 <i class="fa fa-dollar" aria-hidden="true"></i> LOAN</a></li>
                         <li class="nav-item m-3 fw-bold"><a class="nav-link"
                                 href="{{ route('student.discount.show') }}">
-                                <i class="fa fa-tag"></i> DISCOUNTS</a></li>
+                                <i class="fa fa-tag"></i> DISCOUNTS</a></li> --}}
                     </ul>
                     <ul class="navbar-nav ms-auto m-3 fw-bold">
                         <li class="nav-item fw-bold"><a class="nav-link"
@@ -81,11 +81,15 @@
                                     src="{{ Storage::url('avatar/' . Auth::user()->avatar ?? '') }}"
                                     style="width: 32px;height: 32px;"></a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('student.edit', Auth::user()->student) }}"><i
+                                <a class="dropdown-item"
+                                    href="{{ route('student.edit', Auth::user()->student) }}"><i
                                         class="fa fa-user" aria-hidden="true"></i> My Profile&nbsp;</a>
-                                <a class="dropdown-item" href="{{ route('student.applications.view') }}"><i class="fa fa-book"></i></i> My Application</a>
-                                <a class="dropdown-item" href="{{ route('student.show.password') }}"><i class="fa fa-key"></i></i> Change Password</a>
-                                <a class="dropdown-item" href="{{ route('student.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a class="dropdown-item" href="{{ route('student.applications.view') }}"><i
+                                        class="fa fa-book"></i></i> My Application</a>
+                                <a class="dropdown-item" href="{{ route('student.show.password') }}"><i
+                                        class="fa fa-key"></i></i> Change Password</a>
+                                <a class="dropdown-item" href="{{ route('student.logout') }}"><i
+                                        class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -94,7 +98,7 @@
         </nav>
     </div>
 
-    <main> @yield('content')</main>
+    @yield('content')
 
 
 

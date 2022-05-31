@@ -70,6 +70,7 @@ class EmployeeController extends Controller
 
     public function showScholarships()
     {
+        // dd($this->scholarship->endorser_getPending('Scholarship')->count());
         $this->data = [
             'scholarships' => $this->scholarship->endorser_getPending('Scholarship')->simplePaginate(10)
         ];
@@ -79,6 +80,7 @@ class EmployeeController extends Controller
     }
     public function showDiscounts()
     {
+
         $this->data = [
             'scholarships' => $this->scholarship->endorser_getPending('Discount')->simplePaginate(10)
         ];

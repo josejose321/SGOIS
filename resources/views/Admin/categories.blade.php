@@ -13,6 +13,7 @@
                 <form action="{{ route('admin.programs.search') }}" method="post">
                     @csrf
                     <div class="col-md-5 input-group float-right">
+                        <a href="{{ route('admin.programs') }}" class="btn btn-outline-secondary">Reset</a>
                         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                             aria-describedby="search-addon" name="term" />
                         <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> search</button>
@@ -41,10 +42,10 @@
                                     <th>{{ $category->categoryNo }}</th>
                                     <th>{{ $category->name }}</th>
                                     <th>
-                                        @if ($category->type ?? '' == 'Academic' || $category->type ?? '' =='Administrative' || $category->type ?? '' =='External')
-                                            {{ $category->type ?? '' }} {{ 'Scholarship' }}
-                                        @else
+                                        @if ($category->type === 'Discount')
                                             {{ $category->type ?? '' }}
+                                        @else
+                                            {{ $category->type ?? '' }} {{ 'Scholarship' }}
                                         @endif
                                     </th>
                                     <th>{{ $category->field_team }}</th>
@@ -65,6 +66,6 @@
         </div>
     </div>
     @include('modals.addCategory')
-    @include('modals.viewCategory')
+    @include('modals.update_category')
 
 @endsection

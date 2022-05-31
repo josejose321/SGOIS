@@ -18,6 +18,7 @@ class Category extends Model
         'type',
         'field_team',
         'allocation',
+        'instruction'
     ];
 
     public function office()

@@ -2,7 +2,7 @@
 
 @section('content')
 
-@section('title', 'Sports Development Scholarships')
+@section('title', 'Discount Programs')
 @section('background')
     <style>
         body,
@@ -22,6 +22,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            background-attachment: fixed;
         }
 
     </style>
@@ -54,5 +55,5 @@
     </div>
 </main>
 
-@include('modals.addVarsity')
+@include('modals.addDiscount')
 @endsection

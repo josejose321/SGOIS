@@ -1,17 +1,17 @@
 <form action="{{ route('admin.student.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="modal fade bd-example-modal-lg" id="studentmodal" tabindex="-1" role="dialog"
+    <div class="modal fade bd-example-modal-lg" id="endorserModal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-light">
-                    <h3>Student Registration Form</h3>
+                    <h3>Endorser Registration Form</h3>
                 </div>
-                <div class="modal-body bg-light">
+                <div class="modal-body bg-white">
                     <div class="form-row ">
                         <div class="form-group col-md-5">
-                            <label for="id"> Student Number</label>
-                            <input type="text" name="user_id" class="form-control" placeholder="Student No"
+                            <label for="id"> Employee ID</label>
+                            <input type="text" name="user_id" class="form-control" placeholder="Employee ID"
                                 maxlength="8" value="{{ old('user_id') }}">
                             @if ($errors->has('user_id'))
                                 <small class="input-error text-danger">{{ $errors->first('user_id') }}</small>
@@ -65,43 +65,17 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-5">
-                            <label for="year"> Select Year</label>
-                            <select class="form-select form-select-md mb-3" name="year"
-                                aria-label="Default select example">
-                                <option value="1st year">1st year</option>
-                                <option value="2nd year">2nd year</option>
-                                <option value="3rd year">3rd year</option>
-                                <option value="4th year">4th year</option>
-                                <option value="5th year">5th year</option>
-                                @for ($grade = 1; $grade < 13; $grade++)
-                                    <option value="Grade {{ $grade }}">Grade {{ $grade }}</option>
-                                @endfor
-                            </select>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="id"> Course</label>
+                            <label for="id">Assign Office</label>
                             <select class="form-select form-select mb-3" name="courseNo"
                                 aria-label="Default select example">
-                                <option selected>Select Course</option>
-                                @foreach ($courses as $course)
-                                    <option value="{{ $course->courseNo ?? '' }}">{{ $course->name ?? '' }}
+                                @foreach ($offices as $office)
+                                    <option value="{{ $office->officeCode ?? '' }}">{{ $office->name ?? '' }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="form-row">
 
-                        <div class="form-group col-md-5">
-                            <label for="id"> Parent Name</label>
-                            <input type="text" name="parentName" class="form-control"
-                                placeholder="Lastname,Firstname, MI" maxlength="11" value="{{ old('parentName') }}">
-                            @if ($errors->has('parentName'))
-                                <small class="input-error text-danger">{{ $errors->first('parentName') }}</small>
-                            @endif
-                        </div>
-
-                    </div>
                 </div>
                 <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -114,9 +88,9 @@
 
 
 <script>
-    $('#addStudent').on('click', function(e) {
+    $('#addEndorser').on('click', function(e) {
         e.preventDefault();
-        $('#studentmodal').modal();
+        $('#endorserModal').modal();
         console.log('hello');
     });
 </script>

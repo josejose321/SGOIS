@@ -23,6 +23,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         body,
         html {
@@ -60,12 +61,35 @@
 @if ($errors->any())
     <script>
         swal({
-            title: "Invalid Action!",
-            text: "Check your inputs",
+            title: "Session Invalid!",
+            text: "Please Check your inputs",
             icon: "error",
             button: "ok!",
         });
     </script>
 @endif
+@if (Session::has('success'))
+    <script>
+        swal({
+            title: "Session Success!",
+            text: "{{ Session::get('success') }}",
+            icon: "success",
+            button: "ok!",
+        });
+    </script>
+@endif
+@if (Session::has('error'))
+    <script>
+        swal({
+            title: "Invalid Action!",
+            text: "{{ Session::get('error') }}",
+            icon: "error",
+            button: "ok!",
+        });
+    </script>
+@endif
+
+{{ Session::forget('error') }}
+{{ Session::forget('success') }}
 
 </html>

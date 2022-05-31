@@ -17,7 +17,6 @@ class Scholarship extends Model
     protected $fillable = [
         "student_no",
         "type",
-        "officeCode",
         "semesterCode",
         "categoryNo",
         "discount",
@@ -35,10 +34,6 @@ class Scholarship extends Model
     {
         return $this->belongsTo(Semester::class,"semesterCode","semesterCode");
     }
-    public function office()
-    {
-        return $this->belongsTo(Office::class,"officeCode","officeCode");
-    }
     public function category()
     {
         return $this->belongsTo(Category::class,'categoryNo','categoryNo');
@@ -54,37 +49,39 @@ class Scholarship extends Model
     {
         return self::where('officeVerification','Approved')
             ->where('adminVerification','Approved')
+            ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
             ->where('type',$type);
     }
 
     public function admin_getPending($type)
     {
         return $this
-        ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode)
+        ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
         ->where('type',$type)
         ->where('adminVerification','Pending')
-        ->latest()->simplePaginate(10);
+        ->latest();
     }
     public function endorser_getPending($type)
     {
-        return $this
-        ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode)
-        ->where('officeVerification','Pending')
-        ->where('type',$type)
-        ->where('officeCode', Auth::user()->employee->officeCode)
-        // ->whereHas('category', function ($query){
-        //     $query->where('officeCode', Auth::user()->employee->officeCde);
-        // })
+        return $this->select('scholarships.*')
+        ->join('categories','scholarships.categoryNo','categories.categoryNo')
+        ->where('scholarships.semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+        ->where('scholarships.officeVerification','Pending')
+        ->where('scholarships.type',$type)
+        ->where('categories.officeCode', Auth::user()->employee->officeCode)
         ->latest();
     }
 
 
     public function officeGrantees($office, $type)
     {
-        return $this->where('officeVerification','Approved')
-            ->where('adminVerification','Approved')
-            ->where('type',$type)
-            ->where('officeCode',$office);
+        return $this->select('scholarships.*')
+            ->join('categories','scholarships.categoryNo','categories.categoryNo')
+            ->where('scholarships.semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+            ->where('scholarships.officeVerification','Approved')
+            ->where('scholarships.adminVerification','Approved')
+            ->where('scholarships.type',$type)
+            ->where('categories.officeCode',$office);
     }
 
 

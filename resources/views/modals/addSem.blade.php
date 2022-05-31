@@ -25,7 +25,7 @@
                         <input type="text" id="year" name="year" class="form-control" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="deadline">Deadline Of Submission</label>
+                        <label for="deadline">Deadline Of Application</label>
                         <input type="date" class="form-control" name="deadline" min="0" max="100" step="1" value="30">
                     </div>
                 </div>

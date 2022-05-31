@@ -9,7 +9,7 @@
             , {{ $scholarship->student->user->firstname ?? '' }} {{ $scholarship->student->user->middlename ?? '' }}</h4>
         <h4>Student ID:{{ $scholarship->student->user->user_id ?? '' }}</h4>
         <h4>Department:{{ $scholarship->student->course->department->name ?? '' }}</h4>
-        <h4>Office:{{ $scholarship->office->name ?? '' }}</h4>
+        <h4>Office:{{ $scholarship->category->office->name ?? ''}}</h4>
         <h4>Category:{{ $scholarship->category->name ?? '' }}</h4>
 
         <a href="#" class="btn btn-lg btn-danger float-right p-2 m-2"><i class="fa fa-ban" aria-hidden="true"></i> Ignore

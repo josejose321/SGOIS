@@ -14,7 +14,7 @@
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th>SCHOLARSHIP NO</th>
-                                <th>SCHOLARSHIP</th>
+                                <th>DISCOUNT</th>
                                 <th>STUDENT ID</th>
                                 <th>NAME</th>
                                 <th>EMAIL</th>
@@ -32,7 +32,7 @@
                                         {{ $scholarship->student->user->middlename }}</td>
                                     <td>{{ $scholarship->student->user->email }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
-                                    <td><a class="btn-lg btn-secondary"
+                                    <td><a class="btn btn-secondary"
                                             href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"
                                             type="button">
                                             <i class="fa fa-pencil"></i>Preview</a>

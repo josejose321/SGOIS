@@ -72,12 +72,13 @@ Route::prefix('admin')
 
         Route::get('/semesters','showSemester')->name('semester');
         Route::post('/semesters','storeSemester')->name('semester.store');
+        Route::post('semesters/{semester}', 'extendSem')->name('semester.extend');
         Route::get('/grantees','showGrantees')->name('grantees');
         Route::get('/reports','showReport')->name('reports');
         Route::get('programs','showPrograms')->name('programs');
         Route::post('programs','storePrograms')->name('programs.store');
         Route::post('programs/search','searchPrograms')->name('programs.search');
-        Route::post('programs/{category}','updateCategory')->name('programs.update');
+        Route::post('programs/{category}','updatePrograms')->name('programs.update');
 
 
 
@@ -123,7 +124,7 @@ Route::prefix('student')
         Route::post('/password','changePassword')->name('update.password');
         Route::get('/dashboard', 'index')->name('index');
         Route::post('/{student}/avatar','updateAvatar')->name('avatar.update');
-        Route::post('/{student}/update','updateProfile')->name('studentUpdate');
+        Route::post('/{student}/update','updateProfile')->name('update.profile');
         Route::get('/scholarships','showScholarships')->name('scholarships');
         Route::post('/{student}/scholarship','applyScholarship')->name('apply.scholarship');
         Route::get('/scholarship-sportsdev','showSportsDev')->name('sportsDev');

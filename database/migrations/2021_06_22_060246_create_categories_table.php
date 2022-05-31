@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->enum('type',['Administrative','Discount','Academic','External'])->index();
             $table->string('field_team');
             $table->integer('allocation');
+            $table->longText('instruction')->nullable();
             $table->timestamps();
 
             $table->foreign('officeCode')

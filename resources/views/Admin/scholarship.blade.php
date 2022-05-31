@@ -39,8 +39,8 @@
                                     <td>{{ $scholarship->category->name }}</td>
                                     <td>{{ $scholarship->student->user->user_id ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}
-                                        {{ $scholarship->student->user->middlename }}</td>
-                                    <td>{{ $scholarship->office->name }}</td>
+                                        {{ $scholarship->student->user->middlename ?? '' }}</td>
+                                    <td>{{ $scholarship->category->office->name ?? '' }}</td>
                                     <td>{{ $scholarship->officeVerification }}</td>
                                     <td><a class="btn btn-secondary"
                                             href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"

@@ -37,7 +37,7 @@
                                     </td>
                                     <td>{{ $announcement->created_at }}</td>
                                     <td>
-                                        <button class="btn btn-primary" type="button" data-toggle="modal"
+                                        <button class="btn btn-secondary" type="button" data-toggle="modal"
                                             data-target="#viewAnnouce-{{ $announcement->id }}">
                                             <i class="fa fa-pencil"></i></button>
                                         <a href="{{ route('admin.announce.delete', $announcement->id) }}"><button

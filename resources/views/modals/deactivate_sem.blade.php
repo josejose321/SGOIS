@@ -11,13 +11,13 @@
                 </div>
                 <div class="modal-body">
                     <center>
-                        <h4>Deactivate This Semester?</h4>
+                        <h4>Application Deativation/Activation</h4>
                     </center>
                 </div>
                 <div class="modal-footer">
                     <center>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <a type="submit" href="{{ route('admin.semester.deactivate',$semester->semesterCode) }}" class="btn btn-danger">Deactivate</a>
+                        <a type="submit" href="{{ route('admin.semester.deactivate',$semester->semesterCode) }}" class="btn btn-danger">Continue</a>
                     </center>
                 </div>
             </div>

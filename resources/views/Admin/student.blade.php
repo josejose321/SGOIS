@@ -18,6 +18,7 @@
                 <form action="{{ route('admin.students.search') }}" method="post">
                     @csrf
                     <div class="col-md-6 input-group float-right">
+                        <a href="{{ route('admin.students') }}" class="btn btn-outline-primary">Reset</a>
                         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                             aria-describedby="search-addon" name="term" />
                         <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> search</button>
@@ -28,9 +29,9 @@
                 <table class="table ">
                     <thead>
                         <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                            <th>No#</th>
                             <th>STUDENT ID</th>
                             <th>NAME</th>
+                            <th>DEPARTMENT</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -39,14 +40,19 @@
 
                         @forelse ($students as $student)
                             <tr data-aos="fade-right">
-                                <td> {{ $student->user->student->userNo ?? '' }}</td>
                                 <td> {{ $student->user->user_id ?? '' }}</td>
                                 <td> {{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }}
                                     {{ $student->user->middlename ?? '' }}</td>
+                                <td>{{ $student->course->department->name ?? '' }}</td>
                                 <td>
                                     <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                        data-target="#viewStudent-{{ $student->student_no}}"><i class="fa fa-eye"></i>
+                                        data-target="#viewStudent-{{ $student->student_no }}"><i
+                                            class="fa fa-eye"></i>
                                         View</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#viewStudent-{{ $student->student_no }}"><i
+                                            class="fa fa-graduation-cap"></i>
+                                        Add Scholarship</button>
                                 </td>
                             </tr>
                         @empty

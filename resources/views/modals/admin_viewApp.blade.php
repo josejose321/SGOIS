@@ -24,7 +24,7 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="">OFFICE</label>
-                            <input type="text" class="form-control" readonly value="{{ $scholarship->office->name  ?? ''}}">
+                            <input type="text" class="form-control" readonly value="{{ $scholarship->category->office->name  ?? ''}}">
                         </div>
                         <div class="col-md-6">
                             <label for="">STATUS</label>

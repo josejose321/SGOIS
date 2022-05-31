@@ -1,14 +1,14 @@
 <form action="{{ route('student.apply.scholarship', Auth::user()->student ?? '') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
-    <div class="modal  fade" id="varsityModal" tabindex="-1" role="dialog"
+    <div class="modal  fade" id="academicModal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
 
             <div class="modal-content">
                 <div class="modal-header bg-dark text-light">
-                    <h3> <i class="fa fa-basketball-ball"></i> Varisity Scholarship Form</h3>
+                    <h3> <i class="fa fa-basketball-ball"></i> Academic Scholarship Form</h3>
                     <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
                 </div>
                 <div class="modal-body bg-light">
@@ -60,7 +60,7 @@
                             <label for="category">Scholarship Programs</label>
                             <select class="form-select form-select-md mb-3" name="categoryNo" id="category"
                                 value="{{ old('category') }}" aria-label="Default select example">
-                                @foreach ($sdo_office->categories as $category)
+                                @foreach ($academics as $category)
                                     <option value="{{ $category->categoryNo }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
