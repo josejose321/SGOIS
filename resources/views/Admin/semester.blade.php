@@ -33,41 +33,42 @@
                                 <tr>
                                     <td>{{ $semester->sem ?? '' }}</td>
 
-                                    <td>@php
-                                        $to = Carbon::parse($semester->deadline);
-                                        $from = Carbon::parse($semester->created_at);
-                                        $days = $from->diffInDays($to, false);
-                                    @endphp
-
+                                    <td>
+                                        @php
+                                            $to = Carbon::parse($semester->deadline);
+                                            $from = Carbon::parse($semester->created_at);
+                                            $days = $from->diffInDays($to,false);
+                                        @endphp
                                         @if ($days < 1)
-                                            <p class="text-danger"><i class="fa fa-hourglass-end"></i>Ended</p>
+                                        <p class="text-danger"><i class="fa fa-hourglass-end"></i>Ended</p>
                                         @else
+
                                             {{ $days }} {{ 'Day(s) remaining' }}
                                         @endif
                                     </td>
-                                    <td>{{ Carbon::parse($semester->deadline)->format('d/m/Y') }}</td>
-                                    <td>{{ Carbon::parse($semester->created_at)->format('d/m/Y') }}</td>
+                                    <td>{{ Carbon::parse($semester->deadline)->format('Y-m-d') }}</td>
+                                    <td>{{ Carbon::parse($semester->created_at)->format('Y-m-d') }}</td>
                                     <td>
                                         @if ($semester->active)
-                                            <h6 class="text-success"></i>Active</h6>
+                                            <h6 class="text-success"><i class="fa fa-check"></i> Active</h6>
                                         @else
-                                            <h6 class="text-danger"></i>Disabled</h6>
+                                            <h6 class="text-danger"><i class="fa fa-ban"></i> Disabled</h6>
                                         @endif
                                     </td>
                                     <td>
                                         <button class="btn btn-secondary" type="button" data-toggle="modal"
                                             data-target="#viewSem-{{ $semester->semesterCode }}"><i
-                                                class="fa fa-pencil"></i> Extend</button>
+                                                class="fa fa-expand"></i> Extend</button>
                                         <button class=" btn btn-danger"
                                             data-target="#deactivate_sem_modal-{{ $semester->semesterCode }}"
-                                            data-toggle="modal"> <i class="fa fa-off"></i>Deactivate</button>
+                                            data-toggle="modal"> <i class="fa fa-window-close"></i>Close Semester</button>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <center>
-                        {{-- {!! $announcements->links() !!} --}}
+                        {!! $semesters->links() !!}
                     </center>
                 </div>
                 <div class="row">

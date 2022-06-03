@@ -6,7 +6,7 @@
     <div class="container-fluid" data-aos="fade-right">
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h2 font-weight-bold">PENDING REQUEST</div>
+                <div class="h2 font-weight-bold">PENDING SCHOLARSHIPS</div>
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -22,11 +22,10 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th>SCHOLARSHIP NO</th>
+                                <th>APPLICATION NO</th>
                                 <th>SCHOLARSHIP</th>
                                 <th>STUDENT ID</th>
                                 <th>NAME</th>
-
                                 <th>Endorser Office</th>
                                 <th>STATUS</th>
                                 <th>ACTION</th>

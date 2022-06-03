@@ -63,7 +63,7 @@
                         navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto animate__animated animate__fadeIn">
-                        <li class="nav-item"><a class="nav-link" style="color:#ffffff;"
+                        <li class="nav-item"><a class="nav-link text-light" style="color:#ffffff;"
                                 href="{{ url('') }}">&nbsp;HOME</a></li>
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                 data-bs-toggle="dropdown" href="#" style="color: var(--bs-body-bg);">SCHOLARSHIPS</a>

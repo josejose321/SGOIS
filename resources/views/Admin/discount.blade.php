@@ -13,12 +13,12 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
-                                <th>SCHOLARSHIP NO</th>
-                                <th>DISCOUNT</th>
+                                <th>APPLICATION NO</th>
+                                <th>DISCOUNT APPLIED</th>
                                 <th>STUDENT ID</th>
                                 <th>NAME</th>
-                                <th>EMAIL</th>
-                                <th>OFFICE STATUS</th>
+                                {{-- <th>EMAIL</th> --}}
+                                <th>STATUS</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -30,7 +30,7 @@
                                     <td>{{ $scholarship->student->user->user_id ?? '' }}</td>
                                     <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname }}
                                         {{ $scholarship->student->user->middlename }}</td>
-                                    <td>{{ $scholarship->student->user->email }}</td>
+                                    {{-- <td>{{ $scholarship->student->user->email }}</td> --}}
                                     <td>{{ $scholarship->officeVerification }}</td>
                                     <td><a class="btn btn-secondary"
                                             href="{{ route('admin.application.view', $scholarship->scholarshipNo) }}"

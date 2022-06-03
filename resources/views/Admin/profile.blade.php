@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid">
         <h3 class="text-dark mb-4">Profile</h3>
-        <div class="row mb-3" >
+        <div class="row mb-3">
             <div class="col-lg-4" data-aos="fade-right">
                 <div class="card mb-3 ">
                     <div class="card-body text-center shadow">
@@ -14,9 +14,8 @@
                             @csrf
                             <label for="avatar">
                                 <img class="rounded-circle mb-3 mt-4 w-50"
-                                    src="{{ Storage::url('avatar/'. Auth::user()->avatar ?? '') }}">
+                                    src="{{ Storage::url('avatar/' . Auth::user()->avatar ?? '') }}">
                                 <input type="file" id="avatar" name="avatar" style="display:none">
-                                <div class="overlay">update avatar</div>
 
                             </label>
                             <div class="mb-3">
@@ -57,8 +56,8 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="username"><strong>Admin
                                                         No</strong></label>
-                                                <input class="form-control" type="text" value="{{ Auth::user()->user_id ?? '' }}"
-                                                    disabled>
+                                                <input class="form-control" type="text"
+                                                    value="{{ Auth::user()->user_id ?? '' }}" disabled>
                                             </div>
                                         </div>
                                         <div class="col">

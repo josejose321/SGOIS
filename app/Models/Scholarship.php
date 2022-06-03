@@ -49,7 +49,7 @@ class Scholarship extends Model
     {
         return self::where('officeVerification','Approved')
             ->where('adminVerification','Approved')
-            ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+            ->where('semesterCode',Semester::latest()->first()->semesterCode ?? '')
             ->where('type',$type);
     }
 
@@ -77,22 +77,53 @@ class Scholarship extends Model
     {
         return $this->select('scholarships.*')
             ->join('categories','scholarships.categoryNo','categories.categoryNo')
-            ->where('scholarships.semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+            // ->where('scholarships.semesterCode',Semester::latest()->first()->semesterCode ?? '')
             ->where('scholarships.officeVerification','Approved')
             ->where('scholarships.adminVerification','Approved')
             ->where('scholarships.type',$type)
             ->where('categories.officeCode',$office);
     }
 
-
-    public function getPendingDeansVerification($departmentCode)
+    public function countApprovedApplication($category)
     {
-        return $this->select('scholarships.*')
-        ->join('students','scholarships.student_no','=','students.student_no')
-        //->where('deansVerification','Pending')
-        ->where('students.departmentCode',$departmentCode)
-        ->where('students.status','Active')
-        ->get();
+        return $this
+        ->where('semesterCode', Semester::latest()->first()->semesterCode ?? '')
+        ->where('categoryNo',$category)->count();
+    }
+
+
+    // 'ApplicationNo',
+    //         'Fullname',
+    //         'Scholarship/Discount Applied',
+    //         'Grants'
+
+    public function exportAdministrativeGrants($type)
+    {
+        $granteeCollection = [];
+        $grants =$this->select('scholarships.*')
+        ->join('categories','scholarships.categoryNo', 'categories.categoryNo')
+        ->join('students','scholarships.student_no','students.student_no')
+        ->where('categories.type',$type)
+        ->where('scholarships.officeVerification','Approved')
+        ->where('scholarships.adminVerification','Approved')
+        ->where('semesterCode',Semester::latest()->first()->semesterCode ?? '')->get();
+        foreach($grants as $grantee)
+        {
+            array_push($granteeCollection,
+            (object) array(
+                'applicationNo' => $grantee->scholarshipNo,
+                'program' => $grantee->category->name,
+                'student_id' => $grantee->student->user->user_id,
+                'fullname' => $grantee->student->user->lastname .
+                 ', '. $grantee->student->user->firstname .
+                 ' '. $grantee->student->user->middlename,
+                'grant' => $grantee->discount,
+
+                )
+            );
+        }
+        // dd($gr);
+        return (array)$granteeCollection;
     }
 
 

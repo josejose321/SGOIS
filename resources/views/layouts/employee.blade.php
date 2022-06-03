@@ -60,14 +60,13 @@
                                 class="fas fa-user"></i><span>PROFILE</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.scholarhips') }}"><i
                                 class="las la-school"></i><span>SCHOLARSHIPS</span></a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="{{ route('employee.discounts') }}"><i
+                    <li class="nav-item"><a class="nav-link" href="{{ route('employee.discounts') }}"><i
                                 class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('employee.scholarhips') }}"><i
                                 class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.categories') }}"><i
-                                class="fa fa-list-alt"></i><span>CATEGORIES</span></a></li>
+                                class="fa fa-list-alt"></i><span>PROGRAMS</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline text-light"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
@@ -87,9 +86,11 @@
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" href="{{ route('admin.profile') }}"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="d-none d-lg-inline me-2">{{ Auth::user()->lastname ?? '' }}, {{ Auth::user()->firstname ?? '' }} {{ Auth::user()->middlename ?? '' }}</span>
+                                        <span class="d-none d-lg-inline me-2">{{ Auth::user()->lastname ?? '' }},
+                                            {{ Auth::user()->firstname ?? '' }}
+                                            {{ Auth::user()->middlename ?? '' }}</span>
                                         <img class="border rounded-circle img-profile"
-                                            src="{{ Storage::url('avatar/'. Auth::user()->avatar ?? '') }}">
+                                            src="{{ Storage::url('avatar/' . Auth::user()->avatar ?? '') }}">
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-end">
                                         <a class="dropdown-item" href="{{ route('employee.show') }}"><i
@@ -97,7 +98,8 @@
                                         <a class="dropdown-item" href="{{ route('employee.show.password') }}">
                                             <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Change Password</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{ route('employee.logout') }}"><i class="fa fa-sign-out"></i>
+                                        <a class="dropdown-item" href="{{ route('employee.logout') }}"><i
+                                                class="fa fa-sign-out"></i>
                                             &nbsp;Logout</a>
                                     </div>
                                 </div>
@@ -105,11 +107,7 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid">
-
-                    <main>@yield('content')</main>
-
-                </div>
+                <main>@yield('content')</main>
             </div>
             <footer class="sticky-footer" style="background-color: beige">
                 <div class="container my-auto">

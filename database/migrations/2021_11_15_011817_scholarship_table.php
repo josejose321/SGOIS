@@ -24,8 +24,8 @@ class ScholarshipTable extends Migration
             $table->unsignedBigInteger('categoryNo')->index()->nullable();
             $table->string('discount')->default('NA');
             $table->double('amount')->default(0);
-            $table->string('requirement');
-            $table->string('photo');
+            $table->string('requirement')->default('default.pdf');
+            $table->string('photo')->default('default.jpg');
             $table->enum('deanVerification',['Declined','Approved','Pending','Endorsed','NA'])->default('NA');
             $table->enum('officeVerification',['Declined','Approved','Pending','Endorsed'])->default('Pending');
             $table->enum('adminVerification',['Declined','Approved','Pending','Endorsed'])->default('Pending');

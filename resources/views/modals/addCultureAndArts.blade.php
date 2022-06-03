@@ -7,7 +7,7 @@
 
 
             <div class="modal-content">
-                <div class="modal-header bg-dark text-light">
+                <div class="modal-header bg-danger text-light">
                     <h3> <i class="fa fa-music"></i> Culture And Arts Scholarship Form</h3>
                     <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
                 </div>
@@ -28,7 +28,7 @@
                             <p> THANK YOU!</p>
                         </div>
                     @endif
-                    @if ($culture_office->categories === null)
+                    @if ($culture_office->count() <=0)
                         <div class="alert alert-danger">
                             <p>No Scholarship Available!</p>
                             <p> Please Contact the SGO for other concerns</p>
@@ -51,10 +51,6 @@
                             <label for="semester">Student Id:</label>
                             <input type="text" name="user_id" class="form-control" readonly
                                 value="{{ Auth::user()->user_id ?? '' }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="semester">Type</label>
-                            <input type="text" name="type" class="form-control" readonly value="Scholarship">
                         </div>
                     </div>
                     <div class="row">
@@ -110,7 +106,7 @@
                 <div class="modal-footer bg-dark">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" @if ($sem === null) disabled @endif
-                        @if ($culture_office->categories === null) disabled @endif>Submit</button>
+                        @if ($culture_office->count() <= 0) disabled @endif>Submit</button>
 
                 </div>
             </div>

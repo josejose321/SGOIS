@@ -16,9 +16,11 @@
             <button class="btn btn-secondary" type="button" id="addEndorser">
                 <i class="fa fa-plus"></i>Register Endorser</button>
             <button class="btn btn-secondary" type="button" data-target="#externalModal" data-toggle="modal">
-                <i class="fa fa-external-link"></i>External Summary</button>
-            <button class="btn btn-secondary" type="button" data-target="#masterListModal" data-toggle="modal">
-                <i class="fa fa-list"></i>Import External Masterlist </button>
+                <i class="fa fa-file-export"></i>External Report</button>
+            <button class="btn btn-secondary" type="button" data-target="#administrativeSummaryModal" data-toggle="modal">
+                <i class="fa fa-file-export"></i>Administrative Report </button>
+            <button class="btn btn-secondary" type="button" data-target="#exportModal" data-toggle="modal">
+                <i class="fa fa-file-export"></i>Export Grantees </button>
         </div>
 
 
@@ -62,12 +64,14 @@
 
 
     <br>
-    <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-secondary float-right"> Generate Report</a> <br>
-    <br>
+    {{-- <a href="{{ route('admin.report.download') }}" class="btn btn-lg btn-secondary float-right"> Generate Report</a> <br>
+    <br> --}}
 
     <div class="card-body" style="font-size: 14px;">
         <div class="table" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <h4>Administrative Scholarship And Discount Summary</h4>
             <table class="table my-0" id="dataTable">
+
                 <thead>
                     <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                         <th>Program No.</th>
@@ -80,16 +84,17 @@
                         <th>75%</th>
                         <th>100%</th>
                         <th>Full</th>
-                        <th>APPROVED</th>
-                        <th>TOTAL SLOT</th>
+                        <th>Total</th>
+                        <th>Allocation</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($reports as $report)
                         <tr data-aos="fade-right">
                             <td>{{ str_pad($report->categoryNo, 4, '0', STR_PAD_LEFT) ?? '' }}</td>
-                            <td>{{ $report->field_team ?? '' }}</td>
                             <td>{{ $report->categoryName ?? '' }}</td>
+                            <td>{{ $report->field_team ?? '' }}</td>
+
                             <td>{{ $report->first ?? '' }}</td>
                             <td>{{ $report->second ?? '' }}</td>
                             <td>{{ $report->third ?? '' }}</td>
@@ -115,5 +120,7 @@
     @include('modals.import')
     @include('modals.importMasterList')
     @include('modals.externalSummary')
+    @include('modals.administrativeReport')
+    @include('modals.exportGrantees')
 
 @endsection

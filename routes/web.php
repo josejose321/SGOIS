@@ -66,8 +66,12 @@ Route::prefix('admin')
         Route::get('/scholarships/{scholarship}/photo-download', 'downloadPhoto')->name('scholarship.photo-download');
         Route::get('/application-view/{scholarship}','viewApplication')->name('application.view');
         Route::get('/download-report', 'downloadReport')->name('report.download');
+        Route::get('/download-external-report','downloadExternalReport')->name('external.download');
+        Route::post('/external-scholarships/{student}','addStudentToExternal')->name('external.apply');
 
         Route::get('/semesters/{semester}','deactivateSem')->name('semester.deactivate');
+        Route::post('/employee', 'storeEmployee')->name('employee.store');
+        Route::post('/export-grantees','exportGrants')->name('grants.export');
 
 
         Route::get('/semesters','showSemester')->name('semester');
@@ -126,7 +130,9 @@ Route::prefix('student')
         Route::post('/{student}/avatar','updateAvatar')->name('avatar.update');
         Route::post('/{student}/update','updateProfile')->name('update.profile');
         Route::get('/scholarships','showScholarships')->name('scholarships');
-        Route::post('/{student}/scholarship','applyScholarship')->name('apply.scholarship');
+        Route::post('/{student}/scholarship','applyAdministrative')->name('apply.scholarship');
+        Route::post('/{student}/discount','applyDiscount')->name('apply.discount');
+        Route::post('/{student}/external','applyExternal')->name('apply.external');
         Route::get('/scholarship-sportsdev','showSportsDev')->name('sportsDev');
         Route::get('/scholarship-culture-arts','showCultureAndArts')->name('culture');
         Route::get('/discounts','showDiscounts')->name('discount.show');

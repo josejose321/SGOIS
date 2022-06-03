@@ -1,4 +1,4 @@
-<form action="{{ route('admin.student.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.employee.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="modal fade bd-example-modal-lg" id="endorserModal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -8,6 +8,16 @@
                     <h3>Endorser Registration Form</h3>
                 </div>
                 <div class="modal-body bg-white">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-row ">
                         <div class="form-group col-md-5">
                             <label for="id"> Employee ID</label>
@@ -66,7 +76,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-5">
                             <label for="id">Assign Office</label>
-                            <select class="form-select form-select mb-3" name="courseNo"
+                            <select class="form-select form-select mb-3" name="officeCode"
                                 aria-label="Default select example">
                                 @foreach ($offices as $office)
                                     <option value="{{ $office->officeCode ?? '' }}">{{ $office->name ?? '' }}

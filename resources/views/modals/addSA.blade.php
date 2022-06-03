@@ -1,14 +1,14 @@
 <form action="{{ route('student.apply.scholarship', Auth::user()->student ?? '') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
-    <div class="modal  fade" id="academicModal" tabindex="-1" role="dialog"
+    <div class="modal  fade" id="saModal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
 
             <div class="modal-content">
                 <div class="modal-header bg-danger text-light">
-                    <h3> <i class="fa fa-basketball-ball"></i> Academic Scholarship Form</h3>
+                    <h3> <i class="fa fa-basketball-ball"></i> Student Assistance Scholarship Form</h3>
                     <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
                 </div>
                 <div class="modal-body bg-light">
@@ -24,13 +24,6 @@
                     @if ($sem === null)
                         <div class="alert alert-danger">
                             <p>Application is already closed!</p>
-                            <p> Please Contact the SGO for other concerns</p>
-                            <p> THANK YOU!</p>
-                        </div>
-                    @endif
-                    @if ($academics->count() <=0)
-                        <div class="alert alert-danger">
-                            <p>No Academic Scholarship Avaiable</p>
                             <p> Please Contact the SGO for other concerns</p>
                             <p> THANK YOU!</p>
                         </div>
@@ -63,7 +56,7 @@
                             <label for="category">Scholarship Programs</label>
                             <select class="form-select form-select-md mb-3" name="categoryNo" id="category"
                                 value="{{ old('category') }}" aria-label="Default select example">
-                                @foreach ($academics as $category)
+                                @foreach ($hr_office->categories as $category)
                                     <option value="{{ $category->categoryNo }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
@@ -106,7 +99,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary"
-                        @if ($sem === null) disabled @endif @if ($academics->count()<= 0) disabled @endif>Submit</button>
+                        @if ($sem === null) disabled @endif>Submit</button>
 
                 </div>
             </div>

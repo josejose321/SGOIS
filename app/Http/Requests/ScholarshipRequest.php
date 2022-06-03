@@ -25,7 +25,6 @@ class ScholarshipRequest extends FormRequest
     {
         return [
             //
-            "type"=>'required',
             "semesterCode"=>'required',
             "categoryNo"=>'required',
             "discount"=>'required',

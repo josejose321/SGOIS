@@ -47,6 +47,7 @@ class EmployeeController extends Controller
     //Verify Pending request
     public function verifyScholarship(Request $request, Scholarship $scholarship)
     {
+
         $scholarship->update([
             'officeVerification'=>'Approved',
             'discount' =>$request->discount,
@@ -71,6 +72,7 @@ class EmployeeController extends Controller
     public function showScholarships()
     {
         // dd($this->scholarship->endorser_getPending('Scholarship')->count());
+
         $this->data = [
             'scholarships' => $this->scholarship->endorser_getPending('Scholarship')->simplePaginate(10)
         ];
@@ -108,7 +110,7 @@ class EmployeeController extends Controller
     public function showCategories()
     {
         $this->data =[
-            'categories'=> Category::simplePaginate(15),
+            'office'=> auth()->user()->employee->office,
             'offices'=> Office::all()
         ];
 
@@ -117,6 +119,8 @@ class EmployeeController extends Controller
     }
     public function viewApplication(Scholarship $scholarship)
     {
+        if($scholarship->adminVerification === "Approved")
+            return back()->with('error', 'Cannot open this application. \n Application Already Approved!');
         $this->data = [
 
             'scholarship'=>$scholarship

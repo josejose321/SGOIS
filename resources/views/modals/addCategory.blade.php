@@ -4,7 +4,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-dark">
+                <div class="modal-header bg-danger">
                     <h5 class="modal-title h3 text-light font-weight-bold" id="announceLabel"> <i
                             class=" fa fa-plus"></i>
                         New Program</h5>

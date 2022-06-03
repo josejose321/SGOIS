@@ -25,8 +25,10 @@ class StudentController extends Controller
     private $announcement;
     private $semester;
     private $data;
+    private $scholarship;
     public function __construct()
     {
+        $this->scholarship = new Scholarship();
         $this->announcement = new Announcement();
         $this->semester = new Semester();
         $this->category = new Category();
@@ -97,9 +99,41 @@ class StudentController extends Controller
         return back()->withSuccess('successfully updated');
 
     }
-    public function applyScholarship(ScholarshipRequest $request, Student $student)
+    public function applyAdministrative(ScholarshipRequest $request, Student $student)
     {
-        // dd($request->validated());
+        if($this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        {
+            return back()->with('error','Sorry, No Slot Available');
+        }
+        if($student->whereHas('scholarships', function($query){
+            $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+            ->orWhere('officeVerification', 'Approved')
+            ->orWhere('adminVerification','Approved')
+            ->orWhere('adminVerification','Pending')
+            ->orWhere('officeVerification', 'Pending');
+            }
+        )->count() > 0)
+        {
+            return back()->with('error', 'Cannot Process Scholarship Right now\n You have Applied Scholarship or Pending Scholarship');
+        }
+
+
+        $student->scholarships()->create([
+            "type" => 'Scholarship',
+            "semesterCode"=>$request->semesterCode,
+            "categoryNo"=>$request->categoryNo,
+            "discount"=> $request->discount,
+            "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
+            "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
+        ]);
+        return back()->withSuccess('Your Application is submitted');
+    }
+    public function applyDiscount(ScholarshipRequest $request, Student $student)
+    {
+        if($this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        {
+            return back()->with('error','Sorry, No Slot Available');
+        }
         if($student->whereHas('scholarships', function($query){
             $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
             ->orWhere('officeVerification', 'Approved')
@@ -112,7 +146,7 @@ class StudentController extends Controller
 
 
         $student->scholarships()->create([
-            "type" => $request->type,
+            "type" => 'Discount',
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
             "discount"=> $request->discount,
@@ -121,6 +155,34 @@ class StudentController extends Controller
         ]);
         return back()->withSuccess('Your Application is submitted');
     }
+    public function applyExternal(ScholarshipRequest $request, Student $student)
+    {
+        if($this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        {
+            return back()->with('error','Sorry, No Slot Available');
+        }
+        if($student->whereHas('scholarships', function($query){
+            $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+            ->orWhere('officeVerification', 'Approved')
+            ->orWhere('adminVerification','Approved');
+            }
+        )->count() > 0)
+        {
+            return back()->with('error', 'Cannot Process Scholarship Right now\n You have Applied Scholarship or Pending Scholarship');
+        }
+
+
+        $student->scholarships()->create([
+            "type" => 'Scholarship',
+            "semesterCode"=>$request->semesterCode,
+            "categoryNo"=>$request->categoryNo,
+            "discount"=> $request->discount,
+            "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
+            "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
+        ]);
+        return back()->withSuccess('Your Application is submitted');
+    }
+
 
     public function updateAvatar(AvatarRequest $request, Student $student)
     {

@@ -29,8 +29,8 @@
                     @foreach ($reports as $report)
                         <tr data-aos="fade-right">
                             <td>{{ str_pad($report->categoryNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
-                            <td>{{ $report->field_team ?? '' }}</td>
                             <td>{{ $report->categoryName ?? '' }}</td>
+                            <td>{{ $report->field_team ?? '' }}</td>
                             <td>{{ $report->first ?? '' }}</td>
                             <td>{{ $report->second ?? '' }}</td>
                             <td>{{ $report->third ?? '' }}</td>

@@ -23,7 +23,7 @@
                                 value="{{ $semester->year ?? '' }}">
                         </div>
                         <div class="form-group">
-                            <label for="period">Extend Submission Untill</label>
+                            <label for="deadline">Extend Submission Untill</label>
                             <input type="date" class="form-control" name="deadline">
                         </div>
                     </div>

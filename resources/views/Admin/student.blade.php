@@ -50,7 +50,7 @@
                                             class="fa fa-eye"></i>
                                         View</button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#viewStudent-{{ $student->student_no }}"><i
+                                        data-target="#viewStudentForm-{{ $student->student_no }}"><i
                                             class="fa fa-graduation-cap"></i>
                                         Add Scholarship</button>
                                 </td>
@@ -72,6 +72,7 @@
     @include('modals.viewStudent')
     @include('modals.addStudent')
     @include('modals.import')
+    @include('modals.admin_addExternal')
 
     </html>
 

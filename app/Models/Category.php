@@ -55,7 +55,8 @@ class Category extends Model
     public function getSummaryReport()
     {
         $categoryData = [];
-        foreach(Category::all()->pluck('categoryNo') as $categoryNo)
+        foreach(Category::where('type','Administrative')->orWhere('type','Discount')
+        ->pluck('categoryNo') as $categoryNo)
         {
             $category= Category::find($categoryNo);
             array_push($categoryData,
@@ -77,6 +78,37 @@ class Category extends Model
         }
         return $categoryData;
     }
+    public function getExternalSummary()
+    {
+        $categoryData = [];
+        foreach(Category::where('type','External')
+        ->pluck('categoryNo') as $categoryNo)
+        {
+            $category= Category::find($categoryNo);
+            array_push($categoryData,
+            (object) array(
+               'categoryNo' =>$category->categoryNo,
+               'categoryName'=> $category->name,
+               'total'=> $this->approved($categoryNo)->count(),//count scholarships where it belongs to this category
+                )
+            );
+        }
+        return $categoryData;
+
+    }
+
+    public function ifHasVacant($category,$totalApproved)
+    {
+        $allocation = $this->find($category)->allocation;
+        if($allocation <= 0)
+            return true;
+        if($allocation <= $totalApproved)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
     public function searchPrograms($term)
     {

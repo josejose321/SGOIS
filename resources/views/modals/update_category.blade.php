@@ -1,12 +1,11 @@
 @foreach ($categories as $category)
-    <form action="{{ route('admin.programs.update', $category->categoryNo) }}" method="POST"
-        enctype="multipart/form-data">
+    <form action="{{ route('admin.programs.update', $category->categoryNo) }}" method="POST">
         @csrf
         <div class="modal fade" id="viewCategory-{{ $category->categoryNo }}" tabindex="-1" role="dialog"
             aria-labelledby="announceLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-dark">
+                    <div class="modal-header bg-danger">
                         <h5 class="modal-title h3 text-light font-weight-bold" id="announceLabel"> <i
                                 class=" fa fa-plus"></i>
                             UPDATE SGO PROGRAMS</h5>
@@ -36,7 +35,7 @@
 
                         <div class="form-group">
                             <label for="name">Program Type</label>
-                            <select class="form-select form-select-md mb-3" name="type" id="type"
+                            <select class="form-select form-select-md" name="type" id="type"
                                 aria-label="Default select example">
                                 <option value="{{ $category->type ?? '' }}"> {{ $category->type ?? '' }}</option>
                                 <option value="Administrative">Administrative Scholarship</option>
@@ -48,7 +47,7 @@
                         <div class="form-group">
                             <label for="field_team">Field/Team</label>
                             <input type="text" class="form-control" name="field_team"
-                                value={{ $category->field_team ?? '' }}>
+                                value="{{ $category->field_team ?? '' }}">
                         </div>
 
                         <div class="form-group">

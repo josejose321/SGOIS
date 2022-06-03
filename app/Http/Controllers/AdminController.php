@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AdministrativeAndDiscountExport;
+use App\Exports\ExternalSummaryReport;
 use App\Exports\SummaryReport;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminVerifyRequest;
@@ -9,6 +11,8 @@ use App\Http\Requests\AnnouncementRequest;
 use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\ChangePassRequest;
+use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\ExternalScholarshipRequest;
 use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentImport;
@@ -60,13 +64,13 @@ class AdminController extends Controller
             'totalScholarships'=> $this->scholarship->approved('Scholarship')->count(),
             'totalDiscounts'=>$this->scholarship->approved('Discount')->count(),
             'totalLoans'=> $this->scholarship->approved('Loan')->count(),
-            'totalOthers'=> $this->scholarship->approved('Grant')->count(),
+            'totalOthers'=> $this->scholarship->approved('External')->count(),
             'chartResult' => [
                 $this->scholarship->officeGrantees('UNC-SDO','Scholarship')->count(),
                 $this->scholarship->officeGrantees('UNC-CULTURE&ARTS','Scholarship')->count(),
                 $this->scholarship->officeGrantees('UNC-HR','Scholarship')->count(),
                 $this->scholarship->approved('Discount')->count(),
-                $this->scholarship->approved('Grant')->count(),
+                $this->scholarship->approved('External')->count(),
             ],
             'totalVarsity'=> $this->scholarship->officeGrantees('UNC-SDO','Scholarship')->count(),
         ];
@@ -89,7 +93,7 @@ class AdminController extends Controller
             (object) ['title' =>'Scholarships', 'total' =>$this->scholarship->approved('Scholarship')->count()],
             (object) ['title' =>'Discounts', 'total' =>$this->scholarship->approved('Discount')->count()],
             (object) ['title' =>'Loans', 'total' =>$this->scholarship->approved('Loans')->count()],
-            (object) ['title' =>'Grants', 'total' =>$this->scholarship->approved('Grant')->count()],
+            (object) ['title' =>'Grants', 'total' =>$this->scholarship->approved('External')->count()],
         ];
 
         return view('unc')
@@ -200,6 +204,7 @@ class AdminController extends Controller
             'students'=>$this->student->getActiveStudent()->simplePaginate(15),
             'total'=>$this->user->getStudent()->count(),
             'courses'=>Course::all(),
+            'externals'=>Category::where('type','External')->get(),
             'departments'=> Department::all(),
         ];
         return view('Admin.student')
@@ -216,10 +221,6 @@ class AdminController extends Controller
         ];
         return view('Admin.grantees')
         ->with($this->data);
-    }
-    public function searchStudent()
-    {
-
     }
     public function show(User $user)
     {
@@ -300,7 +301,7 @@ class AdminController extends Controller
             'lastname'=> $request->lastname,
             'email'=> $request->email,
             'phone'=> $request->phone,
-            'password'=>Hash::make($request->user_id)
+            'password'=>Hash::make('password')
         ])
         ->student()->create([
         'courseNo'=> $request->courseNo,
@@ -309,6 +310,24 @@ class AdminController extends Controller
        ]);
         Mail::to($student->user->email)->send(new RegistrationMail($student));
         return back()->withSuccess("student added to the database");
+    }
+    public function storeEmployee(EmployeeRequest $request)
+    {
+        $employee = User::create([
+            'user_id'=> $request->user_id,
+            'firstname'=> $request->firstname,
+            'middlename'=> $request->middlename,
+            'lastname'=> $request->lastname,
+            'email'=> $request->email,
+            'phone'=> $request->phone,
+            'type'=>'employee',
+            'password'=>Hash::make('password')
+        ])
+        ->employee()->create([
+        'officeCode'=> $request->officeCode,
+       ]);
+        Mail::to($employee->user->email)->send(new RegistrationMail($employee));
+        return back()->withSuccess("employee added to the database");
     }
 
 
@@ -353,12 +372,14 @@ class AdminController extends Controller
     public function extendSem(Request $request, Semester $semester)
     {
 
+        // dd($request->deadline);
+
         $semester->update([
             'deadline'=> $request->deadline,
             'active' => 1
         ]);
         // dd($semester->deadline);
-        return back()->withSuccess('Semester Extended');
+        return back()->withSuccess('Success');
     }
     public function showReport()
     {
@@ -413,6 +434,7 @@ class AdminController extends Controller
             'students'=> $this->student->searchStudent($request->term)->simplePaginate(15),
             'total'=>$this->user->getStudent()->count(),
             'courses'=>Course::all(),
+            'externals'=>Category::where('type','External')->get(),
             'departments'=> Department::all(),
         ];
 
@@ -456,7 +478,7 @@ class AdminController extends Controller
         return view('Admin.categories')
         ->with($this->data);
     }
-    private function storeFiles($file ,$directory)//also store the requiments to storage path: requirements/
+    private function storeFiles($file ,$directory)
     {
         $path = $file->hashName();
         $file->storeAs('public/'.$directory,$path);
@@ -477,6 +499,33 @@ class AdminController extends Controller
         }
 
 
+    }
+    public function downloadExternalReport()
+    {
+        return Excel::download(new ExternalSummaryReport, 'EXTERNAL-SUMMARY-REPORT.xlsx');
+    }
+    public function addStudentToExternal(ExternalScholarshipRequest $request, Student $student)
+    {
+        $student->scholarships()->create([
+            'categoryNo'=>$request->categoryNo,
+            'semesterCode'=> Semester::latest()->first()->semesterCode ?? '',
+            'officeVerification'=>'Approved',
+            'adminVerification'=>'Approved',
+        ]);
+        return back()->withSuccess($student->user->lastname. ' Added to an External Scholarship');
+    }
+    public function exportGrants(Request $request)
+    {
+        if($request->type ==="Administrative" || $request->type ==="Discount")
+        {
+            return Excel::download(
+                new AdministrativeAndDiscountExport($request->type),
+                 $request->type ."Grantees.xlsx");
+        }
+        else
+        {
+            return back();
+        }
     }
 
 

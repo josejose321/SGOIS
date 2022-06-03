@@ -95,7 +95,7 @@
                         <div class="form-group col-md-5">
                             <label for="id"> Parent Name</label>
                             <input type="text" name="parentName" class="form-control"
-                                placeholder="Lastname,Firstname, MI" maxlength="11" value="{{ old('parentName') }}">
+                                placeholder="Lastname,Firstname, MI" value="{{ old('parentName') }}">
                             @if ($errors->has('parentName'))
                                 <small class="input-error text-danger">{{ $errors->first('parentName') }}</small>
                             @endif

@@ -28,23 +28,26 @@
     </style>
 @stop
 <br>
-<div class="container w-75">
+<div class="container w-75 animate__animated animate__fadeInUp">
     <div class="accordion " id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="academicHeading">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#academic" aria-expanded="false" aria-controls="academic">
-                    <h2><b>ACADEMIC SCHOLARSHIP</b></h2>
+                    <h3><b>ACADEMIC SCHOLARSHIP</b></h3>
                 </button>
             </h2>
             <div id="academic" class="accordion-collapse collapse" aria-labelledby="academicHeading"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa blanditiis dicta asperiores
-                    consectetur tempora quidem quam quo ut voluptates ad quaerat reiciendis ratione soluta, atque animi
-                    maxime quod magni hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, deleniti.
-                    Obcaecati et voluptate ratione! Molestias accusamus delectus qui est totam nobis mollitia
-                    temporibus, perspiciatis, a dignissimos deleniti impedit eaque vel?
+                    <strong>ACADEMIC ACHIEVEMENT SCHOLARSHIP</strong> – scholarship awarded to Grade 12 academic
+                    achievers of the
+                    different strands. The basis of ranking is the grade average of the previous school year (Grade 11).
+                    <br>
+
+                    <strong>RANK in the STRAND TUITION FEE SCHOLARSHIP</strong> <br>
+                    Rank 1 100% <br>
+                    Rank 2 50% <br>
                     <div class="accordion" id="academicAccordion">
                         @foreach ($academics as $academic)
                             <div class="accordion-item">
@@ -53,7 +56,7 @@
                                         data-bs-target="#academic-{{ $academic->categoryNo ?? '' }}"
                                         aria-expanded="true"
                                         aria-controls="academic-{{ $academic->categoryNo ?? '' }}">
-                                        {{ $academic->name ?? '' }}
+                                        <strong>{{ $academic->name ?? '' }}</strong>
                                     </button>
                                 </h2>
                                 <div id="academic-{{ $academic->categoryNo ?? '' }}"
@@ -75,7 +78,7 @@
 
 
                     <center><button class="btn btn-danger" data-target="#academicModal" data-toggle="modal">
-                        Apply Academic Scholarship
+                            Apply Academic Scholarship
                         </button>
                     </center>
                 </div>
@@ -86,17 +89,16 @@
             <h2 class="accordion-header" id="varsityHeading">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#varsity" aria-expanded="false" aria-controls="varsity">
-                    <h2><b>VARSITY SCHOLARSHIP</b></h2>
+                    <h3><b>VARSITY SCHOLARSHIP</b></h3>
                 </button>
             </h2>
             <div id="varsity" class="accordion-collapse collapse" aria-labelledby="varsityHeading"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa blanditiis dicta asperiores
-                    consectetur tempora quidem quam quo ut voluptates ad quaerat reiciendis ratione soluta, atque animi
-                    maxime quod magni hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, deleniti.
-                    Obcaecati et voluptate ratione! Molestias accusamus delectus qui est totam nobis mollitia
-                    temporibus, perspiciatis, a dignissimos deleniti impedit eaque vel?
+                    <strong>VARSITY</strong> – The University awards scholarship to qualified athletes who passed the
+                    screening process
+                    given by the Sports Development Office. The events, slots and the percentage of scholarship will be
+                    decided by the Sports Development Office subject to availability of funds.
                     <div class="accordion" id="varsityAccordion">
                         @foreach ($sdo_office->categories as $varsity)
                             <div class="accordion-item">
@@ -105,7 +107,7 @@
                                         data-bs-target="#varsity-{{ $varsity->categoryNo ?? '' }}"
                                         aria-expanded="true"
                                         aria-controls="varsity-{{ $varsity->categoryNo ?? '' }}">
-                                        {{ $varsity->name ?? '' }}
+                                        <strong>{{ $varsity->name ?? '' }}</strong>
                                     </button>
                                 </h2>
                                 <div id="varsity-{{ $varsity->categoryNo ?? '' }}"
@@ -134,7 +136,7 @@
             <h2 class="accordion-header" id="cultureHeading">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#culture" aria-expanded="false" aria-controls="culture">
-                    <h2><b>CULTURE AND ARTS SCHOLARSHIP</b></h2>
+                    <h3><b>CULTURE AND ARTS SCHOLARSHIP</b></h3>
                 </button>
             </h2>
             <div id="culture" class="accordion-collapse collapse" aria-labelledby="cultureHeading"
@@ -153,7 +155,7 @@
                                         data-bs-target="#culture-{{ $culture->categoryNo ?? '' }}"
                                         aria-expanded="true"
                                         aria-controls="culture-{{ $culture->categoryNo ?? '' }}">
-                                        {{ $culture->name ?? '' }}
+                                        <strong>{{ $culture->name ?? '' }}</strong>
                                     </button>
                                 </h2>
                                 <div id="culture-{{ $culture->categoryNo ?? '' }}"
@@ -182,7 +184,7 @@
             <h2 class="accordion-header" id="studentAssistanceHeading">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#student_assistance" aria-expanded="false" aria-controls="student_assistance">
-                    <h2><b>STUDENT ASSISTANCE SCHOLARSHIP</b></h2>
+                    <h3><b>STUDENT ASSISTANCE SCHOLARSHIP</b></h3>
                 </button>
             </h2>
             <div id="student_assistance" class="accordion-collapse collapse" aria-labelledby="studentAssistanceHeading"
@@ -202,7 +204,7 @@
                                         data-bs-target="#student_assistance-{{ $student_assistance->categoryNo ?? '' }}"
                                         aria-expanded="true"
                                         aria-controls="student_assistance-{{ $student_assistance->categoryNo ?? '' }}">
-                                        {{ $student_assistance->name ?? '' }}
+                                        <strong>{{ $student_assistance->name ?? '' }}</strong>
                                     </button>
                                 </h2>
                                 <div id="student_assistance-{{ $student_assistance->categoryNo ?? '' }}"
@@ -221,9 +223,9 @@
                             </div>
                         @endforeach
                     </div> <br>
-                    <center><a href="{{ route('student.sportsDev') }}" class="btn-lg btn-danger">
-                            Apply Student Assistance Scholarship
-                        </a></center>
+                    <center><button class="btn-lg btn-danger" data-target="#saModal" data-toggle="modal">
+                            Apply Discount
+                        </button></center>
                 </div>
             </div>
         </div>
@@ -231,7 +233,7 @@
             <h2 class="accordion-header" id="discountHeading">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#discounts" aria-expanded="false" aria-controls="discounts">
-                    <h2><b>AVAILABLE DISCOUNTS</b></h2>
+                    <h3><b>AVAILABLE DISCOUNTS</b></h3>
                 </button>
             </h2>
             <div id="discounts" class="accordion-collapse collapse" aria-labelledby="discountHeading"
@@ -250,7 +252,7 @@
                                         data-bs-target="#discount-{{ $discount->categoryNo ?? '' }}"
                                         aria-expanded="true"
                                         aria-controls="discount-{{ $discount->categoryNo ?? '' }}">
-                                        {{ $discount->name ?? '' }}
+                                        <strong>{{ $discount->name ?? '' }}</strong>
                                     </button>
                                 </h2>
                                 <div id="discount-{{ $discount->categoryNo ?? '' }}"
@@ -269,9 +271,9 @@
                             </div>
                         @endforeach
                     </div> <br>
-                    <center><a href="{{ route('student.sportsDev') }}" class="btn-lg btn-danger">
-                            Apply Discounts
-                        </a></center>
+                    <center><button class="btn-lg btn-danger" data-target="#discountModal" data-toggle="modal">
+                            Apply Discount
+                        </button></center>
                 </div>
             </div>
         </div>
@@ -279,7 +281,7 @@
             <h2 class="accordion-header" id="externalHeading">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#external" aria-expanded="false" aria-controls="external">
-                    <h2><b>EXTERNAL SCHOLARHIPS</b></h2>
+                    <h3><b>EXTERNAL SCHOLARHIPS</b></h3>
                 </button>
             </h2>
             <div id="external" class="accordion-collapse collapse" aria-labelledby="externalHeading"
@@ -311,7 +313,7 @@
                                         data-bs-target="#external-{{ $external->categoryNo ?? '' }}"
                                         aria-expanded="true"
                                         aria-controls="external-{{ $external->categoryNo ?? '' }}">
-                                        {{ $external->name ?? '' }}
+                                        <strong>{{ $external->name ?? '' }}</strong>
                                     </button>
                                 </h2>
                                 <div id="external-{{ $external->categoryNo ?? '' }}"
@@ -330,9 +332,9 @@
                             </div>
                         @endforeach
                     </div> <br>
-                    <center><a href="{{ route('student.sportsDev') }}" class="btn-lg btn-danger">
-                            Apply External/Government Scholarships
-                        </a></center>
+                    <center><button class="btn-lg btn-danger" data-target="#externalModal" data-toggle="modal">
+                            Apply for External Scholarships
+                        </button></center>
                 </div>
             </div>
         </div>
@@ -344,4 +346,7 @@
 @include('modals.addVarsity')
 @include('modals.addCultureAndArts')
 @include('modals.addAcademic')
+@include('modals.addDiscount')
+@include('modals.addSA')
+@include('modals.addExternal')
 @endsection
