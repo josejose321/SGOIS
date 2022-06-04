@@ -32,6 +32,7 @@
                             <th>STUDENT ID</th>
                             <th>NAME</th>
                             <th>DEPARTMENT</th>
+                            <th>ACTIVE</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -44,15 +45,32 @@
                                 <td> {{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }}
                                     {{ $student->user->middlename ?? '' }}</td>
                                 <td>{{ $student->course->department->name ?? '' }}</td>
+                                @if ($student->user->isActive)
+                                    <td class="text-success"><i class="fa fa-check"></i>Active</td>
+                                @else
+                                    <td class="text-danger"><i class="fa fa-ban"></i>Disabled</td>
+                                @endif
                                 <td>
                                     <button type="button" class="btn btn-secondary" data-toggle="modal"
                                         data-target="#viewStudent-{{ $student->student_no }}"><i
                                             class="fa fa-eye"></i>
                                         View</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    @if ($student->user->isActive)
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#deactivateStudent-{{ $student->student_no }}"><i
+                                                class="fa fa-toggle-off"></i>
+                                        </button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#deactivateStudent-{{ $student->student_no }}"><i
+                                                class="fa fa-toggle-off"></i>
+                                        </button>
+                                    @endif
+
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
                                         data-target="#viewStudentForm-{{ $student->student_no }}"><i
                                             class="fa fa-graduation-cap"></i>
-                                        Add Scholarship</button>
+                                        More</button>
                                 </td>
                             </tr>
                         @empty
@@ -73,6 +91,7 @@
     @include('modals.addStudent')
     @include('modals.import')
     @include('modals.admin_addExternal')
+    @include('modals.activateStudent')
 
     </html>
 

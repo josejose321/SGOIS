@@ -25,7 +25,7 @@
                 <label class="form-label fw-bold"
                     style="text-align: center;margin-left: 125px;margin-top: 10px;font-weight: bold;color: var(--bs-red);font-size: 20px;">&nbsp;
                     <i class="fa fa-bullhorn"></i> NEWS AND ANNOUNCEMENTS</label>
-                @foreach ($announcements as $announcement)
+                @forelse ($announcements as $announcement)
                     <div class="card p-1" style="background-color: beige">
                         <div class="card-header">
                             <h5 class="mb-0 fw-bold">{{ $announcement->subject ?? '' }}</h5>
@@ -36,13 +36,14 @@
                             <p class="card-text">-Admin
                                 {{ $announcement->employee->user->lastname ?? '' }},
                                 {{ $announcement->employee->user->firstname ?? '' }}
-                                {{ $announcement->employee->user->middlename ??'' }}</p>
+                                {{ $announcement->employee->user->middlename ?? '' }}</p>
                             <p>Date Created: {{ $announcement->created_at ?? '' }}</p>
 
                         </div>
                     </div>
-                    <br>
-                @endforeach
+                @empty
+                    <center>No Announcement so far</center>
+                @endforelse
                 <center>>end</center>
             </div>
         </div>

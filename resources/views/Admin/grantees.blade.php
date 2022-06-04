@@ -6,7 +6,7 @@
     <div class="row-fluid" data-aos="fade-up">
         <div class="card">
             <div class="card-header">
-                <h2>Students</h2> <br>
+                <h2>Grantees</h2> <br>
                 <h3>TOTAL GRANTEES: {{ $total }}</h3>
 
                 <form action="" method="">
@@ -25,23 +25,25 @@
                             <th>No#</th>
                             <th>STUDENT ID</th>
                             <th>NAME</th>
-                            <th>Deparment</th>
+                            <th>PROGRAM APPLIED</th>
+                            <th>STATUS</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                        @forelse ($students as $student)
+                        @forelse ($grantees as $grantee)
                             <tr data-aos="fade-right">
-                                <td> {{ $student->user->student->userNo ?? '' }}</td>
-                                <td> {{ $student->user->user_id ?? '' }}</td>
-                                <td> {{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }}
-                                    {{ $student->user->middlename ?? '' }}</td>
-                                <td>{{ $student->course->department->name ?? '' }}</td>
+                                <td> {{ $grantee->scholarshipNo ?? '' }}</td>
+                                <td> {{ $grantee->student->user->user_id ?? '' }}</td>
+                                <td> {{ $grantee->student->user->lastname ?? '' }}, {{ $grantee->student->user->firstname ?? '' }}
+                                    {{ $grantee->student->user->middlename ?? '' }}</td>
+                                <td>{{ $grantee->category->name ?? '' }}</td>
+                                <td>{{ $grantee->adminVerification ?? '' }}</td>
                                 <td>
                                     <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                        data-target="#viewStudent-{{ $student->student_no}}"><i class="fa fa-eye"></i>
+                                        data-target="#viewGrantee-{{ $grantee->scholarshipNo}}"><i class="fa fa-eye"></i>
                                         View</button>
                                 </td>
                             </tr>
@@ -53,13 +55,13 @@
 
                 </table>
                 <center>
-                    {!! $students->links() !!}
+                    {!! $grantees->links() !!}
                 </center>
             </div>
 
         </div>
     </div>
-    @include('modals.viewStudent')
+    {{-- @include('modals.viewStudent') --}}
     @include('modals.addStudent')
     @include('modals.import')
 

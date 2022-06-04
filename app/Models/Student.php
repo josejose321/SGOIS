@@ -71,5 +71,11 @@ class Student extends Model
         ->whereHas('user', function($query){
             $query->where('isActive',1);
         });
+    }public function getDisabledStudent()
+    {
+        return $this
+        ->whereHas('user', function($query){
+            $query->where('isActive',0);
+        });
     }
 }

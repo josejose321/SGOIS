@@ -17,6 +17,7 @@ use App\Http\Requests\SemesterRequest;
 use App\Http\Requests\StudentRequest;
 use App\Imports\StudentImport;
 use App\Imports\StudentsImport;
+use App\Mail\AnnouncementMail;
 use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
 use App\Models\Announcement;
@@ -53,6 +54,7 @@ class AdminController extends Controller
 
         // $this->middleware(['auth','isAdmin']);
         // dd($scholar->countApproved('Scholarship'));
+
         $this->scholarship = new Scholarship();
         $this->loan = new Scholarship();
         $this->semester = new Semester();
@@ -61,18 +63,18 @@ class AdminController extends Controller
         $this->student = new Student();
 
         $this->countResults =[
-            'totalScholarships'=> $this->scholarship->approved('Scholarship')->count(),
+            'totalScholarships'=> $this->scholarship->approved('Administrative')->count(),
             'totalDiscounts'=>$this->scholarship->approved('Discount')->count(),
             'totalLoans'=> $this->scholarship->approved('Loan')->count(),
             'totalOthers'=> $this->scholarship->approved('External')->count(),
             'chartResult' => [
-                $this->scholarship->officeGrantees('UNC-SDO','Scholarship')->count(),
-                $this->scholarship->officeGrantees('UNC-CULTURE&ARTS','Scholarship')->count(),
-                $this->scholarship->officeGrantees('UNC-HR','Scholarship')->count(),
+                $this->scholarship->officeGrantees('UNC-SDO','Administrative')->count(),
+                $this->scholarship->officeGrantees('UNC-CULTURE&ARTS','Administrative')->count(),
+                $this->scholarship->officeGrantees('UNC-HR','Administrative')->count(),
                 $this->scholarship->approved('Discount')->count(),
                 $this->scholarship->approved('External')->count(),
             ],
-            'totalVarsity'=> $this->scholarship->officeGrantees('UNC-SDO','Scholarship')->count(),
+            'totalVarsity'=> $this->scholarship->officeGrantees('UNC-SDO','Administrative')->count(),
         ];
 
 
@@ -104,6 +106,7 @@ class AdminController extends Controller
     //announcement
     public function showAnnounce()
     {
+        // Mail::to('jose.evascoii1150@gmail.com')->send(new AnnouncementMail(null));
         $this->data = [
             'announcements'=>Announcement::latest()->simplePaginate(10),
         ];
@@ -122,8 +125,13 @@ class AdminController extends Controller
 
     public function storeAnnounce(AnnouncementRequest $request, Employee $employee)
     {
-
-        $employee->announcements()->create($request->validated());
+        $announcement = $employee->announcements()->create($request->validated());
+        $students = $this->student->getActiveStudent()->get();
+        // dd($students);
+        foreach($students as $student)
+        {
+            Mail::to($student->user->email)->send(new AnnouncementMail($announcement));
+        }
         return back()->withSuccess('You Added a new Annoucement:');
     }
 
@@ -144,7 +152,7 @@ class AdminController extends Controller
         // mail debug
 
         // return new RegistrationMail(Student::find(35));
-        // return new ScholarshipMail(Scholarship::latest()->first());
+
         // return new AnnouncementMail(null);
         $this->data = [
             'total'=> Student::count(),
@@ -201,7 +209,7 @@ class AdminController extends Controller
     {
         // dd($this->student->searchStudent('Computer Studies')->get());
         $this->data =[
-            'students'=>$this->student->getActiveStudent()->simplePaginate(15),
+            'students'=> Student::simplePaginate(15),
             'total'=>$this->user->getStudent()->count(),
             'courses'=>Course::all(),
             'externals'=>Category::where('type','External')->get(),
@@ -212,10 +220,10 @@ class AdminController extends Controller
     }
     public function showGrantees()
     {
-        // return $this->user->getStudent()->simplePaginate(15);
+        // dd($this->scholarship->administrativeGrantees()->count)
         $this->data =[
-            'students'=>$this->student->getGrantees()->simplePaginate(15),
-            'total'=>$this->student->getGrantees()->count(),
+            'grantees'=>$this->scholarship->administrativeGrantees()->simplePaginate(15),
+            'total'=>$this->scholarship->administrativeGrantees()->count(),
             'courses'=>Course::all(),
             'departments'=> Department::all(),
         ];
@@ -408,8 +416,9 @@ class AdminController extends Controller
         ->with($this->data);
     }
 
-    public function downloadReport()
+    public function downloadReport(Request $request)
     {
+        if($request->type === "Administrative")
         return Excel::download(new SummaryReport, 'SGO-SUMMARY-REPORT.xlsx');
 
     }
@@ -508,6 +517,7 @@ class AdminController extends Controller
     {
         $student->scholarships()->create([
             'categoryNo'=>$request->categoryNo,
+            'type'=>'External',
             'semesterCode'=> Semester::latest()->first()->semesterCode ?? '',
             'officeVerification'=>'Approved',
             'adminVerification'=>'Approved',
@@ -526,6 +536,25 @@ class AdminController extends Controller
         {
             return back();
         }
+    }
+    public function deactivateStudent(Student $student)
+    {
+        // dd($student->user->isActive);
+        if($student->user->isActive)
+        {
+            $student->user->update([
+                'isActive' => 0,
+            ]);
+            return back()->withSuccess('Successfully Deactivate Account');
+        }
+        else
+        {
+            $student->user->update([
+                'isActive' => 1,
+            ]);
+            return back()->withSuccess('Successfully Activate Account');
+        }
+
     }
 
 

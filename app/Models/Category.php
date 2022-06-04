@@ -87,9 +87,27 @@ class Category extends Model
             $category= Category::find($categoryNo);
             array_push($categoryData,
             (object) array(
-               'categoryNo' =>$category->categoryNo,
-               'categoryName'=> $category->name,
-               'total'=> $this->approved($categoryNo)->count(),//count scholarships where it belongs to this category
+               'ProgramNo' =>$category->categoryNo,
+               'External Program'=> $category->name,
+               'Total Grantees'=> $this->approved($categoryNo)->count(),//count scholarships where it belongs to this category
+                )
+            );
+        }
+        return $categoryData;
+
+    }
+    public function getLoanSummary()
+    {
+        $categoryData = [];
+        foreach(Category::where('type','Loan')
+        ->pluck('categoryNo') as $categoryNo)
+        {
+            $category= Category::find($categoryNo);
+            array_push($categoryData,
+            (object) array(
+               'ProgramNo' =>$category->categoryNo,
+               'External Program'=> $category->name,
+               'Total Grantees'=> $this->approved($categoryNo)->count(),//count scholarships where it belongs to this category
                 )
             );
         }
@@ -100,9 +118,9 @@ class Category extends Model
     public function ifHasVacant($category,$totalApproved)
     {
         $allocation = $this->find($category)->allocation;
-        if($allocation <= 0)
+        if($allocation == 0)
             return true;
-        if($allocation <= $totalApproved)
+        if($allocation < $totalApproved)
         {
             return true;
         }

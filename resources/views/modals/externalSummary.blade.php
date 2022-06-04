@@ -14,7 +14,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 <a href="{{ route('admin.external.download') }}" type="button" class="btn btn-secondary">
-                    Generate External Report
+                    Continue
                 </a>
             </div>
         </div>

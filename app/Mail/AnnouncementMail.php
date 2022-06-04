@@ -30,8 +30,8 @@ class AnnouncementMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Announcement')
+        return $this->subject('SGO ANNOUNCEMENT')
         ->markdown('emails.announcementMail')
-        ->with($this->announcement);
+        ->with('announcement',$this->announcement);
     }
 }

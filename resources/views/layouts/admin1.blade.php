@@ -82,7 +82,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.programs') }}"><i
                                 class="fa fa-list-alt"></i><span>SGO PROGRAMS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.announce.show') }}"><i
-                                class="fa fa-bell"></i><span>ANNOUNCE</span></a></li>
+                                class="fa fa-bell"></i><span>ANNOUNCEMENT</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline text-light"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>

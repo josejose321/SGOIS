@@ -12,10 +12,10 @@ Mr/Ms {{ $scholarship->student->user->lastname ?? '' }}
      excepturi debitis iusto! Temporibus aperiam corporis expedita? Aliquid iste et at quia! Delectus, repellat.
 
 <br>
-# Scholarship Details:
-# Scholarship/Program Type : {{ $scholarship->type ?? '' }}
-# Discount Granted : {{ $scholarship->discount ?? '' }}
-# Endorsing Office : {{ $scholarship->category->office->name ?? '' }}
+# Scholarship Details: <br>
+# Scholarship/Program Type : {{ $scholarship->type ?? '' }} <br>
+# Discount Granted : {{ $scholarship->discount ?? '' }} <br>
+# Endorsing Office : {{ $scholarship->category->office->name ?? '' }} <br>
 
 
 

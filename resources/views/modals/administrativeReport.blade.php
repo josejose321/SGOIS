@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title h4 font-weight-bold" id="importLabel">Administrative Scholarship and Discount
+                <h5 class="modal-title h4 font-weight-bold" id="importLabel">
                     Report</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -16,7 +16,7 @@
                 <center>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     <a href="{{ route('admin.report.download') }}" type="button" class="btn btn-secondary">
-                        Generate Scholarship And Discount Report
+                        Continue
                     </a>
                 </center>
             </div>

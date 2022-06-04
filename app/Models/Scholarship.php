@@ -39,26 +39,57 @@ class Scholarship extends Model
         return $this->belongsTo(Category::class,'categoryNo','categoryNo');
     }
 
-    // public function countApproved($type)
-    // {
-    //      return $this->where('officeVerification','Approved')
-    //         ->where('adminVerification','Approved')
-    //         ->where('type',$type)->count();
-    // }
     public function approved($type)
     {
-        return self::where('officeVerification','Approved')
+        return $this
+            ->where('officeVerification','Approved')
             ->where('adminVerification','Approved')
-            ->where('semesterCode',Semester::latest()->first()->semesterCode ?? '')
-            ->where('type',$type);
+            ->where('scholarships.semesterCode',Semester::latest()->first()->semesterCode ?? '')
+            ->whereHas('category', function($query)use($type){
+                $query->where('type',$type);
+            });
+    }
+    public function administrativeGrantees()
+    {
+        return $this
+            ->where('officeVerification','Approved')
+            ->where('adminVerification','Approved')
+            ->where('scholarships.semesterCode',Semester::latest()->first()->semesterCode ?? '')
+            ->whereHas('category', function($query){
+                $query->where('type','Administrative')
+                ->orwhere('type','Discount');
+            });
+
+    }
+    public function externalGrantee()
+    {
+        return $this
+            ->where('officeVerification','Approved')
+            ->where('adminVerification','Approved')
+            ->whereHas('category', function($query){
+                $query->where('type','External');
+            });
+
+    }
+    public function loanGrantee()
+    {
+        return $this
+            ->where('officeVerification','Approved')
+            ->where('adminVerification','Approved')
+            ->where('scholarships.semesterCode',Semester::latest()->first()->semesterCode ?? '')
+            ->whereHas('category', function($query){
+                $query->where('type','Loan');
+            });
+
     }
 
     public function admin_getPending($type)
     {
-        return $this
-        ->where('semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
-        ->where('type',$type)
-        ->where('adminVerification','Pending')
+        return $this->select('scholarships.*')
+        ->join('categories','scholarships.categoryNo','categories.categoryNo')
+        ->where('scholarships.semesterCode',Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+        ->where('scholarships.type',$type)
+        ->where('scholarships.adminVerification','Pending')
         ->latest();
     }
     public function endorser_getPending($type)
@@ -80,7 +111,7 @@ class Scholarship extends Model
             // ->where('scholarships.semesterCode',Semester::latest()->first()->semesterCode ?? '')
             ->where('scholarships.officeVerification','Approved')
             ->where('scholarships.adminVerification','Approved')
-            ->where('scholarships.type',$type)
+            ->where('categories.type',$type)
             ->where('categories.officeCode',$office);
     }
 
@@ -118,6 +149,33 @@ class Scholarship extends Model
                  ', '. $grantee->student->user->firstname .
                  ' '. $grantee->student->user->middlename,
                 'grant' => $grantee->discount,
+
+                )
+            );
+        }
+        // dd($gr);
+        return (array)$granteeCollection;
+    }
+    public function exportExternalGrants($type)
+    {
+        $granteeCollection = [];
+        $grants =$this->select('scholarships.*')
+        ->join('categories','scholarships.categoryNo', 'categories.categoryNo')
+        ->join('students','scholarships.student_no','students.student_no')
+        ->where('categories.type',$type)
+        ->where('scholarships.officeVerification','Approved')
+        ->where('scholarships.adminVerification','Approved')
+        ->where('semesterCode',Semester::latest()->first()->semesterCode ?? '')->get();
+        foreach($grants as $grantee)
+        {
+            array_push($granteeCollection,
+            (object) array(
+                'applicationNo' => $grantee->scholarshipNo,
+                'program' => $grantee->category->name,
+                'student_id' => $grantee->student->user->user_id,
+                'fullname' => $grantee->student->user->lastname .
+                 ', '. $grantee->student->user->firstname .
+                 ' '. $grantee->student->user->middlename,
 
                 )
             );

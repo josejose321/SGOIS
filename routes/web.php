@@ -74,6 +74,7 @@ Route::prefix('admin')
         Route::post('/export-grantees','exportGrants')->name('grants.export');
 
 
+
         Route::get('/semesters','showSemester')->name('semester');
         Route::post('/semesters','storeSemester')->name('semester.store');
         Route::post('semesters/{semester}', 'extendSem')->name('semester.extend');
@@ -95,6 +96,7 @@ Route::prefix('admin')
 
         Route::post('/import','import')->name('import');
         Route::get('/students','showStudents')->name('students');
+        Route::get('/students/{student}','deactivateStudent')->name('student.deactivate');
         Route::post('/students/search','searchStudents')->name('students.search');
         Route::get('/profile','showProfile')->name('profile');
         Route::post('profile/{user}/avatar','updateAvatar')->name('update.avatar');
