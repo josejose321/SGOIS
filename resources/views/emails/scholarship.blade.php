@@ -16,6 +16,7 @@ Mr/Ms {{ $scholarship->student->user->lastname ?? '' }}
 # Scholarship/Program Type : {{ $scholarship->type ?? '' }} <br>
 # Discount Granted : {{ $scholarship->discount ?? '' }} <br>
 # Endorsing Office : {{ $scholarship->category->office->name ?? '' }} <br>
+# STATUS : {{'Approved' }} <br>
 
 
 

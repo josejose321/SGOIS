@@ -18,6 +18,7 @@ use App\Http\Requests\StudentRequest;
 use App\Imports\StudentImport;
 use App\Imports\StudentsImport;
 use App\Mail\AnnouncementMail;
+use App\Mail\DeclineApplicationMail;
 use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
 use App\Models\Announcement;
@@ -162,7 +163,7 @@ class AdminController extends Controller
             'offices' =>Office::all(),
             'externals' => Category::where('type','External')->get()
         ];
-        //auth()->admin
+
 
 
         return view('Admin.index')
@@ -171,7 +172,6 @@ class AdminController extends Controller
     }
     public function showScholarships()
     {
-        //auth()->admin
         $this->data =[
             'scholarships'=> $this->scholarship->admin_getPending('Scholarship')->simplePaginate(10)
         ];
@@ -555,6 +555,16 @@ class AdminController extends Controller
             return back()->withSuccess('Successfully Activate Account');
         }
 
+    }
+
+    public function declineApplication(Scholarship $scholarship)
+    {
+        $scholarship->update([
+            'officeVerification'=>"Declined"
+        ]);
+        Mail::to($scholarship->student->user->email)->send(new DeclineApplicationMail($scholarship));
+
+        return back()->withSuccess('Application Declined!');
     }
 
 

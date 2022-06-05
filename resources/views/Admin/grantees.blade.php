@@ -26,7 +26,6 @@
                             <th>STUDENT ID</th>
                             <th>NAME</th>
                             <th>PROGRAM APPLIED</th>
-                            <th>STATUS</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -40,7 +39,6 @@
                                 <td> {{ $grantee->student->user->lastname ?? '' }}, {{ $grantee->student->user->firstname ?? '' }}
                                     {{ $grantee->student->user->middlename ?? '' }}</td>
                                 <td>{{ $grantee->category->name ?? '' }}</td>
-                                <td>{{ $grantee->adminVerification ?? '' }}</td>
                                 <td>
                                     <button type="button" class="btn btn-secondary" data-toggle="modal"
                                         data-target="#viewGrantee-{{ $grantee->scholarshipNo}}"><i class="fa fa-eye"></i>
@@ -64,6 +62,7 @@
     {{-- @include('modals.viewStudent') --}}
     @include('modals.addStudent')
     @include('modals.import')
+    @include('modals.viewgrantees')
 
     </html>
 

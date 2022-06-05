@@ -7,6 +7,7 @@ use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\ChangePassRequest;
 use App\Http\Requests\EmployeeRequest;
 use App\Http\Requests\EmployeeUpdateRequest;
+use App\Mail\DeclineApplicationMail;
 use App\Models\Admin;
 use App\Models\Announcement;
 use App\Models\Category;
@@ -21,6 +22,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class EmployeeController extends Controller
 {
@@ -143,5 +145,14 @@ class EmployeeController extends Controller
     {
         return view('Employee.change_pass')
         ->with($this->data);
+    }
+    public function declineApplication(Scholarship $scholarship)
+    {
+        $scholarship->update([
+            'officeVerification'=>"Declined"
+        ]);
+        Mail::to($scholarship->student->user->email)->send(new DeclineApplicationMail($scholarship));
+
+        return back()->withSuccess('Application Declined!');
     }
 }

@@ -54,9 +54,11 @@
                 </div> --}}
     </div>
     <div class=" col-md-6 animate__animated animate__fadeInRight">
-        <label class="form-label"
+        <div class="bg-dark">
+            <label class="form-label"
             style="text-align: center;margin-left: 125px;margin-top: 10px;font-weight: bold;color: var(--bs-red);font-size: 20px;">&nbsp;
             <i class="fa fa-bullhorn"></i> NEWS AND ANNOUNCEMENTS</label>
+        </div>
         @forelse ($announcements as $announcement)
             <div class="card p-1" style="background-color: beige">
                 <div class="card-header" style="background-color: beige">
@@ -71,9 +73,12 @@
                         {{ $announcement->employee->user->middlename }}</p>
 
                 </div>
+                <div class="card-footer" style="background-color: beige">
+                    Date Created: {{ $announcement->created_at->format('y/m/d') ?? '' }}
+                </div>
             </div>
             @empty
-                <center>No Announcement so far</center>
+                <center>No Updates So far</center>
         @endforelse
     </div>
 </div>
