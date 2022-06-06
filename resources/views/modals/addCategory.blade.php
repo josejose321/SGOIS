@@ -45,7 +45,9 @@
                             <option value="{{ old('type') }}">Choose..</option>
                             <option value="Administrative">Administrative Scholarship</option>
                             <option value="Academic">Academic Scholarship</option>
+
                             <option value="External">External Scholarship</option>
+                            <option value="loan">Loan Programs</option>
                             <option value="Discount">Discount Programs</option>
                         </select>
                     </div>

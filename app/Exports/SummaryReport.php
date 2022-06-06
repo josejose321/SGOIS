@@ -35,7 +35,7 @@ class SummaryReport implements FromArray, ShouldAutoSize, WithHeadings
     {
         return [
             'No.',
-            'Category',
+            'Program',
             'Field_team',
             '10%',
             '15%',

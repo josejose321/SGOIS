@@ -45,9 +45,8 @@ class Scholarship extends Model
             ->where('officeVerification','Approved')
             ->where('adminVerification','Approved')
             ->where('scholarships.semesterCode',Semester::latest()->first()->semesterCode ?? '')
-            ->whereHas('category', function($query)use($type){
-                $query->where('type',$type);
-            });
+            ->where('type',$type);
+
     }
     public function administrativeGrantees()
     {
@@ -57,7 +56,8 @@ class Scholarship extends Model
             ->where('scholarships.semesterCode',Semester::latest()->first()->semesterCode ?? '')
             ->whereHas('category', function($query){
                 $query->where('type','Administrative')
-                ->orwhere('type','Discount');
+                ->orwhere('type','Discount')
+                ->orwhere('type','Academic');
             });
 
     }
@@ -157,6 +157,34 @@ class Scholarship extends Model
         return (array)$granteeCollection;
     }
     public function exportExternalGrants($type)
+    {
+        $granteeCollection = [];
+        $grants =$this->select('scholarships.*')
+        ->join('categories','scholarships.categoryNo', 'categories.categoryNo')
+        ->join('students','scholarships.student_no','students.student_no')
+        ->where('categories.type',$type)
+        ->where('scholarships.officeVerification','Approved')
+        ->where('scholarships.adminVerification','Approved')
+        ->where('semesterCode',Semester::latest()->first()->semesterCode ?? '')->get();
+        foreach($grants as $grantee)
+        {
+            array_push($granteeCollection,
+            (object) array(
+                'applicationNo' => $grantee->scholarshipNo,
+                'program' => $grantee->category->name,
+                'student_id' => $grantee->student->user->user_id,
+                'fullname' => $grantee->student->user->lastname .
+                 ', '. $grantee->student->user->firstname .
+                 ' '. $grantee->student->user->middlename,
+                 'grant' =>$grantee->discount
+
+                )
+            );
+        }
+        // dd($gr);
+        return (array)$granteeCollection;
+    }
+    public function exportLoanGrants($type)
     {
         $granteeCollection = [];
         $grants =$this->select('scholarships.*')

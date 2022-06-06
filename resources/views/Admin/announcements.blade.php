@@ -8,8 +8,8 @@
             <div class="card-header">
                 <div class="h3 font-weight-bold">Announcements</div>
                 <div class="col-md-4 float-right">
-                    <button type="button" class="btn btn-secondary" id="announce"><i
-                            class="fa fa-bell"></i><span>COMPOSE ANNOUNCEMENT</span></button>
+                    <button type="button" class="btn btn-secondary" id="announce"><i class="fa fa-bell"></i><span>COMPOSE
+                            ANNOUNCEMENT</span></button>
                 </div> <br>
             </div>
             <div class="card-body" style="font-size: 14px;">
@@ -21,7 +21,6 @@
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th>Announcement No.</th>
                                 <th>SUBJECT</th>
-                                <th>ADMIN</th>
                                 <th>DATE CREATED</th>
                                 <th>ACTION</th>
                             </tr>
@@ -31,11 +30,7 @@
                                 <tr>
                                     <td>{{ $announcement->id ?? '' }}</td>
                                     <td>{{ $announcement->subject ?? '' }}</td>
-                                    <td>{{ $announcement->employee->user->lastname }},
-                                        {{ $announcement->employee->user->firstname }}
-                                        {{ $announcement->employee->user->middlename }}</p>
-                                    </td>
-                                    <td>{{ $announcement->created_at }}</td>
+                                    <td>{{ $announcement->created_at->format('y/m/d') }}</td>
                                     <td>
                                         <button class="btn btn-secondary" type="button" data-toggle="modal"
                                             data-target="#viewAnnouce-{{ $announcement->id }}">
@@ -45,8 +40,10 @@
                                                 <i class="fa fa-trash-o"></i></button></a>
                                     </td>
                                 </tr>
-                                @empty
-                                <tr><td>No Announcements</td></tr>
+                            @empty
+                                <tr>
+                                    <td>No Announcements</td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>

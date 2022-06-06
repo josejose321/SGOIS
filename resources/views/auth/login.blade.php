@@ -3,7 +3,7 @@
 @section('content')
     <br><br><br><br><br>
     <center>
-        <div class="card col-md-5 text-white" data-aos="fade-down" style="background-color: rgba(61, 61, 61, 0.85)">
+        <div class="card col-md-5 text-white" data-aos="fade-down" style="background-color: rgba(61, 61, 61, 0.95)">
             <center>
 
                 <div class="card-header">
@@ -19,8 +19,9 @@
                         <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control text-light  @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" autocomplete="email" autofocus
+                                style="background-color: rgba(61, 61, 61, 0.95)">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -35,8 +36,8 @@
 
                         <div class="col-md-6">
                             <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
+                                class="form-control text-light @error('password') is-invalid @enderror" name="password"
+                                autocomplete="current-password" style="background-color: rgba(61, 61, 61, 0.95)">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -68,13 +69,13 @@
                             </button>
 
                             @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="link link-info" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             @endif
                         </div>
                         <center>
-                            <a class="btn btn-link float-left fw-bold text-danger" href="{{ url('/') }}"> Go back</a>
+                            <a class="link link-info float-left fw-bold" href="{{ url('/') }}"> Go back</a>
                         </center>
                     </div>
                 </form>

@@ -28,7 +28,7 @@
 
 <br> <br><br>
 <div class="container animate__animated animate__fadeInUp">
-    <div class="container-fluid">
+    <div class="container col-md-8">
         <div class="card shadow">
             <div class="card-header py-3">
                 <div class="h2 font-weight-bold">My Application</div>
@@ -52,7 +52,6 @@
                                 <th>Endorsing Office</th>
                                 <th>ENDORSER STATUS</th>
                                 <th>STATUS</th>
-                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,9 +62,6 @@
                                     <td>{{ $scholarship->category->office->name ?? '' }}</td>
                                     <td>{{ $scholarship->officeVerification ?? '' }}</td>
                                     <td>{{ $scholarship->adminVerification ?? '' }}</td>
-                                    <td><button class="btn btn-secondary" type="button">
-                                            <i class="fa fa-eye"></i>Preview</button>
-                                    </td>
                                 </tr>
                                 @empty
                                 <tr><td>No Records</td></tr>
@@ -80,6 +76,6 @@
         </div>
     </div>
 </div>
-
+<br><br><br><br><br><br><br>
 
 @endsection

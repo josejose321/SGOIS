@@ -15,6 +15,7 @@
                             aria-label="Default select example">
                             <option value="Administrative">Administrative Scholarships</option>
                             <option value="External">External Scholarships</option>
+                            <option value="Academic">Academic Scholarships</option>
                             <option value="Discount">Discount Programs</option>
                             <option value="Loan">Loan Programs</option>
                         </select>

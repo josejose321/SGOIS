@@ -54,7 +54,7 @@
                 </div> --}}
     </div>
     <div class=" col-md-6 animate__animated animate__fadeInRight">
-        <div class="bg-dark">
+        <div class="">
             <label class="form-label"
             style="text-align: center;margin-left: 125px;margin-top: 10px;font-weight: bold;color: var(--bs-red);font-size: 20px;">&nbsp;
             <i class="fa fa-bullhorn"></i> NEWS AND ANNOUNCEMENTS</label>

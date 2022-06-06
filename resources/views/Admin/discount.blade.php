@@ -50,13 +50,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function deleteScholarship(scholarshipNo) {
-            if (confirm("Do you really want to delete this scholarship?:\nScholarshipNo:" + scholarshipNo)) {
-                alert(scholarshipNo);
-            }
-        }
-    </script>
 
     @include('modals.admin_viewScholarship')
 

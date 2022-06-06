@@ -6,7 +6,7 @@
     <div class="container-fluid" data-aos="fade-up">
         <div class="card shadow">
             <div class="card-header py-3">
-                <div class="h3 font-weight-bold">PENDING SCHOLARSHIP</div>
+                <div class="h3 font-weight-bold">{{ Auth::user()->employee->office->name }} <br> Pending Scholarship</div>
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">

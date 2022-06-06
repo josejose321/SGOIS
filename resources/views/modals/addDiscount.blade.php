@@ -68,7 +68,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="category">Discount</label>
                             <select class="form-select form-select-md mb-3" name="discount"
                                 value="{{ old('discount') }}" aria-label="Default select example">
@@ -80,7 +80,7 @@
                                 <option value="100%">100% Discount</option>
                                 <option value="Full">Full Scholarship</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label for="requirement">Upload Requirement here</label>
                             <input type="file" class="form-control" id="requirement" name="requirement"

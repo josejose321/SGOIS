@@ -27,7 +27,7 @@ class ScholarshipRequest extends FormRequest
             //
             "semesterCode"=>'required',
             "categoryNo"=>'required',
-            "discount"=>'required',
+            "discount"=>'',
             "requirement"=>"required|mimetypes:application/pdf|max:10000",
             "photo"=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

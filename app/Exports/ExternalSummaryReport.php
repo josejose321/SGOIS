@@ -23,7 +23,7 @@ class ExternalSummaryReport implements FromArray, ShouldAutoSize, WithHeadings
     {
         return [
             'No.',
-            'Category',
+            'Program',
             'Total',];
     }
 }

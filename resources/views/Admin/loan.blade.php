@@ -14,9 +14,9 @@
                         <thead>
                             <tr style="background: var(--bs-red);color: var(--bs-body-bg);font-size: 15px;">
                                 <th scope="col">APPLICATION NO</th>
+                                <th>DISCOUNT APPLIED</th>
                                 <th scope="col">STUDENT ID</th>
                                 <th scope="col">NAME</th>
-                                {{-- <th scope="col">EMAIL</th> --}}
                                 <th scope="col">OFFICE STATUS</th>
                                 <th scope="col">ACTION</th>
                             </tr>
@@ -26,8 +26,9 @@
                                 <tr>
                                     <td>{{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</td>
                                     <td>{{ $scholarship->student_no ?? '' }}</td>
-                                    <td>{{ $scholarship->student->lastname ?? '' }},{{ $scholarship->student->firstname }}
-                                        {{ $scholarship->student->middlename }}</td>
+                                    <td>{{ $scholarship->category->name ?? '' }}</td>
+                                    <td>{{ $scholarship->student->user->lastname ?? '' }},{{ $scholarship->student->user->firstname ?? '' }}
+                                        {{ $scholarship->student->user->middlename ?? '' }}</td>
                                     {{-- <td>{{ $scholarship->student->email }}</td> --}}
                                     <td>{{ $scholarship->officeVerification }}</td>
                                     <td><a class="btn-lg btn-secondary" href="{{ route('admin.application.view',$scholarship->scholarshipNo) }}" type="button">

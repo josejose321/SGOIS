@@ -1,14 +1,14 @@
 <form action="{{ route('student.apply.scholarship', Auth::user()->student ?? '') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
-    <div class="modal  fade" id="varsityModal" tabindex="-1" role="dialog"
-        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal  fade" id="varsityModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
 
             <div class="modal-content">
                 <div class="modal-header bg-dark text-light">
-                    <h3> <i class="fa fa-basketball-ball"></i> Varisity Scholarship Form</h3>
+                    <h3> <i class="fa fa-basketball-ball"></i> Varsity Scholarship Form</h3>
                     <!-- <img class="img-thumbnail" src="./logo.png" alt="..." class="rounded mx-auto d-block"> -->
                 </div>
                 <div class="modal-body bg-light">
@@ -24,6 +24,13 @@
                     @if ($sem === null)
                         <div class="alert alert-danger">
                             <p>Application is already closed!</p>
+                            <p> Please Contact the SGO for other concerns</p>
+                            <p> THANK YOU!</p>
+                        </div>
+                    @endif
+                    @if ($sdo_office->count() <= 0)
+                        <div class="alert alert-danger">
+                            <p>No Varsity Scholarship Avaiable</p>
                             <p> Please Contact the SGO for other concerns</p>
                             <p> THANK YOU!</p>
                         </div>
@@ -68,7 +75,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="category">Discount</label>
                             <select class="form-select form-select-md mb-3" name="discount"
                                 value="{{ old('discount') }}" aria-label="Default select example">
@@ -80,7 +87,7 @@
                                 <option value="100%">100% Discount</option>
                                 <option value="Full">Full Scholarship</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label for="requirement">Upload Requirement here</label>
                             <input type="file" class="form-control" id="requirement" name="requirement"
@@ -102,8 +109,8 @@
                 <br>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary"
-                        @if ($sem === null) disabled @endif>Submit</button>
+                    <button type="submit" class="btn btn-primary" @if ($sem === null) disabled @endif
+                        @if ($sdo_office->count() <= 0) disabled @endif> Submit</button>
 
                 </div>
             </div>

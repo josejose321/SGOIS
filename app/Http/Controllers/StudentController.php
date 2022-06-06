@@ -66,6 +66,7 @@ class StudentController extends Controller
             'hr_office' => Office::find('UNC-HR'),
             'culture_office' =>Office::find('UNC-CULTURE&ARTS'),
             'discounts' => Category::where('type','Discount')->get(),
+            'loans' => Category::where('type','Loan')->get(),
             'externals' => Category::where('type','External')->get( ),
             'sem'=> $this->semester->getLatest(),
             'announcements' => $this->announcement->getLatest()
@@ -101,7 +102,7 @@ class StudentController extends Controller
     }
     public function applyAdministrative(ScholarshipRequest $request, Student $student)
     {
-        if($this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        if(!$this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
         {
             return back()->with('error','Sorry, No Slot Available');
         }
@@ -122,7 +123,7 @@ class StudentController extends Controller
             "type" => 'Scholarship',
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
-            "discount"=> $request->discount,
+            // "discount"=> $request->discount,
             "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
             "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
         ]);
@@ -130,7 +131,7 @@ class StudentController extends Controller
     }
     public function applyDiscount(ScholarshipRequest $request, Student $student)
     {
-        if($this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        if(!$this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
         {
             return back()->with('error','Sorry, No Slot Available');
         }
@@ -151,7 +152,7 @@ class StudentController extends Controller
             "type" => 'Discount',
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
-            "discount"=> $request->discount,
+            // "discount"=> $request->discount,
             "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
             "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
         ]);
@@ -159,7 +160,7 @@ class StudentController extends Controller
     }
     public function applyExternal(ScholarshipRequest $request, Student $student)
     {
-        if($this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        if(!$this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
         {
             return back()->with('error','Sorry, No Slot Available');
         }
@@ -175,10 +176,37 @@ class StudentController extends Controller
 
 
         $student->scholarships()->create([
-            "type" => 'Scholarship',
+            "type" => 'External',
             "semesterCode"=>$request->semesterCode,
             "categoryNo"=>$request->categoryNo,
-            "discount"=> $request->discount,
+            // "discount"=> $request->discount,
+            "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
+            "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
+        ]);
+        return back()->withSuccess('Your Application is submitted');
+    }
+    public function applyLoan(ScholarshipRequest $request, Student $student)
+    {
+        if(!$this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        {
+            return back()->with('error','Sorry, No Slot Available');
+        }
+        // if($student->whereHas('scholarships', function($query){
+        //     $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+        //     ->Where('officeVerification', 'Approved')
+        //     ->orWhere('adminVerification','Approved');
+        //     }
+        // )->count() > 0)
+        // {
+        //     return back()->with('error', 'Cannot Process Scholarship Right now\n You have Applied Scholarship or Pending Scholarship');
+        // }
+
+
+        $student->scholarships()->create([
+            "type" => 'Loan',
+            "semesterCode"=>$request->semesterCode,
+            "categoryNo"=>$request->categoryNo,
+            // "discount"=> $request->discount,
             "requirement"=> $this->storeFiles($request->file('requirement'),'requirements/'),
             "photo"=>$this->storeFiles($request->file('photo'),'photos/'),
         ]);

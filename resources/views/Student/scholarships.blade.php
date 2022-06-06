@@ -40,14 +40,8 @@
             <div id="academic" class="accordion-collapse collapse" aria-labelledby="academicHeading"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>ACADEMIC ACHIEVEMENT SCHOLARSHIP</strong> – scholarship awarded to Grade 12 academic
-                    achievers of the
-                    different strands. The basis of ranking is the grade average of the previous school year (Grade 11).
-                    <br>
-
-                    <strong>RANK in the STRAND TUITION FEE SCHOLARSHIP</strong> <br>
-                    Rank 1 100% <br>
-                    Rank 2 50% <br>
+                    <strong>ACADEMIC ACHIEVEMENT SCHOLARSHIP</strong> – For the students with excellent performance in
+                    their academic work may qualify for semestral academic scholarship.
                     <div class="accordion" id="academicAccordion">
                         @foreach ($academics as $academic)
                             <div class="accordion-item">
@@ -142,11 +136,8 @@
             <div id="culture" class="accordion-collapse collapse" aria-labelledby="cultureHeading"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa blanditiis dicta asperiores
-                    consectetur tempora quidem quam quo ut voluptates ad quaerat reiciendis ratione soluta, atque animi
-                    maxime quod magni hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, deleniti.
-                    Obcaecati et voluptate ratione! Molestias accusamus delectus qui est totam nobis mollitia
-                    temporibus, perspiciatis, a dignissimos deleniti impedit eaque vel?
+                    <strong>Culture and Arts Scholarship</strong>-
+                    The University scholarship for the members of the Glee Club etc.
                     <div class="accordion" id="cultureAccordion">
                         @foreach ($culture_office->categories as $culture)
                             <div class="accordion-item">
@@ -190,11 +181,8 @@
             <div id="student_assistance" class="accordion-collapse collapse" aria-labelledby="studentAssistanceHeading"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa blanditiis dicta asperiores
-                    consectetur tempora quidem quam quo ut voluptates ad quaerat reiciendis ratione soluta, atque animi
-                    maxime quod magni hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, deleniti.
-                    Obcaecati et voluptate ratione! Molestias accusamus delectus qui est totam nobis mollitia
-                    temporibus, perspiciatis, a dignissimos deleniti impedit eaque vel?
+                    For the financially strapped but deserving students who render duty in the different workstations in
+                    the University.
 
                     <div class="accordion" id="student_assistanceAccordion">
                         @foreach ($hr_office->categories as $student_assistance)
@@ -278,6 +266,52 @@
             </div>
         </div>
         <div class="accordion-item">
+            <h2 class="accordion-header" id="loanHeading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#loan" aria-expanded="false" aria-controls="loan">
+                    <h3><b>AVAILABLE LOANS</b></h3>
+                </button>
+            </h2>
+            <div id="loan" class="accordion-collapse collapse" aria-labelledby="loanHeading"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa blanditiis dicta asperiores
+                    consectetur tempora quidem quam quo ut voluptates ad quaerat reiciendis ratione soluta, atque animi
+                    maxime quod magni hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, deleniti.
+                    Obcaecati et voluptate ratione! Molestias accusamus delectus qui est totam nobis mollitia
+                    temporibus, perspiciatis, a dignissimos deleniti impedit eaque vel?
+                    <div class="accordion" id="discountAccordion">
+                        @foreach ($loans as $loan)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-{{ $loan->categoryNo }}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#loan-{{ $loan->categoryNo ?? '' }}" aria-expanded="true"
+                                        aria-controls="loan-{{ $loan->categoryNo ?? '' }}">
+                                        <strong>{{ $loan->name ?? '' }}</strong>
+                                    </button>
+                                </h2>
+                                <div id="loan-{{ $loan->categoryNo ?? '' }}" class="accordion-collapse collapse"
+                                    aria-labelledby="heading-{{ $loan->categoryNo }}"
+                                    data-bs-parent="#loanAccordion">
+                                    <div class="accordion-body">
+                                        <strong>PROCEEDURE</strong>
+                                        @foreach (explode('#', $loan->instruction) as $item)
+                                            @if ($item != '')
+                                                <li>{{ $item }}</li>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div> <br>
+                    <center><button class="btn-lg btn-danger" data-target="#loanModal" data-toggle="modal">
+                            Apply Loan
+                        </button></center>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
             <h2 class="accordion-header" id="externalHeading">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#external" aria-expanded="false" aria-controls="external">
@@ -349,4 +383,5 @@
 @include('modals.addDiscount')
 @include('modals.addSA')
 @include('modals.addExternal')
+@include('modals.addLoan')
 @endsection

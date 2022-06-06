@@ -1,7 +1,6 @@
 <form action="{{ route('employee.scholarship.approve', $scholarship->scholarshipNo) }}" method="post">
     @csrf
-    <div class="modal fade" id="modalScholarship" tabindex="-1"
-        role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modalScholarship" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -19,7 +18,8 @@
                         <label for="discount" class="fw-bold"> Discount</label>
                         <select class="form-select form-select-md mb-3" id="discount" name="discount"
                             aria-label="Default select example">
-                            <option value="{{ $scholarship->discount?? '' }}">{{ $scholarship->discount ?? '' }} Discount
+                            <option value="{{ $scholarship->discount ?? '' }}">{{ $scholarship->discount ?? '' }}
+                                Discount
                             </option>
                             <option value="10%">15% Discount</option>
                             <option value="25%">25% Discount</option>
@@ -32,6 +32,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Accept</button>
+                    <a href="{{ route('admin.application.decline', $scholarship) }}"><button type="button"
+                            class="btn btn-danger">Decline this Scholarship</button></a>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
                 </div>
@@ -39,4 +41,3 @@
         </div>
     </div>
 </form>
-

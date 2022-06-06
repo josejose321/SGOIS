@@ -93,8 +93,11 @@ class EmployeeController extends Controller
     }
     public function showLoans()
     {
-        return view('Employee.scholarship')
-        ->with('scholarships',Scholarship::where('adminVerification','Pending')->latest()->simplePaginate(10));
+        $this->data = [
+            'scholarships' => $this->scholarship->endorser_getPending('Loan')->simplePaginate(10)
+        ];
+        return view('Employee.loan')
+        ->with($this->data);
     }
 
     private function storeAvatar($file)
@@ -153,6 +156,6 @@ class EmployeeController extends Controller
         ]);
         Mail::to($scholarship->student->user->email)->send(new DeclineApplicationMail($scholarship));
 
-        return back()->withSuccess('Application Declined!');
+        return redirect()->route('employee.scholarhips')->withSuccess('Application Declined!');
     }
 }

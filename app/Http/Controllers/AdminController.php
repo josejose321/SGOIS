@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Exports\AdministrativeAndDiscountExport;
+use App\Exports\ExternalGranteeExport;
 use App\Exports\ExternalSummaryReport;
+use App\Exports\LoanExport;
 use App\Exports\SummaryReport;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Http\Requests\AdminVerifyRequest;
@@ -21,6 +23,7 @@ use App\Mail\AnnouncementMail;
 use App\Mail\DeclineApplicationMail;
 use App\Mail\RegistrationMail;
 use App\Mail\ScholarshipMail;
+use App\Mail\SemesterAnnouncmentMail;
 use App\Models\Announcement;
 use App\Models\Category;
 use App\Models\Course;
@@ -64,7 +67,7 @@ class AdminController extends Controller
         $this->student = new Student();
 
         $this->countResults =[
-            'totalScholarships'=> $this->scholarship->approved('Administrative')->count(),
+            'totalScholarships'=> $this->scholarship->approved('Scholarship')->count(),
             'totalDiscounts'=>$this->scholarship->approved('Discount')->count(),
             'totalLoans'=> $this->scholarship->approved('Loan')->count(),
             'totalOthers'=> $this->scholarship->approved('External')->count(),
@@ -93,7 +96,7 @@ class AdminController extends Controller
 
         $results = [
 
-            (object) ['title' =>'Scholarships', 'total' =>$this->scholarship->approved('Scholarship')->count()],
+            (object) ['title' =>'Scholarships', 'total' =>$this->scholarship->approved('Administrative')->count()],
             (object) ['title' =>'Discounts', 'total' =>$this->scholarship->approved('Discount')->count()],
             (object) ['title' =>'Loans', 'total' =>$this->scholarship->approved('Loans')->count()],
             (object) ['title' =>'Grants', 'total' =>$this->scholarship->approved('External')->count()],
@@ -127,12 +130,12 @@ class AdminController extends Controller
     public function storeAnnounce(AnnouncementRequest $request, Employee $employee)
     {
         $announcement = $employee->announcements()->create($request->validated());
-        $students = $this->student->getActiveStudent()->get();
-        // dd($students);
-        foreach($students as $student)
-        {
-            Mail::to($student->user->email)->send(new AnnouncementMail($announcement));
-        }
+        // $students = $this->student->getActiveStudent()->get();
+        // // dd($students);
+        // foreach($students as $student)
+        // {
+        //     Mail::to($student->user->email)->send(new AnnouncementMail($announcement));
+        // }
         return back()->withSuccess('You Added a new Annoucement:');
     }
 
@@ -358,6 +361,12 @@ class AdminController extends Controller
                 'year'=> $request->year,
                 'deadline'=>$request->deadline,
             ]);
+            $students = $this->student->getActiveStudent()->get();
+        // dd($students);
+        foreach($students as $student)
+        {
+            Mail::to($student->user->email)->send(new SemesterAnnouncmentMail($sem));
+        }
         }catch(Exception $e)
         {
             return redirect()->back()->with('error','Cannot Add new Semester');
@@ -408,7 +417,7 @@ class AdminController extends Controller
     public function viewApplication(Scholarship $scholarship)
     {
         if($scholarship->adminVerification === "Approved" && $scholarship->adminVerification === "Approved" )
-            return back()->with('error', 'Cannot open this application. \n Application Already Approved!');
+            return back()->with('error', 'Application Already Approved!');
         $this->data = [
             'scholarship'=>$scholarship
         ];
@@ -418,7 +427,6 @@ class AdminController extends Controller
 
     public function downloadReport(Request $request)
     {
-        if($request->type === "Administrative")
         return Excel::download(new SummaryReport, 'SGO-SUMMARY-REPORT.xlsx');
 
     }
@@ -515,6 +523,17 @@ class AdminController extends Controller
     }
     public function addStudentToExternal(ExternalScholarshipRequest $request, Student $student)
     {
+        $count =$student->scholarships->
+        where('semesterCode',Semester::latest()->first()->semesterCode ?? '')
+        ->where('student_no', $student->student_no)
+        ->where('officeVerification','Approved')
+        ->Where('adminVerification','Approved')->count();
+
+        // dd($count);
+        if($count > 0){
+            return back()->with('error','Student already have Pending or Approved Application');
+        }
+
         $student->scholarships()->create([
             'categoryNo'=>$request->categoryNo,
             'type'=>'External',
@@ -526,16 +545,23 @@ class AdminController extends Controller
     }
     public function exportGrants(Request $request)
     {
-        if($request->type ==="Administrative" || $request->type ==="Discount")
+        if($request->type ==="Administrative" || $request->type ==="Discount" || $request->type ==="Academic")
         {
             return Excel::download(
                 new AdministrativeAndDiscountExport($request->type),
                  $request->type ."Grantees.xlsx");
         }
-        else
+        else if($request->type ==="Loan")
         {
-            return back();
+            return Excel::download( new LoanExport($request->type),
+            $request->type . "Grantees.xlsx");
         }
+        else if($request->type ==="External")
+        {
+            return Excel::download( new ExternalGranteeExport($request->type),
+            $request->type . "Grantees.xlsx");
+        }
+
     }
     public function deactivateStudent(Student $student)
     {
@@ -560,11 +586,12 @@ class AdminController extends Controller
     public function declineApplication(Scholarship $scholarship)
     {
         $scholarship->update([
-            'officeVerification'=>"Declined"
+            'officeVerification'=>"Declined",
+            'adminVerification'=>"Declined"
         ]);
         Mail::to($scholarship->student->user->email)->send(new DeclineApplicationMail($scholarship));
 
-        return back()->withSuccess('Application Declined!');
+        return redirect()->route('admin.scholarhips')->withSuccess('Application Declined!');
     }
 
 

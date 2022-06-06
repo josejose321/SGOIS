@@ -4,7 +4,8 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-light">
-                    <h5 class="modal-title fw-bold">Scholarship No. {{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</h5>
+                    <h5 class="modal-title fw-bold">Scholarship No.
+                        {{ str_pad($scholarship->scholarshipNo, 6, '0', STR_PAD_LEFT) ?? '' }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -24,12 +25,13 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="">OFFICE</label>
-                            <input type="text" class="form-control" readonly value="{{ $scholarship->category->office->name  ?? ''}}">
+                            <input type="text" class="form-control" readonly
+                                value="{{ $scholarship->category->office->name ?? '' }}">
                         </div>
                         <div class="col-md-6">
                             <label for="">STATUS</label>
                             <input type="text" class="form-control" readonly
-                                value="{{  $scholarship->officeVerification ?? '' }}">
+                                value="{{ $scholarship->officeVerification ?? '' }}">
                         </div>
                     </div>
 
@@ -54,7 +56,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary">Approved this Scholarship</button>
-                    <button type="submit" class="btn btn-danger">Decline this Scholarship</button>
+                    <a href="{{ route('admin.application.decline', $scholarship) }}"><button type="button"
+                            class="btn btn-danger">Decline this Scholarship</button></a>
                     <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
 
 

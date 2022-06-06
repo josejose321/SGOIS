@@ -63,7 +63,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.discounts') }}"><i
                                 class="fa fa-graduation-cap"></i><span>DISCOUNTS</span></a></li>
                     <li class="nav-item"><a class="nav-link"
-                            href="{{ route('employee.scholarhips') }}"><i
+                            href="{{ route('employee.loans') }}"><i
                                 class="las la-chalkboard-teacher"></i><span>LOANS</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('employee.categories') }}"><i
                                 class="fa fa-list-alt"></i><span>PROGRAMS</span></a></li>

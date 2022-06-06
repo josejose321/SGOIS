@@ -55,7 +55,9 @@ class Category extends Model
     public function getSummaryReport()
     {
         $categoryData = [];
-        foreach(Category::where('type','Administrative')->orWhere('type','Discount')
+        foreach(Category::where('type','Administrative')
+        ->orWhere('type','Discount')
+        ->orWhere('type','Academic')
         ->pluck('categoryNo') as $categoryNo)
         {
             $category= Category::find($categoryNo);
@@ -81,7 +83,7 @@ class Category extends Model
     public function getExternalSummary()
     {
         $categoryData = [];
-        foreach(Category::where('type','External')
+        foreach(Category::where('type','External')->orWhere('type','Loan')
         ->pluck('categoryNo') as $categoryNo)
         {
             $category= Category::find($categoryNo);
@@ -120,7 +122,7 @@ class Category extends Model
         $allocation = $this->find($category)->allocation;
         if($allocation == 0)
             return true;
-        if($allocation < $totalApproved)
+        if( $totalApproved < $allocation)
         {
             return true;
         }
