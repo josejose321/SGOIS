@@ -81,10 +81,13 @@ Route::prefix('admin')
         Route::post('semesters/{semester}', 'extendSem')->name('semester.extend');
         Route::get('/grantees','showGrantees')->name('grantees');
         Route::get('/reports','showReport')->name('reports');
+
         Route::get('programs','showPrograms')->name('programs');
         Route::post('programs','storePrograms')->name('programs.store');
-        Route::post('programs/search','searchPrograms')->name('programs.search');
-        Route::post('programs/{category}','updatePrograms')->name('programs.update');
+
+        Route::post('programs/update/{category}','updatePrograms')->name('programs.update');
+        Route::get('programs/search','searchPrograms')->name('programs.search');
+        Route::get('/programs/slot-available','showSlot')->name('programs.showAvailable');
 
 
 

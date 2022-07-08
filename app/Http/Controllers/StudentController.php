@@ -106,17 +106,17 @@ class StudentController extends Controller
         {
             return back()->with('error','Sorry, No Slot Available');
         }
-        if($student->whereHas('scholarships', function($query){
-            $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
-            ->Where('officeVerification', 'Approved')
-            ->orWhere('adminVerification','Approved')
-            ->orWhere('adminVerification','Pending')
-            ->orWhere('officeVerification', 'Pending');
-            }
-        )->count() > 0)
-        {
-            return back()->with('error', 'Cannot Process Application Right now\n You already Applied Application or you have Pending Application');
-        }
+        // if($student->whereHas('scholarships', function($query){
+        //     $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+        //     ->Where('officeVerification', 'Approved')
+        //     ->orWhere('adminVerification','Approved')
+        //     ->orWhere('adminVerification','Pending')
+        //     ->orWhere('officeVerification', 'Pending');
+        //     }
+        // )->count() > 0)
+        // {
+        //     return back()->with('error', 'Cannot Process Application Right now\n You already Applied Application or you have Pending Application');
+        // }
 
 
         $student->scholarships()->create([
@@ -131,21 +131,21 @@ class StudentController extends Controller
     }
     public function applyDiscount(ScholarshipRequest $request, Student $student)
     {
-        if(!$this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
-        {
-            return back()->with('error','Sorry, No Slot Available');
-        }
-        if($student->whereHas('scholarships', function($query){
-            $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
-            ->Where('officeVerification', 'Approved')
-            ->orWhere('adminVerification','Approved')
-            ->orWhere('adminVerification','Pending')
-            ->orWhere('officeVerification', 'Pending');
-            }
-        )->count() > 0)
-        {
-            return back()->with('error', 'Cannot Process Application Right now\n You already Applied Application or you have Pending Application');
-        }
+        // if(!$this->category->ifHasVacant($request->categoryNo,$this->scholarship->countApprovedApplication($request->categoryNo)))
+        // {
+        //     return back()->with('error','Sorry, No Slot Available');
+        // }
+        // if($student->whereHas('scholarships', function($query){
+        //     $query->where('semesterCode', Semester::where('active',1)->latest()->first()->semesterCode ?? '')
+        //     ->Where('officeVerification', 'Approved')
+        //     ->orWhere('adminVerification','Approved')
+        //     ->orWhere('adminVerification','Pending')
+        //     ->orWhere('officeVerification', 'Pending');
+        //     }
+        // )->count() > 0)
+        // {
+        //     return back()->with('error', 'Cannot Process Application Right now\n You already Applied Application or you have Pending Application');
+        // }
 
 
         $student->scholarships()->create([

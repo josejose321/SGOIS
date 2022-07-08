@@ -80,6 +80,26 @@ class Category extends Model
         }
         return $categoryData;
     }
+    public function getSlotAvailable()
+    {
+        $categoryData = [];
+        foreach(Category::
+        pluck('categoryNo') as $categoryNo)
+        {
+            $category= Category::find($categoryNo);
+            array_push($categoryData,
+            (object) array(
+               'categoryNo' =>$category->categoryNo,
+               'name'=> $category->name,
+               'type'=> $category->type,
+               'field_team'=> $category->field_team,
+               'total'=> $this->approved($categoryNo)->count(),//count scholarships where it belongs to this category
+               'allocation'=> $category->allocation,
+                )
+            );
+        }
+        return $categoryData;
+    }
     public function getExternalSummary()
     {
         $categoryData = [];

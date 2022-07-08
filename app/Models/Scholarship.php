@@ -119,6 +119,8 @@ class Scholarship extends Model
     {
         return $this
         ->where('semesterCode', Semester::latest()->first()->semesterCode ?? '')
+        ->where('officeVerification','Approved')
+        ->where('adminVerification','Approved')
         ->where('categoryNo',$category)->count();
     }
 

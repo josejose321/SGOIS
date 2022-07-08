@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <h2>Grantees</h2> <br>
-                <h3>TOTAL GRANTEES: {{ $total }}</h3>
+                <h3>TOTAL GRANTEES: {{ $grantees->count() ?? '' }}</h3>
 
                 <form action="" method="">
                     @csrf

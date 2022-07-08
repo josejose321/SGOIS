@@ -52,6 +52,8 @@
                             Now!</a>
                     </p>
                 </div> --}}
+                <br><br>
+        <a href="{{ asset('requirements.pdf') }}" download><button class="btn btn-lg btn-danger">Download Guidelines</button></a>
     </div>
     <div class=" col-md-6 animate__animated animate__fadeInRight">
         <div class="">

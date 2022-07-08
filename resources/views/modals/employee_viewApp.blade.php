@@ -27,6 +27,7 @@
                             <option value="75%">75% Discount</option>
                             <option value="100%">100% Discount</option>
                             <option value="Full">Full Discount</option>
+                            <option value="NA">Not Applicable</option>
                         </select>
                     </div>
                 </div>

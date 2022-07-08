@@ -31,7 +31,7 @@ class StudentsImport implements ToModel, WithHeadingRow
                 'lastname'=>$row["lastname"],
                 'email'=>$row['email'],
                 'phone'=>$row['phone'],
-                'password'=>Hash::make($row['student_no'])
+                'password'=>Hash::make('password')
             ])->user()->create([
                 'year'=> $row['year']
             ]);

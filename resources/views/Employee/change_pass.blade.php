@@ -5,7 +5,7 @@
 
 
 @section('content')
-<div class="col-lg-7">
+<div class="col-lg-7" data-aos="fade-up">
     <div class="card mb-3">
         <div class="card-header py-3">
             <h2 class="fw-bold">Change Password</h2>
@@ -35,7 +35,7 @@
         <div class="card-footer">
 
             <button type="submit" class="btn btn-secondary float-end p-1 m-1">Change Password</button>
-            <a type="submit" href="{{ route('employee.index') }}" class="btn btn-warning float-end p-1 m-1">Go Back</a>
+            <a type="submit" href="{{ route('employee.index') }}" class="btn btn-danger float-end p-1 m-1">Go Back</a>
             <br><br>
         </div>
         </form>

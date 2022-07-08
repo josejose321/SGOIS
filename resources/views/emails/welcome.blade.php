@@ -11,10 +11,8 @@
     Welcome! Mr./Mrs {{ $student->user->lastname ?? '' }}, {{ $student->user->firstname ?? '' }}
     {{ $student->user->middlename ?? '' }}
 
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque beatae magni, nobis officiis assumenda adipisci
-    ea quisquam cum quis nulla a delectus deleniti, tempore aut veritatis aspernatur nesciunt at dolorum?
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ullam id eum doloremque tenetur dolores deleniti
-    laboriosam ipsam? Eius eum dolorem culpa, nulla commodi minus vero fugiat sequi officiis ad!
+    This email serves as a confirmation that your account was created succesfully. You can now access the University of
+    Nueva Caceres Scholarship and Grants Office Information System.
 
 
 
@@ -22,8 +20,11 @@
     <div>
         <strong>Student ID: {{ $student->user->user_id ?? '' }}</strong> <br>
         <strong>Email: {{ $student->user->email ?? '' }}</strong> <br>
-        <strong>Password:{{ $student->user->user_id ?? '' }}</strong> <br>
+        <strong>Password:{{ 'password' }}</strong> <br>
     </div>
+
+    Please be informed that this will be your credentials the next time you login to UNC-SGOIS. You can change your password
+    in your UNC-SGOIS account settings.
     @component('mail::button', ['url' => 'http://127.0.0.1:8000', 'color' => 'error'])
         Log in to your account
     @endcomponent

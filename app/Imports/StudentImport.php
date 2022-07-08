@@ -34,7 +34,7 @@ class StudentImport implements ToCollection, WithHeadingRow, SkipsOnError
                     'lastname'=>$row["lastname"],
                     'email'=>$row['email'],
                     'phone'=>$row['phone'],
-                    'password'=>Hash::make($row['student_no'])
+                    'password'=>Hash::make('password')
                 ])->student()->create([
                     'year'=> $row['year'],
                    ]);

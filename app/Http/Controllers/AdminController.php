@@ -408,7 +408,7 @@ class AdminController extends Controller
     public function showPrograms ()
     {
         $this->data = [
-            'categories'=> Category::simplePaginate(15),
+            'categories'=> Category::simplePaginate(10),
             'offices'=> Office::all()
         ];
         return view('Admin.categories')
@@ -592,6 +592,17 @@ class AdminController extends Controller
         Mail::to($scholarship->student->user->email)->send(new DeclineApplicationMail($scholarship));
 
         return redirect()->route('admin.scholarhips')->withSuccess('Application Declined!');
+    }
+    public function showSlot()
+    {
+        // dd($this->category->getSlotAvailable());
+        $this->data = [
+            'categories' =>$this->category->getSlotAvailable(),
+            'offices'=> Office::all()
+        ];
+
+        return view('Admin.slotsAvail')
+        ->with($this->data);
     }
 
 

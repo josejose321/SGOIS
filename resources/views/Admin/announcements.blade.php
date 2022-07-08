@@ -3,7 +3,7 @@
 
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" data-aos="fade-right">
         <div class="card shadow">
             <div class="card-header">
                 <div class="h3 font-weight-bold">Announcements</div>

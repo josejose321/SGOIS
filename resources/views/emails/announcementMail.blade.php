@@ -1,7 +1,7 @@
 @component('mail::message')
     # SGO ANNOUNCEMENT
 
-    The body of your message.
+
     Subject:: {{ $announcement->subject ?? '' }}
     Content:
     {{ $announcement->content ?? '' }}

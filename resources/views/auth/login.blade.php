@@ -75,7 +75,7 @@
                             @endif
                         </div>
                         <center>
-                            <a class="link link-info float-left fw-bold" href="{{ url('/') }}"> Go back</a>
+                            <a class="link link-info float-left fw-bold" href="{{ url('/') }}"> Go to Homepage</a>
                         </center>
                     </div>
                 </form>
